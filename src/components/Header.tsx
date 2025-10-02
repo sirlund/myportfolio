@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useNavigation } from '../App';
+import '../styles/Header.css';
 
 const navigation = [
   { name: 'Work', href: '#work' },
@@ -47,33 +48,33 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/90 backdrop-blur-md' 
-          : 'bg-transparent'
+      className={`header ${
+        isScrolled
+          ? 'header-scrolled'
+          : 'header-transparent'
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <nav className="header-nav">
+        <div className="header-inner">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="cursor-pointer"
+            className="header-logo"
             onClick={() => navigateTo('home')}
           >
-            <span className="font-medium">Nicolás Lundin</span>
+            <span className="header-logo-text">Nicolás Lundin</span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-8">
+          <div className="header-desktop-nav">
+            <div className="header-nav-items">
               {navigation.map((item) => (
                 <motion.button
                   key={item.name}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-sm hover:text-muted-foreground transition-colors duration-200"
+                  className="header-nav-button"
                 >
                   {item.name}
                 </motion.button>
@@ -82,15 +83,13 @@ export function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2"
-            >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </motion.button>
-          </div>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="header-mobile-menu-button"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
@@ -101,16 +100,16 @@ export function Header() {
             height: isMobileMenuOpen ? 'auto' : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden"
+          className="header-mobile-nav"
         >
-          <div className="py-4 space-y-4">
+          <div className="header-mobile-nav-items">
             {navigation.map((item) => (
               <motion.button
                 key={item.name}
                 whileHover={{ x: 10 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="block text-sm hover:text-muted-foreground transition-colors duration-200"
+                className="header-mobile-nav-button"
               >
                 {item.name}
               </motion.button>

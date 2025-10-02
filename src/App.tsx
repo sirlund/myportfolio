@@ -8,6 +8,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 import { ThreeCanvas } from './components/ThreeCanvas';
+import './styles/App.css';
 // Lazy load case study components for better performance
 const MindStudioCaseStudy = lazy(() => import('./components/case-studies/MindStudioCaseStudy'));
 const WeniaCaseStudy = lazy(() => import('./components/case-studies/WeniaCaseStudy'));
@@ -35,14 +36,14 @@ export const useNavigation = () => {
 
 // Simple Error Boundary component
 const ErrorFallback = ({ error, resetError }: { error: Error; resetError: () => void }) => (
-  <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
-    <h2 className="mb-4">Something went wrong</h2>
-    <p className="text-muted-foreground mb-4 text-center">
+  <div className="error-container">
+    <h2 className="error-title">Something went wrong</h2>
+    <p className="error-message">
       {error.message || 'An unexpected error occurred'}
     </p>
-    <button 
+    <button
       onClick={resetError}
-      className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
+      className="error-button"
     >
       Try again
     </button>
@@ -116,8 +117,8 @@ export default function App() {
 
   const renderPage = () => {
     const LoadingFallback = () => (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="animate-pulse">Loading...</div>
+      <div className="loading-container">
+        <div className="loading-spinner">Loading...</div>
       </div>
     );
 
@@ -167,7 +168,7 @@ export default function App() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="app-container">
         <Header />
         <ErrorFallback error={error} resetError={resetError} />
         <Footer />
@@ -177,12 +178,12 @@ export default function App() {
 
   return (
     <NavigationContext.Provider value={{ currentRoute, navigateTo, navigateToWork }}>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="app-container">
         <CustomCursor />
         <Header />
         {renderPage()}
         <Footer />
-        <Toaster 
+        <Toaster
           position="bottom-right"
           duration={4000}
         />

@@ -6,13 +6,13 @@ import svgPathsMindstudio from "../imports/svg-mm8uj1gqdm";
 import svgPathsTreez from "../imports/svg-e4e4492p50";
 import imgMindstudio from "figma:asset/f2f5123cf9e66431edd3697e20336ef308182706.png";
 import imgTreez from "figma:asset/e44fcb5bc8dca7effc85f21ee80ed064a838827f.png";
+import '../styles/Work.css';
 
 // Mindstudio Icon Component
 function MindstudioIcon() {
   return (
-    <div className="h-[30.711px] relative shrink-0 w-[51.441px]">
+    <div className="mindstudio-icon">
       <svg
-        className="block size-full"
         fill="none"
         preserveAspectRatio="none"
         viewBox="0 0 52 31"
@@ -45,11 +45,10 @@ function MindstudioIcon() {
 // Treez Icon Component
 function TreezIcon() {
   return (
-    <div className="aspect-[72/25] overflow-clip relative w-[72px]">
-      <div className="absolute contents inset-[0.06%_0.11%_0.21%_0.1%]">
-        <div className="absolute inset-[0.06%_0.11%_0.4%_85.83%]">
+    <div className="treez-icon">
+      <div className="treez-icon-container">
+        <div className="treez-icon-part1">
           <svg
-            className="block size-full"
             fill="none"
             preserveAspectRatio="none"
             viewBox="0 0 11 25"
@@ -61,9 +60,8 @@ function TreezIcon() {
             />
           </svg>
         </div>
-        <div className="absolute inset-[0.06%_12.55%_0.21%_0.1%]">
+        <div className="treez-icon-part2">
           <svg
-            className="block size-full"
             fill="none"
             preserveAspectRatio="none"
             viewBox="0 0 63 25"
@@ -97,24 +95,24 @@ function TreezIcon() {
 // Simple placeholder icons for other projects
 function WeniaIcon() {
   return (
-    <div className="w-[54px] h-[54px] bg-white/20 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-lg">W</span>
+    <div className="placeholder-icon">
+      <span>W</span>
     </div>
   );
 }
 
 function NacionalIcon() {
   return (
-    <div className="w-[54px] h-[54px] bg-white/20 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-lg">N</span>
+    <div className="placeholder-icon">
+      <span>N</span>
     </div>
   );
 }
 
 function KlareIcon() {
   return (
-    <div className="w-[54px] h-[54px] bg-white/20 rounded-lg flex items-center justify-center">
-      <span className="text-white font-bold text-lg">K</span>
+    <div className="placeholder-icon">
+      <span>K</span>
     </div>
   );
 }

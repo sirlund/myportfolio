@@ -4,6 +4,7 @@ import imgTl24 from "figma:asset/1ea56dc0450f32017fd843d2d38452e6a1fe772a.png";
 import imgTl12 from "figma:asset/ff77b8dc65684693f8721fbd3dbfdaf812401f5e.png";
 import imgTl5 from "figma:asset/4f578de95eb58c0b76d9e967452f4fa56aafd83f.png";
 import { ThreeCanvas } from './ThreeCanvas';
+import '../styles/Hero.css';
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
@@ -91,15 +92,15 @@ export function Hero() {
   }, [prevMousePosition]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      id="home"
+      className="hero-section"
     >
       <ThreeCanvas />
 
       {/* Main content */}
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+      <div className="hero-content">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,16 +110,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-6"
+            className="hero-title"
           >
             Nicolás Lundin
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-muted-foreground mb-12 max-w-2xl mx-auto"
+            className="hero-description"
           >
             A Senior Product Designer from Santiago, Chile –– creating user-friendly solutions for digital products.
           </motion.p>
@@ -130,7 +131,7 @@ export function Hero() {
             onClick={scrollToWork}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="text-sm border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-200"
+            className="hero-button"
           >
             View Works
           </motion.button>
@@ -142,18 +143,18 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        className="hero-scroll-indicator"
       >
         <motion.div
           animate={{ y: [0, 4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg 
-            width="20" 
-            height="32" 
-            viewBox="0 0 20 32" 
-            fill="none" 
-            className="text-muted-foreground"
+          <svg
+            width="20"
+            height="32"
+            viewBox="0 0 20 32"
+            fill="none"
+            className="hero-scroll-icon"
           >
             {/* Mouse body */}
             <rect 

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { Mail, ArrowUpRight } from 'lucide-react';
+import '../styles/Contact.css';
 
 const contactLinks = [
   {
@@ -31,23 +32,23 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-24">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mb-8">Let's Connect</h2>
-          
-          <p className="text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-            I'm always interested in discussing new opportunities, especially those involving 
-            design systems, fintech, or complex product challenges. Feel free to reach out if 
+          <h2 className="contact-title">Let's Connect</h2>
+
+          <p className="contact-description">
+            I'm always interested in discussing new opportunities, especially those involving
+            design systems, fintech, or complex product challenges. Feel free to reach out if
             you'd like to work together or just want to chat about design.
           </p>
 
-          <div className="space-y-6">
+          <div className="contact-links">
             {contactLinks.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -56,22 +57,22 @@ export function Contact() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ x: 10 }}
-                className="group flex items-center justify-between py-4 border-b border-border hover:border-foreground transition-colors duration-200"
+                className="contact-link"
               >
                 <div>
-                  <div className="font-medium group-hover:text-muted-foreground transition-colors duration-200">
+                  <div className="contact-link-name">
                     {link.name}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="contact-link-description">
                     {link.description}
                   </div>
                 </div>
-                
+
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-8 h-8 flex items-center justify-center"
+                  className="contact-link-icon"
                 >
-                  <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
+                  <ArrowUpRight size={16} />
                 </motion.div>
               </motion.a>
             ))}
