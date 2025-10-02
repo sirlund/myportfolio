@@ -132,7 +132,7 @@ export function Hero() {
             whileTap={{ scale: 0.98 }}
             className="text-sm border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-200"
           >
-            View Work
+            View Works
           </motion.button>
         </motion.div>
       </div>
