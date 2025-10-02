@@ -1,0 +1,61 @@
+.app-container {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding-left: calc(var(--spacing, 0.25rem) * 4);
+  padding-right: calc(var(--spacing, 0.25rem) * 4);
+}
+
+.error-title {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+}
+
+.error-message {
+  color: var(--muted-foreground);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  text-align: center;
+}
+
+.error-button {
+  padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: calc(var(--radius, 0.625rem) - 2px);
+  transition-property: opacity;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: var(--default-transition-duration, 0.15s);
+  border: none;
+  cursor: pointer;
+}
+
+.error-button:hover {
+  opacity: 0.9;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.loading-spinner {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

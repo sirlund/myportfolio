@@ -1,0 +1,90 @@
+.contact-section {
+  padding-top: calc(var(--spacing, 0.25rem) * 24);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 24);
+}
+
+.contact-container {
+  max-width: var(--container-4xl, 56rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--spacing, 0.25rem) * 6);
+  padding-right: calc(var(--spacing, 0.25rem) * 6);
+}
+
+@media (width >= 64rem) {
+  .contact-container {
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
+}
+
+.contact-title {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+}
+
+.contact-description {
+  color: var(--muted-foreground);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+  max-width: var(--container-2xl, 42rem);
+  line-height: var(--leading-relaxed, 1.625);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing, 0.25rem) * 6);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: calc(var(--spacing, 0.25rem) * 4);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 4);
+  border-bottom: 1px solid var(--border);
+  transition-property: border-color;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-link:hover {
+  border-color: var(--foreground);
+}
+
+.contact-link-name {
+  font-weight: var(--font-weight-medium, 500);
+  transition-property: color;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: 0.2s;
+}
+
+.contact-link:hover .contact-link-name {
+  color: var(--muted-foreground);
+}
+
+.contact-link-description {
+  font-size: var(--text-sm, 0.875rem);
+  line-height: calc(1.25 / 0.875);
+  color: var(--muted-foreground);
+}
+
+.contact-link-icon {
+  width: calc(var(--spacing, 0.25rem) * 8);
+  height: calc(var(--spacing, 0.25rem) * 8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-link-icon svg {
+  color: var(--muted-foreground);
+  transition-property: color;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: 0.2s;
+}
+
+.contact-link:hover .contact-link-icon svg {
+  color: var(--foreground);
+}
