@@ -1,7 +1,6 @@
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --font-size: 16px;
+  --font-family: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -89,162 +88,131 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-input-background: var(--input-background);
-  --color-switch-background: var(--switch-background);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-color: var(--border);
+  outline-color: var(--ring);
 }
 
-@layer base {
+@supports (color: color-mix(in lab, red, red)) {
   * {
-    @apply border-border outline-ring/50;
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Only hide cursor on non-mobile devices */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
   }
 
   body {
-    @apply bg-background text-foreground;
+    cursor: none !important;
   }
 
-  /* Only hide cursor on non-mobile devices */
-  @media (hover: hover) and (pointer: fine) {
-    * {
-      cursor: none !important;
-    }
-
-    body {
-      cursor: none !important;
-    }
-    
-    a, button, [role="button"], input, textarea, select, 
-    [data-testid], [role], div, span, p, h1, h2, h3, h4, h5, h6 {
-      cursor: none !important;
-    }
-  }
-
-  /* Ensure custom cursor blending works properly */
-  html, body {
-    isolation: isolate;
+  a, button, [role="button"], input, textarea, select,
+  [data-testid], [role], div, span, p, h1, h2, h3, h4, h5, h6 {
+    cursor: none !important;
   }
 }
 
+/* Ensure custom cursor blending works properly */
+html, body {
+  isolation: isolate;
+}
+
 /**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ * Base typography
  */
-@layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-size: var(--text-4xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    h2 {
-      font-size: var(--text-3xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    h3 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h3 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    h4 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    h5 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h5 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    h6 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.15;
-      letter-spacing: -0.022em;
-    }
+h6 {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
 
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.6;
-      letter-spacing: 0em;
-    }
+p {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0em;
+}
 
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.6;
-      letter-spacing: 0em;
-    }
+label {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0em;
+}
 
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.6;
-      letter-spacing: 0em;
-    }
+button {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0em;
+}
 
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.6;
-      letter-spacing: 0em;
-    }
+input {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0em;
+}
 
-    li {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.6;
-      letter-spacing: 0em;
-    }
-  }
+li {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0em;
 }
 
 html {
   font-size: var(--font-size);
+  font-family: var(--font-family);
 }

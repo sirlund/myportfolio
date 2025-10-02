@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import '../styles/CustomCursor.css';
 
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -78,7 +79,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed pointer-events-none z-[10000] rounded-full"
+      className="custom-cursor"
       style={{
         left: mousePosition.x - offset,
         top: mousePosition.y - offset,
