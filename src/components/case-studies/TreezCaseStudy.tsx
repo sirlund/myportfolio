@@ -1,0 +1,41 @@
+import { CaseStudyLayout } from './CaseStudyLayout';
+
+export function TreezCaseStudy() {
+  return (
+    <CaseStudyLayout
+      title="Treez Root Design System"
+      subtitle="Building a scalable design system for cannabis industry platforms, addressing design debt while enabling rapid product growth."
+      heroImage="https://images.unsplash.com/photo-1707998985308-7790cc645865?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW5uYWJpcyUyMHJldGFpbCUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4OTM5ODE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      details={[
+        { label: "Role", value: "Design System Lead" },
+        { label: "Duration", value: "12 months" },
+        { label: "Year", value: "2023" },
+        { label: "Team", value: "4 Designers, 8 Engineers, 3 PMs" }
+      ]}
+      overview={{
+        title: "Project Overview",
+        content: "Developed a comprehensive design system that ensured consistent product quality across cannabis industry platforms. Root DS became the foundation for scaling Treez's product suite while maintaining design excellence.\n\nYears of design debt had created inconsistencies across Treez platforms, leading to fragmented user experiences and inefficient development processes in a rapidly growing cannabis tech company."
+      }}
+      sections={[
+        {
+          title: "The Challenge",
+          content: "Years of design debt had created inconsistencies across Treez platforms, leading to fragmented user experiences and inefficient development processes in a rapidly growing cannabis tech company. Different teams were building similar components independently, creating maintenance overhead.\n\nThe cannabis industry has unique regulatory requirements that needed to be built into every interface, while maintaining user-friendly experiences for a diverse range of business operators."
+        },
+        {
+          title: "Root DS Architecture",
+          content: "As Design System Lead, I spearheaded the development of Root DS — a scalable and accessible system that effectively addressed design debt through systematic component libraries, clear documentation, and cross-team adoption strategies.\n\nEstablished a comprehensive token system covering colors, typography, spacing, and motion. These tokens served as the single source of truth across all platforms and ensured visual consistency while enabling easy theme customization for different product lines.\n\nBuilt a comprehensive component library using atomic design principles, starting with foundational atoms and progressing to complex organisms and industry-specific templates for cannabis retail, cultivation, and compliance workflows."
+        },
+        {
+          title: "Cannabis Industry Considerations",
+          content: "Compliance-First Design: Created specialized components for regulatory compliance including seed-to-sale tracking interfaces, lab testing result displays, and age verification flows. Each component included built-in validation and audit trails required by cannabis regulations.\n\nMulti-Stakeholder Workflows: Designed components that accommodate the complex cannabis supply chain including cultivators, manufacturers, distributors, and retailers. Created role-based interfaces that show relevant information while maintaining security and compliance requirements.\n\nAccessibility & Trust: Emphasized accessibility and trustworthy design patterns to help legitimize cannabis businesses. Ensured all components met WCAG 2.1 standards and incorporated trust signals throughout the user experience."
+        },
+        {
+          title: "Results & Impact",
+          content: "Reduced development time by 45%, improved design consistency scores by 80%, and enabled the design team to focus on innovation rather than maintenance, supporting company growth from 10 to 50+ product features.\n\nRoot DS became the foundation for Treez's continued growth, enabling rapid feature development while maintaining quality. The system reduced onboarding time for new team members and created a shared design language that improved cross-team collaboration."
+        }
+      ]}
+    />
+  );
+}
+
+export default TreezCaseStudy;
