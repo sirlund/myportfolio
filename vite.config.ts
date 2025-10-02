@@ -6,6 +6,9 @@
   export default defineConfig({
     plugins: [react()],
     base: '/myportfolio/',
+    build: {
+      outDir: 'build'
+    },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
