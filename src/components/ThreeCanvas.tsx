@@ -10,8 +10,8 @@ export function ThreeCanvas() {
     // ===== CONFIGURATION =====
     const CONFIG = {
       backgroundColor: 0xfafafa,
-      cameraFOV: 75, // Reduced FOV
-      cameraDistance: 1.75, // Increased distance
+      cameraFOV: 70, // Reduced FOV
+      cameraDistance: 1.8, // Increased distance
       bubbleSize: 0.9,
       bubbleDetail: 128,
       speed1: 0.1,
