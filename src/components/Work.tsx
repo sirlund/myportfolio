@@ -20,7 +20,7 @@ function MindstudioIcon() {
 function TreezIcon() {
   return (
     <div className="treez-icon">
-      <Icon name="treez" size="100%" color="#404040" />
+      <Icon name="treez" size="100%" />
     </div>
   );
 }

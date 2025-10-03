@@ -43,15 +43,25 @@ export function Icon({
       }}
       {...props}
     >
-      {icon.paths.map((path, index) => (
-        <path
-          key={index}
-          d={path}
-          fill={color || icon.fill || 'currentColor'}
-          clipRule="evenodd"
-          fillRule="evenodd"
-        />
-      ))}
+      {icon.paths.map((path, index) => {
+        // Handle both string paths and PathDefinition objects
+        const pathData = typeof path === 'string' ? path : path.d;
+        const pathFill = typeof path === 'string'
+          ? (color || icon.fill || 'currentColor')
+          : (path.fill || color || icon.fill || 'currentColor');
+        const pathOpacity = typeof path === 'string' ? undefined : path.opacity;
+
+        return (
+          <path
+            key={index}
+            d={pathData}
+            fill={pathFill}
+            fillOpacity={pathOpacity}
+            clipRule="evenodd"
+            fillRule="evenodd"
+          />
+        );
+      })}
     </svg>
   );
 }

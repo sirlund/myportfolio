@@ -89,6 +89,28 @@ logo: {
 }
 ```
 
+### Paths with Opacity or Custom Fill
+If a specific path needs different fill or opacity:
+
+```tsx
+logo: {
+  viewBox: "0 0 100 100",
+  paths: [
+    {
+      d: "M10...",           // Path data
+      fill: "#404040",       // Custom fill for this path
+      opacity: 0.48,         // Custom opacity (0-1)
+    },
+    "M50...",               // Regular path (uses icon default fill)
+    {
+      d: "M90...",
+      fill: "#ffffff",
+    },
+  ],
+  fill: "currentColor",      // Default fill for string paths
+}
+```
+
 ### Responsive Icon
 ```tsx
 <div className="icon-container">
