@@ -11,7 +11,7 @@ export function ThreeCanvas() {
     const CONFIG = {
       backgroundColor: 0xfafafa,
       cameraFOV: 75, // Reduced FOV
-      cameraDistance: 4, // Increased distance
+      cameraDistance: 1.75, // Increased distance
       bubbleSize: 0.9,
       bubbleDetail: 128,
       speed1: 0.1,
@@ -50,9 +50,11 @@ export function ThreeCanvas() {
       return;
     }
 
-    // Sizing
-    const width = mount.clientWidth;
-    const height = mount.clientHeight;
+    // Sizing based on viewport width with constraints
+    const viewportWidth = window.innerWidth;
+    const size = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+    const width = size;
+    const height = size; // Square aspect ratio (1:1)
 
     // ===== INIT =====
     scene = new THREE.Scene();
@@ -269,11 +271,11 @@ export function ThreeCanvas() {
     
     // ===== RESIZE HANDLER =====
     function onWindowResize() {
-      const w = mount.clientWidth;
-      const h = mount.clientHeight;
-      camera.aspect = w / h;
+      const viewportWidth = window.innerWidth;
+      const size = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+      camera.aspect = 1; // Square aspect ratio (1:1)
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(size, size);
     }
     window.addEventListener('resize', onWindowResize);
 
@@ -303,14 +305,7 @@ export function ThreeCanvas() {
   return (
     <div
       ref={mountRef}
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0  // This ensures it stays behind other content
-      }}
+      className='three-canvas'
       aria-label="Three.js Canvas"
     />
   );

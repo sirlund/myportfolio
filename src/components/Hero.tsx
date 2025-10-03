@@ -92,50 +92,54 @@ export function Hero() {
   }, [prevMousePosition]);
 
   return (
-    <section
+        <section 
       ref={sectionRef}
-      id="home"
+      id="home" 
       className="hero-section"
     >
-      <ThreeCanvas />
+      <div className='canvas-container'>
+        <ThreeCanvas />
+      </div>
 
       {/* Main content */}
-      <div className="hero-content">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="hero-title"
-          >
-            Nicolás Lundin
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="hero-description"
-          >
-            A Senior Product Designer from Santiago, Chile –– creating user-friendly solutions for digital products.
-          </motion.p>
-
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            onClick={scrollToWork}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="hero-button"
-          >
-            View Works
-          </motion.button>
-        </motion.div>
+      <div className="hero-content-wrapper">
+        <div className="hero-content-center">
+          <div className="hero-content">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="hero-title"
+              >
+                Nicolás Lundin
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="hero-description"
+              >
+                A Senior Product Designer from Santiago, Chile –– creating user-friendly solutions for digital products.
+              </motion.p>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                onClick={scrollToWork}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="hero-button"
+              >
+                View Work
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
