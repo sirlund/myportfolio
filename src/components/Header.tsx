@@ -34,12 +34,18 @@ export function Header() {
         navigateTo('home');
         // Wait for navigation and mobile menu animation
         setTimeout(() => {
+          // Update URL with hash
+          window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
+
           const element = document.querySelector(href);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
         }, 300); // Increased delay to account for animations
       } else {
+        // Update URL with hash
+        window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
+
         // Small delay for mobile menu to close
         setTimeout(() => {
           const element = document.querySelector(href);

@@ -51,13 +51,33 @@ const ErrorFallback = ({ error, resetError }: { error: Error; resetError: () => 
 );
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<Route>('home');
+  const [currentRoute, setCurrentRoute] = useState<Route>(() => {
+    // Initialize route from URL
+    const path = window.location.pathname.replace('/myportfolio/', '').replace(/^\//, '');
+    const hash = window.location.hash;
+
+    if (path === '' || path === 'myportfolio') {
+      return 'home';
+    }
+
+    const validRoutes: Route[] = ['mindstudio', 'wenia', 'treez', 'nacional', 'klare'];
+    if (validRoutes.includes(path as Route)) {
+      return path as Route;
+    }
+
+    return 'home';
+  });
   const [error, setError] = useState<Error | null>(null);
 
   const navigateTo = (route: Route) => {
     try {
       setError(null); // Clear any previous errors
       setCurrentRoute(route);
+
+      // Update URL
+      const url = route === 'home' ? '/myportfolio/' : `/myportfolio/${route}`;
+      window.history.pushState({ route }, '', url);
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Navigation failed'));
@@ -68,6 +88,8 @@ export default function App() {
     try {
       setError(null);
       setCurrentRoute('home');
+      window.history.pushState({ route: 'home', section: 'work' }, '', '/myportfolio/#work');
+
       // Wait for the route change to complete, then scroll to work section
       setTimeout(() => {
         const workElement = document.getElementById('work');
@@ -83,7 +105,40 @@ export default function App() {
   const resetError = () => {
     setError(null);
     setCurrentRoute('home');
+    window.history.pushState({ route: 'home' }, '', '/myportfolio/');
   };
+
+  useEffect(() => {
+    // Handle browser back/forward buttons
+    const handlePopState = (event: PopStateEvent) => {
+      const path = window.location.pathname.replace('/myportfolio/', '').replace(/^\//, '');
+      const hash = window.location.hash;
+
+      if (path === '' || path === 'myportfolio') {
+        setCurrentRoute('home');
+
+        // Handle section scrolling from hash
+        if (hash) {
+          setTimeout(() => {
+            const element = document.querySelector(hash);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }
+      } else {
+        const validRoutes: Route[] = ['mindstudio', 'wenia', 'treez', 'nacional', 'klare'];
+        if (validRoutes.includes(path as Route)) {
+          setCurrentRoute(path as Route);
+        } else {
+          setCurrentRoute('home');
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   useEffect(() => {
     // Smooth scrolling for anchor links (only on home page)
@@ -93,6 +148,9 @@ export default function App() {
         const target = e.currentTarget as HTMLAnchorElement;
         const href = target.getAttribute('href');
         if (href) {
+          // Update URL with hash
+          window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
+
           const element = document.querySelector(href);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -101,7 +159,7 @@ export default function App() {
       };
 
       const links = document.querySelectorAll('a[href^="#"]');
-      
+
       links.forEach(link => {
         link.addEventListener('click', handleClick);
       });

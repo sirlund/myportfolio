@@ -22,6 +22,9 @@ export function Hero() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToWork = () => {
+    // Update URL with hash
+    window.history.pushState({ route: 'home', section: '#work' }, '', '/myportfolio/#work');
+
     const element = document.querySelector('#work');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
