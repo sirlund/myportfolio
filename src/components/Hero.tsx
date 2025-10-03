@@ -1,25 +1,10 @@
 import { motion } from 'motion/react';
-import { useState, useEffect, useRef } from 'react';
-import imgTl24 from "figma:asset/1ea56dc0450f32017fd843d2d38452e6a1fe772a.png";
-import imgTl12 from "figma:asset/ff77b8dc65684693f8721fbd3dbfdaf812401f5e.png";
-import imgTl5 from "figma:asset/4f578de95eb58c0b76d9e967452f4fa56aafd83f.png";
+import { useRef } from 'react';
 import { ThreeCanvas } from './ThreeCanvas';
 import '../styles/Hero.css';
 
 export function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
-  const [prevMousePosition, setPrevMousePosition] = useState({ x: 50, y: 50 });
-  const [isMouseMoving, setIsMouseMoving] = useState(false);
-  
-  // Track cumulative positions for each shape
-  const [shapePositions, setShapePositions] = useState({
-    triangle: { x: 0, y: 0, rotation: 0 },
-    star: { x: 0, y: 0, rotation: 0 },
-    circle: { x: 0, y: 0, rotation: 0 }
-  });
-  
   const sectionRef = useRef<HTMLElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToWork = () => {
     // Update URL with hash
@@ -30,69 +15,6 @@ export function Hero() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      // Calculate mouse movement delta
-      const deltaX = x - prevMousePosition.x;
-      const deltaY = y - prevMousePosition.y;
-      
-      // Update cumulative positions for each shape with different sensitivities
-      setShapePositions(prev => ({
-        triangle: {
-          x: prev.triangle.x + deltaX * 0.3,
-          y: prev.triangle.y + deltaY * 0.2,
-          rotation: prev.triangle.rotation + deltaX * 0.1
-        },
-        star: {
-          x: prev.star.x + deltaX * -0.4,
-          y: prev.star.y + deltaY * 0.3,
-          rotation: prev.star.rotation + deltaX * -0.15
-        },
-        circle: {
-          x: prev.circle.x + deltaX * 0.25,
-          y: prev.circle.y + deltaY * -0.2,
-          rotation: prev.circle.rotation + deltaY * 0.1
-        }
-      }));
-      
-      setPrevMousePosition({ x, y });
-      setMousePosition({ x, y });
-      setIsMouseMoving(true);
-
-      // Clear existing timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-
-      // Set timeout to stop mouse movement detection
-      timeoutRef.current = setTimeout(() => {
-        setIsMouseMoving(false);
-      }, 200);
-    };
-
-    const handleMouseLeave = () => {
-      setIsMouseMoving(false);
-    };
-
-    section.addEventListener('mousemove', handleMouseMove);
-    section.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      section.removeEventListener('mousemove', handleMouseMove);
-      section.removeEventListener('mouseleave', handleMouseLeave);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [prevMousePosition]);
 
   return (
         <section 

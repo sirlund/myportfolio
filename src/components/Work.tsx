@@ -2,42 +2,16 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { useNavigation } from "../App";
-import svgPathsMindstudio from "../imports/svg-mm8uj1gqdm";
-import svgPathsTreez from "../imports/svg-e4e4492p50";
-import imgMindstudio from "figma:asset/f2f5123cf9e66431edd3697e20336ef308182706.png";
-import imgTreez from "figma:asset/e44fcb5bc8dca7effc85f21ee80ed064a838827f.png";
+import { Icon } from "./icons";
+import imgMindstudio from "../assets/mindstudio_cover.png";
+import imgTreez from "../assets/treez_cover.png";
 import '../styles/Work.css';
 
 // Mindstudio Icon Component
 function MindstudioIcon() {
   return (
     <div className="mindstudio-icon">
-      <svg
-        fill="none"
-        preserveAspectRatio="none"
-        viewBox="0 0 52 31"
-      >
-        <g>
-          <path
-            clipRule="evenodd"
-            d={svgPathsMindstudio.p312ce400}
-            fill="white"
-            fillRule="evenodd"
-          />
-          <path
-            clipRule="evenodd"
-            d={svgPathsMindstudio.p32b8100}
-            fill="white"
-            fillRule="evenodd"
-          />
-          <path
-            clipRule="evenodd"
-            d={svgPathsMindstudio.p1088c080}
-            fill="white"
-            fillRule="evenodd"
-          />
-        </g>
-      </svg>
+      <Icon name="mindstudio" size="100%" />
     </div>
   );
 }
@@ -46,48 +20,7 @@ function MindstudioIcon() {
 function TreezIcon() {
   return (
     <div className="treez-icon">
-      <div className="treez-icon-container">
-        <div className="treez-icon-part1">
-          <svg
-            fill="none"
-            preserveAspectRatio="none"
-            viewBox="0 0 11 25"
-          >
-            <path
-              d={svgPathsTreez.p331b8100}
-              fill="#404040"
-              fillOpacity="0.48"
-            />
-          </svg>
-        </div>
-        <div className="treez-icon-part2">
-          <svg
-            fill="none"
-            preserveAspectRatio="none"
-            viewBox="0 0 63 25"
-          >
-            <g>
-              <path
-                d={svgPathsTreez.p21bad880}
-                fill="#404040"
-              />
-              <path
-                d={svgPathsTreez.p22605980}
-                fill="#404040"
-              />
-              <path
-                d={svgPathsTreez.p36e3ad00}
-                fill="#404040"
-              />
-              <path
-                d={svgPathsTreez.p39d6fb00}
-                fill="#404040"
-              />
-              <path d={svgPathsTreez.pf46a0b0} fill="#404040" />
-            </g>
-          </svg>
-        </div>
-      </div>
+      <Icon name="treez" size="100%" color="#404040" />
     </div>
   );
 }
@@ -104,7 +37,7 @@ function WeniaIcon() {
 function NacionalIcon() {
   return (
     <div className="placeholder-icon">
-      <span>N</span>
+      <span>NMP</span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useContext, Suspense, lazy } from 'react';
+import { useEffect, useState, createContext, useContext, Suspense } from 'react';
 import { Toaster } from './components/ui/sonner';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -7,17 +7,18 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
-import { ThreeCanvas } from './components/ThreeCanvas';
+import { Route, ROUTES } from './config/routes';
+import { ERROR_MESSAGES } from './config/constants';
+import {
+  parseRouteFromURL,
+  updateURL,
+  scrollToElement,
+  scrollToTop,
+  handlePopState as setupPopStateHandler,
+} from './utils/navigation';
 import './styles/App.css';
-// Lazy load case study components for better performance
-const MindStudioCaseStudy = lazy(() => import('./components/case-studies/MindStudioCaseStudy'));
-const WeniaCaseStudy = lazy(() => import('./components/case-studies/WeniaCaseStudy'));
-const TreezCaseStudy = lazy(() => import('./components/case-studies/TreezCaseStudy'));
-const NacionalCaseStudy = lazy(() => import('./components/case-studies/NacionalCaseStudy'));
-const KlareCaseStudy = lazy(() => import('./components/case-studies/KlareCaseStudy'));
 
-type Route = 'home' | 'mindstudio' | 'wenia' | 'treez' | 'nacional' | 'klare';
-
+// Navigation context interface
 interface NavigationContextType {
   currentRoute: Route;
   navigateTo: (route: Route) => void;
@@ -34,53 +35,38 @@ export const useNavigation = () => {
   return context;
 };
 
-// Simple Error Boundary component
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="loading-container">
+    <div className="loading-spinner">Loading...</div>
+  </div>
+);
+
+// Error boundary component
 const ErrorFallback = ({ error, resetError }: { error: Error; resetError: () => void }) => (
   <div className="error-container">
     <h2 className="error-title">Something went wrong</h2>
     <p className="error-message">
-      {error.message || 'An unexpected error occurred'}
+      {error.message || ERROR_MESSAGES.UNEXPECTED_ERROR}
     </p>
-    <button
-      onClick={resetError}
-      className="error-button"
-    >
+    <button onClick={resetError} className="error-button">
       Try again
     </button>
   </div>
 );
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<Route>(() => {
-    // Initialize route from URL
-    const path = window.location.pathname.replace('/myportfolio/', '').replace(/^\//, '');
-    const hash = window.location.hash;
-
-    if (path === '' || path === 'myportfolio') {
-      return 'home';
-    }
-
-    const validRoutes: Route[] = ['mindstudio', 'wenia', 'treez', 'nacional', 'klare'];
-    if (validRoutes.includes(path as Route)) {
-      return path as Route;
-    }
-
-    return 'home';
-  });
+  const [currentRoute, setCurrentRoute] = useState<Route>(parseRouteFromURL);
   const [error, setError] = useState<Error | null>(null);
 
   const navigateTo = (route: Route) => {
     try {
-      setError(null); // Clear any previous errors
+      setError(null);
       setCurrentRoute(route);
-
-      // Update URL
-      const url = route === 'home' ? '/myportfolio/' : `/myportfolio/${route}`;
-      window.history.pushState({ route }, '', url);
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateURL(route);
+      scrollToTop();
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Navigation failed'));
+      setError(err instanceof Error ? err : new Error(ERROR_MESSAGES.NAVIGATION_FAILED));
     }
   };
 
@@ -88,140 +74,86 @@ export default function App() {
     try {
       setError(null);
       setCurrentRoute('home');
-      window.history.pushState({ route: 'home', section: 'work' }, '', '/myportfolio/#work');
+      updateURL('home', 'work');
 
       // Wait for the route change to complete, then scroll to work section
-      setTimeout(() => {
-        const workElement = document.getElementById('work');
-        if (workElement) {
-          workElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      setTimeout(() => scrollToElement('work'), 100);
     } catch (err) {
-      setError(err instanceof Error ? err : new Error('Navigation to work failed'));
+      setError(err instanceof Error ? err : new Error(ERROR_MESSAGES.NAVIGATION_FAILED));
     }
   };
 
   const resetError = () => {
     setError(null);
     setCurrentRoute('home');
-    window.history.pushState({ route: 'home' }, '', '/myportfolio/');
+    updateURL('home');
   };
 
+  // Handle browser back/forward buttons
   useEffect(() => {
-    // Handle browser back/forward buttons
-    const handlePopState = (event: PopStateEvent) => {
-      const path = window.location.pathname.replace('/myportfolio/', '').replace(/^\//, '');
+    const cleanup = setupPopStateHandler((route) => {
+      setCurrentRoute(route);
+
+      // Handle section scrolling from hash
       const hash = window.location.hash;
+      if (hash) {
+        setTimeout(() => scrollToElement(hash.substring(1)), 100);
+      }
+    });
 
-      if (path === '' || path === 'myportfolio') {
-        setCurrentRoute('home');
+    return cleanup;
+  }, []);
 
-        // Handle section scrolling from hash
-        if (hash) {
-          setTimeout(() => {
-            const element = document.querySelector(hash);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 100);
-        }
-      } else {
-        const validRoutes: Route[] = ['mindstudio', 'wenia', 'treez', 'nacional', 'klare'];
-        if (validRoutes.includes(path as Route)) {
-          setCurrentRoute(path as Route);
-        } else {
-          setCurrentRoute('home');
-        }
+  // Smooth scrolling for anchor links (only on home page)
+  useEffect(() => {
+    if (currentRoute !== 'home') return;
+
+    const handleClick = (e: Event) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute('href');
+
+      if (href) {
+        const sectionId = href.substring(1); // Remove the '#'
+        updateURL('home', sectionId);
+        scrollToElement(sectionId);
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => link.addEventListener('click', handleClick));
 
-  useEffect(() => {
-    // Smooth scrolling for anchor links (only on home page)
-    if (currentRoute === 'home') {
-      const handleClick = (e: Event) => {
-        e.preventDefault();
-        const target = e.currentTarget as HTMLAnchorElement;
-        const href = target.getAttribute('href');
-        if (href) {
-          // Update URL with hash
-          window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
-
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      };
-
-      const links = document.querySelectorAll('a[href^="#"]');
-
-      links.forEach(link => {
-        link.addEventListener('click', handleClick);
-      });
-
-      // Cleanup event listeners
-      return () => {
-        links.forEach(link => {
-          link.removeEventListener('click', handleClick);
-        });
-      };
-    }
+    return () => {
+      links.forEach(link => link.removeEventListener('click', handleClick));
+    };
   }, [currentRoute]);
 
   const renderPage = () => {
-    const LoadingFallback = () => (
-      <div className="loading-container">
-        <div className="loading-spinner">Loading...</div>
-      </div>
-    );
+    // Render case study pages
+    if (currentRoute !== 'home') {
+      const routeConfig = ROUTES[currentRoute];
+      const Component = routeConfig.component;
 
-    switch (currentRoute) {
-      case 'mindstudio':
-        return (
-          <Suspense fallback={<LoadingFallback />}>
-            <MindStudioCaseStudy />
-          </Suspense>
-        );
-      case 'wenia':
-        return (
-          <Suspense fallback={<LoadingFallback />}>
-            <WeniaCaseStudy />
-          </Suspense>
-        );
-      case 'treez':
-        return (
-          <Suspense fallback={<LoadingFallback />}>
-            <TreezCaseStudy />
-          </Suspense>
-        );
-      case 'nacional':
-        return (
-          <Suspense fallback={<LoadingFallback />}>
-            <NacionalCaseStudy />
-          </Suspense>
-        );
-      case 'klare':
-        return (
-          <Suspense fallback={<LoadingFallback />}>
-            <KlareCaseStudy />
-          </Suspense>
-        );
-      case 'home':
-      default:
-        return (
-          <main>
-            <Hero />
-            <Work />
-            <About />
-            <Contact />
-          </main>
-        );
+      if (!Component) {
+        return <ErrorFallback error={new Error(ERROR_MESSAGES.ROUTE_NOT_FOUND)} resetError={resetError} />;
+      }
+
+      return (
+        <Suspense fallback={<LoadingFallback />}>
+          <Component />
+        </Suspense>
+      );
     }
+
+    // Render home page
+    return (
+      <main>
+        <Hero />
+        <Work />
+        <About />
+        <Contact />
+      </main>
+    );
   };
 
   return (
@@ -235,10 +167,7 @@ export default function App() {
           renderPage()
         )}
         <Footer />
-        <Toaster
-          position="bottom-right"
-          duration={4000}
-        />
+        <Toaster position="bottom-right" duration={4000} />
       </div>
     </NavigationContext.Provider>
   );
