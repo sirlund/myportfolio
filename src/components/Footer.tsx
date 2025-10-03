@@ -15,26 +15,30 @@ export function Footer() {
           className="footer-inner"
         >
           <div className="footer-copyright">
-            © {currentYear} Emily Chen. All rights reserved.
+            © {currentYear} Nicolás Lundin. Maybe some rights reserved :)
           </div>
 
           <div className="footer-links">
             <motion.a
-              href="https://linkedin.com/in/emilychen"
+              href="https://linkedin.com/in/nicolaslundin"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -2 }}
               className="footer-link"
             >
               LinkedIn
             </motion.a>
             <motion.a
-              href="https://dribbble.com/emilychen"
+              href="https://dribbble.com/sirlund"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -2 }}
               className="footer-link"
             >
               Dribbble
             </motion.a>
             <motion.a
-              href="mailto:emily@example.com"
+              href="mailto:nlundin@gmail.com"
               whileHover={{ y: -2 }}
               className="footer-link"
             >

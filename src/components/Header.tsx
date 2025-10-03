@@ -25,22 +25,37 @@ export function Header() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    if (currentRoute !== 'home') {
-      navigateTo('home');
-      // Wait for navigation to complete before scrolling
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    // First close the mobile menu
     setIsMobileMenuOpen(false);
+
+    // Use requestAnimationFrame to ensure DOM updates complete
+    requestAnimationFrame(() => {
+      if (currentRoute !== 'home') {
+        navigateTo('home');
+        // Wait for navigation and mobile menu animation
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300); // Increased delay to account for animations
+      } else {
+        // Small delay for mobile menu to close
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            const headerOffset = 80; // Adjust based on your header height
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 50);
+      }
+    });
   };
 
   return (

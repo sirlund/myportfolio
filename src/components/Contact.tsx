@@ -7,17 +7,21 @@ import '../styles/Contact.css';
 const contactLinks = [
   {
     name: "Email",
-    href: "mailto:nicolas@example.com",
-    description: "nicolas@example.com"
+    href: "mailto:nlundin@gmail.com",
+    description: "nlundin@gmail.com"
   },
   {
     name: "LinkedIn",
+    target: "_blank",
+    rel: "noopener noreferrer",
     href: "https://linkedin.com/in/nicolaslundin",
     description: "Connect with me"
   },
   {
     name: "Dribbble",
-    href: "https://dribbble.com/nicolaslundin",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    href: "https://dribbble.com/sirlund",
     description: "View my work"
   },
   {
@@ -53,6 +57,8 @@ export function Contact() {
               <motion.a
                 key={link.name}
                 href={link.href}
+                target={link.target}
+                rel={link.rel}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}

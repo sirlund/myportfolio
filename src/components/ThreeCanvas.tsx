@@ -37,12 +37,21 @@ export function ThreeCanvas() {
       highlightPower: 50.0,
       highlightIntensity: 0.5,
       baseTransparency: 0.1,
-      edgeTransparency: 0.6
+      edgeTransparency: 0.6,
+      // Mouse interaction
+      mouseLerpSpeed: 0.2, // Speed of mouse position interpolation (0-1, lower = smoother)
+      mouseInfluenceStrength: 1.0, // Base strength of mouse effect (0 = no effect, higher = stronger)
+      mouseBlendAmount: 0.6, // How much mouse colors blend with base colors (0-1)
+      mouseColorIntensity: 0.6 // Intensity of color variation (0-1)
     };
 
     let scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer;
     let material: THREE.ShaderMaterial, mesh: THREE.Mesh;
     const clock = new THREE.Clock();
+
+    // Mouse position (normalized -1 to 1)
+    const mouse = { x: 0, y: 0 };
+    let isMouseInHero = false;
 
     const mount = mountRef.current;
     if (!mount) {
@@ -193,6 +202,7 @@ export function ThreeCanvas() {
       varying vec3 vPosition;
       varying vec3 vWorldPosition;
       uniform float time;
+      uniform vec2 mousePos;
 
       // Appearance parameters
       uniform vec3 glassColor;
@@ -204,6 +214,9 @@ export function ThreeCanvas() {
       uniform float highlightIntensity;
       uniform float baseTransparency;
       uniform float edgeTransparency;
+      uniform float mouseInfluenceStrength;
+      uniform float mouseBlendAmount;
+      uniform float mouseColorIntensity;
 
       void main() {
           vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
@@ -211,9 +224,28 @@ export function ThreeCanvas() {
           // Fresnel effect using config parameter
           float fresnel = pow(1.0 - dot(vNormal, viewDirection), fresnelPower);
 
-          // Gradient using config colors
+          // Mouse influence - always active when mouse is present
+          float mouseInfluence = mouseInfluenceStrength;
+
+          // Create color variation based on mouse position
+          vec3 mouseColor1 = vec3(
+              0.4 + mousePos.x * mouseColorIntensity,
+              0.6 + mousePos.y * mouseColorIntensity,
+              0.9
+          );
+          vec3 mouseColor2 = vec3(
+              0.9,
+              0.3 + mousePos.x * mouseColorIntensity,
+              0.5 + mousePos.y * mouseColorIntensity
+          );
+
+          // Gradient using config colors with mouse influence
           float gradient = (vPosition.y + 1.0) * 0.5;
-          vec3 gradientColor = mix(bottomColor, topColor, gradient);
+          vec3 baseGradient = mix(bottomColor, topColor, gradient);
+
+          // Mix in mouse-influenced colors
+          vec3 mouseGradient = mix(mouseColor1, mouseColor2, gradient);
+          vec3 gradientColor = mix(baseGradient, mouseGradient, mouseInfluence * mouseBlendAmount);
 
           // Blend with fresnel
           vec3 color = mix(gradientColor, vec3(1.0), fresnel * fresnelBlend);
@@ -235,6 +267,7 @@ export function ThreeCanvas() {
       fragmentShader,
       uniforms: {
         time: { value: 0 },
+        mousePos: { value: new THREE.Vector2(0, 0) },
         speed1: { value: CONFIG.speed1 },
         frequency1: { value: CONFIG.frequency1 },
         intensity1: { value: CONFIG.intensity1 },
@@ -252,7 +285,10 @@ export function ThreeCanvas() {
         highlightPower: { value: CONFIG.highlightPower },
         highlightIntensity: { value: CONFIG.highlightIntensity },
         baseTransparency: { value: CONFIG.baseTransparency },
-        edgeTransparency: { value: CONFIG.edgeTransparency }
+        edgeTransparency: { value: CONFIG.edgeTransparency },
+        mouseInfluenceStrength: { value: CONFIG.mouseInfluenceStrength },
+        mouseBlendAmount: { value: CONFIG.mouseBlendAmount },
+        mouseColorIntensity: { value: CONFIG.mouseColorIntensity }
       },
       transparent: true,
       side: THREE.DoubleSide,
@@ -268,7 +304,39 @@ export function ThreeCanvas() {
     console.log('Mesh created:', mesh);
     console.log('Scene:', scene);
     console.log('Camera position:', camera.position);
-    
+
+    // ===== MOUSE INTERACTION =====
+    const heroSection = document.getElementById('home');
+    if (!heroSection) {
+      console.error('Hero section not found');
+      return;
+    }
+
+    function onMouseMove(event: MouseEvent) {
+      if (!isMouseInHero) return;
+
+      const rect = heroSection!.getBoundingClientRect();
+
+      // Normalize to -1 to 1 range
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    }
+
+    function onMouseEnter() {
+      isMouseInHero = true;
+    }
+
+    function onMouseLeave() {
+      isMouseInHero = false;
+      // Reset mouse position to center smoothly
+      mouse.x = 0;
+      mouse.y = 0;
+    }
+
+    heroSection.addEventListener('mousemove', onMouseMove);
+    heroSection.addEventListener('mouseenter', onMouseEnter);
+    heroSection.addEventListener('mouseleave', onMouseLeave);
+
     // ===== RESIZE HANDLER =====
     function onWindowResize() {
       const viewportWidth = window.innerWidth;
@@ -287,6 +355,10 @@ export function ThreeCanvas() {
       const time = clock.getElapsedTime();
       material.uniforms.time.value = time;
 
+      // Smooth transition with lerp
+      material.uniforms.mousePos.value.x += (mouse.x - material.uniforms.mousePos.value.x) * CONFIG.mouseLerpSpeed;
+      material.uniforms.mousePos.value.y += (mouse.y - material.uniforms.mousePos.value.y) * CONFIG.mouseLerpSpeed;
+
       renderer.render(scene, camera);
     }
     animate();
@@ -295,6 +367,11 @@ export function ThreeCanvas() {
     return () => {
       stop = true;
       window.removeEventListener('resize', onWindowResize);
+      if (heroSection) {
+        heroSection.removeEventListener('mousemove', onMouseMove);
+        heroSection.removeEventListener('mouseenter', onMouseEnter);
+        heroSection.removeEventListener('mouseleave', onMouseLeave);
+      }
       mount.removeChild(renderer.domElement);
       renderer.dispose();
       geometry.dispose();
