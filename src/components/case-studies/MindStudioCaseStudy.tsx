@@ -1,5 +1,6 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import '../../styles/CaseStudyContent.css';
 
 export function MindStudioCaseStudy() {
   return (
@@ -25,47 +26,47 @@ export function MindStudioCaseStudy() {
         {
           title: "Design System Architecture",
           content: (
-            <div className="space-y-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="cs-content-wrapper">
+              <div className="cs-two-column">
                 <div>
-                  <h3 className="mb-6">Foundation Layer</h3>
-                  <ul className="space-y-3 text-base">
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                  <h3 className="cs-section-heading">Foundation Layer</h3>
+                  <ul className="cs-feature-list">
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Design tokens for colors, typography, and spacing</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Grid systems and layout principles</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Accessibility guidelines and standards</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Icon library and illustration style</span>
                     </li>
                   </ul>
                 </div>
-                
+
                 <div>
-                  <h3 className="mb-6">Component Layer</h3>
-                  <ul className="space-y-3 text-base">
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                  <h3 className="cs-section-heading">Component Layer</h3>
+                  <ul className="cs-feature-list">
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Atomic design methodology implementation</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>50+ reusable UI components</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>AI-specific components for data visualization</span>
                     </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                    <li className="cs-feature-item">
+                      <span className="cs-bullet"></span>
                       <span>Interactive patterns for machine learning interfaces</span>
                     </li>
                   </ul>
@@ -75,9 +76,9 @@ export function MindStudioCaseStudy() {
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1738606410165-46da2b5b700e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGRlc2lnbiUyMHRva2VucyUyMGNvbG9yc3xlbnwxfHx8fDE3NTg5Mzk0OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Design tokens and color system"
-                className="w-full h-96 object-cover rounded-2xl"
+                className="cs-image-full"
               />
-              <p className="text-sm text-muted-foreground text-center">
+              <p className="cs-image-caption">
                 Design tokens and color system implementation for dark and light modes
               </p>
             </div>
@@ -90,31 +91,31 @@ export function MindStudioCaseStudy() {
         {
           title: "Key System Features",
           content: (
-            <div className="space-y-12">
-              <div className="space-y-8">
-                <div>
-                  <h3 className="mb-4">Dark Mode Implementation</h3>
-                  <p className="leading-relaxed">
-                    Implemented a comprehensive dark mode system that automatically adapts all components 
-                    and maintains accessibility standards. This included creating semantic color tokens 
+            <div className="cs-content-wrapper">
+              <div className="cs-feature-block-list">
+                <div className="cs-feature-block">
+                  <h3>Dark Mode Implementation</h3>
+                  <p>
+                    Implemented a comprehensive dark mode system that automatically adapts all components
+                    and maintains accessibility standards. This included creating semantic color tokens
                     that work across both light and dark themes while preserving contrast ratios.
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="mb-4">AI-Specific Components</h3>
-                  <p className="leading-relaxed">
-                    Developed specialized components for AI interfaces including data visualization 
-                    widgets, model performance indicators, and interactive training data displays. 
+                <div className="cs-feature-block">
+                  <h3>AI-Specific Components</h3>
+                  <p>
+                    Developed specialized components for AI interfaces including data visualization
+                    widgets, model performance indicators, and interactive training data displays.
                     These components standardized how complex AI information is presented across the platform.
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="mb-4">Documentation & Adoption</h3>
-                  <p className="leading-relaxed">
-                    Created comprehensive documentation including usage guidelines, code examples, 
-                    and design principles. Established a governance model for design system evolution 
+                <div className="cs-feature-block">
+                  <h3>Documentation & Adoption</h3>
+                  <p>
+                    Created comprehensive documentation including usage guidelines, code examples,
+                    and design principles. Established a governance model for design system evolution
                     and trained development teams on implementation best practices.
                   </p>
                 </div>
@@ -123,9 +124,9 @@ export function MindStudioCaseStudy() {
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1737918543099-dfa8ec2e3909?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc1ODg3NzAwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Component library showcase"
-                className="w-full h-96 object-cover rounded-2xl"
+                className="cs-image-full"
               />
-              <p className="text-sm text-muted-foreground text-center">
+              <p className="cs-image-caption">
                 Component library showcasing atomic design methodology
               </p>
             </div>

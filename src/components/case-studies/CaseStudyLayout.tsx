@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../App';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useState, useEffect } from 'react';
+import '../../styles/CaseStudyLayout.css';
 
 interface ProjectDetail {
   label: string;
@@ -67,11 +68,11 @@ export function CaseStudyLayout({
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="case-study-container">
       {/* Fixed Back Button (appears on scroll) */}
       <motion.button
         initial={{ opacity: 0, y: -20 }}
-        animate={{ 
+        animate={{
           opacity: showBackButton ? 1 : 0,
           y: showBackButton ? 0 : -20
         }}
@@ -79,7 +80,7 @@ export function CaseStudyLayout({
         whileHover={{ x: -5 }}
         whileTap={{ scale: 0.95 }}
         onClick={navigateToWork}
-        className="fixed top-[88px] left-6 z-50 bg-background/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-border/20 hover:bg-background/90 flex items-center space-x-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
+        className="case-study-back-button-fixed"
         style={{ pointerEvents: showBackButton ? 'auto' : 'none' }}
       >
         <ArrowLeft size={18} />
@@ -91,14 +92,14 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="pt-24 pb-12"
+        className="case-study-back-nav"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="case-study-back-nav-container">
           <motion.button
             whileHover={{ x: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={navigateToWork}
-            className="flex items-center space-x-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
+            className="case-study-back-button"
           >
             <ArrowLeft size={18} />
             <span>Back to Work</span>
@@ -111,39 +112,39 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="mb-24"
+        className="case-study-hero"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="case-study-hero-container">
           {/* Title Section */}
-          <div className="max-w-4xl mb-16">
-            <h1 className="mb-4">{title}</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+          <div className="case-study-title-section">
+            <h1>{title}</h1>
+            <p className="case-study-subtitle">
               {subtitle}
             </p>
           </div>
 
           {/* Hero Image */}
-          <div className="mb-16">
+          <div className="case-study-hero-image">
             <ImageWithFallback
               src={heroImage}
               alt={title}
-              className="w-full h-[60vh] md:h-[70vh] object-cover rounded-2xl"
             />
           </div>
 
           {/* Project Details Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl">
+          <div className="case-study-details-grid">
             {details.map((detail, index) => (
               <motion.div
                 key={detail.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                className="case-study-detail-item"
               >
-                <h6 className="mb-3 text-muted-foreground uppercase tracking-wider text-sm">
+                <h6>
                   {detail.label}
                 </h6>
-                <p className="leading-relaxed">
+                <p>
                   {detail.value}
                 </p>
               </motion.div>
@@ -157,11 +158,11 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="mb-24"
+        className="case-study-overview"
       >
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="mb-8">{overview.title}</h2>
-          <div className="text-lg text-muted-foreground leading-relaxed space-y-6">
+        <div className="case-study-overview-container">
+          <h2>{overview.title}</h2>
+          <div className="case-study-overview-content">
             {overview.content.split('\n\n').map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -176,13 +177,13 @@ export function CaseStudyLayout({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-          className="mb-24"
+          className="case-study-section"
         >
-          <div className={`mx-auto px-6 lg:px-8 ${section.fullWidth ? 'max-w-7xl' : 'max-w-4xl'}`}>
-            <h2 className="mb-8">{section.title}</h2>
-            <div className="text-muted-foreground leading-relaxed">
+          <div className={`case-study-section-container ${section.fullWidth ? 'case-study-section-container-full' : ''}`}>
+            <h2>{section.title}</h2>
+            <div className="case-study-section-content">
               {typeof section.content === 'string' ? (
-                <div className="text-lg space-y-6">
+                <div className="case-study-section-text">
                   {section.content.split('\n\n').map((paragraph, pIndex) => (
                     <p key={pIndex}>{paragraph}</p>
                   ))}
@@ -201,14 +202,14 @@ export function CaseStudyLayout({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="mb-24"
+          className="case-study-custom-content"
         >
           {children}
         </motion.div>
       )}
 
       {/* Bottom Spacing */}
-      <div className="pb-24" />
+      <div className="case-study-bottom-spacing" />
     </div>
   );
 }

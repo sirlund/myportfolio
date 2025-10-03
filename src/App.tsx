@@ -166,22 +166,16 @@ export default function App() {
     }
   };
 
-  if (error) {
-    return (
-      <div className="app-container">
-        <Header />
-        <ErrorFallback error={error} resetError={resetError} />
-        <Footer />
-      </div>
-    );
-  }
-
   return (
     <NavigationContext.Provider value={{ currentRoute, navigateTo, navigateToWork }}>
       <div className="app-container">
         <CustomCursor />
         <Header />
-        {renderPage()}
+        {error ? (
+          <ErrorFallback error={error} resetError={resetError} />
+        ) : (
+          renderPage()
+        )}
         <Footer />
         <Toaster
           position="bottom-right"
