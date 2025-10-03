@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../App';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { ImageWithFallback } from '../ui/image';
 import { useState, useEffect } from 'react';
 import '../../styles/CaseStudyLayout.css';
 

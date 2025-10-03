@@ -1,5 +1,5 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { ImageWithFallback } from '../ui/image';
 import '../../styles/CaseStudyContent.css';
 
 export function MindStudioCaseStudy() {
