@@ -63,19 +63,19 @@ const projects = [
     image: imgMindstudio,
     route: "mindstudio" as const,
   },
-  {
-    id: 2,
-    title:
-      "At Wenia, I created a revolutionary mobile crypto experience that simplified complex financial processes.",
-    description:
-      "As the UI/UX lead, I designed a streamlined mobile application that makes cryptocurrency trading accessible to everyday users, focusing on clear information architecture and intuitive user flows that reduce the complexity of digital asset management.",
-    backgroundColor: "#8b5cf6",
-    textColor: "white",
-    icon: <WeniaIcon />,
-    image:
-      "https://images.unsplash.com/photo-1634542118071-f391e9a0cfb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBjcnlwdG8lMjBhcHB8ZW58MXx8fHwxNzU4OTIyODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    route: "wenia" as const,
-  },
+  // {
+  //   id: 2,
+  //   title:
+  //     "At Wenia, I created a revolutionary mobile crypto experience that simplified complex financial processes.",
+  //   description:
+  //     "As the UI/UX lead, I designed a streamlined mobile application that makes cryptocurrency trading accessible to everyday users, focusing on clear information architecture and intuitive user flows that reduce the complexity of digital asset management.",
+  //   backgroundColor: "#8b5cf6",
+  //   textColor: "white",
+  //   icon: <WeniaIcon />,
+  //   image:
+  //     "https://images.unsplash.com/photo-1634542118071-f391e9a0cfb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBjcnlwdG8lMjBhcHB8ZW58MXx8fHwxNzU4OTIyODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  //   route: "wenia" as const,
+  // },
   {
     id: 3,
     title:
@@ -91,32 +91,32 @@ const projects = [
     image: imgTreez,
     route: "treez" as const,
   },
-  {
-    id: 4,
-    title:
-      "At Nacional Monte de Piedad, I modernized Mexico's largest pawn shop chain through systematic design innovation.",
-    description:
-      "As the lead designer, I developed a comprehensive design system that transformed their digital financial services, creating consistent user experiences across all customer touchpoints while maintaining their trusted brand heritage.",
-    backgroundColor: "#dc2626",
-    textColor: "white",
-    icon: <NacionalIcon />,
-    image:
-      "https://images.unsplash.com/photo-1574884280706-7342ca3d4231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBzZXJ2aWNlcyUyMGRlc2lnbnxlbnwxfHx8fDE3NTg5MjI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    route: "nacional" as const,
-  },
-  {
-    id: 5,
-    title:
-      "At Klare, I transformed insurance from a bureaucratic maze into an intuitive digital experience.",
-    description:
-      "Leading the UI team, I redesigned the entire life insurance journey, converting a historically slow and complex process into a 100% digital, user-friendly experience that customers could complete with confidence and ease.",
-    backgroundColor: "#059669",
-    textColor: "white",
-    icon: <KlareIcon />,
-    image:
-      "https://images.unsplash.com/photo-1711185898083-e1f04ff38300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN1cmFuY2UlMjBkaWdpdGFsJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODkyMjg2NXww&ixlib=rb-4.1.0&q=80&w=1080",
-    route: "klare" as const,
-  },
+  // {
+  //   id: 4,
+  //   title:
+  //     "At Nacional Monte de Piedad, I modernized Mexico's largest pawn shop chain through systematic design innovation.",
+  //   description:
+  //     "As the lead designer, I developed a comprehensive design system that transformed their digital financial services, creating consistent user experiences across all customer touchpoints while maintaining their trusted brand heritage.",
+  //   backgroundColor: "#dc2626",
+  //   textColor: "white",
+  //   icon: <NacionalIcon />,
+  //   image:
+  //     "https://images.unsplash.com/photo-1574884280706-7342ca3d4231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBzZXJ2aWNlcyUyMGRlc2lnbnxlbnwxfHx8fDE3NTg5MjI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+  //   route: "nacional" as const,
+  // },
+  // {
+  //   id: 5,
+  //   title:
+  //     "At Klare, I transformed insurance from a bureaucratic maze into an intuitive digital experience.",
+  //   description:
+  //     "Leading the UI team, I redesigned the entire life insurance journey, converting a historically slow and complex process into a 100% digital, user-friendly experience that customers could complete with confidence and ease.",
+  //   backgroundColor: "#059669",
+  //   textColor: "white",
+  //   icon: <KlareIcon />,
+  //   image:
+  //     "https://images.unsplash.com/photo-1711185898083-e1f04ff38300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN1cmFuY2UlMjBkaWdpdGFsJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODkyMjg2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+  //   route: "klare" as const,
+  // },
 ];
 
 export function Work() {
