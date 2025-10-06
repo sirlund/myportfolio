@@ -9,35 +9,56 @@ export function ThreeCanvas() {
     
     // ===== CONFIGURATION =====
     const CONFIG = {
-      backgroundColor: 0xfafafa,
-      cameraFOV: 70, // Reduced FOV
-      cameraDistance: 1.8, // Increased distance
-      bubbleSize: 0.9,
-      bubbleDetail: 128,
-      speed1: 0.1,
-      frequency1: 1,
-      intensity1: 0.1,
-      speed2: 0.2,
-      frequency2: 1,
-      intensity2: 0.05,
-      speed3: 0.2,
-      frequency3: 2.0,
-      intensity3: 0.02,
+      // === SCENE ===
+      backgroundColor: 0xfafafa,        // Background color (hex)
+      cameraFOV: 90,                    // Field of view (60-90)
+      cameraDistance: 2,                // Camera Z position (1.5-3)
+
+      // === BUBBLE GEOMETRY ===
+      bubbleSize: 1.1,                  // Bubble radius (0.5-1.2)
+      bubbleDetail: 128,                 // Mesh detail level (32-128, higher = smoother)
+
+      // === ANIMATION SPEED ===
+      // Layer 1: Large slow waves
+      speed1: 0.1,                      // Animation speed (0.2-1.0)
+      frequency1: 1,                  // Noise frequency (1.0-3.0)
+      intensity1: 0.1,                 // Deformation strength (0.1-0.3)
+
+      // Layer 2: Medium waves
+      speed2: 0.2,                      // Animation speed (0.2-1.0)
+      frequency2: 1,                  // Noise frequency (1.0-3.0)
+      intensity2: 0.05,                 // Deformation strength (0.05-0.15)
+
+      // Layer 3: Fine detail
+      speed3: 0.2,                      // Animation speed (0.2-1.0)
+      frequency3: 2.0,                  // Noise frequency (2.0-5.0)
+      intensity3: 0.02,                 // Deformation strength (0.02-0.1)
+
+      // === APPEARANCE ===
+      
+      // Glass colors (RGB 0.0-1.0)
       glassColorR: 0.12,
       glassColorG: 0.11,
       glassColorB: 0.19,
+
+      // Gradient colors (RGB 0.0-1.0)
       topColorR: 0.55,
       topColorG: 1.0,
       topColorB: 1.0,
+
       bottomColorR: 0.8,
       bottomColorG: 0.2,
       bottomColorB: 0.5,
-      fresnelPower: 3.0,
-      fresnelBlend: 0.8,
-      highlightPower: 50.0,
-      highlightIntensity: 0.5,
-      baseTransparency: 0.1,
-      edgeTransparency: 0.6,
+
+      // === EFFECTS ===
+      fresnelPower: 3.0,                // Edge glow sharpness (2.0-5.0)
+      fresnelBlend: 0.8,                // Edge glow intensity (0.3-0.8)
+
+      highlightPower: 50.0,             // Highlight size (10.0-50.0, higher = smaller)
+      highlightIntensity: 0.5,          // Highlight brightness (0.5-1.0)
+
+      baseTransparency: 0.1,           // Base alpha (0.1-0.3, lower = more transparent)
+      edgeTransparency: 0.6,           // Edge alpha boost (0.2-0.6)
       // Mouse interaction
       mouseLerpSpeed: 0.2, // Speed of mouse position interpolation (0-1, lower = smoother)
       mouseInfluenceStrength: 1.0, // Base strength of mouse effect (0 = no effect, higher = stronger)
