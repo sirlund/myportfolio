@@ -75,9 +75,15 @@ export function ThreeCanvas() {
     let material: THREE.ShaderMaterial, mesh: THREE.Mesh;
     const clock = new THREE.Clock();
 
-    // Mouse position (normalized -1 to 1)
+    // Mouse position (normalized -1 to 1) - for desktop
     const mouse = { x: 0, y: 0 };
     let isMouseInHero = false;
+
+    // Drag position (normalized -1 to 1) - for mobile
+    const drag = { x: 0, y: 0 };
+    let isDragging = false;
+    let dragStartY = 0;
+    let dragCurrentY = 0;
 
     const mount = mountRef.current;
     if (!mount) {
@@ -87,7 +93,10 @@ export function ThreeCanvas() {
 
     // Sizing based on viewport width with constraints
     const viewportWidth = window.innerWidth;
-    const size = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+    const isMobile = viewportWidth < 768;
+    const baseSize = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+    // Make bubble 15% bigger on mobile
+    const size = isMobile ? baseSize * 1.15 : baseSize;
     const width = size;
     const height = size; // Square aspect ratio (1:1)
 
@@ -399,7 +408,7 @@ export function ThreeCanvas() {
     console.log('Scene:', scene);
     console.log('Camera position:', camera.position);
 
-    // ===== MOUSE INTERACTION =====
+    // ===== MOUSE INTERACTION (Desktop) =====
     const heroSection = document.getElementById('home');
     if (!heroSection) {
       console.error('Hero section not found');
@@ -411,7 +420,7 @@ export function ThreeCanvas() {
 
       const rect = heroSection!.getBoundingClientRect();
 
-      // Check if mouse is actually within the hero bounds (not in header or other elements)
+      // Check if mouse is actually within the hero bounds
       const isInBounds = event.clientY >= rect.top &&
                          event.clientY <= rect.bottom &&
                          event.clientX >= rect.left &&
@@ -430,17 +439,53 @@ export function ThreeCanvas() {
 
     function onMouseLeave() {
       isMouseInHero = false;
-      // Mouse position will smoothly lerp back to center in animation loop
     }
 
     heroSection.addEventListener('mousemove', onMouseMove);
     heroSection.addEventListener('mouseenter', onMouseEnter);
     heroSection.addEventListener('mouseleave', onMouseLeave);
 
+    // ===== DRAG INTERACTION (Mobile) =====
+    function onTouchStart(event: TouchEvent) {
+      isDragging = true;
+      dragStartY = event.touches[0].clientY;
+      dragCurrentY = dragStartY;
+    }
+
+    function onTouchMove(event: TouchEvent) {
+      if (!isDragging) return;
+      dragCurrentY = event.touches[0].clientY;
+
+      // Calculate drag distance
+      const dragDistance = dragCurrentY - dragStartY;
+      const maxDragDistance = window.innerHeight * 0.5; // 50% of viewport height
+
+      // Normalize to -1 to 1 range
+      drag.y = Math.max(-1, Math.min(1, -dragDistance / maxDragDistance));
+
+      // Create horizontal movement based on vertical drag
+      drag.x = Math.sin(drag.y * Math.PI) * 0.5;
+    }
+
+    function onTouchEnd() {
+      isDragging = false;
+      // Smoothly return to center
+      dragStartY = 0;
+      dragCurrentY = 0;
+    }
+
+    // Add touch event listeners to hero section
+    heroSection.addEventListener('touchstart', onTouchStart, { passive: true });
+    heroSection.addEventListener('touchmove', onTouchMove, { passive: true });
+    heroSection.addEventListener('touchend', onTouchEnd, { passive: true });
+
     // ===== RESIZE HANDLER =====
     function onWindowResize() {
       const viewportWidth = window.innerWidth;
-      const size = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+      const isMobile = viewportWidth < 768;
+      const baseSize = Math.min(Math.max(300, viewportWidth * 0.8), 600);
+      // Make bubble 15% bigger on mobile
+      const size = isMobile ? baseSize * 1.15 : baseSize;
       camera.aspect = 1; // Square aspect ratio (1:1)
       camera.updateProjectionMatrix();
       renderer.setSize(size, size);
@@ -455,17 +500,32 @@ export function ThreeCanvas() {
       const time = clock.getElapsedTime();
       material.uniforms.time.value = time;
 
-      // Smooth transition with lerp
-      // When mouse leaves hero, lerp back to center (0, 0)
-      const targetX = isMouseInHero ? mouse.x : 0;
-      const targetY = isMouseInHero ? mouse.y : 0;
+      // Check if mobile
+      const isMobile = window.innerWidth < 768;
 
+      // Use drag on mobile, mouse on desktop
+      let targetX, targetY;
+      if (isMobile) {
+        // Mobile: use drag position, smoothly return to center when not dragging
+        if (!isDragging) {
+          drag.x *= 0.95; // Smooth decay to center
+          drag.y *= 0.95;
+        }
+        targetX = drag.x;
+        targetY = drag.y;
+      } else {
+        // Desktop: use mouse position (or center if mouse not in hero)
+        targetX = isMouseInHero ? mouse.x : 0;
+        targetY = isMouseInHero ? mouse.y : 0;
+      }
+
+      // Smooth transition with lerp
       material.uniforms.mousePos.value.x += (targetX - material.uniforms.mousePos.value.x) * CONFIG.mouseLerpSpeed;
       material.uniforms.mousePos.value.y += (targetY - material.uniforms.mousePos.value.y) * CONFIG.mouseLerpSpeed;
 
-      // Rotate camera based on mouse position
-      const targetAngleX = mouse.x * Math.PI * CONFIG.cameraRotationSpeed;
-      const targetAngleY = mouse.y * Math.PI * CONFIG.cameraRotationSpeed;
+      // Rotate camera based on position
+      const targetAngleX = material.uniforms.mousePos.value.x * Math.PI * CONFIG.cameraRotationSpeed;
+      const targetAngleY = material.uniforms.mousePos.value.y * Math.PI * CONFIG.cameraRotationSpeed;
 
       // Calculate camera position on a sphere around the bubble
       const radius = CONFIG.cameraDistance;
@@ -484,11 +544,12 @@ export function ThreeCanvas() {
     return () => {
       stop = true;
       window.removeEventListener('resize', onWindowResize);
-      if (heroSection) {
-        heroSection.removeEventListener('mousemove', onMouseMove);
-        heroSection.removeEventListener('mouseenter', onMouseEnter);
-        heroSection.removeEventListener('mouseleave', onMouseLeave);
-      }
+      heroSection.removeEventListener('mousemove', onMouseMove);
+      heroSection.removeEventListener('mouseenter', onMouseEnter);
+      heroSection.removeEventListener('mouseleave', onMouseLeave);
+      heroSection.removeEventListener('touchstart', onTouchStart);
+      heroSection.removeEventListener('touchmove', onTouchMove);
+      heroSection.removeEventListener('touchend', onTouchEnd);
       mount.removeChild(renderer.domElement);
       renderer.dispose();
       geometry.dispose();
