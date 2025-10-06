@@ -15,24 +15,29 @@ export function ThreeCanvas() {
       cameraDistance: 2,                // Camera Z position (1.5-3)
 
       // === BUBBLE GEOMETRY ===
-      bubbleSize: 1.1,                  // Bubble radius (0.5-1.2)
+      bubbleSize: 1,                  // Bubble radius (0.5-1.2)
       bubbleDetail: 128,                 // Mesh detail level (32-128, higher = smoother)
 
       // === ANIMATION SPEED ===
       // Layer 1: Large slow waves
       speed1: 0.1,                      // Animation speed (0.2-1.0)
-      frequency1: 1,                  // Noise frequency (1.0-3.0)
+      frequency1: 0.5,                  // Noise frequency (1.0-3.0)
       intensity1: 0.1,                 // Deformation strength (0.1-0.3)
 
       // Layer 2: Medium waves
       speed2: 0.2,                      // Animation speed (0.2-1.0)
-      frequency2: 1,                  // Noise frequency (1.0-3.0)
+      frequency2: 0.9,                  // Noise frequency (1.0-3.0)
       intensity2: 0.05,                 // Deformation strength (0.05-0.15)
 
       // Layer 3: Fine detail
       speed3: 0.2,                      // Animation speed (0.2-1.0)
-      frequency3: 2.0,                  // Noise frequency (2.0-5.0)
+      frequency3: 1.5,                  // Noise frequency (2.0-5.0)
       intensity3: 0.02,                 // Deformation strength (0.02-0.1)
+
+      // Mouse intensity modulation
+      mouseIntensityMultiplier: 2.0,    // Max intensity multiplier (1.0-3.0)
+      mouseGravityStrength: 0.2,        // Strength of gravitational pull (0.1-0.5)
+      cameraRotationSpeed: 0.1,         // Speed of camera rotation (0.05-0.3)
 
       // === APPEARANCE ===
       
@@ -41,14 +46,14 @@ export function ThreeCanvas() {
       glassColorG: 0.11,
       glassColorB: 0.19,
 
-      // Gradient colors (RGB 0.0-1.0)
-      topColorR: 0.55,
-      topColorG: 1.0,
-      topColorB: 1.0,
+      // Gradient colors (RGB 0.0-1.0) - Duo-tone gradient (more neutral)
+      topColorR: 0.5,      // Desaturated cyan top
+      topColorG: 0.65,
+      topColorB: 0.75,
 
-      bottomColorR: 0.8,
-      bottomColorG: 0.2,
-      bottomColorB: 0.5,
+      bottomColorR: 0.7,   // Desaturated magenta bottom
+      bottomColorG: 0.45,
+      bottomColorB: 0.6,
 
       // === EFFECTS ===
       fresnelPower: 3.0,                // Edge glow sharpness (2.0-5.0)
@@ -60,7 +65,7 @@ export function ThreeCanvas() {
       baseTransparency: 0.1,           // Base alpha (0.1-0.3, lower = more transparent)
       edgeTransparency: 0.6,           // Edge alpha boost (0.2-0.6)
       // Mouse interaction
-      mouseLerpSpeed: 0.2, // Speed of mouse position interpolation (0-1, lower = smoother)
+      mouseLerpSpeed: 0.05, // Speed of mouse position interpolation (0-1, lower = smoother)
       mouseInfluenceStrength: 1.0, // Base strength of mouse effect (0 = no effect, higher = stronger)
       mouseBlendAmount: 0.6, // How much mouse colors blend with base colors (0-1)
       mouseColorIntensity: 0.6 // Intensity of color variation (0-1)
@@ -109,6 +114,7 @@ export function ThreeCanvas() {
       varying vec3 vPosition;
       varying vec3 vWorldPosition;
       uniform float time;
+      uniform vec2 mousePos;
 
       // Animation parameters
       uniform float speed1;
@@ -120,6 +126,8 @@ export function ThreeCanvas() {
       uniform float speed3;
       uniform float frequency3;
       uniform float intensity3;
+      uniform float mouseIntensityMultiplier;
+      uniform float mouseGravityStrength;
 
       vec3 mod289(vec3 x) { 
           return x - floor(x * (1.0 / 289.0)) * 289.0; 
@@ -201,12 +209,30 @@ export function ThreeCanvas() {
 
           vec3 pos = position;
 
-          // Apply three layers of noise using config parameters
-          float noise = snoise(pos * frequency1 + time * speed1) * intensity1;
-          noise += snoise(pos * frequency2 - time * speed2) * intensity2;
-          noise += snoise(pos * frequency3 + time * speed3) * intensity3;
+          // Calculate mouse distance from center to modulate intensity
+          float distanceFromCenter = length(mousePos);
+          float intensityMultiplier = 1.0 + (distanceFromCenter * (mouseIntensityMultiplier - 1.0));
+
+          // Apply three layers of noise with mouse-modulated intensities
+          float noise = snoise(pos * frequency1 + time * speed1) * intensity1 * intensityMultiplier;
+          noise += snoise(pos * frequency2 - time * speed2) * intensity2 * intensityMultiplier;
+          noise += snoise(pos * frequency3 + time * speed3) * intensity3 * intensityMultiplier;
 
           pos += normal * noise;
+
+          // Directional deformation based on mouse position
+          // Map mouse position to a pull direction in 3D space
+          vec3 pullDirection = normalize(vec3(mousePos.x, mousePos.y, 0.5));
+
+          // Calculate how much each vertex should be affected
+          // Vertices aligned with the pull direction get pulled outward
+          float alignment = dot(normalize(position), pullDirection);
+
+          // Only pull vertices that face the mouse direction (positive alignment)
+          float pullStrength = max(0.0, alignment) * distanceFromCenter * mouseGravityStrength;
+
+          // Apply directional pull along the normal
+          pos += normal * pullStrength;
 
           vPosition = pos;
           vec4 worldPosition = modelMatrix * vec4(pos, 1.0);
@@ -245,28 +271,73 @@ export function ThreeCanvas() {
           // Fresnel effect using config parameter
           float fresnel = pow(1.0 - dot(vNormal, viewDirection), fresnelPower);
 
-          // Mouse influence - always active when mouse is present
-          float mouseInfluence = mouseInfluenceStrength;
+          // Calculate distance from center (0,0) - when at center, distance is 0
+          float distanceFromCenter = length(mousePos);
 
-          // Create color variation based on mouse position
-          vec3 mouseColor1 = vec3(
-              0.4 + mousePos.x * mouseColorIntensity,
-              0.6 + mousePos.y * mouseColorIntensity,
-              0.9
-          );
-          vec3 mouseColor2 = vec3(
-              0.9,
-              0.3 + mousePos.x * mouseColorIntensity,
-              0.5 + mousePos.y * mouseColorIntensity
-          );
+          // Mouse influence scales with distance from center
+          float mouseInfluence = mouseInfluenceStrength * distanceFromCenter;
 
-          // Gradient using config colors with mouse influence
-          float gradient = (vPosition.y + 1.0) * 0.5;
-          vec3 baseGradient = mix(bottomColor, topColor, gradient);
+          // Define corner color pairs (top and bottom for each corner)
+          // Top-right: Cyan → Magenta
+          vec3 topRight_top = vec3(0.4, 0.8, 1.0);      // Cyan
+          vec3 topRight_bottom = vec3(1.0, 0.3, 0.7);   // Magenta
 
-          // Mix in mouse-influenced colors
-          vec3 mouseGradient = mix(mouseColor1, mouseColor2, gradient);
-          vec3 gradientColor = mix(baseGradient, mouseGradient, mouseInfluence * mouseBlendAmount);
+          // Top-left: Cyan → Yellow
+          vec3 topLeft_top = vec3(0.4, 0.8, 1.0);       // Cyan
+          vec3 topLeft_bottom = vec3(1.0, 0.9, 0.2);    // Yellow
+
+          // Bottom-left: Yellow → Purple
+          vec3 bottomLeft_top = vec3(1.0, 0.9, 0.2);    // Yellow
+          vec3 bottomLeft_bottom = vec3(0.7, 0.3, 1.0); // Purple
+
+          // Bottom-right: Magenta → Blue
+          vec3 bottomRight_top = vec3(1.0, 0.3, 0.7);   // Magenta
+          vec3 bottomRight_bottom = vec3(0.3, 0.4, 1.0); // Blue
+
+          // Calculate distance to each corner
+          vec2 topRightCorner = vec2(1.0, 1.0);
+          vec2 topLeftCorner = vec2(-1.0, 1.0);
+          vec2 bottomLeftCorner = vec2(-1.0, -1.0);
+          vec2 bottomRightCorner = vec2(1.0, -1.0);
+
+          float distToTopRight = distance(mousePos, topRightCorner);
+          float distToTopLeft = distance(mousePos, topLeftCorner);
+          float distToBottomLeft = distance(mousePos, bottomLeftCorner);
+          float distToBottomRight = distance(mousePos, bottomRightCorner);
+
+          // Convert distances to weights (closer = higher weight)
+          float maxDist = 2.83;
+          float weightTopRight = 1.0 - (distToTopRight / maxDist);
+          float weightTopLeft = 1.0 - (distToTopLeft / maxDist);
+          float weightBottomLeft = 1.0 - (distToBottomLeft / maxDist);
+          float weightBottomRight = 1.0 - (distToBottomRight / maxDist);
+
+          // Normalize weights
+          float totalWeight = weightTopRight + weightTopLeft + weightBottomLeft + weightBottomRight;
+          weightTopRight /= totalWeight;
+          weightTopLeft /= totalWeight;
+          weightBottomLeft /= totalWeight;
+          weightBottomRight /= totalWeight;
+
+          // Blend corner top colors
+          vec3 cornerTopColor = topRight_top * weightTopRight +
+                                topLeft_top * weightTopLeft +
+                                bottomLeft_top * weightBottomLeft +
+                                bottomRight_top * weightBottomRight;
+
+          // Blend corner bottom colors
+          vec3 cornerBottomColor = topRight_bottom * weightTopRight +
+                                   topLeft_bottom * weightTopLeft +
+                                   bottomLeft_bottom * weightBottomLeft +
+                                   bottomRight_bottom * weightBottomRight;
+
+          // Vertical gradient with corner colors or base colors
+          float verticalGradient = (vPosition.y + 1.0) * 0.5;
+          vec3 baseGradient = mix(bottomColor, topColor, verticalGradient);
+          vec3 cornerGradient = mix(cornerBottomColor, cornerTopColor, verticalGradient);
+
+          // Mix base gradient with corner gradient based on mouse influence
+          vec3 gradientColor = mix(baseGradient, cornerGradient, mouseInfluence * mouseBlendAmount);
 
           // Blend with fresnel
           vec3 color = mix(gradientColor, vec3(1.0), fresnel * fresnelBlend);
@@ -298,6 +369,8 @@ export function ThreeCanvas() {
         speed3: { value: CONFIG.speed3 },
         frequency3: { value: CONFIG.frequency3 },
         intensity3: { value: CONFIG.intensity3 },
+        mouseIntensityMultiplier: { value: CONFIG.mouseIntensityMultiplier },
+        mouseGravityStrength: { value: CONFIG.mouseGravityStrength },
         glassColor: { value: new THREE.Vector3(CONFIG.glassColorR, CONFIG.glassColorG, CONFIG.glassColorB) },
         topColor: { value: new THREE.Vector3(CONFIG.topColorR, CONFIG.topColorG, CONFIG.topColorB) },
         bottomColor: { value: new THREE.Vector3(CONFIG.bottomColorR, CONFIG.bottomColorG, CONFIG.bottomColorB) },
@@ -338,6 +411,14 @@ export function ThreeCanvas() {
 
       const rect = heroSection!.getBoundingClientRect();
 
+      // Check if mouse is actually within the hero bounds (not in header or other elements)
+      const isInBounds = event.clientY >= rect.top &&
+                         event.clientY <= rect.bottom &&
+                         event.clientX >= rect.left &&
+                         event.clientX <= rect.right;
+
+      if (!isInBounds) return;
+
       // Normalize to -1 to 1 range
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -349,9 +430,7 @@ export function ThreeCanvas() {
 
     function onMouseLeave() {
       isMouseInHero = false;
-      // Reset mouse position to center smoothly
-      mouse.x = 0;
-      mouse.y = 0;
+      // Mouse position will smoothly lerp back to center in animation loop
     }
 
     heroSection.addEventListener('mousemove', onMouseMove);
@@ -377,8 +456,25 @@ export function ThreeCanvas() {
       material.uniforms.time.value = time;
 
       // Smooth transition with lerp
-      material.uniforms.mousePos.value.x += (mouse.x - material.uniforms.mousePos.value.x) * CONFIG.mouseLerpSpeed;
-      material.uniforms.mousePos.value.y += (mouse.y - material.uniforms.mousePos.value.y) * CONFIG.mouseLerpSpeed;
+      // When mouse leaves hero, lerp back to center (0, 0)
+      const targetX = isMouseInHero ? mouse.x : 0;
+      const targetY = isMouseInHero ? mouse.y : 0;
+
+      material.uniforms.mousePos.value.x += (targetX - material.uniforms.mousePos.value.x) * CONFIG.mouseLerpSpeed;
+      material.uniforms.mousePos.value.y += (targetY - material.uniforms.mousePos.value.y) * CONFIG.mouseLerpSpeed;
+
+      // Rotate camera based on mouse position
+      const targetAngleX = mouse.x * Math.PI * CONFIG.cameraRotationSpeed;
+      const targetAngleY = mouse.y * Math.PI * CONFIG.cameraRotationSpeed;
+
+      // Calculate camera position on a sphere around the bubble
+      const radius = CONFIG.cameraDistance;
+      camera.position.x = radius * Math.sin(targetAngleX) * Math.cos(targetAngleY);
+      camera.position.y = radius * Math.sin(targetAngleY);
+      camera.position.z = radius * Math.cos(targetAngleX) * Math.cos(targetAngleY);
+
+      // Make camera look at the center
+      camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
     }
