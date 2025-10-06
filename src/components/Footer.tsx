@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { SITE } from '../config/constants';
 import '../styles/Footer.css';
 
 export function Footer() {
@@ -15,7 +16,7 @@ export function Footer() {
           className="footer-inner"
         >
           <div className="footer-copyright">
-            © {currentYear} Nicolás Lundin. Maybe some rights reserved :)
+            © {currentYear} {SITE.NAME}. Maybe some rights reserved :)
           </div>
 
           <div className="footer-links">

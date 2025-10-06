@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useNavigation } from '../App';
+import { SITE } from '../config/constants';
 import '../styles/Header.css';
 
 const navigation = [
@@ -35,7 +36,7 @@ export function Header() {
         // Wait for navigation and mobile menu animation
         setTimeout(() => {
           // Update URL with hash
-          window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
+          window.history.pushState({ route: 'home', section: href }, '', `/${href}`);
 
           const element = document.querySelector(href);
           if (element) {
@@ -44,7 +45,7 @@ export function Header() {
         }, 300); // Increased delay to account for animations
       } else {
         // Update URL with hash
-        window.history.pushState({ route: 'home', section: href }, '', `/myportfolio/${href}`);
+        window.history.pushState({ route: 'home', section: href }, '', `/${href}`);
 
         // Small delay for mobile menu to close
         setTimeout(() => {
@@ -83,7 +84,7 @@ export function Header() {
             className="header-logo"
             onClick={() => navigateTo('home')}
           >
-            <span className="header-logo-text">Nicolás Lundin</span>
+            <span className="header-logo-text">{SITE.NAME}</span>
           </motion.div>
 
           {/* Desktop Navigation */}

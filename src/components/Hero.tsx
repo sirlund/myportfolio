@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { ThreeCanvas } from './ThreeCanvas';
+import { SITE } from '../config/constants';
 import '../styles/Hero.css';
 
 export function Hero() {
@@ -8,7 +9,7 @@ export function Hero() {
 
   const scrollToWork = () => {
     // Update URL with hash
-    window.history.pushState({ route: 'home', section: '#work' }, '', '/myportfolio/#work');
+    window.history.pushState({ route: 'home', section: '#work' }, '', '/#work');
 
     const element = document.querySelector('#work');
     if (element) {
@@ -41,7 +42,7 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hero-title"
               >
-                Nicolás Lundin
+                {SITE.NAME}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}

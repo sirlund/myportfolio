@@ -9,8 +9,8 @@ export function parseRouteFromURL(): Route {
     .replace(BASE_PATH, '')
     .replace(/^\//, '');
 
-  // If empty path or just 'myportfolio', return home
-  if (path === '' || path === 'myportfolio') {
+  // If empty path, return home
+  if (path === '') {
     return 'home';
   }
 

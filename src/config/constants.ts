@@ -1,7 +1,12 @@
 // Application-wide constants
 
+// Site configuration
+export const SITE = {
+  NAME: 'Nicolás Lundin',
+} as const;
+
 // Base path configuration
-export const BASE_PATH = '/myportfolio/';
+export const BASE_PATH = '/';
 
 // Layout constants
 export const LAYOUT = {
