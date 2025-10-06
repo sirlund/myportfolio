@@ -14,6 +14,15 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: 'build',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'three': ['three'],
+          'react-vendor': ['react', 'react-dom', 'react/jsx-runtime'],
+          'motion': ['motion'],
+        },
+      },
+    },
   },
   server: {
     port: 3000,
