@@ -1,5 +1,6 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { ImageWithFallback } from '../ui/image';
+import imgMindstudio from '../../assets/mindstudio_cover.png';
 import '../../styles/CaseStudyContent.css';
 
 export function MindStudioCaseStudy() {
@@ -7,7 +8,7 @@ export function MindStudioCaseStudy() {
     <CaseStudyLayout
       title="MindStudio AI Platform"
       subtitle="Building a comprehensive design system to scale AI-driven applications from chaos to systematic excellence."
-      heroImage="https://images.unsplash.com/photo-1641567535859-c58187ac4954?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhaSUyMGludGVyZmFjZSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NTg5Mzk0ODd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      heroImage={imgMindstudio}
       details={[
         { label: "Role", value: "Lead Designer" },
         { label: "Duration", value: "8 months" },
