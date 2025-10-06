@@ -1,35 +1,9 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { CONTACT_SECTION } from '../config/constants';
 import '../styles/Contact.css';
-
-const contactLinks = [
-  {
-    name: "Email",
-    href: "mailto:nlundin@gmail.com",
-    description: "nlundin@gmail.com"
-  },
-  {
-    name: "LinkedIn",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    href: "https://linkedin.com/in/nicolaslundin",
-    description: "Connect with me"
-  },
-  {
-    name: "Dribbble",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    href: "https://dribbble.com/sirlund",
-    description: "View my work"
-  },
-  {
-    name: "Resume",
-    href: "#",
-    description: "Download PDF"
-  }
-];
 
 export function Contact() {
   const ref = useRef(null);
@@ -44,16 +18,14 @@ export function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="contact-title">Let's Connect</h2>
+          <h2 className="contact-title">{CONTACT_SECTION.TITLE}</h2>
 
           <p className="contact-description">
-            I'm always interested in discussing new opportunities, especially those involving
-            design systems, fintech, or complex product challenges. Feel free to reach out if
-            you'd like to work together or just want to chat about design.
+            {CONTACT_SECTION.DESCRIPTION}
           </p>
 
           <div className="contact-links">
-            {contactLinks.map((link, index) => (
+            {CONTACT_SECTION.LINKS.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}

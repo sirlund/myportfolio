@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { SITE } from '../config/constants';
+import { SITE, CONTACT } from '../config/constants';
 import '../styles/Footer.css';
 
 export function Footer() {
@@ -21,7 +21,7 @@ export function Footer() {
 
           <div className="footer-links">
             <motion.a
-              href="https://linkedin.com/in/nicolaslundin"
+              href={CONTACT.LINKEDIN}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -2 }}
@@ -30,7 +30,7 @@ export function Footer() {
               LinkedIn
             </motion.a>
             <motion.a
-              href="https://dribbble.com/sirlund"
+              href={CONTACT.DRIBBBLE}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -2 }}
@@ -39,7 +39,7 @@ export function Footer() {
               Dribbble
             </motion.a>
             <motion.a
-              href="mailto:nlundin@gmail.com"
+              href={`mailto:${CONTACT.EMAIL}`}
               whileHover={{ y: -2 }}
               className="footer-link"
             >
