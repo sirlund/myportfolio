@@ -129,7 +129,49 @@ export function Work() {
 
   return (
     <section id="work" className="work-section" ref={ref}>
-      {projects.map((project, index) => (
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          padding: '4rem 2rem',
+          textAlign: 'center',
+        }}
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{
+            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+            fontWeight: 700,
+            marginBottom: '1rem',
+            color: 'var(--foreground)',
+          }}
+        >
+          Case Studies Coming Soon
+       </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          style={{
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            color: 'var(--muted-foreground)',
+            maxWidth: '600px',
+            lineHeight: 1.6,
+          }}
+        >
+          I'm currently finalizing detailed case studies of my work. Check back soon for in-depth breakdowns of projects and more.
+        </motion.p>
+      </motion.div>
+
+      {/* {projects.map((project, index) => (
         <motion.div
           key={project.id}
           initial={{ opacity: 0, y: 40 }}
@@ -141,14 +183,11 @@ export function Work() {
           <div className="work-project-container">
             <div className="work-project-content">
               <div className="work-project-inner">
-                {/* Content Section */}
                 <div className="project-content-container">
-                  {/* Icon */}
                   <div className="project-icon-container">
                     {project.icon}
                   </div>
 
-                  {/* Text */}
                   <div className="project-text-section">
                     <div className="project-title-container">
                       <h2
@@ -172,7 +211,6 @@ export function Work() {
                     </div>
                   </div>
 
-                  {/* Button */}
                   <motion.button
                     onClick={() => navigateTo(project.route)}
                     className="project-button"
@@ -190,7 +228,6 @@ export function Work() {
                   </motion.button>
                 </div>
 
-                {/* Image Section */}
                 <div className="project-image-section">
                   <div className="project-image-container">
                     <img
@@ -204,7 +241,7 @@ export function Work() {
             </div>
           </div>
         </motion.div>
-      ))}
+      ))} */}
     </section>
   );
 }
