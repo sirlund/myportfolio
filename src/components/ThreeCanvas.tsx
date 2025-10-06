@@ -82,8 +82,8 @@ export function ThreeCanvas() {
     // Drag position (normalized -1 to 1) - for mobile
     const drag = { x: 0, y: 0 };
     let isDragging = false;
-    let dragStartY = 0;
-    let dragCurrentY = 0;
+    let dragStartX = 0;
+    let dragCurrentX = 0;
 
     const mount = mountRef.current;
     if (!mount) {
@@ -448,30 +448,30 @@ export function ThreeCanvas() {
     // ===== DRAG INTERACTION (Mobile) =====
     function onTouchStart(event: TouchEvent) {
       isDragging = true;
-      dragStartY = event.touches[0].clientY;
-      dragCurrentY = dragStartY;
+      dragStartX = event.touches[0].clientX;
+      dragCurrentX = dragStartX;
     }
 
     function onTouchMove(event: TouchEvent) {
       if (!isDragging) return;
-      dragCurrentY = event.touches[0].clientY;
+      dragCurrentX = event.touches[0].clientX;
 
       // Calculate drag distance
-      const dragDistance = dragCurrentY - dragStartY;
-      const maxDragDistance = window.innerHeight * 0.5; // 50% of viewport height
+      const dragDistance = dragCurrentX - dragStartX;
+      const maxDragDistance = window.innerWidth * 0.5; // 50% of viewport width
 
       // Normalize to -1 to 1 range
-      drag.y = Math.max(-1, Math.min(1, -dragDistance / maxDragDistance));
+      drag.x = Math.max(-1, Math.min(1, dragDistance / maxDragDistance));
 
-      // Create horizontal movement based on vertical drag
-      drag.x = Math.sin(drag.y * Math.PI) * 0.5;
+      // Create vertical movement based on horizontal drag
+      drag.y = Math.sin(drag.x * Math.PI) * 0.5;
     }
 
     function onTouchEnd() {
       isDragging = false;
       // Smoothly return to center
-      dragStartY = 0;
-      dragCurrentY = 0;
+      dragStartX = 0;
+      dragCurrentX = 0;
     }
 
     // Add touch event listeners to hero section
