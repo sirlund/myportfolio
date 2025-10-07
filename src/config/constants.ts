@@ -5,7 +5,7 @@ export const SITE = {
   NAME: 'Nicolás Lundin',
   TITLE: 'Senior Product Designer',
   LOCATION: 'Santiago, Chile',
-  TAGLINE: 'A Senior Product Designer from Santiago, Chile –– creating user-friendly solutions for digital products.',
+  TAGLINE: 'Senior Product Designer creating user-friendly solutions for complex digital challenges.',
 } as const;
 
 // Contact information
@@ -19,10 +19,9 @@ export const CONTACT = {
 // About section content
 export const ABOUT = {
   DESCRIPTION: [
-    "I'm a Senior Product Designer from Santiago, Chile, with extensive experience creating user-friendly solutions for digital products. I specialize in design systems, fintech, and transforming complex processes into intuitive experiences.",
-    "My approach focuses on systematic design thinking and cross-functional collaboration. I excel at building scalable design systems from inception and leading design teams to deliver consistent, high-quality user experiences.",
-    "Throughout my career, I've worked across diverse industries including AI platforms, cryptocurrency, cannabis tech, financial services, and insurtech. I'm passionate about making complex technologies accessible and user-friendly.",
-    "I believe in the power of design systems to scale quality and consistency, and I'm always looking for opportunities to mentor other designers and share knowledge within the design community."
+    "I'm a Senior Product Designer specializing in design systems and fintech. I transform complex processes into intuitive digital experiences.",
+    "I build scalable design systems from the ground up and lead teams to deliver consistent, high-quality products through systematic thinking and cross-functional collaboration.",
+    "My work spans AI platforms, fintech, insurtech, and cannabis tech—making complex technologies accessible and user-friendly.",
   ],
   TOOLS: ['Figma', 'Sketch', 'Principle', 'Adobe Creative Suite'],
   SKILLS: ['User Research', 'Information Architecture', 'Interaction Design', 'Design Systems'],
@@ -32,7 +31,7 @@ export const ABOUT = {
 // Contact section content
 export const CONTACT_SECTION = {
   TITLE: "Let's Connect",
-  DESCRIPTION: "I'm always interested in discussing new opportunities, especially those involving design systems, fintech, or complex product challenges. Feel free to reach out if you'd like to work together or just want to chat about design.",
+  DESCRIPTION: "Open to discussing design systems, fintech, and complex product challenges. Let's work together or chat about design.",
   LINKS: [
     {
       name: 'Email',
