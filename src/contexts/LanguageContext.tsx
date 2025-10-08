@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Language = 'en' | 'es';
 
@@ -103,8 +104,33 @@ const translations = {
   },
 };
 
+// Helper to detect language from URL path
+function getLanguageFromPath(pathname: string): Language {
+  return pathname.startsWith('/es/') || pathname === '/es' ? 'es' : 'en';
+}
+
+// Internal component to sync language with URL
+function LanguageSync({ language, setLanguage }: { language: Language; setLanguage: (lang: Language) => void }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    const urlLang = getLanguageFromPath(location.pathname);
+    if (urlLang !== language) {
+      setLanguage(urlLang);
+    }
+  }, [location.pathname, language, setLanguage]);
+
+  return null;
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(() => {
+    // Detect initial language from URL
+    if (typeof window !== 'undefined') {
+      return getLanguageFromPath(window.location.pathname);
+    }
+    return 'en';
+  });
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key;
@@ -112,6 +138,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      <LanguageSync language={language} setLanguage={setLanguage} />
       {children}
     </LanguageContext.Provider>
   );

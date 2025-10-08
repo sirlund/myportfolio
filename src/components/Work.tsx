@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { useNavigation } from "../App";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Icon } from "./icons";
 import imgMindstudio from "../assets/mindstudio_cover.png";
@@ -121,13 +121,20 @@ const projects = [
 ];
 
 export function Work() {
-  const { navigateTo } = useNavigation();
-  const { t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { language, t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
     margin: "-100px",
   });
+
+  const navigateToProject = (projectRoute: string) => {
+    const path = language === 'es' ? `/es/${projectRoute}` : `/${projectRoute}`;
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section id="work" className="work-section" ref={ref}>
@@ -214,7 +221,7 @@ export function Work() {
                   </div>
 
                   <motion.button
-                    onClick={() => navigateTo(project.route)}
+                    onClick={() => navigateToProject(project.route)}
                     className="project-button"
                     style={{
                       backgroundColor:

@@ -1,4 +1,5 @@
-import { useEffect, useState, createContext, useContext, Suspense } from 'react';
+import { createContext, useContext, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Toaster } from './components/ui/sonner';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -8,21 +9,19 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { Route, ROUTES } from './config/routes';
 import { ERROR_MESSAGES } from './config/constants';
-import {
-  parseRouteFromURL,
-  updateURL,
-  scrollToElement,
-  scrollToTop,
-  handlePopState as setupPopStateHandler,
-} from './utils/navigation';
 import './styles/App.css';
+
+// Lazy load case study components
+import { lazy } from 'react';
+const MindStudioCaseStudy = lazy(() => import('./components/case-studies/MindStudioCaseStudy'));
+const TreezCaseStudy = lazy(() => import('./components/case-studies/TreezCaseStudy'));
+const WeniaCaseStudy = lazy(() => import('./components/case-studies/WeniaCaseStudy'));
+const NacionalCaseStudy = lazy(() => import('./components/case-studies/NacionalCaseStudy'));
+const KlareCaseStudy = lazy(() => import('./components/case-studies/KlareCaseStudy'));
 
 // Navigation context interface
 interface NavigationContextType {
-  currentRoute: Route;
-  navigateTo: (route: Route) => void;
   navigateToWork: () => void;
 }
 
@@ -36,6 +35,34 @@ export const useNavigation = () => {
   return context;
 };
 
+// Navigation provider component (must be inside BrowserRouter)
+function NavigationProvider({ children }: { children: React.ReactNode }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const navigateToWork = () => {
+    // Get current language from pathname
+    const isSpanish = location.pathname.startsWith('/es');
+    const targetPath = isSpanish ? '/es' : '/';
+
+    navigate(targetPath);
+
+    // Wait for navigation, then scroll to work section
+    setTimeout(() => {
+      const element = document.getElementById('work');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  return (
+    <NavigationContext.Provider value={{ navigateToWork }}>
+      {children}
+    </NavigationContext.Provider>
+  );
+}
+
 // Loading fallback component
 const LoadingFallback = () => (
   <div className="loading-container">
@@ -44,134 +71,72 @@ const LoadingFallback = () => (
 );
 
 // Error boundary component
-const ErrorFallback = ({ error, resetError }: { error: Error; resetError: () => void }) => (
+const ErrorFallback = ({ error }: { error: Error }) => (
   <div className="error-container">
     <h2 className="error-title">Something went wrong</h2>
     <p className="error-message">
       {error.message || ERROR_MESSAGES.UNEXPECTED_ERROR}
     </p>
-    <button onClick={resetError} className="error-button">
-      Try again
+    <button onClick={() => window.location.href = '/'} className="error-button">
+      Go to home
     </button>
   </div>
 );
 
-export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<Route>(parseRouteFromURL);
-  const [error, setError] = useState<Error | null>(null);
+// Home page component
+function HomePage() {
+  return (
+    <main>
+      <Hero />
+      <Work />
+      <About />
+      <Contact />
+    </main>
+  );
+}
 
-  const navigateTo = (route: Route) => {
-    try {
-      setError(null);
-      setCurrentRoute(route);
-      updateURL(route);
-      scrollToTop();
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error(ERROR_MESSAGES.NAVIGATION_FAILED));
-    }
-  };
-
-  const navigateToWork = () => {
-    try {
-      setError(null);
-      setCurrentRoute('home');
-      updateURL('home', 'work');
-
-      // Wait for the route change to complete, then scroll to work section
-      setTimeout(() => scrollToElement('work'), 100);
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error(ERROR_MESSAGES.NAVIGATION_FAILED));
-    }
-  };
-
-  const resetError = () => {
-    setError(null);
-    setCurrentRoute('home');
-    updateURL('home');
-  };
-
-  // Handle browser back/forward buttons
-  useEffect(() => {
-    const cleanup = setupPopStateHandler((route) => {
-      setCurrentRoute(route);
-
-      // Handle section scrolling from hash
-      const hash = window.location.hash;
-      if (hash) {
-        setTimeout(() => scrollToElement(hash.substring(1)), 100);
-      }
-    });
-
-    return cleanup;
-  }, []);
-
-  // Smooth scrolling for anchor links (only on home page)
-  useEffect(() => {
-    if (currentRoute !== 'home') return;
-
-    const handleClick = (e: Event) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLAnchorElement;
-      const href = target.getAttribute('href');
-
-      if (href) {
-        const sectionId = href.substring(1); // Remove the '#'
-        updateURL('home', sectionId);
-        scrollToElement(sectionId);
-      }
-    };
-
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => link.addEventListener('click', handleClick));
-
-    return () => {
-      links.forEach(link => link.removeEventListener('click', handleClick));
-    };
-  }, [currentRoute]);
-
-  const renderPage = () => {
-    // Render case study pages
-    if (currentRoute !== 'home') {
-      const routeConfig = ROUTES[currentRoute];
-      const Component = routeConfig.component;
-
-      if (!Component) {
-        return <ErrorFallback error={new Error(ERROR_MESSAGES.ROUTE_NOT_FOUND)} resetError={resetError} />;
-      }
-
-      return (
-        <Suspense fallback={<LoadingFallback />}>
-          <Component />
-        </Suspense>
-      );
-    }
-
-    // Render home page
-    return (
-      <main>
-        <Hero />
-        <Work />
-        <About />
-        <Contact />
-      </main>
-    );
-  };
-
+// App content (must be inside BrowserRouter)
+function AppContent() {
   return (
     <LanguageProvider>
-      <NavigationContext.Provider value={{ currentRoute, navigateTo, navigateToWork }}>
+      <NavigationProvider>
         <div className="app-container">
           <CustomCursor />
           <Header />
-          {error ? (
-            <ErrorFallback error={error} resetError={resetError} />
-          ) : (
-            renderPage()
-          )}
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>
+              {/* English routes */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/mindstudio" element={<MindStudioCaseStudy />} />
+              <Route path="/treez" element={<TreezCaseStudy />} />
+              <Route path="/wenia" element={<WeniaCaseStudy />} />
+              <Route path="/nacional" element={<NacionalCaseStudy />} />
+              <Route path="/klare" element={<KlareCaseStudy />} />
+
+              {/* Spanish routes */}
+              <Route path="/es" element={<HomePage />} />
+              <Route path="/es/mindstudio" element={<MindStudioCaseStudy />} />
+              <Route path="/es/treez" element={<TreezCaseStudy />} />
+              <Route path="/es/wenia" element={<WeniaCaseStudy />} />
+              <Route path="/es/nacional" element={<NacionalCaseStudy />} />
+              <Route path="/es/klare" element={<KlareCaseStudy />} />
+
+              {/* 404 - Redirect to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
           <Footer />
           <Toaster position="bottom-right" duration={4000} />
         </div>
-      </NavigationContext.Provider>
+      </NavigationProvider>
     </LanguageProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }

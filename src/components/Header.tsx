@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useNavigation } from '../App';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SITE } from '../config/constants';
 import '../styles/Header.css';
 
 export function Header() {
-  const { currentRoute, navigateTo } = useNavigation();
-  const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { language, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navigation = [
-    { name: t('nav.work'), href: '#work' },
-    { name: t('nav.about'), href: '#about' },
-    { name: t('nav.contact'), href: '#contact' },
+  const navigationItems = [
+    { name: t('nav.work'), sectionId: 'work' },
+    { name: t('nav.about'), sectionId: 'about' },
+    { name: t('nav.contact'), sectionId: 'contact' },
   ];
 
   useEffect(() => {
@@ -39,33 +40,32 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  const scrollToSection = (href: string) => {
+  const isHomePage = location.pathname === '/' || location.pathname === '/es';
+
+  const scrollToSection = (sectionId: string) => {
     // First close the mobile menu
     setIsMobileMenuOpen(false);
 
     // Use requestAnimationFrame to ensure DOM updates complete
     requestAnimationFrame(() => {
-      if (currentRoute !== 'home') {
-        navigateTo('home');
+      if (!isHomePage) {
+        // Navigate to home first, preserving language
+        const homePath = language === 'es' ? '/es' : '/';
+        navigate(homePath);
+
         // Wait for navigation and mobile menu animation
         setTimeout(() => {
-          // Update URL with hash
-          window.history.pushState({ route: 'home', section: href }, '', `/${href}`);
-
-          const element = document.querySelector(href);
+          const element = document.getElementById(sectionId);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 300); // Increased delay to account for animations
+        }, 300);
       } else {
-        // Update URL with hash
-        window.history.pushState({ route: 'home', section: href }, '', `/${href}`);
-
-        // Small delay for mobile menu to close
+        // Already on home page, just scroll
         setTimeout(() => {
-          const element = document.querySelector(href);
+          const element = document.getElementById(sectionId);
           if (element) {
-            const headerOffset = 80; // Adjust based on your header height
+            const headerOffset = 80;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -77,6 +77,27 @@ export function Header() {
         }, 50);
       }
     });
+  };
+
+  const goToHome = () => {
+    const homePath = language === 'es' ? '/es' : '/';
+    navigate(homePath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const switchLanguage = () => {
+    const newLang = language === 'en' ? 'es' : 'en';
+
+    // Get current path without language prefix
+    let currentPath = location.pathname.replace(/^\/es/, '').replace(/^\//, '');
+
+    // Build new path with appropriate language prefix
+    let newPath = newLang === 'es' ? `/es/${currentPath}` : `/${currentPath}`;
+
+    // Clean up double slashes
+    newPath = newPath.replace(/\/+/g, '/').replace(/\/$/, '') || '/';
+
+    navigate(newPath);
   };
 
   return (
@@ -101,7 +122,7 @@ export function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="header-logo"
-              onClick={() => navigateTo('home')}
+              onClick={goToHome}
               style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
             >
               <span className="header-logo-text">{SITE.NAME}</span>
@@ -110,12 +131,12 @@ export function Header() {
             {/* Desktop Navigation */}
             <div className="header-desktop-nav">
               <div className="header-nav-items">
-                {navigation.map((item) => (
+                {navigationItems.map((item) => (
                   <motion.button
                     key={item.name}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => scrollToSection(item.sectionId)}
                     className="header-nav-button"
                   >
                     {item.name}
@@ -125,7 +146,7 @@ export function Header() {
                 <motion.button
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+                  onClick={switchLanguage}
                   className="header-nav-button header-lang-button"
                   aria-label="Switch language"
                 >
@@ -138,7 +159,7 @@ export function Header() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+              onClick={switchLanguage}
               className="header-mobile-lang-button"
               style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
               aria-label="Switch language"
@@ -203,7 +224,7 @@ export function Header() {
         style={{ pointerEvents: isMobileMenuOpen ? 'auto' : 'none' }}
       >
         <div className="header-mobile-nav-content">
-          {navigation.map((item, index) => (
+          {navigationItems.map((item, index) => (
             <motion.button
               key={item.name}
               initial={{ opacity: 0, x: 50 }}
@@ -218,7 +239,7 @@ export function Header() {
               }}
               whileHover={{ x: 20 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection(item.href)}
+              onClick={() => scrollToSection(item.sectionId)}
               className="header-mobile-nav-link"
             >
               {item.name}
