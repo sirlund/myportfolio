@@ -6,10 +6,28 @@ type Language = 'en' | 'es';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string) => string | string[];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+/**
+ * Translation Guide for Content Writers:
+ *
+ * All text content supports HTML formatting tags:
+ * - Use <strong> for bold text
+ * - Use <em> for italic text
+ * - Use <br> for single line break
+ * - Use <br><br> for paragraph breaks (double line break)
+ *
+ * Examples:
+ *   "This is <strong>bold</strong> text"
+ *   "Line one<br>Line two"
+ *   "First paragraph.<br><br>Second paragraph with <em>italic</em>."
+ *
+ * Note: Case studies support \n\n for paragraph breaks (auto-converted to <p> tags),
+ * but for all other site content, use <br><br> for line breaks.
+ */
 
 const translations = {
   en: {
@@ -20,11 +38,13 @@ const translations = {
 
     // Site
     'site.title': 'Senior Product Designer',
-    'site.tagline': 'Senior Product Designer creating user-friendly solutions for complex digital challenges.',
+    'site.tagline': 'Senior Product Designer creating user-friendly solutions for complex digital challenges—from Chile, for the world.',
 
     // Hero
+    'hero.title': 'Hello, I’m Nico.',
+    'hero.subtitle': 'I design simple and useful digital experiences—with a dash of creativity—that combine UX, technology, and scalable interfaces.',
     'hero.location': 'Santiago, Chile',
-    'hero.viewWork': 'View Work',
+    'hero.viewWork': 'View Projects',
 
     // Work
     'work.comingSoon': 'Case Studies Coming Soon',
@@ -32,16 +52,38 @@ const translations = {
 
     // About
     'about.title': 'About',
+    'about.description1': "I'm Nicolás, a product designer with over 10 years of experience, specializing in design systems and user-centered digital solutions.",
+    'about.description2': "I help teams identify opportunities, structure efficient flows, and deliver coherent, scalable products, collaborating closely with stakeholders and developers to bridge the gap between design and execution.",
+    'about.description3': "When I'm not designing, you'll find me training on my road bike 🚴, experimenting with new recipes 🍳, or diving into fantasy literature 📚. I'm a father of a daughter and, recently, a son 👶, plus four cats 🐱, and like any good designer, I have a special relationship with coffee ☕️.",
     'about.tools': 'Tools',
     'about.skills': 'Skills',
     'about.industries': 'Industries',
-    'about.description1': "I'm a Senior Product Designer specializing in design systems and fintech. I transform complex processes into intuitive digital experiences.",
-    'about.description2': "I build scalable design systems from the ground up and lead teams to deliver consistent, high-quality products through systematic thinking and cross-functional collaboration.",
-    'about.description3': "My work spans AI platforms, fintech, insurtech, and cannabis tech—making complex technologies accessible and user-friendly.",
+    'about.toolsList': [
+      'Figma / FigJam / Make', 
+      'Git / GitHub', 
+      'VSCode', 
+      'Storybook', 
+      'HTML / CSS / JS / React'
+    ],
+    'about.skillsList': [
+      'User Research',
+      'Information Architecture',
+      'Interaction Design',
+      'Design Systems',
+      'Prototyping & Testing',
+      'Cross-functional Collaboration'
+    ],
+    'about.industriesList': [
+      'Web & Mobile Products',
+      'Fintech & Crypto',
+      'AI & Machine Learning',
+      'Insurtech',
+      'Enterprise SaaS'
+    ],
 
     // Contact
     'contact.title': "Let's Connect",
-    'contact.description': "Open to discussing design systems, fintech, and complex product challenges. Let's work together or chat about design.",
+    'contact.description': "Open to discussing complex product challenges. Whether you want to collaborate on a project, brainstorm ideas, or just chat about design, reach out!",
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.dribbble': 'Dribbble',
@@ -55,7 +97,7 @@ const translations = {
     'footer.rights': 'Maybe some rights reserved :)',
 
     // Case Study
-    'caseStudy.backToWork': 'Back to Work',
+    'caseStudy.backToWork': 'Back to Work Section',
   },
   es: {
     // Navigation
@@ -65,11 +107,14 @@ const translations = {
 
     // Site
     'site.title': 'Diseñador de Producto Senior',
-    'site.tagline': 'Diseñador de Producto Senior creando soluciones fáciles de usar para desafíos digitales complejos.',
+    'site.tagline': 'Diseñador de Producto Senior creando soluciones fáciles de usar para desafíos digitales complejos—desde Chile, para el mundo.',
 
     // Hero
+    'hero.title': 'Hola, soy Nico.',
+    'hero.subtitle': 'Diseño experiencias digitales simples y útiles —con un toque creativo— que integran UX, tecnología e interfaces que escalan.',
     'hero.location': 'Santiago, Chile',
-    'hero.viewWork': 'Ver Trabajo',
+    'hero.viewWork': 'Ver Proyectos',
+
 
     // Work
     'work.comingSoon': 'Casos de Estudio Próximamente',
@@ -77,16 +122,38 @@ const translations = {
 
     // About
     'about.title': 'Acerca',
+    'about.description1': "Soy Nicolás, diseñador de productos con más de 10 años de experiencia, especializado en sistemas de diseño y soluciones digitales centradas en el usuario.",
+    'about.description2': "Ayudo a equipos a identificar oportunidades, estructurar flujos eficientes y entregar productos coherentes y escalables, colaborando estrechamente con stakeholders y desarrolladores para cerrar la brecha entre diseño y ejecución técnica.",
+    'about.description3': "Cuando no estoy diseñando, me encontrarás entrenando en mi bicicleta de ruta 🚴, explorando recetas nuevas 🍳 o disfrutando de literatura fantástica 📚. Soy padre de una hija y, recientemente, un hijo 👶, además de cuatro gatos 🐱, y como buen diseñador, tengo una relación especial con el café ☕️.",
     'about.tools': 'Herramientas',
     'about.skills': 'Habilidades',
     'about.industries': 'Industrias',
-    'about.description1': 'Soy un Diseñador de Producto Senior especializado en sistemas de diseño y fintech. Transformo procesos complejos en experiencias digitales intuitivas.',
-    'about.description2': 'Construyo sistemas de diseño escalables desde cero y lidero equipos para entregar productos consistentes de alta calidad a través de pensamiento sistemático y colaboración multifuncional.',
-    'about.description3': 'Mi trabajo abarca plataformas de IA, fintech, insurtech y tecnología cannábica—haciendo tecnologías complejas accesibles y fáciles de usar.',
+    'about.toolsList': [
+      'Figma / FigJam / Make', 
+      'Git / GitHub', 
+      'VSCode', 
+      'Storybook', 
+      'HTML / CSS / JS / React'
+    ],    
+    'about.skillsList': [
+      'Investigación de Usuarios',
+      'Arquitectura de Información',
+      'Diseño de Interacción',
+      'Sistemas de Diseño',
+      'Prototipado y Testing',
+      'Colaboración Multifuncional'
+    ],
+    'about.industriesList': [
+      'Productos Web & Mobile',
+      'Fintech & Cripto',
+      'IA y Aprendizaje Automático',
+      'Insurtech',
+      'SaaS Empresarial'
+    ],
 
     // Contact
     'contact.title': 'Conectemos',
-    'contact.description': 'Abierto a discutir sistemas de diseño, fintech y desafíos de productos complejos. Trabajemos juntos o charlemos sobre diseño.',
+    'contact.description': 'Abierto a discutir sobre desafíos de productos complejos. Ya sea que quieras colaborar en un proyecto, generar ideas o simplemente hablar sobre diseño ¡contáctame!',
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.dribbble': 'Dribbble',
@@ -100,7 +167,7 @@ const translations = {
     'footer.rights': 'Quizás algunos derechos reservados :)',
 
     // Case Study
-    'caseStudy.backToWork': 'Volver al Trabajo',
+    'caseStudy.backToWork': 'Volver a Trabajo',
   },
 };
 
@@ -132,7 +199,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return 'en';
   });
 
-  const t = (key: string): string => {
+  const t = (key: string): string | string[] => {
     return translations[language][key as keyof typeof translations['en']] || key;
   };
 

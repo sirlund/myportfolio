@@ -18,7 +18,7 @@ export function Footer() {
           className="footer-inner"
         >
           <div className="footer-copyright">
-            © {currentYear} {SITE.NAME}. {t('footer.rights')}
+            © {currentYear} {SITE.NAME}. <span dangerouslySetInnerHTML={{ __html: t('footer.rights') as string }} />
           </div>
 
           <div className="footer-links">

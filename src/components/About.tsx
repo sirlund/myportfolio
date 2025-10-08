@@ -2,13 +2,16 @@ import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { ABOUT } from '../config/constants';
 import '../styles/About.css';
 
 export function About() {
   const ref = useRef(null);
   const { t } = useLanguage();
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const tools = t('about.toolsList') as string[];
+  const skills = t('about.skillsList') as string[];
+  const industries = t('about.industriesList') as string[];
 
   return (
     <section id="about" className="about-section">
@@ -22,9 +25,9 @@ export function About() {
           <h2 className="about-title">{t('about.title')}</h2>
 
           <div className="about-content">
-            <p>{t('about.description1')}</p>
-            <p>{t('about.description2')}</p>
-            <p>{t('about.description3')}</p>
+            <p dangerouslySetInnerHTML={{ __html: t('about.description1') as string }} />
+            <p dangerouslySetInnerHTML={{ __html: t('about.description2') as string }} />
+            <p dangerouslySetInnerHTML={{ __html: t('about.description3') as string }} />
           </div>
 
           <motion.div
@@ -37,7 +40,7 @@ export function About() {
               <div>
                 <h4 className="about-grid-title">{t('about.tools')}</h4>
                 <div className="about-grid-content">
-                  {ABOUT.TOOLS.map((tool, index) => (
+                  {tools.map((tool, index) => (
                     <p key={index}>{tool}</p>
                   ))}
                 </div>
@@ -46,7 +49,7 @@ export function About() {
               <div>
                 <h4 className="about-grid-title">{t('about.skills')}</h4>
                 <div className="about-grid-content">
-                  {ABOUT.SKILLS.map((skill, index) => (
+                  {skills.map((skill, index) => (
                     <p key={index}>{skill}</p>
                   ))}
                 </div>
@@ -55,7 +58,7 @@ export function About() {
               <div>
                 <h4 className="about-grid-title">{t('about.industries')}</h4>
                 <div className="about-grid-content">
-                  {ABOUT.INDUSTRIES.map((industry, index) => (
+                  {industries.map((industry, index) => (
                     <p key={index}>{industry}</p>
                   ))}
                 </div>

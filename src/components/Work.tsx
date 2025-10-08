@@ -162,9 +162,8 @@ export function Work() {
             marginBottom: '1rem',
             color: 'var(--foreground)',
           }}
-        >
-          {t('work.comingSoon')}
-       </motion.h2>
+          dangerouslySetInnerHTML={{ __html: t('work.comingSoon') as string }}
+        />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -175,9 +174,8 @@ export function Work() {
             maxWidth: '600px',
             lineHeight: 1.6,
           }}
-        >
-          {t('work.description')}
-        </motion.p>
+          dangerouslySetInnerHTML={{ __html: t('work.description') as string }}
+        />
       </motion.div>
 
       {/* {projects.map((project, index) => (

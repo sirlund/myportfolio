@@ -24,13 +24,13 @@ export function Contact() {
       href: CONTACT.LINKEDIN,
       description: t('contact.linkedinDesc'),
     },
-    {
-      name: t('contact.dribbble'),
-      target: '_blank' as const,
-      rel: 'noopener noreferrer',
-      href: CONTACT.DRIBBBLE,
-      description: t('contact.dribbbleDesc'),
-    },
+    // {
+    //   name: t('contact.dribbble'),
+    //   target: '_blank' as const,
+    //   rel: 'noopener noreferrer',
+    //   href: CONTACT.DRIBBBLE,
+    //   description: t('contact.dribbbleDesc'),
+    // },
     {
       name: t('contact.resume'),
       href: CONTACT.RESUME,
@@ -49,9 +49,10 @@ export function Contact() {
         >
           <h2 className="contact-title">{t('contact.title')}</h2>
 
-          <p className="contact-description">
-            {t('contact.description')}
-          </p>
+          <p
+            className="contact-description"
+            dangerouslySetInnerHTML={{ __html: t('contact.description') as string }}
+          />
 
           <div className="contact-links">
             {links.map((link, index) => (

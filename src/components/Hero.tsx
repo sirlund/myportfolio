@@ -44,16 +44,15 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hero-title"
               >
-                {SITE.NAME}
+                {t('hero.title')}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="hero-description"
-              >
-                {t('site.tagline')}
-              </motion.p>
+                dangerouslySetInnerHTML={{ __html: t('hero.subtitle') as string }}
+              />
               <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

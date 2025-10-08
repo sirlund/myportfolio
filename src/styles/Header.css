@@ -216,6 +216,7 @@
   cursor: pointer;
   padding: 0;
   font-size: clamp(2.5rem, 12vw, 5rem);
+  /* font-size: var(--text-3xl, 1.875rem); */
   font-weight: var(--font-weight-bold, 700);
   color: #ffffff;
   text-align: left;
