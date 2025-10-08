@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { SITE, CONTACT } from '../config/constants';
 import '../styles/Footer.css';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="footer">
@@ -16,7 +18,7 @@ export function Footer() {
           className="footer-inner"
         >
           <div className="footer-copyright">
-            © {currentYear} {SITE.NAME}. Maybe some rights reserved :)
+            © {currentYear} {SITE.NAME}. {t('footer.rights')}
           </div>
 
           <div className="footer-links">
@@ -27,7 +29,7 @@ export function Footer() {
               whileHover={{ y: -2 }}
               className="footer-link"
             >
-              LinkedIn
+              {t('contact.linkedin')}
             </motion.a>
             <motion.a
               href={CONTACT.DRIBBBLE}
@@ -36,14 +38,14 @@ export function Footer() {
               whileHover={{ y: -2 }}
               className="footer-link"
             >
-              Dribbble
+              {t('contact.dribbble')}
             </motion.a>
             <motion.a
               href={`mailto:${CONTACT.EMAIL}`}
               whileHover={{ y: -2 }}
               className="footer-link"
             >
-              Email
+              {t('contact.email')}
             </motion.a>
           </div>
         </motion.div>

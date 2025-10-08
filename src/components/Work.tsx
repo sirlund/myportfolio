@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { useNavigation } from "../App";
+import { useLanguage } from "../contexts/LanguageContext";
 import { Icon } from "./icons";
 import imgMindstudio from "../assets/mindstudio_cover.png";
 import imgTreez from "../assets/treez_cover.png";
@@ -121,6 +122,7 @@ const projects = [
 
 export function Work() {
   const { navigateTo } = useNavigation();
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
@@ -154,7 +156,7 @@ export function Work() {
             color: 'var(--foreground)',
           }}
         >
-          Case Studies Coming Soon
+          {t('work.comingSoon')}
        </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -167,7 +169,7 @@ export function Work() {
             lineHeight: 1.6,
           }}
         >
-          I'm currently finalizing detailed case studies of my work. Check back soon for in-depth breakdowns of projects and more.
+          {t('work.description')}
         </motion.p>
       </motion.div>
 

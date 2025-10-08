@@ -7,6 +7,7 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
+import { LanguageProvider } from './contexts/LanguageContext';
 import { Route, ROUTES } from './config/routes';
 import { ERROR_MESSAGES } from './config/constants';
 import {
@@ -157,18 +158,20 @@ export default function App() {
   };
 
   return (
-    <NavigationContext.Provider value={{ currentRoute, navigateTo, navigateToWork }}>
-      <div className="app-container">
-        <CustomCursor />
-        <Header />
-        {error ? (
-          <ErrorFallback error={error} resetError={resetError} />
-        ) : (
-          renderPage()
-        )}
-        <Footer />
-        <Toaster position="bottom-right" duration={4000} />
-      </div>
-    </NavigationContext.Provider>
+    <LanguageProvider>
+      <NavigationContext.Provider value={{ currentRoute, navigateTo, navigateToWork }}>
+        <div className="app-container">
+          <CustomCursor />
+          <Header />
+          {error ? (
+            <ErrorFallback error={error} resetError={resetError} />
+          ) : (
+            renderPage()
+          )}
+          <Footer />
+          <Toaster position="bottom-right" duration={4000} />
+        </div>
+      </NavigationContext.Provider>
+    </LanguageProvider>
   );
 }

@@ -1,11 +1,13 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { ABOUT } from '../config/constants';
 import '../styles/About.css';
 
 export function About() {
   const ref = useRef(null);
+  const { t } = useLanguage();
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
@@ -17,12 +19,12 @@ export function About() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="about-title">About</h2>
+          <h2 className="about-title">{t('about.title')}</h2>
 
           <div className="about-content">
-            {ABOUT.DESCRIPTION.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            <p>{t('about.description1')}</p>
+            <p>{t('about.description2')}</p>
+            <p>{t('about.description3')}</p>
           </div>
 
           <motion.div
@@ -33,7 +35,7 @@ export function About() {
           >
             <div className="about-grid">
               <div>
-                <h4 className="about-grid-title">Tools</h4>
+                <h4 className="about-grid-title">{t('about.tools')}</h4>
                 <div className="about-grid-content">
                   {ABOUT.TOOLS.map((tool, index) => (
                     <p key={index}>{tool}</p>
@@ -42,7 +44,7 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="about-grid-title">Skills</h4>
+                <h4 className="about-grid-title">{t('about.skills')}</h4>
                 <div className="about-grid-content">
                   {ABOUT.SKILLS.map((skill, index) => (
                     <p key={index}>{skill}</p>
@@ -51,7 +53,7 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="about-grid-title">Industries</h4>
+                <h4 className="about-grid-title">{t('about.industries')}</h4>
                 <div className="about-grid-content">
                   {ABOUT.INDUSTRIES.map((industry, index) => (
                     <p key={index}>{industry}</p>

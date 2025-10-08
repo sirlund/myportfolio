@@ -2,19 +2,21 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useNavigation } from '../App';
+import { useLanguage } from '../contexts/LanguageContext';
 import { SITE } from '../config/constants';
 import '../styles/Header.css';
 
-const navigation = [
-  { name: 'Work', href: '#work' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-];
-
 export function Header() {
   const { currentRoute, navigateTo } = useNavigation();
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: t('nav.work'), href: '#work' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.contact'), href: '#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,8 +121,30 @@ export function Header() {
                     {item.name}
                   </motion.button>
                 ))}
+                {/* Language switcher - Desktop */}
+                <motion.button
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+                  className="header-nav-button header-lang-button"
+                  aria-label="Switch language"
+                >
+                  {language === 'en' ? 'ES' : 'EN'}
+                </motion.button>
               </div>
             </div>
+
+            {/* Language switcher - Mobile */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+              className="header-mobile-lang-button"
+              style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
+              aria-label="Switch language"
+            >
+              {language === 'en' ? 'ES' : 'EN'}
+            </motion.button>
 
             {/* Mobile menu button */}
             <motion.button

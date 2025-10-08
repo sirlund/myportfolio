@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../App';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { ImageWithFallback } from '../ui/image';
 import { useState, useEffect } from 'react';
 import '../../styles/CaseStudyLayout.css';
@@ -48,6 +49,7 @@ export function CaseStudyLayout({
   children
 }: CaseStudyLayoutProps) {
   const { navigateToWork } = useNavigation();
+  const { t } = useLanguage();
   const [showBackButton, setShowBackButton] = useState(false);
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export function CaseStudyLayout({
         style={{ pointerEvents: showBackButton ? 'auto' : 'none' }}
       >
         <ArrowLeft size={18} />
-        <span>Back to Work</span>
+        <span>{t('caseStudy.backToWork')}</span>
       </motion.button>
 
       {/* Back Navigation (visible initially) */}
@@ -102,7 +104,7 @@ export function CaseStudyLayout({
             className="case-study-back-button"
           >
             <ArrowLeft size={18} />
-            <span>Back to Work</span>
+            <span>{t('caseStudy.backToWork')}</span>
           </motion.button>
         </div>
       </motion.div>
@@ -164,7 +166,7 @@ export function CaseStudyLayout({
           <h2>{overview.title}</h2>
           <div className="case-study-overview-content">
             {overview.content.split('\n\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+              <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
             ))}
           </div>
         </div>
@@ -185,7 +187,7 @@ export function CaseStudyLayout({
               {typeof section.content === 'string' ? (
                 <div className="case-study-section-text">
                   {section.content.split('\n\n').map((paragraph, pIndex) => (
-                    <p key={pIndex}>{paragraph}</p>
+                    <p key={pIndex} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
                   ))}
                 </div>
               ) : (

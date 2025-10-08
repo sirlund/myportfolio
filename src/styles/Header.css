@@ -105,6 +105,30 @@
   color: var(--muted-foreground);
 }
 
+.header-lang-button {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.header-mobile-lang-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--spacing, 0.25rem) * 2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  margin-right: calc(var(--spacing, 0.25rem) * 2);
+}
+
+@media (width >= 48rem) {
+  .header-mobile-lang-button {
+    display: none;
+  }
+}
+
 .header-mobile-menu-button {
   display: flex;
   align-items: center;

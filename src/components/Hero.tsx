@@ -1,11 +1,13 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { ThreeCanvas } from './ThreeCanvas';
+import { useLanguage } from '../contexts/LanguageContext';
 import { SITE } from '../config/constants';
 import '../styles/Hero.css';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   const scrollToWork = () => {
     // Update URL with hash
@@ -50,7 +52,7 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="hero-description"
               >
-                {SITE.TAGLINE}
+                {t('site.tagline')}
               </motion.p>
               <motion.button
                 initial={{ opacity: 0, y: 20 }}
@@ -61,7 +63,7 @@ export function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="hero-button"
               >
-                View Work
+                {t('hero.viewWork')}
               </motion.button>
             </motion.div>
           </div>
