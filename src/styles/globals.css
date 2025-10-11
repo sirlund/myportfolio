@@ -1,15 +1,29 @@
 :root {
   --font-size: 16px;
   --font-family: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.25rem;
-  --text-xl: 1.563rem;
-  --text-2xl: 1.953rem;
-  --text-3xl: 2.441rem;
-  --text-4xl: 3.052rem;
-  --text-5xl: 3.815rem;
+
+  /* Base Typography Scale */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+
+  /* Semantic Typography - Mobile First */
+  --font-hero-title: var(--text-4xl);
+  --font-hero-subtitle: var(--font-text-lg);
+  --font-section-title: var(--text-3xl);
+  --font-text-lg: var(--text-lg);
+  --font-text-md: var(--text-base);
+  --font-text-sm: var(--text-sm);
+  --font-caption: var(--text-xs);
+  --font-nav-overlay: clamp(2.5rem, 10vw, 4rem);
+
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -215,4 +229,95 @@ li {
 html {
   font-size: var(--font-size);
   font-family: var(--font-family);
+}
+
+/* Tablet breakpoint (640px+) */
+@media (width >= 40rem) {
+  :root {
+    --font-hero-title: var(--text-5xl);
+    --font-hero-subtitle: var(--text-lg);
+    --font-section-title: var(--text-4xl);
+    --font-text-lg: var(--text-xl);
+    --font-text-md: var(--text-lg);
+    --font-text-sm: var(--text-base);
+  }
+}
+
+/* Desktop breakpoint (1024px+) */
+@media (width >= 64rem) {
+  :root {
+    --font-hero-title: var(--text-6xl);
+    --font-hero-subtitle: var(--text-xl);
+    --font-section-title: var(--text-5xl);
+  }
+}
+
+/* ========================================
+   BASE SECTION STYLES
+   ======================================== */
+
+/* Section container - Mobile First */
+.section {
+  padding-top: calc(var(--spacing, 0.25rem) * 16);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 16);
+}
+
+.section > div {
+  max-width: var(--container-4xl, 56rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--spacing, 0.25rem) * 4);
+  padding-right: calc(var(--spacing, 0.25rem) * 4);
+}
+
+/* Section title */
+.section h2 {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+  font-size: var(--font-section-title);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+}
+
+/* Section content */
+.section .content {
+  font-size: var(--font-text-lg);
+  color: var(--muted-foreground);
+  line-height: var(--leading-relaxed, 1.625);
+}
+
+.section .content p {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+/* Tablet - 640px */
+@media (width >= 40rem) {
+  .section {
+    padding-top: calc(var(--spacing, 0.25rem) * 20);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 20);
+  }
+
+  .section > div {
+    padding-left: calc(var(--spacing, 0.25rem) * 6);
+    padding-right: calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .section h2 {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+  }
+}
+
+/* Desktop - 1024px */
+@media (width >= 64rem) {
+  .section {
+    padding-top: calc(var(--spacing, 0.25rem) * 24);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 24);
+  }
+
+  .section > div {
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
 }

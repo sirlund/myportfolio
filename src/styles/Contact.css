@@ -1,85 +1,20 @@
-/* Contact Section - Mobile First */
-.contact-section {
-  padding-top: calc(var(--spacing, 0.25rem) * 16);
-  padding-bottom: calc(var(--spacing, 0.25rem) * 16);
-}
+/* Contact Section - Specific styles only */
 
-.contact-container {
-  max-width: var(--container-4xl, 56rem);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: calc(var(--spacing, 0.25rem) * 4);
-  padding-right: calc(var(--spacing, 0.25rem) * 4);
-}
-
-.contact-title {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 6);
-  font-size: var(--text-3xl, 2.441rem);
-}
-
-.contact-description {
-  color: var(--muted-foreground);
-  margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+/* Content width and spacing */
+.section.contact .content {
   max-width: var(--container-2xl, 42rem);
-  line-height: var(--leading-relaxed, 1.625);
-  font-size: var(--text-base, 1rem);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 8);
 }
 
-.contact-links {
+/* Links container */
+.section.contact .links {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing, 0.25rem) * 4);
 }
 
-/* Tablet */
-@media (width >= 40rem) {
-  .contact-section {
-    padding-top: calc(var(--spacing, 0.25rem) * 20);
-    padding-bottom: calc(var(--spacing, 0.25rem) * 20);
-  }
-
-  .contact-container {
-    padding-left: calc(var(--spacing, 0.25rem) * 6);
-    padding-right: calc(var(--spacing, 0.25rem) * 6);
-  }
-
-  .contact-title {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 8);
-    font-size: var(--text-4xl, 3.052rem);
-  }
-
-  .contact-description {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 10);
-    font-size: var(--text-lg, 1.125rem);
-  }
-
-  .contact-links {
-    gap: calc(var(--spacing, 0.25rem) * 5);
-  }
-}
-
-/* Desktop */
-@media (width >= 64rem) {
-  .contact-section {
-    padding-top: calc(var(--spacing, 0.25rem) * 24);
-    padding-bottom: calc(var(--spacing, 0.25rem) * 24);
-  }
-
-  .contact-container {
-    padding-left: calc(var(--spacing, 0.25rem) * 8);
-    padding-right: calc(var(--spacing, 0.25rem) * 8);
-  }
-
-  .contact-description {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 12);
-  }
-
-  .contact-links {
-    gap: calc(var(--spacing, 0.25rem) * 6);
-  }
-}
-
-.contact-link {
+/* Individual link */
+.section.contact .link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,45 +28,31 @@
   color: inherit;
 }
 
-.contact-link:hover {
+.section.contact .link:hover {
   border-color: var(--foreground);
 }
 
-.contact-link-name {
+/* Link text */
+.section.contact .link-name {
   font-weight: var(--font-weight-medium, 500);
-  font-size: var(--text-base, 1rem);
+  font-size: var(--font-text-md);
   transition-property: color;
   transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
   transition-duration: 0.2s;
 }
 
-.contact-link:hover .contact-link-name {
+.section.contact .link:hover .link-name {
   color: var(--muted-foreground);
 }
 
-.contact-link-description {
-  font-size: var(--text-sm, 0.875rem);
+.section.contact .link-description {
+  font-size: var(--font-text-sm);
   line-height: calc(1.25 / 0.875);
   color: var(--muted-foreground);
 }
 
-/* Tablet */
-@media (width >= 40rem) {
-  .contact-link {
-    padding-top: calc(var(--spacing, 0.25rem) * 4);
-    padding-bottom: calc(var(--spacing, 0.25rem) * 4);
-  }
-
-  .contact-link-name {
-    font-size: var(--text-lg, 1.125rem);
-  }
-
-  .contact-link-description {
-    font-size: var(--text-base, 1rem);
-  }
-}
-
-.contact-link-icon {
+/* Link icon */
+.section.contact .link-icon {
   width: calc(var(--spacing, 0.25rem) * 8);
   height: calc(var(--spacing, 0.25rem) * 8);
   display: flex;
@@ -139,13 +60,40 @@
   justify-content: center;
 }
 
-.contact-link-icon svg {
+.section.contact .link-icon svg {
   color: var(--muted-foreground);
   transition-property: color;
   transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
   transition-duration: 0.2s;
 }
 
-.contact-link:hover .contact-link-icon svg {
+.section.contact .link:hover .link-icon svg {
   color: var(--foreground);
+}
+
+/* Tablet - 640px */
+@media (width >= 40rem) {
+  .section.contact .content {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 10);
+  }
+
+  .section.contact .links {
+    gap: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .section.contact .link {
+    padding-top: calc(var(--spacing, 0.25rem) * 4);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 4);
+  }
+}
+
+/* Desktop - 1024px */
+@media (width >= 64rem) {
+  .section.contact .content {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+  }
+
+  .section.contact .links {
+    gap: calc(var(--spacing, 0.25rem) * 6);
+  }
 }

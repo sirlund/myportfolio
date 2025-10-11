@@ -14,17 +14,17 @@ export function About() {
   const industries = t('about.industriesList') as string[];
 
   return (
-    <section id="about" className="about-section">
-      <div className="about-container">
+    <section id="about" className="section about">
+      <div>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="about-title">{t('about.title')}</h2>
+          <h2>{t('about.title')}</h2>
 
-          <div className="about-content">
+          <div className="content">
             <p dangerouslySetInnerHTML={{ __html: t('about.description1') as string }} />
             <p dangerouslySetInnerHTML={{ __html: t('about.description2') as string }} />
             <p dangerouslySetInnerHTML={{ __html: t('about.description3') as string }} />
@@ -34,12 +34,12 @@ export function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="about-divider"
+            className="divider"
           >
-            <div className="about-grid">
+            <div className="grid">
               <div>
-                <h4 className="about-grid-title">{t('about.tools')}</h4>
-                <div className="about-grid-content">
+                <h4>{t('about.tools')}</h4>
+                <div className="grid-content">
                   {tools.map((tool, index) => (
                     <p key={index}>{tool}</p>
                   ))}
@@ -47,8 +47,8 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="about-grid-title">{t('about.skills')}</h4>
-                <div className="about-grid-content">
+                <h4>{t('about.skills')}</h4>
+                <div className="grid-content">
                   {skills.map((skill, index) => (
                     <p key={index}>{skill}</p>
                   ))}
@@ -56,8 +56,8 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="about-grid-title">{t('about.industries')}</h4>
-                <div className="about-grid-content">
+                <h4>{t('about.industries')}</h4>
+                <div className="grid-content">
                   {industries.map((industry, index) => (
                     <p key={index}>{industry}</p>
                   ))}

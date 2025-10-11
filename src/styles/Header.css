@@ -64,13 +64,7 @@
 
 .header-logo-text {
   font-weight: var(--font-weight-medium, 500);
-  font-size: var(--text-base, 1rem);
-}
-
-@media (width >= 40rem) {
-  .header-logo-text {
-    font-size: var(--text-lg, 1.25rem);
-  }
+  font-size: var(--font-text-md);
 }
 
 .header-desktop-nav {
@@ -90,7 +84,7 @@
 }
 
 .header-nav-button {
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--font-text-sm);
   line-height: calc(1.25 / 0.875);
   transition-property: color;
   transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
@@ -118,7 +112,7 @@
   border: none;
   cursor: pointer;
   color: inherit;
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--font-text-sm);
   font-weight: var(--font-weight-medium, 500);
   margin-right: calc(var(--spacing, 0.25rem) * 2);
 }
@@ -215,8 +209,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  font-size: clamp(2.5rem, 12vw, 5rem);
-  /* font-size: var(--text-3xl, 1.875rem); */
+  font-size: var(--font-nav-overlay);
   font-weight: var(--font-weight-bold, 700);
   color: #ffffff;
   text-align: left;

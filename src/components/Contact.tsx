@@ -39,22 +39,22 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="contact-section">
-      <div className="contact-container">
+    <section id="contact" className="section contact">
+      <div>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="contact-title">{t('contact.title')}</h2>
+          <h2>{t('contact.title')}</h2>
 
           <p
-            className="contact-description"
+            className="content"
             dangerouslySetInnerHTML={{ __html: t('contact.description') as string }}
           />
 
-          <div className="contact-links">
+          <div className="links">
             {links.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -65,20 +65,20 @@ export function Contact() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ x: 10 }}
-                className="contact-link"
+                className="link"
               >
                 <div>
-                  <div className="contact-link-name">
+                  <div className="link-name">
                     {link.name}
                   </div>
-                  <div className="contact-link-description">
+                  <div className="link-description">
                     {link.description}
                   </div>
                 </div>
 
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="contact-link-icon"
+                  className="link-icon"
                 >
                   <ArrowUpRight size={16} />
                 </motion.div>
