@@ -142,43 +142,25 @@ export function Work() {
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '60vh',
-          padding: '4rem 2rem',
-          textAlign: 'center',
-        }}
+        className="work-coming-soon-container"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          style={{
-            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            fontWeight: 700,
-            marginBottom: '1rem',
-            color: 'var(--foreground)',
-          }}
+          className="work-coming-soon-title"
           dangerouslySetInnerHTML={{ __html: t('work.comingSoon') as string }}
         />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            color: 'var(--muted-foreground)',
-            maxWidth: '600px',
-            lineHeight: 1.6,
-          }}
+          className="work-coming-soon-description"
           dangerouslySetInnerHTML={{ __html: t('work.description') as string }}
         />
       </motion.div>
 
-      {/* {projects.map((project, index) => (
+      {projects.map((project, index) => (
         <motion.div
           key={project.id}
           initial={{ opacity: 0, y: 40 }}
@@ -248,7 +230,7 @@ export function Work() {
             </div>
           </div>
         </motion.div>
-      ))} */}
+      ))}
     </section>
   );
 }
