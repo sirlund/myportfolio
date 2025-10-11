@@ -111,20 +111,20 @@ const translations = {
 
     // Hero
     'hero.title': 'Hola, soy Nico.',
-    'hero.subtitle': 'Diseño experiencias digitales simples y útiles —con un toque creativo— que integran UX, tecnología e interfaces que escalan.',
+    'hero.subtitle': 'Diseño experiencias digitales centradas en el usuario y Sistemas de Diseño escalables—con más de 10 años transformando ideas complejas en productos simples y efectivos.',
     'hero.location': 'Santiago, Chile',
     'hero.viewWork': 'Ver Proyectos',
 
 
     // Work
-    'work.comingSoon': 'Casos de Estudio Próximamente',
+    'work.comingSoon': 'Casos de estudio próximamente',
     'work.description': 'Actualmente estoy finalizando casos de estudio detallados de mi trabajo. Vuelve pronto para ver exploraciones en profundidad de mi proceso de diseño y resultados.',
 
     // About
     'about.title': 'Acerca',
-    'about.description1': "Soy Nicolás, diseñador de productos con más de 10 años de experiencia, especializado en sistemas de diseño y soluciones digitales centradas en el usuario.",
-    'about.description2': "Ayudo a equipos a identificar oportunidades, estructurar flujos eficientes y entregar productos coherentes y escalables, colaborando estrechamente con stakeholders y desarrolladores para cerrar la brecha entre diseño y ejecución técnica.",
-    'about.description3': "Cuando no estoy diseñando, me encontrarás entrenando en mi bicicleta de ruta 🚴, explorando recetas nuevas 🍳 o disfrutando de literatura fantástica 📚. Soy padre de una hija y, recientemente, un hijo 👶, además de cuatro gatos 🐱, y como buen diseñador, tengo una relación especial con el café ☕️.",
+    'about.description1': "Soy diseñador de producto con más de 10 años creando experiencias digitales que la gente realmente quiere usar. Me especializo en <strong>Sistemas de Diseño</strong> y arquitectura de información, con particular enfoque en productos B2C.",
+    'about.description2': "He liderado el diseño de plataformas digitales para fintech, insurtech y SaaS empresarial, colaborando estrechamente con equipos de desarrollo y stakeholders para alinear diseño y ejecución técnica. Me motiva resolver problemas complejos con soluciones simples y bien pensadas.",
+    'about.description3': "Creo que el buen diseño nace del equilibrio entre rigor metodológico y empatía genuina con los usuarios. Fuera del trabajo, disfruto la literatura fantástica 📚 y paso mis días aprendiendo de mis dos hijos—una fuente constante de curiosidad y creatividad.",
     'about.tools': 'Herramientas',
     'about.skills': 'Habilidades',
     'about.industries': 'Industrias',
@@ -136,24 +136,24 @@ const translations = {
       'HTML / CSS / JS / React'
     ],    
     'about.skillsList': [
-      'Investigación de Usuarios',
-      'Arquitectura de Información',
-      'Diseño de Interacción',
+      'Investigación de usuarios',
+      'Arquitectura de información',
+      'Diseño de interacción',
       'Sistemas de Diseño',
-      'Prototipado y Testing',
-      'Colaboración Multifuncional'
+      'Prototipado y pruebas de usabilidad',
+      'Colaboración multifuncional'
     ],
     'about.industriesList': [
-      'Productos Web & Mobile',
-      'Fintech & Cripto',
-      'IA y Aprendizaje Automático',
+      'Productos web y mobile',
+      'Fintech y cripto',
+      'IA y Machine Learning',
       'Insurtech',
-      'SaaS Empresarial'
+      'SaaS empresarial'
     ],
 
     // Contact
     'contact.title': 'Conectemos',
-    'contact.description': 'Abierto a discutir sobre desafíos de productos complejos. Ya sea que quieras colaborar en un proyecto, generar ideas o simplemente hablar sobre diseño ¡contáctame!',
+    'contact.description': 'Abierto a discutir desafíos complejos de producto y oportunidades de colaboración. Si buscas mejorar la experiencia de tu producto digital, implementar un Sistema de Diseño, o simplemente conversar sobre diseño, ¡escríbeme!',
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.dribbble': 'Dribbble',
