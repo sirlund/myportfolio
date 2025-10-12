@@ -2,7 +2,7 @@ import { CaseStudyLayout } from './CaseStudyLayout';
 import { Image } from '../base';
 import { useCaseStudyTranslation } from '../../lib/hooks';
 import imgMindstudio from '../../assets/mindstudio_cover.png';
-import '../../styles/CaseStudyContent.css';
+import '../../styles/case-studies/CaseStudyContent.css';
 
 export function MindStudioCaseStudy() {
   const t = useCaseStudyTranslation('mindstudio');

@@ -3,7 +3,7 @@ import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { useLanguage } from '../../lib/contexts';
 import { Section, Container, Heading, Text, List, ListItem } from '../base';
-import '../../styles/About.css';
+import '../../styles/sections/About.css';
 
 export function About() {
   const ref = useRef(null);

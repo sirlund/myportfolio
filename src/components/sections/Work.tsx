@@ -7,7 +7,7 @@ import { Icon } from "../icons";
 import { Heading, Text, Button, Image } from "../base";
 import imgMindstudio from "../../assets/mindstudio_cover.png";
 import imgTreez from "../../assets/treez_cover.png";
-import '../../styles/Work.css';
+import '../../styles/sections/Work.css';
 
 // Mindstudio Icon Component
 function MindstudioIcon() {

@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { useLanguage } from '../../lib/contexts';
 import { SITE, CONTACT } from '../../lib/constants';
 import { Text, Link } from '../base';
-import '../../styles/Footer.css';
+import '../../styles/layout/Footer.css';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

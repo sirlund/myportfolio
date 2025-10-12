@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../lib/contexts';
 import { CONTACT } from '../../lib/constants';
 import { Section, Container, Heading, Text } from '../base';
-import '../../styles/Contact.css';
+import '../../styles/sections/Contact.css';
 
 export function Contact() {
   const ref = useRef(null);

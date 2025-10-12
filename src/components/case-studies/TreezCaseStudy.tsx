@@ -1,7 +1,7 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { useCaseStudyTranslation } from '../../lib/hooks';
 import imgTreez from '../../assets/treez_cover.png';
-import '../../styles/CaseStudyContent.css';
+import '../../styles/case-studies/CaseStudyContent.css';
 
 export function TreezCaseStudy() {
   const t = useCaseStudyTranslation('treez');

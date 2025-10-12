@@ -4,7 +4,7 @@ import { useNavigation } from '../../App';
 import { useLanguage } from '../../lib/contexts';
 import { Image } from '../base';
 import { useState, useEffect } from 'react';
-import '../../styles/CaseStudyLayout.css';
+import '../../styles/case-studies/CaseStudyLayout.css';
 
 interface ProjectDetail {
   label: string;

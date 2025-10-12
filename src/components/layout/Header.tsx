@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../../lib/contexts';
 import { SITE } from '../../lib/constants';
-import '../../styles/Header.css';
+import '../../styles/layout/Header.css';
 
 export function Header() {
   const navigate = useNavigate();
