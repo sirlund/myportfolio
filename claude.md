@@ -423,7 +423,9 @@ export function About() {
 - `aspectRatio`: string opcional (ej: '16/9', '4/3', '1/1')
 - `objectFit`: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down' (default: 'cover')
 - `loading`: 'lazy' | 'eager' (default: 'lazy')
+- `fallbackSrc`: string opcional (imagen de respaldo si falla la carga, default: icono SVG)
 - Props nativas de ImgHTMLAttributes
+- **Características**: Lazy loading automático, error handling con fallback, aspect ratio control
 
 **List component:**
 - `ordered`: boolean (false = ul, true = ol)
@@ -522,7 +524,7 @@ export type { TextProps } from './Text';
 
 **Image component:**
 ```typescript
-// Básico con lazy loading
+// Básico con lazy loading y fallback automático
 <Image
   src={imgPath}
   alt="Description"
@@ -535,6 +537,13 @@ export type { TextProps } from './Text';
   aspectRatio="16/9"
   objectFit="cover"
   loading="eager"
+/>
+
+// Con fallback personalizado (útil para imágenes externas/CDN)
+<Image
+  src="https://external-cdn.com/image.jpg"
+  alt="External image"
+  fallbackSrc="/fallback-image.png"
 />
 
 // Con className para overrides

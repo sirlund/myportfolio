@@ -2,12 +2,12 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useLanguage } from "../lib/contexts";
-import { Icon } from "./icons";
-import { Heading, Text, Button, Image } from "./base";
-import imgMindstudio from "../assets/mindstudio_cover.png";
-import imgTreez from "../assets/treez_cover.png";
-import '../styles/Work.css';
+import { useLanguage } from "../../lib/contexts";
+import { Icon } from "../icons";
+import { Heading, Text, Button, Image } from "../base";
+import imgMindstudio from "../../assets/mindstudio_cover.png";
+import imgTreez from "../../assets/treez_cover.png";
+import '../../styles/Work.css';
 
 // Mindstudio Icon Component
 function MindstudioIcon() {

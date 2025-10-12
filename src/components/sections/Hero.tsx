@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { ThreeCanvas } from './ThreeCanvas';
-import { useLanguage } from '../lib/contexts';
-import { Heading, Text, Button } from './base';
-import '../styles/Hero.css';
+import { useLanguage } from '../../lib/contexts';
+import { Heading, Text, Button } from '../base';
+import '../../styles/Hero.css';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);

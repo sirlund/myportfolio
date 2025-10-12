@@ -2,10 +2,10 @@ import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { useLanguage } from '../lib/contexts';
-import { CONTACT } from '../lib/constants';
-import { Section, Container, Heading, Text } from './base';
-import '../styles/Contact.css';
+import { useLanguage } from '../../lib/contexts';
+import { CONTACT } from '../../lib/constants';
+import { Section, Container, Heading, Text } from '../base';
+import '../../styles/Contact.css';
 
 export function Contact() {
   const ref = useRef(null);

@@ -1,5 +1,5 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
-import { ImageWithFallback } from '../ui/image';
+import { Image } from '../base';
 import { useCaseStudyTranslation } from '../../lib/hooks';
 import imgMindstudio from '../../assets/mindstudio_cover.png';
 import '../../styles/CaseStudyContent.css';
@@ -49,7 +49,7 @@ export function MindStudioCaseStudy() {
                 </div>
               </div>
 
-              <ImageWithFallback
+              <Image
                 src="https://images.unsplash.com/photo-1738606410165-46da2b5b700e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGRlc2lnbiUyMHRva2VucyUyMGNvbG9yc3xlbnwxfHx8fDE3NTg5Mzk0OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt={t.sections.architecture.imageAlt}
                 className="cs-image-full"
@@ -85,7 +85,7 @@ export function MindStudioCaseStudy() {
                 </div>
               </div>
 
-              <ImageWithFallback
+              <Image
                 src="https://images.unsplash.com/photo-1737918543099-dfa8ec2e3909?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc1ODg3NzAwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt={t.sections.features.imageAlt}
                 className="cs-image-full"

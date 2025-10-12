@@ -1,4 +1,4 @@
-import { ImageWithFallback } from '../../components/ui/image';
+import { Image } from '../../components/base';
 
 /**
  * Content Formatting Guide for Writers:

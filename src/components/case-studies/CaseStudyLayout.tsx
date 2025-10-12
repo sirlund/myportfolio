@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../App';
 import { useLanguage } from '../../lib/contexts';
-import { ImageWithFallback } from '../ui/image';
+import { Image } from '../base';
 import { useState, useEffect } from 'react';
 import '../../styles/CaseStudyLayout.css';
 
@@ -127,7 +127,7 @@ export function CaseStudyLayout({
 
           {/* Hero Image */}
           <div className="case-study-hero-image">
-            <ImageWithFallback
+            <Image
               src={heroImage}
               alt={title}
             />
