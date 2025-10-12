@@ -1,4 +1,4 @@
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from './contexts';
 import { mindstudioTranslations } from '../translations/case-studies/mindstudio';
 import { treezTranslations } from '../translations/case-studies/treez';
 

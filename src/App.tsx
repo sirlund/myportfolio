@@ -8,8 +8,8 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
-import { LanguageProvider } from './contexts/LanguageContext';
-import { ERROR_MESSAGES } from './config/constants';
+import { LanguageProvider } from './lib/contexts';
+import { ERROR_MESSAGES } from './lib/constants';
 import './styles/App.css';
 
 // Lazy load case study components

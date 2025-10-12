@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { SITE, CONTACT } from '../config/constants';
+import { useLanguage } from '../lib/contexts';
+import { SITE, CONTACT } from '../lib/constants';
 import { Text, Link } from './base';
 import '../styles/Footer.css';
 

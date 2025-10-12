@@ -1,6 +1,6 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { ImageWithFallback } from '../ui/image';
-import { useCaseStudyTranslation } from '../../hooks/useCaseStudyTranslation';
+import { useCaseStudyTranslation } from '../../lib/hooks';
 import imgMindstudio from '../../assets/mindstudio_cover.png';
 import '../../styles/CaseStudyContent.css';
 

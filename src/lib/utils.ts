@@ -1,5 +1,5 @@
-import { Route, VALID_ROUTES } from '../config/routes';
-import { BASE_PATH, SCROLL_OPTIONS } from '../config/constants';
+import { Route, VALID_ROUTES } from './routes';
+import { BASE_PATH, SCROLL_OPTIONS } from './constants';
 
 /**
  * Parses the current URL and returns the corresponding route

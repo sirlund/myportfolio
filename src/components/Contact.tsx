@@ -2,8 +2,8 @@ import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { CONTACT } from '../config/constants';
+import { useLanguage } from '../lib/contexts';
+import { CONTACT } from '../lib/constants';
 import { Section, Container, Heading, Text } from './base';
 import '../styles/Contact.css';
 

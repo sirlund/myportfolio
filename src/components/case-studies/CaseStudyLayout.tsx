@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../App';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { useLanguage } from '../../lib/contexts';
 import { ImageWithFallback } from '../ui/image';
 import { useState, useEffect } from 'react';
 import '../../styles/CaseStudyLayout.css';

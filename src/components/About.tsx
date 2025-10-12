@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../lib/contexts';
 import { Section, Container, Heading, Text, List, ListItem } from './base';
 import '../styles/About.css';
 
