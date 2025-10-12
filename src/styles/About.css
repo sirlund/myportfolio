@@ -48,9 +48,6 @@
 }
 
 .section.about .grid-content {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing, 0.25rem) * 1);
   color: var(--muted-foreground);
 }
 

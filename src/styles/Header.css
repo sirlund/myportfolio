@@ -63,7 +63,7 @@
 }
 
 .header-logo-text {
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-medium);
   font-size: var(--font-text-md);
 }
 
@@ -85,10 +85,7 @@
 
 .header-nav-button {
   font-size: var(--font-text-sm);
-  line-height: calc(1.25 / 0.875);
-  transition-property: color;
-  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
-  transition-duration: 0.2s;
+  transition: color 0.2s ease;
   background: none;
   border: none;
   cursor: pointer;
@@ -100,7 +97,7 @@
 }
 
 .header-lang-button {
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-medium);
 }
 
 .header-mobile-lang-button {
@@ -113,7 +110,7 @@
   cursor: pointer;
   color: inherit;
   font-size: var(--font-text-sm);
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-medium);
   margin-right: calc(var(--spacing, 0.25rem) * 2);
 }
 
@@ -210,7 +207,7 @@
   cursor: pointer;
   padding: 0;
   font-size: var(--font-nav-overlay);
-  font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold);
   color: #ffffff;
   text-align: left;
   line-height: 1.1;

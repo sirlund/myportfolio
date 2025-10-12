@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Section, Container, Heading, Text, List, ListItem } from './base';
 import '../styles/About.css';
 
 export function About() {
@@ -14,20 +15,20 @@ export function About() {
   const industries = t('about.industriesList') as string[];
 
   return (
-    <section id="about" className="section about">
-      <div>
+    <Section id="about" variant="about">
+      <Container>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2>{t('about.title')}</h2>
+          <Heading level={2}>{t('about.title')}</Heading>
 
           <div className="content">
-            <p dangerouslySetInnerHTML={{ __html: t('about.description1') as string }} />
-            <p dangerouslySetInnerHTML={{ __html: t('about.description2') as string }} />
-            <p dangerouslySetInnerHTML={{ __html: t('about.description3') as string }} />
+            <Text size="lg" color="muted">{t('about.description1') as string}</Text>
+            <Text size="lg" color="muted">{t('about.description2') as string}</Text>
+            <Text size="lg" color="muted">{t('about.description3') as string}</Text>
           </div>
 
           <motion.div
@@ -38,35 +39,41 @@ export function About() {
           >
             <div className="grid">
               <div>
-                <h4>{t('about.tools')}</h4>
-                <div className="grid-content">
+                <Heading level={4}>{t('about.tools')}</Heading>
+                <List variant="compact" className="grid-content">
                   {tools.map((tool, index) => (
-                    <p key={index}>{tool}</p>
+                    <ListItem key={index}>
+                      <Text size="sm">{tool}</Text>
+                    </ListItem>
                   ))}
-                </div>
+                </List>
               </div>
 
               <div>
-                <h4>{t('about.skills')}</h4>
-                <div className="grid-content">
+                <Heading level={4}>{t('about.skills')}</Heading>
+                <List variant="compact" className="grid-content">
                   {skills.map((skill, index) => (
-                    <p key={index}>{skill}</p>
+                    <ListItem key={index}>
+                      <Text size="sm">{skill}</Text>
+                    </ListItem>
                   ))}
-                </div>
+                </List>
               </div>
 
               <div>
-                <h4>{t('about.industries')}</h4>
-                <div className="grid-content">
+                <Heading level={4}>{t('about.industries')}</Heading>
+                <List variant="compact" className="grid-content">
                   {industries.map((industry, index) => (
-                    <p key={index}>{industry}</p>
+                    <ListItem key={index}>
+                      <Text size="sm">{industry}</Text>
+                    </ListItem>
                   ))}
-                </div>
+                </List>
               </div>
             </div>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

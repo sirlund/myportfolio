@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Icon } from "./icons";
+import { Heading, Text, Button, Image } from "./base";
 import imgMindstudio from "../assets/mindstudio_cover.png";
 import imgTreez from "../assets/treez_cover.png";
 import '../styles/Work.css';
@@ -144,20 +145,24 @@ export function Work() {
         transition={{ duration: 0.6 }}
         className="work-coming-soon-container"
       >
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="work-coming-soon-title"
-          dangerouslySetInnerHTML={{ __html: t('work.comingSoon') as string }}
-        />
-        <motion.p
+        >
+          <Heading level={2} className="work-coming-soon-title">
+            {t('work.comingSoon') as string}
+          </Heading>
+        </motion.div>
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="work-coming-soon-description"
-          dangerouslySetInnerHTML={{ __html: t('work.description') as string }}
-        />
+        >
+          <Text size="lg" color="muted" className="work-coming-soon-description">
+            {t('work.description') as string}
+          </Text>
+        </motion.div>
       </motion.div>
 
       {projects.map((project, index) => (
@@ -179,15 +184,17 @@ export function Work() {
 
                   <div className="project-text-section">
                     <div className="project-title-container">
-                      <h2
+                      <Heading
+                        level={2}
                         className="project-title"
                         style={{ color: project.textColor }}
                       >
                         {project.title}
-                      </h2>
+                      </Heading>
                     </div>
                     <div className="project-description-container">
-                      <p
+                      <Text
+                        size="lg"
                         className="project-description"
                         style={{
                           color:
@@ -196,33 +203,33 @@ export function Work() {
                         }}
                       >
                         {project.description}
-                      </p>
+                      </Text>
                     </div>
                   </div>
 
-                  <motion.button
-                    onClick={() => navigateToProject(project.route)}
-                    className="project-button"
-                    style={{
-                      backgroundColor:
-                        project.buttonColor || "white",
-                      color: project.buttonTextColor || "black",
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="project-button-text">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      onClick={() => navigateToProject(project.route)}
+                      variant="primary"
+                      className="project-button"
+                      style={{
+                        backgroundColor:
+                          project.buttonColor || "white",
+                        color: project.buttonTextColor || "black",
+                      }}
+                    >
                       View Project
-                    </span>
-                  </motion.button>
+                    </Button>
+                  </motion.div>
                 </div>
 
                 <div className="project-image-section">
                   <div className="project-image-container">
-                    <img
+                    <Image
+                      src={project.image}
                       alt={`${project.title} preview`}
                       className="project-image"
-                      src={project.image}
+                      loading="lazy"
                     />
                   </div>
                 </div>

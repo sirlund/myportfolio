@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { ThreeCanvas } from './ThreeCanvas';
 import { useLanguage } from '../contexts/LanguageContext';
-import { SITE } from '../config/constants';
+import { Heading, Text, Button } from './base';
 import '../styles/Hero.css';
 
 export function Hero() {
@@ -20,9 +20,9 @@ export function Hero() {
   };
 
   return (
-        <section 
+    <section
       ref={sectionRef}
-      id="home" 
+      id="home"
       className="hero-section"
     >
       <div className='canvas-container'>
@@ -38,32 +38,39 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <motion.h1
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="hero-title"
               >
-                {t('hero.title')}
-              </motion.h1>
-              <motion.p
+                <Heading level={1} className="hero-title">
+                  {t('hero.title')}
+                </Heading>
+              </motion.div>
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="hero-description"
-                dangerouslySetInnerHTML={{ __html: t('hero.subtitle') as string }}
-              />
-              <motion.button
+              >
+                <Text size="lg" color="muted" className="hero-description">
+                  {t('hero.subtitle') as string}
+                </Text>
+              </motion.div>
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                onClick={scrollToWork}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="hero-button"
               >
-                {t('hero.viewWork')}
-              </motion.button>
+                <Button
+                  variant="link"
+                  onClick={scrollToWork}
+                  className="hero-button"
+                >
+                  {t('hero.viewWork')}
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </div>

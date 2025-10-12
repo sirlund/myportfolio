@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SITE, CONTACT } from '../config/constants';
+import { Text, Link } from './base';
 import '../styles/Footer.css';
 
 export function Footer() {
@@ -17,36 +18,26 @@ export function Footer() {
           viewport={{ once: true }}
           className="footer-inner"
         >
-          <div className="footer-copyright">
-            © {currentYear} {SITE.NAME}. <span dangerouslySetInnerHTML={{ __html: t('footer.rights') as string }} />
-          </div>
+          <Text size="sm" className="footer-copyright">
+            © {currentYear} {SITE.NAME}. {t('footer.rights') as string}
+          </Text>
 
           <div className="footer-links">
-            <motion.a
-              href={CONTACT.LINKEDIN}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -2 }}
-              className="footer-link"
-            >
-              {t('contact.linkedin')}
-            </motion.a>
-            <motion.a
-              href={CONTACT.DRIBBBLE}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ y: -2 }}
-              className="footer-link"
-            >
-              {t('contact.dribbble')}
-            </motion.a>
-            <motion.a
-              href={`mailto:${CONTACT.EMAIL}`}
-              whileHover={{ y: -2 }}
-              className="footer-link"
-            >
-              {t('contact.email')}
-            </motion.a>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href={CONTACT.LINKEDIN} external className="footer-link">
+                {t('contact.linkedin')}
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href={CONTACT.DRIBBBLE} external className="footer-link">
+                {t('contact.dribbble')}
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }}>
+              <Link href={`mailto:${CONTACT.EMAIL}`} className="footer-link">
+                {t('contact.email')}
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>

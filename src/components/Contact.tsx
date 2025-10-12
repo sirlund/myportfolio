@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../config/constants';
+import { Section, Container, Heading, Text } from './base';
 import '../styles/Contact.css';
 
 export function Contact() {
@@ -39,20 +40,19 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="section contact">
-      <div>
+    <Section id="contact" variant="contact">
+      <Container>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2>{t('contact.title')}</h2>
+          <Heading level={2}>{t('contact.title')}</Heading>
 
-          <p
-            className="content"
-            dangerouslySetInnerHTML={{ __html: t('contact.description') as string }}
-          />
+          <Text size="lg" color="muted" className="content">
+            {t('contact.description') as string}
+          </Text>
 
           <div className="links">
             {links.map((link, index) => (
@@ -68,12 +68,12 @@ export function Contact() {
                 className="link"
               >
                 <div>
-                  <div className="link-name">
+                  <Text size="md" className="link-name">
                     {link.name}
-                  </div>
-                  <div className="link-description">
+                  </Text>
+                  <Text size="sm" color="muted" className="link-description">
                     {link.description}
-                  </div>
+                  </Text>
                 </div>
 
                 <motion.div
@@ -86,7 +86,7 @@ export function Contact() {
             ))}
           </div>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

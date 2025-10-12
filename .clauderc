@@ -305,7 +305,327 @@ Cuando ayudes con contenido para este portfolio:
 
 ---
 
-**Versión:** 1.0
+---
+
+## 13. ARQUITECTURA Y CÓDIGO
+
+### Sistema de Componentes Base
+
+**Componentes disponibles en `/src/components/base/`:**
+- `Text` - Componente de texto con soporte HTML y multilinea
+- `Heading` - Títulos semánticos (h1-h6)
+- `Section` - Wrapper de secciones con variantes
+- `Container` - Contenedor con max-width y padding responsive
+- `Button` - Botones con variantes (primary, ghost, link)
+- `Link` - Enlaces inteligentes (internos/externos con React Router)
+- `Image` - Imágenes con lazy loading y aspect ratio
+- `List` / `ListItem` - Listas ordenadas/desordenadas con variantes
+
+**Import centralizado:**
+```typescript
+import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from './base';
+```
+
+### Patrón CSS - Especificidad vs BEM
+
+**✅ Usar especificidad CSS:**
+```css
+/* Estilos base en globals.css */
+.section { /* estilos compartidos */ }
+.text { /* estilos base */ }
+
+/* Estilos específicos en archivos de sección */
+.section.about { /* override específico */ }
+.section.about .content { /* especificidad */ }
+```
+
+**❌ Evitar clases verbosas:**
+```css
+/* NO usar patrones como: */
+.about-section { }
+.about-container { }
+.about-title { }
+.about-description { }
+```
+
+### Estructura de Componentes React
+
+**Componente de sección tipo:**
+```typescript
+import { Section, Container, Heading, Text } from './base';
+
+export function About() {
+  const { t } = useLanguage();
+
+  return (
+    <Section id="about" variant="about">
+      <Container>
+        <Heading level={2}>{t('about.title')}</Heading>
+        <Text size="lg" color="muted">
+          {t('about.description') as string}
+        </Text>
+      </Container>
+    </Section>
+  );
+}
+```
+
+### Componente Text - Features
+
+**Soporte HTML desde traducciones:**
+```typescript
+// En LanguageContext.tsx
+'about.description': 'Texto con <strong>negritas</strong> y <em>cursivas</em>'
+
+// En componente
+<Text>{t('about.description') as string}</Text>
+// Renderiza: dangerouslySetInnerHTML automáticamente
+```
+
+**Soporte multilinea con `\n\n`:**
+```typescript
+// En LanguageContext.tsx
+'about.bio': 'Párrafo uno.\n\nPárrafo dos.\n\nPárrafo tres.'
+
+// En componente
+<Text>{t('about.bio') as string}</Text>
+// Renderiza múltiples elementos <p>
+```
+
+### Convenciones de Props
+
+**Text component:**
+- `size`: 'lg' | 'md' | 'sm' (mobile-first, responsive automático)
+- `color`: 'default' | 'muted'
+- `as`: 'p' | 'div' | 'span' (default: 'p')
+- `className`: para overrides específicos
+
+**Heading component:**
+- `level`: 1 | 2 | 3 | 4 | 5 | 6 (semántico)
+- `className`: para overrides específicos
+
+**Section component:**
+- `id`: para navegación (ej: 'about', 'work', 'contact')
+- `variant`: nombre de variante CSS (ej: 'about', 'contact')
+- `className`: para overrides adicionales
+
+**Button component:**
+- `variant`: 'primary' | 'ghost' | 'link'
+- Props nativas de HTMLButtonElement
+
+**Link component:**
+- `external`: boolean (automático si href empieza con http/mailto/tel)
+- Props nativas de AnchorHTMLAttributes
+
+**Image component:**
+- `src`: string (requerido)
+- `alt`: string (requerido)
+- `aspectRatio`: string opcional (ej: '16/9', '4/3', '1/1')
+- `objectFit`: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down' (default: 'cover')
+- `loading`: 'lazy' | 'eager' (default: 'lazy')
+- Props nativas de ImgHTMLAttributes
+
+**List component:**
+- `ordered`: boolean (false = ul, true = ol)
+- `variant`: 'default' | 'unstyled' | 'compact' (default: 'default')
+  - `default`: Lista con bullets/números y padding estándar
+  - `unstyled`: Sin bullets ni padding (para listas completamente custom)
+  - `compact`: Sin bullets, sin padding, flex column con gap mínimo (ideal para listas de texto simple)
+- `className`: para overrides específicos
+
+**ListItem component:**
+- `children`: ReactNode
+- `className`: para overrides específicos
+
+### Sistema Tipográfico
+
+**Variables CSS en globals.css:**
+```css
+/* Escala base */
+--text-xs: 0.75rem;   /* 12px */
+--text-sm: 0.875rem;  /* 14px */
+--text-base: 1rem;    /* 16px */
+--text-lg: 1.125rem;  /* 18px */
+--text-xl: 1.25rem;   /* 20px */
+--text-2xl: 1.5rem;   /* 24px */
+--text-3xl: 1.875rem; /* 30px */
+--text-4xl: 2.25rem;  /* 36px */
+--text-5xl: 3rem;     /* 48px */
+--text-6xl: 3.75rem;  /* 60px */
+
+/* Semánticas (mobile-first, responsive automático) */
+--font-hero-title: var(--text-4xl);
+--font-section-title: var(--text-3xl);
+--font-text-lg: var(--text-lg);
+--font-text-md: var(--text-base);
+--font-text-sm: var(--text-sm);
+```
+
+### Breakpoints Estándar
+
+**Mobile-first approach:**
+```css
+/* Mobile: Base styles (no media query) */
+
+/* Tablet: 640px / 40rem */
+@media (width >= 40rem) { }
+
+/* Desktop Small: 768px / 48rem */
+@media (width >= 48rem) { }
+
+/* Desktop Medium: 1024px / 64rem */
+@media (width >= 64rem) { }
+
+/* Desktop Large: 1280px / 80rem */
+@media (width >= 80rem) { }
+```
+
+### Estructura de Archivos CSS
+
+**globals.css contiene:**
+- Variables CSS (colores, tipografía, spacing)
+- Reset/normalize
+- Estilos base de elementos HTML (h1-h6, p, button, etc)
+- Estilos de componentes base (.text, .heading, .button, etc)
+- Estilos base de secciones (.section)
+
+**Archivos específicos (About.css, Contact.css, etc) contienen:**
+- Solo overrides específicos de esa sección
+- Layouts únicos de esa sección
+- Estados hover/active particulares
+
+### TypeScript Conventions
+
+**Props interfaces:**
+```typescript
+export interface TextProps {
+  children: string | ReactNode;
+  size?: 'lg' | 'md' | 'sm';
+  color?: 'default' | 'muted';
+  as?: 'p' | 'div' | 'span';
+  className?: string;
+}
+```
+
+**Export pattern:**
+```typescript
+// En componente
+export function Text({ ... }: TextProps) { }
+export type { TextProps } from './Text';
+
+// En index.ts
+export { Text } from './Text';
+export type { TextProps } from './Text';
+```
+
+### Ejemplos de Uso de Componentes
+
+**Image component:**
+```typescript
+// Básico con lazy loading
+<Image
+  src={imgPath}
+  alt="Description"
+/>
+
+// Con aspect ratio y object fit
+<Image
+  src={imgPath}
+  alt="Description"
+  aspectRatio="16/9"
+  objectFit="cover"
+  loading="eager"
+/>
+
+// Con className para overrides
+<Image
+  src={imgPath}
+  alt="Description"
+  className="custom-image-class"
+/>
+```
+
+**List component:**
+```typescript
+// Lista desordenada básica (con bullets)
+<List>
+  <ListItem>Item 1</ListItem>
+  <ListItem>Item 2</ListItem>
+  <ListItem>Item 3</ListItem>
+</List>
+
+// Lista ordenada (con números)
+<List ordered>
+  <ListItem>Primer paso</ListItem>
+  <ListItem>Segundo paso</ListItem>
+</List>
+
+// Lista compacta (sin bullets, gap mínimo)
+<List variant="compact">
+  <ListItem>
+    <Text size="sm">Item simple</Text>
+  </ListItem>
+  <ListItem>
+    <Text size="sm">Otro item</Text>
+  </ListItem>
+</List>
+
+// Lista sin estilos (para custom styling completo)
+<List variant="unstyled">
+  <ListItem className="custom-item">Custom item</ListItem>
+</List>
+```
+
+### Motion/Framer Patterns
+
+**Animaciones consistentes:**
+```typescript
+// Para contenido que entra en viewport
+const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={isInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.8 }}
+>
+```
+
+**Delays secuenciales:**
+```typescript
+transition={{ duration: 0.6, delay: index * 0.1 }}
+```
+
+### Reglas de Refactoring
+
+**✅ SIEMPRE:**
+- Usar componentes base para Text, Heading, Button, Link
+- Mantener HTML semántico (h1-h6 en orden)
+- Preservar soporte HTML y multilinea en traducciones
+- CSS en especificidad, no clases verbosas
+- Mobile-first en todos los estilos
+
+**❌ NUNCA:**
+- Crear componentes nuevos sin necesidad real
+- Usar inline styles salvo casos excepcionales (dynamic colors)
+- Romper jerarquía semántica de headings
+- Perder funcionalidad de traducciones
+- Usar BEM completo o clases excesivamente específicas
+
+**🔄 CUANDO REFACTORIZAR:**
+- Detectar código duplicado en 3+ lugares
+- Patrones repetitivos sin abstracción
+- Estilos CSS redundantes entre secciones
+- Componentes que podrían usar base components
+
+**⚠️ CUÁNDO NO USAR COMPONENTES BASE:**
+- **List**: Listas con bullets personalizados o diseños únicos (ej: case studies con `.cs-bullet`)
+- **Image**: Imágenes con wrappers complejos o efectos especiales ya implementados
+- **Button**: Botones con animaciones específicas de Motion/Framer ya configuradas
+- **Regla general**: Si el componente tiene estilos muy específicos y únicos, mantener implementación custom
+
+---
+
+**Versión:** 1.1
 **Última actualización:** Octubre 2025
 **Región:** Latinoamérica (español neutro)
 **Nivel:** Senior (15 años experiencia)
