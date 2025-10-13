@@ -5,7 +5,7 @@
   border-top: 1px solid var(--border);
 }
 
-.footer-container {
+.container {
   max-width: var(--container-6xl, 72rem);
   margin-left: auto;
   margin-right: auto;
@@ -13,7 +13,7 @@
   padding-right: calc(var(--spacing, 0.25rem) * 4);
 }
 
-.footer-inner {
+.inner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,11 +21,11 @@
   gap: calc(var(--spacing, 0.25rem) * 4);
 }
 
-.footer-copyright {
+.copyright {
   text-align: center;
 }
 
-.footer-links {
+.links {
   display: flex;
   align-items: center;
   gap: calc(var(--spacing, 0.25rem) * 4);
@@ -40,29 +40,29 @@
     padding-bottom: calc(var(--spacing, 0.25rem) * 10);
   }
 
-  .footer-container {
+  .container {
     padding-left: calc(var(--spacing, 0.25rem) * 6);
     padding-right: calc(var(--spacing, 0.25rem) * 6);
   }
 
-  .footer-links {
+  .links {
     gap: calc(var(--spacing, 0.25rem) * 5);
   }
 }
 
 /* Desktop */
 @media (width >= 48rem) {
-  .footer-inner {
+  .inner {
     flex-direction: row;
     gap: 0;
   }
 
-  .footer-copyright {
+  .copyright {
     margin-bottom: 0;
     text-align: left;
   }
 
-  .footer-links {
+  .links {
     justify-content: flex-end;
   }
 }
@@ -73,12 +73,12 @@
     padding-bottom: calc(var(--spacing, 0.25rem) * 12);
   }
 
-  .footer-container {
+  .container {
     padding-left: calc(var(--spacing, 0.25rem) * 8);
     padding-right: calc(var(--spacing, 0.25rem) * 8);
   }
 
-  .footer-links {
+  .links {
     gap: calc(var(--spacing, 0.25rem) * 6);
   }
 }

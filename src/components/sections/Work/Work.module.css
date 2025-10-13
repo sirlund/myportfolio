@@ -1,10 +1,10 @@
 /* Work section - Mobile First */
-.work-section {
+.workSection {
   width: 100%;
 }
 
 /* Coming Soon Section */
-.work-coming-soon-container {
+.comingSoonContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,15 +14,15 @@
   text-align: center;
 }
 
-.work-coming-soon-title {
+.comingSoonTitle {
   margin-bottom: 1rem;
 }
 
-.work-coming-soon-description {
+.comingSoonDescription {
   max-width: 600px;
 }
 
-.work-project-item {
+.projectItem {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -30,11 +30,11 @@
   justify-content: center;
 }
 
-.work-project-container {
+.projectContainer {
   width: 100%;
 }
 
-.work-project-content {
+.projectContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@
   width: 100%;
 }
 
-.work-project-inner {
+.projectInner {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,7 @@
 
 /* Tablet */
 @media (width >= 40rem) {
-  .work-project-inner {
+  .projectInner {
     gap: 3rem;
     padding: 4rem 2.5rem;
   }
@@ -63,14 +63,14 @@
 
 /* Desktop */
 @media (width >= 64rem) {
-  .work-project-inner {
+  .projectInner {
     gap: 4rem;
     padding: 5rem 4rem;
   }
 }
 
 /* Project content container - Mobile First */
-.project-content-container {
+.projectContentContainer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -82,12 +82,12 @@
   transition: all 0.3s ease;
 }
 
-.project-content-container:hover {
+.projectContentContainer:hover {
   transform: translateY(-2px);
 }
 
 /* Icon container */
-.project-icon-container {
+.projectIconContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +97,7 @@
 }
 
 /* Text section */
-.project-text-section {
+.projectTextSection {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -107,7 +107,7 @@
 }
 
 /* Title container */
-.project-title-container {
+.projectTitleContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,7 +115,7 @@
 }
 
 /* Description container */
-.project-description-container {
+.projectDescriptionContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,46 +123,46 @@
 }
 
 /* Button styles - Pill variant override */
-.project-button {
+.projectButton {
   border-radius: 9999px;
 }
 
 /* Tablet */
 @media (width >= 40rem) {
-  .project-content-container {
+  .projectContentContainer {
     gap: 2rem;
     padding: 1.75rem 1rem;
   }
 
-  .project-icon-container {
+  .projectIconContainer {
     height: 3rem;
     margin-bottom: 0.375rem;
   }
 
-  .project-text-section {
+  .projectTextSection {
     gap: 1.25rem;
   }
 }
 
 /* Desktop */
 @media (width >= 64rem) {
-  .project-content-container {
+  .projectContentContainer {
     gap: 3rem;
     padding: 2rem 1rem;
   }
 
-  .project-icon-container {
+  .projectIconContainer {
     height: 3.5rem;
     margin-bottom: 0.5rem;
   }
 
-  .project-text-section {
+  .projectTextSection {
     gap: 1.5rem;
   }
 }
 
 /* Image section styles - Mobile First */
-.project-image-section {
+.projectImageSection {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -173,14 +173,14 @@
   padding: 0 0.5rem;
 }
 
-.project-image-container {
+.projectImageContainer {
   aspect-ratio: 1155/722;
   position: relative;
   width: 100%;
   max-width: 100%;
 }
 
-.project-image {
+.projectImage {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -194,12 +194,12 @@
 
 /* Tablet */
 @media (width >= 40rem) {
-  .project-image-section {
+  .projectImageSection {
     max-width: 64rem;
     padding: 0 1rem;
   }
 
-  .project-image {
+  .projectImage {
     border-radius: 0.5rem;
     box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.2);
   }
@@ -207,70 +207,70 @@
 
 /* Desktop */
 @media (width >= 64rem) {
-  .project-image-section {
+  .projectImageSection {
     max-width: 72rem;
     padding: 0;
   }
 
-  .project-image-container {
+  .projectImageContainer {
     max-width: 64rem;
   }
 
-  .project-image {
+  .projectImage {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 
 /* Icon component styles */
-.mindstudio-icon {
+.mindstudioIcon {
   height: 30.711px;
   position: relative;
   flex-shrink: 0;
   width: 51.441px;
 }
 
-.mindstudio-icon svg {
+.mindstudioIcon svg {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.treez-icon {
+.treezIcon {
   aspect-ratio: 72/25;
   overflow: clip;
   position: relative;
   width: 72px;
 }
 
-.treez-icon-container {
+.treezIconContainer {
   position: absolute;
   display: contents;
   inset: 0.06% 0.11% 0.21% 0.1%;
 }
 
-.treez-icon-part1 {
+.treezIconPart1 {
   position: absolute;
   inset: 0.06% 0.11% 0.4% 85.83%;
 }
 
-.treez-icon-part1 svg {
+.treezIconPart1 svg {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.treez-icon-part2 {
+.treezIconPart2 {
   position: absolute;
   inset: 0.06% 12.55% 0.21% 0.1%;
 }
 
-.treez-icon-part2 svg {
+.treezIconPart2 svg {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.placeholder-icon {
+.placeholderIcon {
   width: 54px;
   height: 54px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -280,8 +280,87 @@
   justify-content: center;
 }
 
-.placeholder-icon span {
+.placeholderIcon span {
   color: white;
   font-weight: var(--font-weight-bold, 700);
   font-size: var(--font-text-lg);
+}
+
+/* Project-specific themes */
+/* Mindstudio */
+.projectMindstudio {
+  background-color: #255fb3;
+}
+
+.projectMindstudio .projectTitle,
+.projectMindstudio .projectDescription {
+  color: white;
+}
+
+.projectMindstudio .projectButton {
+  background-color: white;
+  color: black;
+}
+
+/* Wenia */
+.projectWenia {
+  background-color: #8b5cf6;
+}
+
+.projectWenia .projectTitle,
+.projectWenia .projectDescription {
+  color: white;
+}
+
+.projectWenia .projectButton {
+  background-color: white;
+  color: black;
+}
+
+/* Treez */
+.projectTreez {
+  background-color: #f1f6ea;
+}
+
+.projectTreez .projectTitle {
+  color: #29292a;
+}
+
+.projectTreez .projectDescription {
+  color: #6d6d6e;
+}
+
+.projectTreez .projectButton {
+  background-color: white;
+  color: black;
+}
+
+/* Nacional */
+.projectNacional {
+  background-color: #dc2626;
+}
+
+.projectNacional .projectTitle,
+.projectNacional .projectDescription {
+  color: white;
+}
+
+.projectNacional .projectButton {
+  background-color: white;
+  color: black;
+}
+
+/* Klare */
+.projectKlare {
+  background-color: #059669;
+}
+
+.projectKlare .projectTitle,
+.projectKlare .projectDescription {
+  color: white;
+}
+
+.projectKlare .projectButton {
+  background-color: white;
+  color: black;
 }

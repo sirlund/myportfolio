@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useLanguage } from '../../lib/contexts';
-import { SITE } from '../../lib/constants';
-import '../../styles/layout/Header.css';
+import { useLanguage } from '../../../lib/contexts';
+import { SITE } from '../../../lib/constants';
+import styles from './Header.module.css';
 
 export function Header() {
   const navigate = useNavigate();
@@ -106,38 +106,35 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`header ${
-          isScrolled
-            ? 'header-scrolled'
-            : 'header-transparent'
-        }`}
+        className={styles.header}
+        data-scrolled={isScrolled}
         style={{
           zIndex: isMobileMenuOpen ? 100 : 50,
           backgroundColor: isMobileMenuOpen ? 'transparent' : undefined
         }}
       >
-        <nav className="header-nav">
-          <div className="header-inner">
+        <nav className={styles.nav}>
+          <div className={styles.inner}>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="header-logo"
+              className={styles.logo}
               onClick={goToHome}
               style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
             >
-              <span className="header-logo-text">{SITE.NAME}</span>
+              <span className={styles.logoText}>{SITE.NAME}</span>
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="header-desktop-nav">
-              <div className="header-nav-items">
+            <div className={styles.desktopNav}>
+              <div className={styles.navItems}>
                 {navigationItems.map((item) => (
                   <motion.button
                     key={item.name}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => scrollToSection(item.sectionId)}
-                    className="header-nav-button"
+                    className={styles.navButton}
                   >
                     {item.name}
                   </motion.button>
@@ -147,7 +144,7 @@ export function Header() {
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={switchLanguage}
-                  className="header-nav-button header-lang-button"
+                  className={`${styles.navButton} ${styles.langButton}`}
                   aria-label="Switch language"
                 >
                   {language === 'en' ? 'ES' : 'EN'}
@@ -160,7 +157,7 @@ export function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={switchLanguage}
-              className="header-mobile-lang-button"
+              className={styles.mobileLangButton}
               style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
               aria-label="Switch language"
             >
@@ -171,13 +168,13 @@ export function Header() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="header-mobile-menu-button"
+              className={styles.mobileMenuButton}
               aria-label="Toggle menu"
               style={{ color: isMobileMenuOpen ? '#ffffff' : 'inherit' }}
             >
               <motion.div
                 animate={isMobileMenuOpen ? "open" : "closed"}
-                className="menu-icon"
+                className={styles.menuIcon}
               >
                 <motion.span
                   variants={{
@@ -185,7 +182,7 @@ export function Header() {
                     open: { rotate: 45, top: "8px" }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="menu-line"
+                  className={styles.menuLine}
                   style={{ position: 'absolute' }}
                 />
                 <motion.span
@@ -194,7 +191,7 @@ export function Header() {
                     open: { opacity: 0 }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="menu-line"
+                  className={styles.menuLine}
                   style={{ position: 'absolute' }}
                 />
                 <motion.span
@@ -203,7 +200,7 @@ export function Header() {
                     open: { rotate: -45, bottom: "8px" }
                   }}
                   transition={{ duration: 0.3 }}
-                  className="menu-line"
+                  className={styles.menuLine}
                   style={{ position: 'absolute' }}
                 />
               </motion.div>
@@ -220,10 +217,10 @@ export function Header() {
           x: isMobileMenuOpen ? 0 : "100%"
         }}
         transition={{ duration: 0.4, ease: [0.6, 0.05, 0.01, 0.9] }}
-        className="header-mobile-nav-overlay"
+        className={styles.mobileNavOverlay}
         style={{ pointerEvents: isMobileMenuOpen ? 'auto' : 'none' }}
       >
-        <div className="header-mobile-nav-content">
+        <div className={styles.mobileNavContent}>
           {navigationItems.map((item, index) => (
             <motion.button
               key={item.name}
@@ -240,7 +237,7 @@ export function Header() {
               whileHover={{ x: 20 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection(item.sectionId)}
-              className="header-mobile-nav-link"
+              className={styles.mobileNavLink}
             >
               {item.name}
             </motion.button>

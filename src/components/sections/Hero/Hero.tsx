@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
-import { ThreeCanvas } from './ThreeCanvas';
-import { useLanguage } from '../../lib/contexts';
-import { Heading, Text, Button } from '../base';
-import '../../styles/sections/Hero.css';
+import { ThreeCanvas } from '../ThreeCanvas';
+import { useLanguage } from '../../../lib/contexts';
+import { Heading, Text, Button } from '../../base';
+import styles from './Hero.module.css';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -23,16 +23,16 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="home"
-      className="hero-section"
+      className={styles.heroSection}
     >
-      <div className='canvas-container'>
+      <div className={styles.canvasContainer}>
         <ThreeCanvas />
       </div>
 
       {/* Main content */}
-      <div className="hero-content-wrapper">
-        <div className="hero-content-center">
-          <div className="hero-content">
+      <div className={styles.contentWrapper}>
+        <div className={styles.contentCenter}>
+          <div className={styles.content}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <Heading level={1} className="hero-title">
+                <Heading level={1} className={styles.title}>
                   {t('hero.title')}
                 </Heading>
               </motion.div>
@@ -53,7 +53,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <Text size="lg" color="muted" className="hero-description">
+                <Text size="lg" color="muted" className={styles.description}>
                   {t('hero.subtitle') as string}
                 </Text>
               </motion.div>
@@ -81,7 +81,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="hero-scroll-indicator"
+        className={styles.scrollIndicator}
       >
         <motion.div
           animate={{ y: [0, 4, 0] }}
@@ -92,7 +92,7 @@ export function Hero() {
             height="32"
             viewBox="0 0 20 32"
             fill="none"
-            className="hero-scroll-icon"
+            className={styles.scrollIcon}
           >
             {/* Mouse body */}
             <rect 

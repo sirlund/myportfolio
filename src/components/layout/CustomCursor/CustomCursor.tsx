@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import '../../styles/layout/CustomCursor.css';
+import styles from './CustomCursor.module.css';
 
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -15,7 +15,7 @@ export function CustomCursor() {
         (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform)) ||
         window.matchMedia('(hover: none)').matches;
       setIsMobile(isMobileDevice);
-      
+
       // On mobile, don't hide the default cursor
       if (isMobileDevice) {
         document.body.style.cursor = '';
@@ -41,7 +41,7 @@ export function CustomCursor() {
       const target = e.target as HTMLElement;
       const isInteractive = target.matches('a, button, [role="button"], input, textarea, select, [data-testid], [tabindex="0"]') ||
         target.closest('a, button, [role="button"], input, textarea, select, [data-testid], [tabindex="0"]');
-      
+
       setIsHovering(!!isInteractive);
     };
 
@@ -79,7 +79,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="custom-cursor"
+      className={styles.cursor}
       style={{
         left: mousePosition.x - offset,
         top: mousePosition.y - offset,
@@ -105,7 +105,7 @@ export function CustomCursor() {
           damping: 25
         },
         height: {
-          type: "spring", 
+          type: "spring",
           stiffness: 200,
           damping: 25
         }
