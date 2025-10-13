@@ -9,49 +9,6 @@ import imgMindstudio from "../../../assets/mindstudio_cover.png";
 import imgTreez from "../../../assets/treez_cover.png";
 import styles from './Work.module.css';
 
-// Mindstudio Icon Component
-function MindstudioIcon() {
-  return (
-    <div className={styles.mindstudioIcon}>
-      <Icon name="mindstudio" size="100%" />
-    </div>
-  );
-}
-
-// Treez Icon Component
-function TreezIcon() {
-  return (
-    <div className={styles.treezIcon}>
-      <Icon name="treez" size="100%" />
-    </div>
-  );
-}
-
-// Simple placeholder icons for other projects
-function WeniaIcon() {
-  return (
-    <div className={styles.placeholderIcon}>
-      <span>W</span>
-    </div>
-  );
-}
-
-function NacionalIcon() {
-  return (
-    <div className={styles.placeholderIcon}>
-      <span>NMP</span>
-    </div>
-  );
-}
-
-function KlareIcon() {
-  return (
-    <div className={styles.placeholderIcon}>
-      <span>K</span>
-    </div>
-  );
-}
-
 const projects = [
   {
     id: 1,
@@ -60,7 +17,7 @@ const projects = [
     description:
       "As the lead designer at MindSet DS, I developed a robust design system from inception, ensuring alignment between design and development, implementing dark mode theming, and optimizing the design, deployment, and evolution of AI-powered tools.",
     className: styles.projectMindstudio,
-    icon: <MindstudioIcon />,
+    icon: <Icon name="mindstudio" className={styles.mindstudioIcon} />,
     image: imgMindstudio,
     route: "mindstudio" as const,
   },
@@ -70,8 +27,8 @@ const projects = [
   //     "At Wenia, I created a revolutionary mobile crypto experience that simplified complex financial processes.",
   //   description:
   //     "As the UI/UX lead, I designed a streamlined mobile application that makes cryptocurrency trading accessible to everyday users, focusing on clear information architecture and intuitive user flows that reduce the complexity of digital asset management.",
-  //   className: "project-wenia",
-  //   icon: <WeniaIcon />,
+  //   className: styles.projectWenia,
+  //   icon: <Icon name="placeholder" className={styles.placeholderIcon} />,
   //   image:
   //     "https://images.unsplash.com/photo-1634542118071-f391e9a0cfb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBjcnlwdG8lMjBhcHB8ZW58MXx8fHwxNzU4OTIyODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   //   route: "wenia" as const,
@@ -83,7 +40,7 @@ const projects = [
     description:
       "As the Design System Lead, I spearheaded the development of Root DS — a scalable and accessible system that effectively addressed years of design debt, enhancing consistency, clarity, and efficiency.",
     className: styles.projectTreez,
-    icon: <TreezIcon />,
+    icon: <Icon name="treez" className={styles.treezIcon} />,
     image: imgTreez,
     route: "treez" as const,
   },
@@ -93,8 +50,8 @@ const projects = [
   //     "At Nacional Monte de Piedad, I modernized Mexico's largest pawn shop chain through systematic design innovation.",
   //   description:
   //     "As the lead designer, I developed a comprehensive design system that transformed their digital financial services, creating consistent user experiences across all customer touchpoints while maintaining their trusted brand heritage.",
-  //   className: "project-nacional",
-  //   icon: <NacionalIcon />,
+  //   className: styles.projectNacional,
+  //   icon: <Icon name="placeholder" className={styles.placeholderIcon} />,
   //   image:
   //     "https://images.unsplash.com/photo-1574884280706-7342ca3d4231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBzZXJ2aWNlcyUyMGRlc2lnbnxlbnwxfHx8fDE3NTg5MjI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
   //   route: "nacional" as const,
@@ -105,8 +62,8 @@ const projects = [
   //     "At Klare, I transformed insurance from a bureaucratic maze into an intuitive digital experience.",
   //   description:
   //     "Leading the UI team, I redesigned the entire life insurance journey, converting a historically slow and complex process into a 100% digital, user-friendly experience that customers could complete with confidence and ease.",
-  //   className: "project-klare",
-  //   icon: <KlareIcon />,
+  //   className: styles.projectKlare,
+  //   icon: <Icon name="placeholder" className={styles.placeholderIcon} />,
   //   image:
   //     "https://images.unsplash.com/photo-1711185898083-e1f04ff38300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN1cmFuY2UlMjBkaWdpdGFsJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODkyMjg2NXww&ixlib=rb-4.1.0&q=80&w=1080",
   //   route: "klare" as const,
