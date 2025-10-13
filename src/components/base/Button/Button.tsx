@@ -1,4 +1,5 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react';
+import styles from './Button.module.css';
 
 /**
  * Button Component - Reusable button with variants
@@ -21,16 +22,10 @@ export function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const classes = [
-    'button',
-    `button-${variant}`,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const classes = [styles.button, className].filter(Boolean).join(' ');
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} data-variant={variant} {...props}>
       {children}
     </button>
   );

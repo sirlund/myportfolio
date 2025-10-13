@@ -1,4 +1,5 @@
 import { ReactNode, HTMLAttributes } from 'react';
+import styles from './List.module.css';
 
 export interface ListProps extends Omit<HTMLAttributes<HTMLUListElement | HTMLOListElement>, 'children'> {
   children: ReactNode;
@@ -15,18 +16,15 @@ export function List({
   ...props
 }: ListProps) {
   const Component = ordered ? 'ol' : 'ul';
-
-  const classes = [
-    'list',
-    ordered ? 'list-ordered' : 'list-unordered',
-    `list-${variant}`,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const classes = [styles.list, className].filter(Boolean).join(' ');
 
   return (
-    <Component className={classes} {...props}>
+    <Component
+      className={classes}
+      data-variant={variant}
+      data-ordered={ordered}
+      {...props}
+    >
       {children}
     </Component>
   );
@@ -42,7 +40,7 @@ export function ListItem({
   className = '',
   ...props
 }: ListItemProps) {
-  const classes = ['list-item', className].filter(Boolean).join(' ');
+  const classes = [styles.listItem, className].filter(Boolean).join(' ');
 
   return (
     <li className={classes} {...props}>

@@ -1,0 +1,10 @@
+/* Link Component Styles */
+.link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--muted-foreground);
+}

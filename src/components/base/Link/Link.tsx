@@ -1,5 +1,6 @@
 import { ReactNode, AnchorHTMLAttributes } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import styles from './Link.module.css';
 
 /**
  * Link Component - Internal and external links with consistent styling
@@ -24,7 +25,7 @@ export function Link({
   className = '',
   ...props
 }: LinkProps) {
-  const classes = ['link', className].filter(Boolean).join(' ');
+  const classes = [styles.link, className].filter(Boolean).join(' ');
 
   // External links or special protocols
   if (external || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {

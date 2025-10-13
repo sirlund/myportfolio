@@ -1,5 +1,5 @@
 /**
- * Base Components - Reusable atomic components
+ * Base Components - Reusable atomic components with CSS Modules
  *
  * Import all at once:
  *   import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from '@/components/base';

@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
+import styles from './Text.module.css';
 
 /**
  * Text Component - Renders text with support for:
@@ -13,7 +14,7 @@ import { ReactNode } from 'react';
  *   <Text as="span" size="sm">Small text</Text>
  */
 
-export interface TextProps {
+export interface TextProps extends HTMLAttributes<HTMLElement> {
   children: string | ReactNode;
   size?: 'lg' | 'md' | 'sm';
   color?: 'default' | 'muted';
@@ -27,16 +28,9 @@ export function Text({
   color = 'default',
   as: Component = 'p',
   className = '',
+  ...props
 }: TextProps) {
-  // Build CSS classes
-  const classes = [
-    'text',
-    `text-${size}`,
-    color === 'muted' && 'text-muted',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const classes = [styles.text, className].filter(Boolean).join(' ');
 
   // If children is a string, handle multiline and HTML
   if (typeof children === 'string') {
@@ -48,7 +42,10 @@ export function Text({
       return (
         <Component
           className={classes}
+          data-size={size}
+          data-color={color}
           dangerouslySetInnerHTML={{ __html: children }}
+          {...props}
         />
       );
     }
@@ -60,7 +57,10 @@ export function Text({
           <Component
             key={index}
             className={classes}
+            data-size={size}
+            data-color={color}
             dangerouslySetInnerHTML={{ __html: paragraph }}
+            {...props}
           />
         ))}
       </>
@@ -68,5 +68,9 @@ export function Text({
   }
 
   // If children is a ReactNode, render directly
-  return <Component className={classes}>{children}</Component>;
+  return (
+    <Component className={classes} data-size={size} data-color={color} {...props}>
+      {children}
+    </Component>
+  );
 }

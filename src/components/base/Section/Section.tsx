@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import styles from './Section.module.css';
 
 /**
  * Section Component - Wrapper for page sections with consistent spacing
@@ -18,7 +19,7 @@ export interface SectionProps {
 
 export function Section({ children, id, variant, className = '' }: SectionProps) {
   const classes = [
-    'section',
+    styles.section,
     variant,
     className,
   ]

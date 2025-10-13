@@ -1,20 +1,20 @@
 /* Contact Section - Specific styles only */
 
 /* Content width and spacing */
-.section.contact .content {
+#contact .content {
   max-width: var(--container-2xl, 42rem);
   margin-bottom: calc(var(--spacing, 0.25rem) * 8);
 }
 
 /* Links container */
-.section.contact .links {
+#contact .links {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing, 0.25rem) * 4);
 }
 
 /* Individual link */
-.section.contact .link {
+#contact .link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,12 +28,12 @@
   color: inherit;
 }
 
-.section.contact .link:hover {
+#contact .link:hover {
   border-color: var(--foreground);
 }
 
 /* Link text */
-.section.contact .link-name {
+#contact .link-name {
   font-weight: var(--font-weight-medium, 500);
   font-size: var(--font-text-md);
   transition-property: color;
@@ -41,18 +41,18 @@
   transition-duration: 0.2s;
 }
 
-.section.contact .link:hover .link-name {
+#contact .link:hover .link-name {
   color: var(--muted-foreground);
 }
 
-.section.contact .link-description {
+#contact .link-description {
   font-size: var(--font-text-sm);
   line-height: calc(1.25 / 0.875);
   color: var(--muted-foreground);
 }
 
 /* Link icon */
-.section.contact .link-icon {
+#contact .link-icon {
   width: calc(var(--spacing, 0.25rem) * 8);
   height: calc(var(--spacing, 0.25rem) * 8);
   display: flex;
@@ -60,28 +60,28 @@
   justify-content: center;
 }
 
-.section.contact .link-icon svg {
+#contact .link-icon svg {
   color: var(--muted-foreground);
   transition-property: color;
   transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
   transition-duration: 0.2s;
 }
 
-.section.contact .link:hover .link-icon svg {
+#contact .link:hover .link-icon svg {
   color: var(--foreground);
 }
 
 /* Tablet - 640px */
 @media (width >= 40rem) {
-  .section.contact .content {
+  #contact .content {
     margin-bottom: calc(var(--spacing, 0.25rem) * 10);
   }
 
-  .section.contact .links {
+  #contact .links {
     gap: calc(var(--spacing, 0.25rem) * 5);
   }
 
-  .section.contact .link {
+  #contact .link {
     padding-top: calc(var(--spacing, 0.25rem) * 4);
     padding-bottom: calc(var(--spacing, 0.25rem) * 4);
   }
@@ -89,11 +89,11 @@
 
 /* Desktop - 1024px */
 @media (width >= 64rem) {
-  .section.contact .content {
+  #contact .content {
     margin-bottom: calc(var(--spacing, 0.25rem) * 12);
   }
 
-  .section.contact .links {
+  #contact .links {
     gap: calc(var(--spacing, 0.25rem) * 6);
   }
 }

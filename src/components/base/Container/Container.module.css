@@ -1,0 +1,22 @@
+/* Container Component Styles */
+.container {
+  max-width: var(--container-4xl, 56rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--spacing, 0.25rem) * 4);
+  padding-right: calc(var(--spacing, 0.25rem) * 4);
+}
+
+@media (width >= 40rem) {
+  .container {
+    padding-left: calc(var(--spacing, 0.25rem) * 6);
+    padding-right: calc(var(--spacing, 0.25rem) * 6);
+  }
+}
+
+@media (width >= 64rem) {
+  .container {
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
+}

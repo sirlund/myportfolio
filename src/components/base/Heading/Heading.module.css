@@ -1,0 +1,31 @@
+/* Heading Component Styles */
+.heading {
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  margin: 0;
+}
+
+.heading[data-level="1"] {
+  font-size: var(--font-hero-title);
+}
+
+.heading[data-level="2"] {
+  font-size: var(--font-section-title);
+}
+
+.heading[data-level="3"] {
+  font-size: var(--text-2xl);
+}
+
+.heading[data-level="4"] {
+  font-size: var(--text-xl);
+}
+
+.heading[data-level="5"] {
+  font-size: var(--text-lg);
+}
+
+.heading[data-level="6"] {
+  font-size: var(--text-base);
+}

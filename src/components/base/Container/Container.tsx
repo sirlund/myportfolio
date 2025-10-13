@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import styles from './Container.module.css';
 
 /**
  * Container Component - Max-width wrapper with responsive padding
@@ -16,7 +17,7 @@ export interface ContainerProps {
 }
 
 export function Container({ children, className = '' }: ContainerProps) {
-  const classes = ['container', className].filter(Boolean).join(' ');
+  const classes = [styles.container, className].filter(Boolean).join(' ');
 
   return <div className={classes}>{children}</div>;
 }

@@ -1,4 +1,5 @@
 import { ImgHTMLAttributes, useState } from 'react';
+import styles from './Image.module.css';
 
 export interface ImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string;
@@ -22,7 +23,7 @@ export function Image({
   ...props
 }: ImageProps) {
   const [error, setError] = useState(false);
-  const classes = ['image', className].filter(Boolean).join(' ');
+  const classes = [styles.image, className].filter(Boolean).join(' ');
 
   const imageStyle = {
     ...style,
