@@ -1,7 +1,7 @@
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { useCaseStudyTranslation } from '../../lib/hooks';
 import imgTreez from '../../assets/treez_cover.png';
-import '../../styles/case-studies/CaseStudyContent.css';
+import styles from './shared/CaseStudyContent.module.css';
 
 export function TreezCaseStudy() {
   const t = useCaseStudyTranslation('treez');
@@ -21,17 +21,17 @@ export function TreezCaseStudy() {
         {
           title: t.sections.problem.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p>{t.sections.problem.intro}</p>
 
-              <blockquote className="cs-quote">
+              <blockquote className={styles.quote}>
                 "{t.sections.problem.quote}"
               </blockquote>
 
-              <div className="cs-challenge-list">
+              <div className={styles.challengeList}>
                 {t.sections.problem.challenges.map((challenge, index) => (
-                  <div key={index} className="cs-challenge-item">
-                    <span className="cs-challenge-icon">{challenge.icon}</span>
+                  <div key={index} className={styles.challengeItem}>
+                    <span className={styles.challengeIcon}>{challenge.icon}</span>
                     <span>{challenge.text}</span>
                   </div>
                 ))}
@@ -52,12 +52,12 @@ export function TreezCaseStudy() {
         {
           title: t.sections.discovery.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p>{t.sections.discovery.intro}</p>
 
-              <div className="cs-feature-block-list">
+              <div className={styles.featureBlockList}>
                 {t.sections.discovery.items.map((item, index) => (
-                  <div key={index} className="cs-feature-block">
+                  <div key={index} className={styles.featureBlock}>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                   </div>
@@ -71,12 +71,12 @@ export function TreezCaseStudy() {
         {
           title: t.sections.principles.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p>{t.sections.principles.intro}</p>
 
-              <div className="cs-principles-list">
+              <div className={styles.principlesList}>
                 {t.sections.principles.items.map((principle, index) => (
-                  <div key={index} className="cs-principle-item">
+                  <div key={index} className={styles.principleItem}>
                     <h3>{principle}</h3>
                   </div>
                 ))}
@@ -89,26 +89,26 @@ export function TreezCaseStudy() {
         {
           title: t.sections.architecture.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p>{t.sections.architecture.intro}</p>
 
-              <div className="cs-two-column">
+              <div className={styles.twoColumn}>
                 <div>
-                  <h3 className="cs-section-heading">{t.sections.architecture.foundations.title}</h3>
-                  <ul className="cs-feature-list">
+                  <h3 className={styles.sectionHeading}>{t.sections.architecture.foundations.title}</h3>
+                  <ul className={styles.featureList}>
                     {t.sections.architecture.foundations.items.map((item, index) => (
-                      <li key={index} className="cs-feature-item">
-                        <span className="cs-bullet"></span>
+                      <li key={index} className={styles.featureItem}>
+                        <span className={styles.bullet}></span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <h3 className="cs-section-heading">{t.sections.architecture.components.title}</h3>
-                  <ul className="cs-feature-list">
+                  <h3 className={styles.sectionHeading}>{t.sections.architecture.components.title}</h3>
+                  <ul className={styles.featureList}>
                     {t.sections.architecture.components.items.map((item, index) => (
-                      <li key={index} className="cs-feature-item">
-                        <span className="cs-bullet"></span>
+                      <li key={index} className={styles.featureItem}>
+                        <span className={styles.bullet}></span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -116,21 +116,21 @@ export function TreezCaseStudy() {
                 </div>
 
                 <div>
-                  <h3 className="cs-section-heading">{t.sections.architecture.patterns.title}</h3>
-                  <ul className="cs-feature-list">
+                  <h3 className={styles.sectionHeading}>{t.sections.architecture.patterns.title}</h3>
+                  <ul className={styles.featureList}>
                     {t.sections.architecture.patterns.items.map((item, index) => (
-                      <li key={index} className="cs-feature-item">
-                        <span className="cs-bullet"></span>
+                      <li key={index} className={styles.featureItem}>
+                        <span className={styles.bullet}></span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <h3 className="cs-section-heading">{t.sections.architecture.documentation.title}</h3>
-                  <ul className="cs-feature-list">
+                  <h3 className={styles.sectionHeading}>{t.sections.architecture.documentation.title}</h3>
+                  <ul className={styles.featureList}>
                     {t.sections.architecture.documentation.items.map((item, index) => (
-                      <li key={index} className="cs-feature-item">
-                        <span className="cs-bullet"></span>
+                      <li key={index} className={styles.featureItem}>
+                        <span className={styles.bullet}></span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -143,13 +143,13 @@ export function TreezCaseStudy() {
         {
           title: t.sections.collaboration.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p dangerouslySetInnerHTML={{ __html: t.sections.collaboration.intro }}></p>
 
-              <ul className="cs-feature-list">
+              <ul className={styles.featureList}>
                 {t.sections.collaboration.items.map((item, index) => (
-                  <li key={index} className="cs-feature-item">
-                    <span className="cs-bullet"></span>
+                  <li key={index} className={styles.featureItem}>
+                    <span className={styles.bullet}></span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -162,19 +162,19 @@ export function TreezCaseStudy() {
         {
           title: t.sections.outcomes.title,
           content: (
-            <div className="cs-content-wrapper">
+            <div className={styles.contentWrapper}>
               <p>{t.sections.outcomes.intro}</p>
 
-              <div className="cs-metrics-grid">
+              <div className={styles.metricsGrid}>
                 {t.sections.outcomes.metrics.map((metric, index) => (
-                  <div key={index} className="cs-metric-item">
-                    <div className="cs-metric-value">{metric.value}</div>
-                    <div className="cs-metric-label">{metric.label}</div>
+                  <div key={index} className={styles.metricItem}>
+                    <div className={styles.metricValue}>{metric.value}</div>
+                    <div className={styles.metricLabel}>{metric.label}</div>
                   </div>
                 ))}
               </div>
 
-              <blockquote className="cs-quote">
+              <blockquote className={styles.quote}>
                 "{t.sections.outcomes.quote.text}"
                 <cite>— {t.sections.outcomes.quote.author}</cite>
               </blockquote>

@@ -10,7 +10,7 @@ import { Footer } from './components/layout/Footer';
 import { CustomCursor } from './components/layout/CustomCursor';
 import { LanguageProvider } from './lib/contexts';
 import { ERROR_MESSAGES } from './lib/constants';
-import './styles/App.css';
+import styles from './App.module.css';
 
 // Lazy load case study components
 import { lazy } from 'react';
@@ -65,19 +65,19 @@ function NavigationProvider({ children }: { children: React.ReactNode }) {
 
 // Loading fallback component
 const LoadingFallback = () => (
-  <div className="loading-container">
-    <div className="loading-spinner">Loading...</div>
+  <div className={styles.loadingContainer}>
+    <div className={styles.loadingSpinner}>Loading...</div>
   </div>
 );
 
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
-  <div className="error-container">
-    <h2 className="error-title">Something went wrong</h2>
-    <p className="error-message">
+  <div className={styles.errorContainer}>
+    <h2 className={styles.errorTitle}>Something went wrong</h2>
+    <p className={styles.errorMessage}>
       {error.message || ERROR_MESSAGES.UNEXPECTED_ERROR}
     </p>
-    <button onClick={() => window.location.href = '/'} className="error-button">
+    <button onClick={() => window.location.href = '/'} className={styles.errorButton}>
       Go to home
     </button>
   </div>
@@ -100,7 +100,7 @@ function AppContent() {
   return (
     <LanguageProvider>
       <NavigationProvider>
-        <div className="app-container">
+        <div className={styles.appContainer}>
           <CustomCursor />
           <Header />
           <Suspense fallback={<LoadingFallback />}>

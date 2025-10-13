@@ -1,10 +1,10 @@
-.app-container {
+.appContainer {
   min-height: 100vh;
   background-color: var(--background);
   color: var(--foreground);
 }
 
-.error-container {
+.errorContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,17 +14,17 @@
   padding-right: calc(var(--spacing, 0.25rem) * 4);
 }
 
-.error-title {
+.errorTitle {
   margin-bottom: calc(var(--spacing, 0.25rem) * 4);
 }
 
-.error-message {
+.errorMessage {
   color: var(--muted-foreground);
   margin-bottom: calc(var(--spacing, 0.25rem) * 4);
   text-align: center;
 }
 
-.error-button {
+.errorButton {
   padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
   background-color: var(--primary);
   color: var(--primary-foreground);
@@ -36,18 +36,18 @@
   cursor: pointer;
 }
 
-.error-button:hover {
+.errorButton:hover {
   opacity: 0.9;
 }
 
-.loading-container {
+.loadingContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 60vh;
 }
 
-.loading-spinner {
+.loadingSpinner {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 

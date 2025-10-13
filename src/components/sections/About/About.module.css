@@ -1,12 +1,12 @@
 /* About Section - Specific styles only */
 
 /* Background color difference */
-#about {
+.aboutSection {
   background-color: color-mix(in oklab, var(--muted) 30%, transparent);
 }
 
 /* Content layout with gaps */
-#about .content {
+.content {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing, 0.25rem) * 4);
@@ -14,26 +14,26 @@
 
 /* Tablet */
 @media (width >= 40rem) {
-  #about .content {
+  .content {
     gap: calc(var(--spacing, 0.25rem) * 5);
   }
 }
 
 /* Desktop */
 @media (width >= 48rem) {
-  #about .content {
+  .content {
     gap: calc(var(--spacing, 0.25rem) * 6);
   }
 }
 
 /* Divider section */
-#about .divider {
+.divider {
   margin-top: calc(var(--spacing, 0.25rem) * 8);
   padding-top: calc(var(--spacing, 0.25rem) * 6);
   border-top: 1px solid var(--border);
 }
 
-#about .grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: calc(var(--spacing, 0.25rem) * 6);
@@ -41,41 +41,41 @@
   line-height: calc(1.25 / 0.875);
 }
 
-#about .grid h4 {
+.grid h4 {
   margin-bottom: calc(var(--spacing, 0.25rem) * 2);
   font-weight: var(--font-weight-bold, 700);
   font-size: inherit;
 }
 
-#about .grid-content {
+.gridContent {
   color: var(--muted-foreground);
 }
 
 /* Tablet */
 @media (width >= 40rem) {
-  #about .divider {
+  .divider {
     margin-top: calc(var(--spacing, 0.25rem) * 10);
     padding-top: calc(var(--spacing, 0.25rem) * 7);
   }
 
-  #about .grid {
+  .grid {
     gap: calc(var(--spacing, 0.25rem) * 7);
   }
 }
 
 /* Desktop */
 @media (width >= 48rem) {
-  #about .divider {
+  .divider {
     margin-top: calc(var(--spacing, 0.25rem) * 12);
     padding-top: calc(var(--spacing, 0.25rem) * 8);
   }
 
-  #about .grid {
+  .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: calc(var(--spacing, 0.25rem) * 8);
   }
 
-  #about .grid h4 {
+  .grid h4 {
     margin-bottom: calc(var(--spacing, 0.25rem) * 3);
   }
 }

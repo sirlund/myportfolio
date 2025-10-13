@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../../lib/contexts';
 import { CONTACT } from '../../../lib/constants';
 import { Section, Container, Heading, Text } from '../../base';
-import './Contact.module.css';
+import styles from './Contact.module.css';
 
 export function Contact() {
   const ref = useRef(null);
@@ -40,7 +40,7 @@ export function Contact() {
   ];
 
   return (
-    <Section id="contact" variant="contact">
+    <Section id="contact">
       <Container>
         <motion.div
           ref={ref}
@@ -50,11 +50,11 @@ export function Contact() {
         >
           <Heading level={2}>{t('contact.title')}</Heading>
 
-          <Text size="lg" color="muted" className="content">
+          <Text size="lg" color="muted" className={styles.content}>
             {t('contact.description') as string}
           </Text>
 
-          <div className="links">
+          <div className={styles.links}>
             {links.map((link, index) => (
               <motion.a
                 key={link.name}
@@ -65,20 +65,20 @@ export function Contact() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ x: 10 }}
-                className="link"
+                className={styles.link}
               >
                 <div>
-                  <Text size="md" className="link-name">
+                  <Text size="md" className={styles.linkName}>
                     {link.name}
                   </Text>
-                  <Text size="sm" color="muted" className="link-description">
+                  <Text size="sm" color="muted" className={styles.linkDescription}>
                     {link.description}
                   </Text>
                 </div>
 
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="link-icon"
+                  className={styles.linkIcon}
                 >
                   <ArrowUpRight size={16} />
                 </motion.div>

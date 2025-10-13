@@ -1,10 +1,10 @@
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-import { useNavigation } from '../../App';
-import { useLanguage } from '../../lib/contexts';
-import { Image } from '../base';
+import { useNavigation } from '../../../App';
+import { useLanguage } from '../../../lib/contexts';
+import { Image } from '../../base';
 import { useState, useEffect } from 'react';
-import '../../styles/case-studies/CaseStudyLayout.css';
+import styles from './CaseStudyLayout.module.css';
 
 interface ProjectDetail {
   label: string;
@@ -70,7 +70,7 @@ export function CaseStudyLayout({
   }, []);
 
   return (
-    <div className="case-study-container">
+    <div className={styles.container}>
       {/* Fixed Back Button (appears on scroll) */}
       <motion.button
         initial={{ opacity: 0, y: -20 }}
@@ -82,7 +82,7 @@ export function CaseStudyLayout({
         whileHover={{ x: -5 }}
         whileTap={{ scale: 0.95 }}
         onClick={navigateToWork}
-        className="case-study-back-button-fixed"
+        className={styles.backButtonFixed}
         style={{ pointerEvents: showBackButton ? 'auto' : 'none' }}
       >
         <ArrowLeft size={18} />
@@ -94,14 +94,14 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="case-study-back-nav"
+        className={styles.backNav}
       >
-        <div className="case-study-back-nav-container">
+        <div className={styles.backNavContainer}>
           <motion.button
             whileHover={{ x: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={navigateToWork}
-            className="case-study-back-button"
+            className={styles.backButton}
           >
             <ArrowLeft size={18} />
             <span>{t('caseStudy.backToWork')}</span>
@@ -114,19 +114,19 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="case-study-hero"
+        className={styles.hero}
       >
-        <div className="case-study-hero-container">
+        <div className={styles.heroContainer}>
           {/* Title Section */}
-          <div className="case-study-title-section">
+          <div className={styles.titleSection}>
             <h1>{title}</h1>
-            <p className="case-study-subtitle">
+            <p className={styles.subtitle}>
               {subtitle}
             </p>
           </div>
 
           {/* Hero Image */}
-          <div className="case-study-hero-image">
+          <div className={styles.heroImage}>
             <Image
               src={heroImage}
               alt={title}
@@ -134,14 +134,14 @@ export function CaseStudyLayout({
           </div>
 
           {/* Project Details Grid */}
-          <div className="case-study-details-grid">
+          <div className={styles.detailsGrid}>
             {details.map((detail, index) => (
               <motion.div
                 key={detail.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                className="case-study-detail-item"
+                className={styles.detailItem}
               >
                 <h6>
                   {detail.label}
@@ -160,11 +160,11 @@ export function CaseStudyLayout({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="case-study-overview"
+        className={styles.overview}
       >
-        <div className="case-study-overview-container">
+        <div className={styles.overviewContainer}>
           <h2>{overview.title}</h2>
-          <div className="case-study-overview-content">
+          <div className={styles.overviewContent}>
             {overview.content.split('\n\n').map((paragraph, index) => (
               <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
             ))}
@@ -179,13 +179,13 @@ export function CaseStudyLayout({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-          className="case-study-section"
+          className={styles.section}
         >
-          <div className={`case-study-section-container ${section.fullWidth ? 'case-study-section-container-full' : ''}`}>
+          <div className={`${styles.sectionContainer} ${section.fullWidth ? styles.sectionContainerFull : ''}`}>
             <h2>{section.title}</h2>
-            <div className="case-study-section-content">
+            <div className={styles.sectionContent}>
               {typeof section.content === 'string' ? (
-                <div className="case-study-section-text">
+                <div className={styles.sectionText}>
                   {section.content.split('\n\n').map((paragraph, pIndex) => (
                     <p key={pIndex} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
                   ))}
@@ -204,14 +204,14 @@ export function CaseStudyLayout({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="case-study-custom-content"
+          className={styles.customContent}
         >
           {children}
         </motion.div>
       )}
 
       {/* Bottom Spacing */}
-      <div className="case-study-bottom-spacing" />
+      <div className={styles.bottomSpacing} />
     </div>
   );
 }
