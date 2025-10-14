@@ -1,9 +1,14 @@
-/* Work section - Mobile First */
+/* ============================================
+   Work Section - Mobile First
+   ============================================ */
+
 .workSection {
   width: 100%;
 }
 
-/* Coming Soon Section */
+/* ============================================
+   Coming Soon Section
+   ============================================ */
 .comingSoonContainer {
   display: flex;
   flex-direction: column;
@@ -22,6 +27,9 @@
   max-width: 600px;
 }
 
+/* ============================================
+   Project Structure
+   ============================================ */
 .projectItem {
   width: 100%;
   display: flex;
@@ -43,50 +51,68 @@
 }
 
 .projectInner {
+  /* Layout */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1.5rem;
   width: 100%;
-}
 
-/* Tablet */
-@media (width >= 40rem) {
-  .projectInner {
+  /* Spacing */
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+
+  /* Responsive */
+  @media (width >= 40rem) {
     gap: 3rem;
     padding: 4rem 2.5rem;
   }
-}
 
-/* Desktop */
-@media (width >= 64rem) {
-  .projectInner {
+  @media (width >= 64rem) {
     gap: 4rem;
     padding: 5rem 4rem;
   }
 }
 
-/* Project content container - Mobile First */
+/* ============================================
+   Project Content Container
+   ============================================ */
 .projectContentContainer {
+  /* Layout */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   align-items: center;
   justify-content: center;
   max-width: 56rem;
   width: 100%;
+
+  /* Spacing */
+  gap: 1.5rem;
   padding: 1.5rem 0.75rem;
+
+  /* Transitions */
   transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    gap: 2rem;
+    padding: 1.75rem 1rem;
+  }
+
+  @media (width >= 64rem) {
+    gap: 3rem;
+    padding: 2rem 1rem;
+  }
 }
 
-.projectContentContainer:hover {
-  transform: translateY(-2px);
-}
-
-/* Icon container */
+/* ============================================
+   Icon Container
+   ============================================ */
 .projectIconContainer {
   display: flex;
   flex-direction: column;
@@ -94,19 +120,40 @@
   justify-content: center;
   height: 2.5rem;
   margin-bottom: 0.25rem;
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    height: 3rem;
+    margin-bottom: 0.375rem;
+  }
+
+  @media (width >= 64rem) {
+    height: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
-/* Text section */
+/* ============================================
+   Text Section
+   ============================================ */
 .projectTextSection {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
   text-align: center;
   width: 100%;
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    gap: 1.25rem;
+  }
+
+  @media (width >= 64rem) {
+    gap: 1.5rem;
+  }
 }
 
-/* Title container */
 .projectTitleContainer {
   display: flex;
   flex-direction: column;
@@ -114,7 +161,6 @@
   width: 100%;
 }
 
-/* Description container */
 .projectDescriptionContainer {
   display: flex;
   flex-direction: column;
@@ -122,106 +168,82 @@
   width: 100%;
 }
 
-/* Button styles - Pill variant override */
+/* ============================================
+   Button Override
+   ============================================ */
 .projectButton {
   border-radius: 9999px;
 }
 
-/* Tablet */
-@media (width >= 40rem) {
-  .projectContentContainer {
-    gap: 2rem;
-    padding: 1.75rem 1rem;
-  }
-
-  .projectIconContainer {
-    height: 3rem;
-    margin-bottom: 0.375rem;
-  }
-
-  .projectTextSection {
-    gap: 1.25rem;
-  }
-}
-
-/* Desktop */
-@media (width >= 64rem) {
-  .projectContentContainer {
-    gap: 3rem;
-    padding: 2rem 1rem;
-  }
-
-  .projectIconContainer {
-    height: 3.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .projectTextSection {
-    gap: 1.5rem;
-  }
-}
-
-/* Image section styles - Mobile First */
+/* ============================================
+   Image Section
+   ============================================ */
 .projectImageSection {
+  /* Layout */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   width: 100%;
   max-width: 100%;
   padding: 0 0.5rem;
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    max-width: 64rem;
+    padding: 0 1rem;
+  }
+
+  @media (width >= 64rem) {
+    max-width: 72rem;
+    padding: 0;
+  }
 }
 
 .projectImageContainer {
-  aspect-ratio: 1155/722;
+  /* Layout */
   position: relative;
   width: 100%;
   max-width: 100%;
+  aspect-ratio: 1155/722;
+
+  /* Responsive */
+  @media (width >= 64rem) {
+    max-width: 64rem;
+  }
 }
 
 .projectImage {
+  /* Positioning */
   position: absolute;
   inset: 0;
+
+  /* Sizing */
   width: 100%;
   height: 100%;
+
+  /* Appearance */
   object-fit: cover;
   object-position: center;
   border-radius: 0.375rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
   margin: 0 auto;
-}
 
-/* Tablet */
-@media (width >= 40rem) {
-  .projectImageSection {
-    max-width: 64rem;
-    padding: 0 1rem;
-  }
-
-  .projectImage {
+  /* Responsive */
+  @media (width >= 40rem) {
     border-radius: 0.5rem;
     box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.2);
   }
-}
 
-/* Desktop */
-@media (width >= 64rem) {
-  .projectImageSection {
-    max-width: 72rem;
-    padding: 0;
-  }
-
-  .projectImageContainer {
-    max-width: 64rem;
-  }
-
-  .projectImage {
+  @media (width >= 64rem) {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 
-/* Icon component styles - Applied directly to svg */
+/* ============================================
+   Icon Components
+   ============================================ */
 .mindstudioIcon {
   display: block;
   width: 51.441px;
@@ -238,81 +260,84 @@
   overflow: clip;
 }
 
-/* Project-specific themes */
-/* Mindstudio */
+/* ============================================
+   Project Themes
+   ============================================ */
+
+/* Mindstudio Theme */
 .projectMindstudio {
   background-color: #255fb3;
+
+  & .projectTitle,
+  & .projectDescription {
+    color: white;
+  }
+
+  & .projectButton {
+    background-color: white;
+    color: black;
+  }
 }
 
-.projectMindstudio .projectTitle,
-.projectMindstudio .projectDescription {
-  color: white;
-}
-
-.projectMindstudio .projectButton {
-  background-color: white;
-  color: black;
-}
-
-/* Wenia */
+/* Wenia Theme */
 .projectWenia {
   background-color: #8b5cf6;
+
+  & .projectTitle,
+  & .projectDescription {
+    color: white;
+  }
+
+  & .projectButton {
+    background-color: white;
+    color: black;
+  }
 }
 
-.projectWenia .projectTitle,
-.projectWenia .projectDescription {
-  color: white;
-}
-
-.projectWenia .projectButton {
-  background-color: white;
-  color: black;
-}
-
-/* Treez */
+/* Treez Theme */
 .projectTreez {
   background-color: #f1f6ea;
+
+  & .projectTitle {
+    color: #29292a;
+  }
+
+  & .projectDescription {
+    color: #6d6d6e;
+  }
+
+  & .projectButton {
+    background-color: white;
+    color: black;
+  }
 }
 
-.projectTreez .projectTitle {
-  color: #29292a;
-}
-
-.projectTreez .projectDescription {
-  color: #6d6d6e;
-}
-
-.projectTreez .projectButton {
-  background-color: white;
-  color: black;
-}
-
-/* Nacional */
+/* Nacional Theme */
 .projectNacional {
   background-color: #dc2626;
+
+  & .projectTitle,
+  & .projectDescription {
+    color: white;
+  }
+
+  & .projectButton {
+    background-color: white;
+    color: black;
+  }
 }
 
-.projectNacional .projectTitle,
-.projectNacional .projectDescription {
-  color: white;
-}
-
-.projectNacional .projectButton {
-  background-color: white;
-  color: black;
-}
-
-/* Klare */
+/* Klare Theme */
 .projectKlare {
   background-color: #059669;
-}
 
-.projectKlare .projectTitle,
-.projectKlare .projectDescription {
-  color: white;
-}
+  & .projectTitle,
+  & .projectDescription {
+    color: white;
+  }
 
-.projectKlare .projectButton {
-  background-color: white;
-  color: black;
+  & .projectButton {
+    background-color: white;
+    color: black;
+  }
 }

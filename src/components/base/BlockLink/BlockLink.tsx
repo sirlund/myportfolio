@@ -1,33 +1,35 @@
-import { ReactNode, AnchorHTMLAttributes, forwardRef } from 'react';
+import { AnchorHTMLAttributes, forwardRef } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion, MotionProps } from 'motion/react';
-import styles from './Link.module.css';
+import { ArrowUpRight } from 'lucide-react';
+import styles from './BlockLink.module.css';
 
 /**
- * Link Component - Internal and external links with consistent styling and optional animations
+ * BlockLink Component - A structured link with title, description, and icon
+ * Perfect for contact links, resource links, or any link list with descriptions
  *
  * Usage:
- *   <Link href="/about">Internal link</Link>
- *   <Link href="https://example.com" external>External link</Link>
- *   <Link href="mailto:email@example.com">Email link</Link>
- *   <Link href="/contact" whileHover={{ scale: 1.05 }}>Animated link</Link>
+ *   <BlockLink href="mailto:..." title="Email" description="Get in touch" />
+ *   <BlockLink href="https://..." external title="LinkedIn" description="Connect with me" />
  */
 
 // Create motion variants
 const MotionAnchor = motion.a;
 const MotionRouterLink = motion.create(RouterLink);
 
-export interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>, MotionProps {
-  children: ReactNode;
+export interface BlockLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'title'>, MotionProps {
   href: string;
+  title: string;
+  description: string;
   external?: boolean;
   className?: string;
 }
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+export const BlockLink = forwardRef<HTMLAnchorElement, BlockLinkProps>(function BlockLink(
   {
-    children,
     href,
+    title,
+    description,
     external = false,
     className = '',
     // Extract motion props
@@ -44,7 +46,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   },
   ref
 ) {
-  const classes = [styles.link, className].filter(Boolean).join(' ');
+  const classes = [styles.blockLink, className].filter(Boolean).join(' ');
 
   // Collect motion props
   const motionProps = {
@@ -59,6 +61,22 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     variants,
   };
 
+  // Content structure
+  const content = (
+    <>
+      <div>
+        <div className={styles.blockLinkTitle}>{title}</div>
+        <div className={styles.blockLinkDescription}>{description}</div>
+      </div>
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        className={styles.blockLinkIcon}
+      >
+        <ArrowUpRight size={16} />
+      </motion.div>
+    </>
+  );
+
   // External links or special protocols
   if (external || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return (
@@ -71,7 +89,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
         {...motionProps}
         {...props}
       >
-        {children}
+        {content}
       </MotionAnchor>
     );
   }
@@ -85,7 +103,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       {...motionProps}
       {...props}
     >
-      {children}
+      {content}
     </MotionRouterLink>
   );
 });

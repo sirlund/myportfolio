@@ -68,6 +68,9 @@ npm install
 # Start development server
 npm run dev
 
+# Start Storybook (component development)
+npm run storybook
+
 # Build for production
 npm run build
 
@@ -76,6 +79,37 @@ npm run deploy
 ```
 
 The dev server will be available at `http://localhost:3000`
+Storybook will be available at `http://localhost:6006`
+
+## 📚 Storybook
+
+This project includes comprehensive component documentation via Storybook.
+
+### Quick Start
+
+```bash
+# View components locally
+npm run storybook
+
+# Build Storybook
+npm run build-storybook
+
+# Publish to Chromatic
+npx chromatic --project-token=chpt_84e638307657fa9
+```
+
+### Resources
+
+- **Local Storybook**: http://localhost:6006/
+- **Published Storybook**: https://68edaec866f34987cc3f36ba-cbipxcggqr.chromatic.com/
+- **Detailed Workflow Guide**: See [STORYBOOK_WORKFLOW.md](./STORYBOOK_WORKFLOW.md)
+
+The workflow guide includes:
+- Creating new stories
+- Using decorators (Router, Language contexts)
+- Working with animations (MotionLink example)
+- Publishing to Chromatic
+- Best practices and troubleshooting
 
 ## 🌐 Translation System
 

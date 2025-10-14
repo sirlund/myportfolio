@@ -2,7 +2,7 @@
  * Base Components - Reusable atomic components with CSS Modules
  *
  * Import all at once:
- *   import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from '@/components/base';
+ *   import { Text, Heading, Section, Container, Button, Link, BlockLink, Image, List, ListItem } from '@/components/base';
  */
 
 export { Text } from './Text';
@@ -22,6 +22,9 @@ export type { ButtonProps } from './Button';
 
 export { Link } from './Link';
 export type { LinkProps } from './Link';
+
+export { BlockLink } from './BlockLink/BlockLink';
+export type { BlockLinkProps } from './BlockLink/BlockLink';
 
 export { Image } from './Image';
 export type { ImageProps } from './Image';

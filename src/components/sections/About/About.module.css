@@ -1,81 +1,84 @@
-/* About Section - Specific styles only */
+/* ============================================
+   About Section
+   ============================================ */
 
-/* Background color difference */
 .aboutSection {
   background-color: color-mix(in oklab, var(--muted) 30%, transparent);
 }
 
-/* Content layout with gaps */
+/* ============================================
+   Content Layout
+   ============================================ */
 .content {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing, 0.25rem) * 4);
-}
 
-/* Tablet */
-@media (width >= 40rem) {
-  .content {
+  /* Responsive */
+  @media (width >= 40rem) {
     gap: calc(var(--spacing, 0.25rem) * 5);
   }
-}
 
-/* Desktop */
-@media (width >= 48rem) {
-  .content {
+  @media (width >= 48rem) {
     gap: calc(var(--spacing, 0.25rem) * 6);
   }
 }
 
-/* Divider section */
+/* ============================================
+   Divider Section
+   ============================================ */
 .divider {
   margin-top: calc(var(--spacing, 0.25rem) * 8);
   padding-top: calc(var(--spacing, 0.25rem) * 6);
   border-top: 1px solid var(--border);
-}
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: calc(var(--spacing, 0.25rem) * 6);
-  font-size: var(--font-text-sm);
-  line-height: calc(1.25 / 0.875);
-}
-
-.grid h4 {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 2);
-  font-weight: var(--font-weight-bold, 700);
-  font-size: inherit;
-}
-
-.gridContent {
-  color: var(--muted-foreground);
-}
-
-/* Tablet */
-@media (width >= 40rem) {
-  .divider {
+  /* Responsive */
+  @media (width >= 40rem) {
     margin-top: calc(var(--spacing, 0.25rem) * 10);
     padding-top: calc(var(--spacing, 0.25rem) * 7);
   }
 
-  .grid {
-    gap: calc(var(--spacing, 0.25rem) * 7);
-  }
-}
-
-/* Desktop */
-@media (width >= 48rem) {
-  .divider {
+  @media (width >= 48rem) {
     margin-top: calc(var(--spacing, 0.25rem) * 12);
     padding-top: calc(var(--spacing, 0.25rem) * 8);
   }
+}
 
-  .grid {
+/* ============================================
+   Grid Layout
+   ============================================ */
+.grid {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: calc(var(--spacing, 0.25rem) * 6);
+
+  /* Typography */
+  font-size: var(--font-text-sm);
+  line-height: calc(1.25 / 0.875);
+
+  /* Grid Headings */
+  & h4 {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 2);
+    font-weight: var(--font-weight-bold, 700);
+    font-size: inherit;
+
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing, 0.25rem) * 3);
+    }
+  }
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    gap: calc(var(--spacing, 0.25rem) * 7);
+  }
+
+  @media (width >= 48rem) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: calc(var(--spacing, 0.25rem) * 8);
   }
+}
 
-  .grid h4 {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 3);
-  }
+.gridContent {
+  color: var(--muted-foreground);
 }

@@ -1,10 +1,9 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../../lib/contexts';
 import { CONTACT } from '../../../lib/constants';
-import { Section, Container, Heading, Text } from '../../base';
+import { Section, Container, Heading, Text, BlockLink } from '../../base';
 import styles from './Contact.module.css';
 
 export function Contact() {
@@ -20,17 +19,15 @@ export function Contact() {
     },
     {
       name: t('contact.linkedin'),
-      target: '_blank' as const,
-      rel: 'noopener noreferrer',
       href: CONTACT.LINKEDIN,
       description: t('contact.linkedinDesc'),
+      external: true,
     },
     // {
     //   name: t('contact.dribbble'),
-    //   target: '_blank' as const,
-    //   rel: 'noopener noreferrer',
     //   href: CONTACT.DRIBBBLE,
     //   description: t('contact.dribbbleDesc'),
+    //   external: true,
     // },
     {
       name: t('contact.resume'),
@@ -56,33 +53,17 @@ export function Contact() {
 
           <div className={styles.links}>
             {links.map((link, index) => (
-              <motion.a
+              <BlockLink
                 key={link.name}
                 href={link.href}
-                target={link.target}
-                rel={link.rel}
+                external={link.external}
+                title={link.name}
+                description={link.description}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ x: 10 }}
-                className={styles.link}
-              >
-                <div>
-                  <Text size="md" className={styles.linkName}>
-                    {link.name}
-                  </Text>
-                  <Text size="sm" color="muted" className={styles.linkDescription}>
-                    {link.description}
-                  </Text>
-                </div>
-
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className={styles.linkIcon}
-                >
-                  <ArrowUpRight size={16} />
-                </motion.div>
-              </motion.a>
+              />
             ))}
           </div>
         </motion.div>

@@ -1,50 +1,60 @@
-/* Button Component Styles */
+/* ============================================
+   Button Component
+   ============================================ */
+
+/* Base Button Styles */
 .button {
+  /* Layout */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: calc(var(--spacing, 0.25rem) * 2);
+  padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
+
+  /* Typography */
   font-size: var(--font-text-md);
   font-weight: var(--font-weight-medium);
   line-height: 1.5;
-  padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
-  border-radius: calc(var(--spacing, 0.25rem) * 2);
+
+  /* Appearance */
   border: none;
+  border-radius: calc(var(--spacing, 0.25rem) * 2);
   cursor: pointer;
   transition: all 0.2s ease;
-}
 
-.button[data-variant="primary"] {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
+  /* Variants */
+  &[data-variant="primary"] {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
 
-.button[data-variant="primary"]:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+  }
 
-.button[data-variant="ghost"] {
-  background: none;
-  color: var(--foreground);
-  border: 1px solid var(--border);
-}
+  &[data-variant="ghost"] {
+    background: none;
+    color: var(--foreground);
+    border: 1px solid var(--border);
 
-.button[data-variant="ghost"]:hover {
-  background-color: var(--accent);
-}
+    &:hover {
+      background-color: var(--accent);
+    }
+  }
 
-.button[data-variant="link"] {
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--foreground);
-  padding: 0;
-  padding-bottom: calc(var(--spacing, 0.25rem) * 1);
-  border-radius: 0;
-  font-size: var(--font-text-sm);
-}
+  &[data-variant="link"] {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--foreground);
+    border-radius: 0;
+    padding: 0;
+    padding-bottom: calc(var(--spacing, 0.25rem) * 1);
+    font-size: var(--font-text-sm);
 
-.button[data-variant="link"]:hover {
-  color: var(--muted-foreground);
-  transform: translateY(-2px);
+    &:hover {
+      color: var(--muted-foreground);
+      transform: translateY(-2px);
+    }
+  }
 }

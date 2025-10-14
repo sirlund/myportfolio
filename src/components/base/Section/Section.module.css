@@ -1,65 +1,65 @@
-/* Section Component Styles */
+/* ============================================
+   Section Component
+   ============================================ */
+
 .section {
+  /* Base Styles */
   padding-top: calc(var(--spacing, 0.25rem) * 16);
   padding-bottom: calc(var(--spacing, 0.25rem) * 16);
-}
 
-.section > div {
-  max-width: var(--container-4xl, 56rem);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: calc(var(--spacing, 0.25rem) * 4);
-  padding-right: calc(var(--spacing, 0.25rem) * 4);
-}
+  /* Direct Container Child */
+  & > div {
+    max-width: var(--container-4xl, 56rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(var(--spacing, 0.25rem) * 4);
+    padding-right: calc(var(--spacing, 0.25rem) * 4);
 
-/* Section title */
-.section h2 {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 6);
-  font-size: var(--font-section-title);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-  letter-spacing: -0.022em;
-}
+    @media (width >= 40rem) {
+      padding-left: calc(var(--spacing, 0.25rem) * 6);
+      padding-right: calc(var(--spacing, 0.25rem) * 6);
+    }
 
-/* Section content */
-.section .content {
-  font-size: var(--font-text-lg);
-  color: var(--muted-foreground);
-  line-height: var(--leading-relaxed, 1.625);
-}
+    @media (width >= 64rem) {
+      padding-left: calc(var(--spacing, 0.25rem) * 8);
+      padding-right: calc(var(--spacing, 0.25rem) * 8);
+    }
+  }
 
-.section .content p {
-  font-size: inherit;
-  color: inherit;
-  line-height: inherit;
-}
+  /* Section Title */
+  & h2 {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+    font-size: var(--font-section-title);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: -0.022em;
 
-/* Tablet - 640px */
-@media (width >= 40rem) {
-  .section {
+    @media (width >= 40rem) {
+      margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+    }
+  }
+
+  /* Section Content */
+  & .content {
+    font-size: var(--font-text-lg);
+    color: var(--muted-foreground);
+    line-height: var(--leading-relaxed, 1.625);
+
+    & p {
+      font-size: inherit;
+      color: inherit;
+      line-height: inherit;
+    }
+  }
+
+  /* Responsive */
+  @media (width >= 40rem) {
     padding-top: calc(var(--spacing, 0.25rem) * 20);
     padding-bottom: calc(var(--spacing, 0.25rem) * 20);
   }
 
-  .section > div {
-    padding-left: calc(var(--spacing, 0.25rem) * 6);
-    padding-right: calc(var(--spacing, 0.25rem) * 6);
-  }
-
-  .section h2 {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 8);
-  }
-}
-
-/* Desktop - 1024px */
-@media (width >= 64rem) {
-  .section {
+  @media (width >= 64rem) {
     padding-top: calc(var(--spacing, 0.25rem) * 24);
     padding-bottom: calc(var(--spacing, 0.25rem) * 24);
-  }
-
-  .section > div {
-    padding-left: calc(var(--spacing, 0.25rem) * 8);
-    padding-right: calc(var(--spacing, 0.25rem) * 8);
   }
 }

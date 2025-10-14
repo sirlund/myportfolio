@@ -1,99 +1,38 @@
-/* Contact Section - Specific styles only */
+/* ============================================
+   Contact Section
+   ============================================ */
 
-/* Content width and spacing */
+/* ============================================
+   Content Container
+   ============================================ */
 .content {
   max-width: var(--container-2xl, 42rem);
   margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 10);
+  }
+
+  @media (width >= 64rem) {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+  }
 }
 
-/* Links container */
+/* ============================================
+   Links Container
+   ============================================ */
 .links {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing, 0.25rem) * 4);
-}
 
-/* Individual link */
-.link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: calc(var(--spacing, 0.25rem) * 3);
-  padding-bottom: calc(var(--spacing, 0.25rem) * 3);
-  border-bottom: 1px solid var(--border);
-  transition-property: border-color;
-  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
-  transition-duration: 0.2s;
-  text-decoration: none;
-  color: inherit;
-}
-
-.link:hover {
-  border-color: var(--foreground);
-}
-
-/* Link text */
-.linkName {
-  font-weight: var(--font-weight-medium, 500);
-  font-size: var(--font-text-md);
-  transition-property: color;
-  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
-  transition-duration: 0.2s;
-}
-
-.link:hover .linkName {
-  color: var(--muted-foreground);
-}
-
-.linkDescription {
-  font-size: var(--font-text-sm);
-  line-height: calc(1.25 / 0.875);
-  color: var(--muted-foreground);
-}
-
-/* Link icon */
-.linkIcon {
-  width: calc(var(--spacing, 0.25rem) * 8);
-  height: calc(var(--spacing, 0.25rem) * 8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.linkIcon svg {
-  color: var(--muted-foreground);
-  transition-property: color;
-  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
-  transition-duration: 0.2s;
-}
-
-.link:hover .linkIcon svg {
-  color: var(--foreground);
-}
-
-/* Tablet - 640px */
-@media (width >= 40rem) {
-  .content {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 10);
-  }
-
-  .links {
+  /* Responsive */
+  @media (width >= 40rem) {
     gap: calc(var(--spacing, 0.25rem) * 5);
   }
 
-  .link {
-    padding-top: calc(var(--spacing, 0.25rem) * 4);
-    padding-bottom: calc(var(--spacing, 0.25rem) * 4);
-  }
-}
-
-/* Desktop - 1024px */
-@media (width >= 64rem) {
-  .content {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 12);
-  }
-
-  .links {
+  @media (width >= 64rem) {
     gap: calc(var(--spacing, 0.25rem) * 6);
   }
 }

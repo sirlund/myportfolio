@@ -1,5 +1,9 @@
-/* Image Component Styles */
+/* ============================================
+   Image Component
+   ============================================ */
+
 .image {
+  /* Base Styles */
   display: block;
   width: 100%;
   height: auto;

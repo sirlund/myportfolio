@@ -1,42 +1,48 @@
-/* List Component Styles */
+/* ============================================
+   List Component
+   ============================================ */
+
 .list {
+  /* Base Styles */
   margin: 0;
   padding: 0;
+
+  /* Variants */
+  &[data-variant="default"] {
+    padding-left: calc(var(--spacing, 0.25rem) * 6);
+
+    &[data-ordered="true"] {
+      list-style-type: decimal;
+    }
+
+    &[data-ordered="false"] {
+      list-style-type: disc;
+    }
+  }
+
+  &[data-variant="unstyled"] {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &[data-variant="compact"] {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing, 0.25rem) * 1);
+
+    & .listItem {
+      margin-bottom: 0;
+    }
+  }
 }
 
-.list[data-variant="default"] {
-  padding-left: calc(var(--spacing, 0.25rem) * 6);
-}
-
-.list[data-variant="unstyled"] {
-  list-style: none;
-  padding-left: 0;
-}
-
-.list[data-variant="compact"] {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing, 0.25rem) * 1);
-}
-
-.list[data-ordered="true"][data-variant="default"] {
-  list-style-type: decimal;
-}
-
-.list[data-ordered="false"][data-variant="default"] {
-  list-style-type: disc;
-}
-
+/* List Item */
 .listItem {
   margin-bottom: calc(var(--spacing, 0.25rem) * 2);
-}
 
-.list[data-variant="compact"] .listItem {
-  margin-bottom: 0;
-}
-
-.listItem:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

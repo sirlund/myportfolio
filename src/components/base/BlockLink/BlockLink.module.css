@@ -1,0 +1,83 @@
+/* ============================================
+   BlockLink Component
+   ============================================ */
+
+.blockLink {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: calc(var(--spacing, 0.25rem) * 3);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 3);
+
+  /* Appearance */
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+
+  /* Hover State */
+  &:hover {
+    border-color: var(--foreground);
+    color: inherit;
+
+    & .blockLinkTitle {
+      color: var(--muted-foreground);
+    }
+
+    & .blockLinkIcon svg {
+      color: var(--foreground);
+    }
+  }
+
+  /* Responsive */
+  @media (width >= 40rem) {
+    padding-top: calc(var(--spacing, 0.25rem) * 4);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 4);
+  }
+}
+
+/* ============================================
+   Title
+   ============================================ */
+
+.blockLinkTitle {
+  /* Typography */
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-text-md);
+
+  /* Transitions */
+  transition-property: color;
+  transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: 0.2s;
+}
+
+/* ============================================
+   Description
+   ============================================ */
+
+.blockLinkDescription {
+  /* Typography */
+  font-size: var(--font-text-sm);
+  line-height: calc(1.25 / 0.875);
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Icon
+   ============================================ */
+
+.blockLinkIcon {
+  /* Layout */
+  width: calc(var(--spacing, 0.25rem) * 8);
+  height: calc(var(--spacing, 0.25rem) * 8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    color: var(--muted-foreground);
+    transition-property: color;
+    transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
+    transition-duration: 0.2s;
+  }
+}

@@ -1,4 +1,6 @@
-/* Case Study Content - Shared Styles */
+/* ============================================
+   Case Study Content - Shared Styles
+   ============================================ */
 
 .contentWrapper {
   display: flex;
@@ -6,20 +8,35 @@
   gap: calc(var(--spacing, 0.25rem) * 12);
 }
 
+/* ============================================
+   Two Column Layout
+   ============================================ */
 .twoColumn {
   display: grid;
   grid-template-columns: 1fr;
   gap: calc(var(--spacing, 0.25rem) * 8);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+/* ============================================
+   Feature List
+   ============================================ */
 .featureList {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing, 0.25rem) * 3);
-  font-size: var(--text-base, 1rem);
+  /* Reset */
   list-style: none;
   padding: 0;
   margin: 0;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing, 0.25rem) * 3);
+
+  /* Typography */
+  font-size: var(--text-base, 1rem);
 }
 
 .featureItem {
@@ -29,20 +46,29 @@
 }
 
 .bullet {
+  /* Appearance */
   width: calc(var(--spacing, 0.25rem) * 2);
   height: calc(var(--spacing, 0.25rem) * 2);
   background-color: var(--primary, #000);
   border-radius: 9999px;
-  margin-top: calc(var(--spacing, 0.25rem) * 2);
   flex-shrink: 0;
+
+  /* Positioning */
+  margin-top: calc(var(--spacing, 0.25rem) * 2);
 }
 
+/* ============================================
+   Headings
+   ============================================ */
 .sectionHeading {
   margin-bottom: calc(var(--spacing, 0.25rem) * 6);
   font-size: var(--text-2xl, 1.953rem);
   font-weight: var(--font-weight-bold, 700);
 }
 
+/* ============================================
+   Images
+   ============================================ */
 .imageFull {
   width: 100%;
   height: 24rem;
@@ -57,6 +83,9 @@
   margin-top: calc(var(--spacing, 0.25rem) * 2);
 }
 
+/* ============================================
+   Feature Blocks
+   ============================================ */
 .featureBlockList {
   display: flex;
   flex-direction: column;
@@ -66,20 +95,22 @@
 .featureBlock {
   display: flex;
   flex-direction: column;
+
+  & h3 {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+    font-size: var(--text-xl, 1.563rem);
+    font-weight: var(--font-weight-bold, 700);
+  }
+
+  & p {
+    line-height: var(--leading-relaxed, 1.625);
+    color: var(--muted-foreground);
+  }
 }
 
-.featureBlock h3 {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
-  font-size: var(--text-xl, 1.563rem);
-  font-weight: var(--font-weight-bold, 700);
-}
-
-.featureBlock p {
-  line-height: var(--leading-relaxed, 1.625);
-  color: var(--muted-foreground);
-}
-
-/* Quote Styles */
+/* ============================================
+   Quote Styles
+   ============================================ */
 .quote {
   padding: calc(var(--spacing, 0.25rem) * 6);
   margin: calc(var(--spacing, 0.25rem) * 8) 0;
@@ -87,17 +118,19 @@
   font-style: italic;
   border-left: 4px solid var(--primary, #000);
   background-color: var(--muted);
+
+  & cite {
+    display: block;
+    margin-top: calc(var(--spacing, 0.25rem) * 4);
+    font-size: var(--text-base, 1rem);
+    font-style: normal;
+    color: var(--muted-foreground);
+  }
 }
 
-.quote cite {
-  display: block;
-  margin-top: calc(var(--spacing, 0.25rem) * 4);
-  font-size: var(--text-base, 1rem);
-  font-style: normal;
-  color: var(--muted-foreground);
-}
-
-/* Challenge List */
+/* ============================================
+   Challenge List
+   ============================================ */
 .challengeList {
   display: flex;
   flex-direction: column;
@@ -119,7 +152,9 @@
   flex-shrink: 0;
 }
 
-/* Principles List */
+/* ============================================
+   Principles List
+   ============================================ */
 .principlesList {
   display: flex;
   flex-direction: column;
@@ -130,20 +165,30 @@
   padding: calc(var(--spacing, 0.25rem) * 4);
   background-color: var(--muted);
   border-radius: calc(var(--spacing, 0.25rem) * 2);
+
+  & h3 {
+    margin: 0;
+    font-size: var(--text-lg, 1.25rem);
+    font-weight: var(--font-weight-semibold, 600);
+  }
 }
 
-.principleItem h3 {
-  margin: 0;
-  font-size: var(--text-lg, 1.25rem);
-  font-weight: var(--font-weight-semibold, 600);
-}
-
-/* Metrics Grid */
+/* ============================================
+   Metrics Grid
+   ============================================ */
 .metricsGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: calc(var(--spacing, 0.25rem) * 6);
   margin: calc(var(--spacing, 0.25rem) * 8) 0;
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .metricItem {
@@ -167,22 +212,4 @@
   font-size: var(--text-sm, 0.875rem);
   color: var(--muted-foreground);
   line-height: var(--leading-relaxed, 1.625);
-}
-
-/* Tablet */
-@media (width >= 48rem) {
-  .twoColumn {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .metricsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Desktop */
-@media (width >= 64rem) {
-  .metricsGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

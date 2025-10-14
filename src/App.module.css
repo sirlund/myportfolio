@@ -1,15 +1,25 @@
+/* ============================================
+   App Container
+   ============================================ */
+
 .appContainer {
   min-height: 100vh;
   background-color: var(--background);
   color: var(--foreground);
 }
 
+/* ============================================
+   Error State
+   ============================================ */
 .errorContainer {
+  /* Layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 60vh;
+
+  /* Spacing */
   padding-left: calc(var(--spacing, 0.25rem) * 4);
   padding-right: calc(var(--spacing, 0.25rem) * 4);
 }
@@ -25,21 +35,29 @@
 }
 
 .errorButton {
+  /* Spacing */
   padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
+
+  /* Appearance */
   background-color: var(--primary);
   color: var(--primary-foreground);
   border-radius: calc(var(--radius, 0.625rem) - 2px);
+  border: none;
+  cursor: pointer;
+
+  /* Transitions */
   transition-property: opacity;
   transition-timing-function: var(--default-transition-timing-function, cubic-bezier(0.4, 0, 0.2, 1));
   transition-duration: var(--default-transition-duration, 0.15s);
-  border: none;
-  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
-.errorButton:hover {
-  opacity: 0.9;
-}
-
+/* ============================================
+   Loading State
+   ============================================ */
 .loadingContainer {
   display: flex;
   align-items: center;

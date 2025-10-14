@@ -1,3 +1,7 @@
+/* ============================================
+   Custom Cursor
+   ============================================ */
+
 .cursor {
   position: fixed;
   pointer-events: none;
@@ -5,16 +9,13 @@
   border-radius: 9999px;
 }
 
-/* Hide native cursor when CustomCursor is active */
+/* ============================================
+   Hide Native Cursor
+   Only on devices with precise pointers
+   ============================================ */
 @media (hover: hover) and (pointer: fine) {
-  :global(*) {
-    cursor: none !important;
-  }
-
-  :global(body) {
-    cursor: none !important;
-  }
-
+  :global(*),
+  :global(body),
   :global(a),
   :global(button),
   :global([role="button"]),
