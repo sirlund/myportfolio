@@ -54,20 +54,22 @@
     "@storybook/addon-a11y": "^9.1.10",
     "@storybook/addon-docs": "^9.1.10",
     "@storybook/addon-onboarding": "^9.1.10",
+    "@storybook/addon-themes": "^9.1.10",
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
     "@types/node": "^20.10.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
+    "chromatic": "^13.3.0",
     "gh-pages": "^6.3.0",
+    "playwright": "^1.56.0",
     "prop-types": "^15.8.1",
     "storybook": "^9.1.10",
     "vite": "6.3.5",
-    "vitest": "^3.2.4",
-    "@vitest/browser": "^3.2.4",
-    "playwright": "^1.56.0",
-    "@vitest/coverage-v8": "^3.2.4"
+    "vitest": "^3.2.4"
   },
   "scripts": {
     "dev": "vite",
@@ -76,6 +78,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --project-token=chpt_84e638307657fa9"
   }
 }

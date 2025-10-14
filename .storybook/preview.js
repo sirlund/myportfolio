@@ -1,4 +1,5 @@
 import '../src/styles/globals.css';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {
@@ -23,6 +24,16 @@ const preview = {
       ],
     },
   },
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme',
+    }),
+  ],
 };
 
 export default preview;
