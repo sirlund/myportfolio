@@ -125,22 +125,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Only hide cursor on non-mobile devices */
-@media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-
-  body {
-    cursor: none !important;
-  }
-
-  a, button, [role="button"], input, textarea, select,
-  [data-testid], [role], div, span, p, h1, h2, h3, h4, h5, h6 {
-    cursor: none !important;
-  }
-}
-
 /* Ensure custom cursor blending works properly */
 html, body {
   isolation: isolate;

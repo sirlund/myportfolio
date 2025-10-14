@@ -4,3 +4,34 @@
   z-index: 10000;
   border-radius: 9999px;
 }
+
+/* Hide native cursor when CustomCursor is active */
+@media (hover: hover) and (pointer: fine) {
+  :global(*) {
+    cursor: none !important;
+  }
+
+  :global(body) {
+    cursor: none !important;
+  }
+
+  :global(a),
+  :global(button),
+  :global([role="button"]),
+  :global(input),
+  :global(textarea),
+  :global(select),
+  :global([data-testid]),
+  :global([role]),
+  :global(div),
+  :global(span),
+  :global(p),
+  :global(h1),
+  :global(h2),
+  :global(h3),
+  :global(h4),
+  :global(h5),
+  :global(h6) {
+    cursor: none !important;
+  }
+}
