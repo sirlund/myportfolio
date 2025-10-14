@@ -8,6 +8,11 @@ const meta = {
   component: Container,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'Content container with max-width constraints and responsive padding. Ensures consistent spacing across different screen sizes.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

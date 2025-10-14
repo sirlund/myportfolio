@@ -8,6 +8,11 @@ const meta = {
   decorators: [withRouter],
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: 'Structured link component with title, description, and icon. Perfect for contact sections, resource lists, or any link collection with detailed information. Includes hover animations.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

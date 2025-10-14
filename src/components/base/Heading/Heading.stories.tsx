@@ -6,6 +6,11 @@ const meta = {
   component: Heading,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: 'Semantic heading component (h1-h6) with consistent typography scales. Automatically applies appropriate sizing based on heading level.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

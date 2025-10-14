@@ -9,6 +9,11 @@ const meta = {
   component: Section,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'Semantic section wrapper with built-in spacing and ID support for anchor links. Use as the primary layout component for page sections.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

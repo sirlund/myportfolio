@@ -6,6 +6,11 @@ const meta = {
   component: Text,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: 'Typography component for body text with size variants (lg, md, sm) and color options (default, muted). Supports HTML content rendering.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

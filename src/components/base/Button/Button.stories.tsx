@@ -6,6 +6,11 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: 'Interactive button component with multiple variants (primary, ghost, link). Supports disabled state and custom click handlers.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

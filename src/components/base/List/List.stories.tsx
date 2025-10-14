@@ -6,6 +6,11 @@ const meta = {
   component: List,
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: 'Flexible list component with ordered/unordered variants. Supports custom markers and responsive spacing.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

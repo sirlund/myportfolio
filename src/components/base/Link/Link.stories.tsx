@@ -9,6 +9,11 @@ const meta = {
   decorators: [withRouter],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: 'Navigation link component with built-in React Router support. Automatically handles internal routing and external links. Supports Framer Motion animations.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

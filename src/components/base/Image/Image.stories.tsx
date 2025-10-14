@@ -6,6 +6,11 @@ const meta = {
   component: Image,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: 'Responsive image component with loading states and automatic optimization. Supports custom aspect ratios and accessibility features.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
