@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { LanguageProvider } from '../src/lib/contexts';
+import { LanguageProvider } from '../src/contexts';
 import { ReactNode } from 'react';
 
 /**

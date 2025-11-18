@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Header } from './Header';
-import { withAppContext } from '../../../../.storybook/decorators';
+import { withAppContext } from '@/.storybook/decorators';
 
 const meta = {
   title: 'Layout/Header',

@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { ThreeCanvas } from '../ThreeCanvas';
-import { useLanguage } from '../../../lib/contexts';
-import { Heading, Text, Button } from '../../base';
+import { useLanguage } from '@/contexts';
+import { Heading, Text, Button } from '@/components/base';
 import styles from './Hero.module.css';
 
 export function Hero() {

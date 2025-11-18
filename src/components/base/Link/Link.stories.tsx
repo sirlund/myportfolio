@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Link } from './Link';
-import { withRouter } from '../../../../.storybook/decorators';
+import { withRouter } from '@/.storybook/decorators';
 import { ArrowUpRight } from 'lucide-react';
 
 const meta = {

@@ -5,8 +5,6 @@ export function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log('Initializing Three.js canvas');
-    
     // ===== CONFIGURATION =====
     const CONFIG = {
       // === SCENE ===
@@ -402,11 +400,6 @@ export function ThreeCanvas() {
     const geometry = new THREE.IcosahedronGeometry(CONFIG.bubbleSize, CONFIG.bubbleDetail);
     mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
-
-    // After creating geometry and mesh
-    console.log('Mesh created:', mesh);
-    console.log('Scene:', scene);
-    console.log('Camera position:', camera.position);
 
     // ===== MOUSE INTERACTION (Desktop) =====
     const heroSection = document.getElementById('home');

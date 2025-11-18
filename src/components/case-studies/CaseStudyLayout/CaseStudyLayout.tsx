@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-import { useNavigation } from '../../../App';
-import { useLanguage } from '../../../lib/contexts';
-import { Image } from '../../base';
+import { useNavigation } from '@/contexts';
+import { useLanguage } from '@/contexts';
+import { Image } from '@/components/base';
 import { useState, useEffect } from 'react';
 import styles from './CaseStudyLayout.module.css';
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Footer } from './Footer';
-import { withAppContext } from '../../../../.storybook/decorators';
+import { withAppContext } from '@/.storybook/decorators';
 
 const meta = {
   title: 'Layout/Footer',

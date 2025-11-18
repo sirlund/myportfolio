@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BlockLink } from './BlockLink';
-import { withRouter } from '../../../../.storybook/decorators';
+import { withRouter } from '@/.storybook/decorators';
 
 const meta = {
   title: 'Base/BlockLink',

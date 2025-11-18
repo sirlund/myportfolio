@@ -309,6 +309,82 @@ Cuando ayudes con contenido para este portfolio:
 
 ## 13. ARQUITECTURA Y CÓDIGO
 
+### Estructura del Proyecto
+
+**Organización principal:**
+```
+src/
+├── assets/images/case-studies/    # Imágenes organizadas por feature
+├── components/
+│   ├── base/                      # Componentes atómicos reutilizables
+│   ├── case-studies/
+│   │   ├── published/             # Case studies activos
+│   │   ├── _drafts/               # Work in progress
+│   │   └── CaseStudyLayout/       # Layout compartido
+│   ├── icons/                     # Sistema de iconos
+│   ├── layout/                    # Header, Footer, etc
+│   └── sections/                  # Secciones de página
+├── contexts/                      # React contexts (separados)
+│   ├── LanguageContext.tsx
+│   ├── NavigationContext.tsx
+│   └── index.ts
+├── lib/                           # Utilidades
+│   ├── constants.ts
+│   ├── hooks.ts
+│   ├── routes.ts
+│   └── utils.ts
+├── translations/                  # Sistema de traducción language-first
+│   ├── en/
+│   │   ├── common.ts              # Contenido del sitio
+│   │   ├── case-studies/          # Traducciones de case studies
+│   │   └── index.ts
+│   ├── es/
+│   │   ├── common.ts
+│   │   ├── case-studies/
+│   │   └── index.ts
+│   └── index.ts                   # Export centralizado
+└── styles/
+    └── globals.css                # Variables y estilos base
+```
+
+### Patrón de Imports con Alias @/
+
+**✅ SIEMPRE usar `@/` para imports:**
+```typescript
+// Componentes
+import { Text, Heading, Button } from '@/components/base';
+
+// Contexts
+import { useLanguage, useNavigation } from '@/contexts';
+
+// Traducciones
+import { translations } from '@/translations';
+
+// Assets
+import imgCover from '@/assets/images/case-studies/cover.png';
+
+// Lib
+import { SITE } from '@/lib/constants';
+import { useCaseStudyTranslation } from '@/lib/hooks';
+```
+
+**❌ NUNCA usar paths relativos profundos:**
+```typescript
+// Incorrecto
+import { useLanguage } from '../../../contexts/LanguageContext';
+import { Button } from '../../components/base/Button';
+
+// Correcto
+import { useLanguage } from '@/contexts';
+import { Button } from '@/components/base';
+```
+
+**Excepción - CSS Modules:**
+```typescript
+// CSS modules siempre relativos (co-localizados)
+import styles from './Component.module.css';
+```
+
 ### Sistema de Componentes Base
 
 **Componentes disponibles en `/src/components/base/`:**
@@ -320,10 +396,11 @@ Cuando ayudes con contenido para este portfolio:
 - `Link` - Enlaces inteligentes (internos/externos con React Router)
 - `Image` - Imágenes con lazy loading y aspect ratio
 - `List` / `ListItem` - Listas ordenadas/desordenadas con variantes
+- `BlockLink` - Card-style clickable blocks
 
 **Import centralizado:**
 ```typescript
-import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from './base';
+import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from '@/components/base';
 ```
 
 ### Patrón CSS - Especificidad vs BEM
@@ -370,11 +447,44 @@ export function About() {
 }
 ```
 
+### Sistema de Traducciones
+
+**Estructura language-first:**
+```
+translations/
+├── en/
+│   ├── common.ts              # Navegación, hero, work, about, contact, footer
+│   ├── case-studies/
+│   │   ├── mindstudio.ts
+│   │   └── treez.ts
+│   └── index.ts               # export const en = { ...common, caseStudies: {...} }
+├── es/
+│   ├── common.ts
+│   ├── case-studies/
+│   │   ├── mindstudio.ts
+│   │   └── treez.ts
+│   └── index.ts
+└── index.ts                   # export const translations = { en, es }
+```
+
+**Uso en componentes:**
+```typescript
+// Para contenido del sitio
+import { useLanguage } from '@/contexts';
+const { t } = useLanguage();
+<Text>{t('about.description') as string}</Text>
+
+// Para case studies
+import { useCaseStudyTranslation } from '@/lib/hooks';
+const content = useCaseStudyTranslation('mindstudio');
+<Text>{content.title}</Text>
+```
+
 ### Componente Text - Features
 
 **Soporte HTML desde traducciones:**
 ```typescript
-// En LanguageContext.tsx
+// En translations/en/common.ts
 'about.description': 'Texto con <strong>negritas</strong> y <em>cursivas</em>'
 
 // En componente
@@ -384,11 +494,11 @@ export function About() {
 
 **Soporte multilinea con `\n\n`:**
 ```typescript
-// En LanguageContext.tsx
-'about.bio': 'Párrafo uno.\n\nPárrafo dos.\n\nPárrafo tres.'
+// En translations/en/case-studies/mindstudio.ts
+content: 'Párrafo uno.\n\nPárrafo dos.\n\nPárrafo tres.'
 
 // En componente
-<Text>{t('about.bio') as string}</Text>
+<Text>{content.overview.content}</Text>
 // Renderiza múltiples elementos <p>
 ```
 

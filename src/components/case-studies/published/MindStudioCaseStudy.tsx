@@ -1,8 +1,8 @@
-import { CaseStudyLayout } from './CaseStudyLayout';
-import { Image } from '../base';
-import { useCaseStudyTranslation } from '../../lib/hooks';
-import imgMindstudio from '../../assets/mindstudio_cover.png';
-import styles from './shared/CaseStudyContent.module.css';
+import { CaseStudyLayout } from '@/components/case-studies/CaseStudyLayout';
+import { Image } from '@/components/base';
+import { useCaseStudyTranslation } from '@/lib/hooks';
+import imgMindstudio from '@/assets/images/case-studies/mindstudio_cover.png';
+import styles from '../shared/CaseStudyContent.module.css';
 
 export function MindStudioCaseStudy() {
   const t = useCaseStudyTranslation('mindstudio');

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useLanguage } from '../../../lib/contexts';
-import { SITE } from '../../../lib/constants';
+import { useLanguage } from '@/contexts';
+import { SITE } from '@/lib/constants';
 import styles from './Header.module.css';
 
 export function Header() {

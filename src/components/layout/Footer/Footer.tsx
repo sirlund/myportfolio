@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { useLanguage } from '../../../lib/contexts';
-import { SITE, CONTACT } from '../../../lib/constants';
-import { Text, Link } from '../../base';
+import { useLanguage } from '@/contexts';
+import { SITE, CONTACT } from '@/lib/constants';
+import { Text, Link } from '@/components/base';
 import styles from './Footer.module.css';
 
 export function Footer() {

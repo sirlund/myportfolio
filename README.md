@@ -6,50 +6,115 @@ A modern, bilingual portfolio website showcasing product design work with emphas
 
 - **Bilingual Support** - Complete EN/ES translations with URL-based language routing
 - **Real Routing** - React Router with language prefixes (`/` for EN, `/es` for ES)
-- **Modular Translations** - Separate translation files for case studies, easy to maintain
+- **Modular Translations** - Language-first organization with separate common and case study translations
 - **3D Interactive Hero** - Three.js animated bubble with mobile touch gestures
 - **Responsive Design** - Mobile-first approach with optimized layouts
 - **Case Studies** - Detailed project showcases with rich content formatting
-- **HTML Formatting Support** - Use `<strong>`, `<em>`, and `<br>` in translations
-- **Optimized Build** - Code splitting for faster load times
+- **HTML Formatting Support** - Use `<strong>`, `<em>`, and `\n\n` paragraph breaks in translations
+- **Component Library** - Reusable base components with Storybook documentation
+- **Optimized Build** - Code splitting and lazy loading for faster load times
+- **Type-Safe** - Full TypeScript implementation throughout
 
 ## 🚀 Tech Stack
 
 - **React 18** + TypeScript
 - **Vite** - Fast build tool and dev server
-- **React Router** - Client-side routing
-- **Framer Motion** - Animations and transitions
-- **Three.js** - 3D graphics for hero section
-- **CSS Custom Properties** - Theme and styling
+- **React Router** - Client-side routing with language support
+- **Framer Motion** - Smooth animations and transitions
+- **Three.js** - 3D graphics for interactive hero section
+- **CSS Modules** - Scoped styling with camelCase convention
+- **Storybook** - Component documentation and development
+- **Chromatic** - Visual regression testing
 
 ## 📁 Project Structure
 
 ```
 src/
+├── assets/
+│   └── images/
+│       └── case-studies/          # Project cover images
+│           ├── mindstudio_cover.png
+│           └── treez_cover.png
+│
 ├── components/
-│   ├── case-studies/          # Case study components
-│   │   ├── CaseStudyLayout.tsx
-│   │   ├── MindStudioCaseStudy.tsx
-│   │   └── TreezCaseStudy.tsx
-│   ├── ui/                     # Reusable UI components
-│   ├── Header.tsx
-│   ├── Hero.tsx
-│   ├── Work.tsx
-│   ├── About.tsx
-│   ├── Contact.tsx
-│   └── Footer.tsx
-├── contexts/
-│   └── LanguageContext.tsx     # Translation system & language state
-├── translations/
-│   └── case-studies/           # Modular case study translations
-│       ├── mindstudio.tsx
-│       └── treez.tsx
-├── hooks/
-│   └── useCaseStudyTranslation.ts
-├── config/
-│   └── constants.ts            # Non-translatable constants
-├── styles/                     # Component styles
-└── assets/                     # Images and static files
+│   ├── base/                      # Reusable atomic components
+│   │   ├── BlockLink/             # Card-style clickable blocks
+│   │   ├── Button/                # Primary, ghost, link variants
+│   │   ├── Container/             # Max-width content wrapper
+│   │   ├── Heading/               # Semantic h1-h6 headings
+│   │   ├── Image/                 # Lazy loading with fallback
+│   │   ├── Link/                  # Internal/external navigation
+│   │   ├── List/                  # Ordered/unordered lists
+│   │   ├── Section/               # Page sections with variants
+│   │   ├── Text/                  # Typography with HTML support
+│   │   ├── sonner.tsx             # Toast notifications
+│   │   └── index.ts               # Centralized exports
+│   │
+│   ├── case-studies/
+│   │   ├── published/             # Active case studies
+│   │   │   ├── MindStudioCaseStudy.tsx
+│   │   │   ├── TreezCaseStudy.tsx
+│   │   │   └── index.ts
+│   │   ├── _drafts/               # Work-in-progress case studies
+│   │   │   ├── KlareCaseStudy.tsx
+│   │   │   ├── NacionalCaseStudy.tsx
+│   │   │   └── WeniaCaseStudy.tsx
+│   │   ├── CaseStudyLayout/       # Shared layout component
+│   │   ├── shared/                # Shared styles
+│   │   └── index.ts
+│   │
+│   ├── icons/                     # Icon system
+│   │   ├── Icon.tsx               # Icon component
+│   │   ├── iconRegistry.tsx       # Icon definitions
+│   │   ├── index.ts
+│   │   └── README.md              # Icon usage guide
+│   │
+│   ├── layout/                    # Layout components
+│   │   ├── CustomCursor/          # Custom cursor implementation
+│   │   ├── Footer/                # Site footer
+│   │   └── Header/                # Navigation with mobile menu
+│   │
+│   └── sections/                  # Page sections
+│       ├── About/                 # About section
+│       ├── Contact/               # Contact information
+│       ├── Hero/                  # Landing section
+│       ├── Work/                  # Project showcase
+│       └── ThreeCanvas.tsx        # 3D bubble animation
+│
+├── contexts/                      # React contexts (NEW STRUCTURE)
+│   ├── LanguageContext.tsx        # Language state & detection
+│   ├── NavigationContext.tsx      # Navigation utilities
+│   └── index.ts                   # Centralized exports
+│
+├── lib/                           # Utilities and shared logic
+│   ├── constants.ts               # App-wide constants
+│   ├── hooks.ts                   # Custom hooks
+│   ├── routes.ts                  # Route definitions
+│   └── utils.ts                   # Utility functions
+│
+├── translations/                  # Translation system (NEW STRUCTURE)
+│   ├── en/                        # English translations
+│   │   ├── common.ts              # Site-wide content
+│   │   ├── case-studies/          # Case study translations
+│   │   │   ├── mindstudio.ts
+│   │   │   └── treez.ts
+│   │   └── index.ts               # Language exports
+│   │
+│   ├── es/                        # Spanish translations
+│   │   ├── common.ts              # Site-wide content
+│   │   ├── case-studies/          # Case study translations
+│   │   │   ├── mindstudio.ts
+│   │   │   └── treez.ts
+│   │   └── index.ts               # Language exports
+│   │
+│   └── index.ts                   # Main translations export
+│
+├── styles/
+│   └── globals.css                # CSS variables & base styles
+│
+├── App.tsx                        # Main app component
+├── App.module.css                 # App-level styles
+└── main.tsx                       # Entry point
 ```
 
 ## 🛠️ Development Setup
@@ -74,6 +139,9 @@ npm run storybook
 # Build for production
 npm run build
 
+# Preview production build
+npm run preview
+
 # Deploy to GitHub Pages
 npm run deploy
 ```
@@ -83,7 +151,7 @@ Storybook will be available at `http://localhost:6006`
 
 ## 📚 Storybook
 
-This project includes comprehensive component documentation via Storybook.
+This project includes comprehensive component documentation via Storybook with visual regression testing through Chromatic.
 
 ### Quick Start
 
@@ -95,7 +163,7 @@ npm run storybook
 npm run build-storybook
 
 # Publish to Chromatic
-npx chromatic --project-token=chpt_84e638307657fa9
+npm run chromatic
 ```
 
 ### Resources
@@ -107,44 +175,127 @@ npx chromatic --project-token=chpt_84e638307657fa9
 The workflow guide includes:
 - Creating new stories
 - Using decorators (Router, Language contexts)
-- Working with animations (MotionLink example)
+- Working with animations
 - Publishing to Chromatic
 - Best practices and troubleshooting
 
 ## 🌐 Translation System
 
-### Main Site Content
+### Architecture
 
-Translations for navigation, hero, work, about, contact, and footer are in:
+The translation system uses a language-first organization:
+
 ```
-src/contexts/LanguageContext.tsx
+translations/
+├── en/                    # All English content
+│   ├── common.ts          # Navigation, hero, work, about, contact, footer
+│   └── case-studies/      # Case study specific translations
+└── es/                    # All Spanish content
+    ├── common.ts
+    └── case-studies/
 ```
 
-**HTML Formatting Support:**
+### Usage
+
+#### In Components
+
+```typescript
+import { useLanguage } from '@/contexts';
+
+function Component() {
+  const { t } = useLanguage();
+
+  return (
+    <h1>{t('hero.title')}</h1>
+    <p>{t('hero.subtitle') as string}</p>
+  );
+}
+```
+
+#### In Case Studies
+
+```typescript
+import { useCaseStudyTranslation } from '@/lib/hooks';
+
+function CaseStudy() {
+  const content = useCaseStudyTranslation('mindstudio');
+
+  return (
+    <h1>{content.title}</h1>
+    <p>{content.subtitle}</p>
+  );
+}
+```
+
+### Content Formatting
+
+#### Common Translations (common.ts)
+
+**HTML Formatting:**
 ```typescript
 'about.description': "I'm <strong>Nicolás</strong>, a product designer..."
 'hero.subtitle': "Line one<br><br>Line two"
 ```
 
-### Case Studies
-
-Each case study has its own translation file for better organization:
+**Arrays for Lists:**
+```typescript
+'about.toolsList': [
+  'Figma / FigJam / Make',
+  'Git / GitHub',
+  'VSCode'
+]
 ```
-src/translations/case-studies/mindstudio.tsx
-src/translations/case-studies/treez.tsx
+
+#### Case Study Translations
+
+**Paragraph Breaks:**
+```typescript
+content: "First paragraph.\n\nSecond paragraph.\n\nThird paragraph."
 ```
 
-**Adding a New Case Study:**
+**HTML Formatting:**
+```typescript
+content: "Text with <strong>bold</strong> and <em>italic</em> formatting."
+```
 
-1. Create translation file: `src/translations/case-studies/yourproject.tsx`
-2. Add to hook: `src/hooks/useCaseStudyTranslation.ts`
-3. Create component: `src/components/case-studies/YourProjectCaseStudy.tsx`
-4. Add route in `src/App.tsx`
+**Combined:**
+```typescript
+content: "First paragraph with <strong>emphasis</strong>.\n\nSecond paragraph."
+```
 
-**Content Formatting in Case Studies:**
-- Use `\n\n` for paragraph breaks (auto-converted to `<p>` tags)
-- Use HTML tags: `<strong>`, `<em>`
-- Example: `content: "First paragraph.\n\nSecond with <strong>bold</strong>."`
+### Adding a New Case Study
+
+1. **Create translation files:**
+   ```
+   src/translations/en/case-studies/yourproject.ts
+   src/translations/es/case-studies/yourproject.ts
+   ```
+
+2. **Export from language index:**
+   ```typescript
+   // src/translations/en/index.ts
+   import { yourproject } from './case-studies/yourproject';
+
+   export const en = {
+     ...common,
+     caseStudies: {
+       mindstudio,
+       treez,
+       yourproject  // Add here
+     }
+   };
+   ```
+
+3. **Create component:**
+   ```
+   src/components/case-studies/published/YourProjectCaseStudy.tsx
+   ```
+
+4. **Add routes in App.tsx:**
+   ```typescript
+   <Route path="/yourproject" element={<YourProjectCaseStudy />} />
+   <Route path="/es/yourproject" element={<YourProjectCaseStudy />} />
+   ```
 
 ## 🗺️ Routing
 
@@ -160,52 +311,100 @@ The site uses React Router with language-based URLs:
 - `/es/mindstudio` - MindStudio case study
 - `/es/treez` - Treez case study
 
-Language is automatically detected from URL and persists across navigation.
+Language is automatically detected from URL path and synced across navigation.
 
-## 📝 Content Guidelines
+## 🎨 Component Library
 
-### For Writers
+### Base Components
 
-When editing translations in `LanguageContext.tsx`:
+All base components are located in `src/components/base/` and use a consistent API:
 
-- **Bold text:** `<strong>word</strong>`
-- **Italic text:** `<em>word</em>`
-- **Line break:** `<br>` (single) or `<br><br>` (double)
-- **Lists:** Use arrays for `toolsList`, `skillsList`, `industriesList`
+- **Button** - `variant`: primary, ghost, link
+- **Text** - `size`: lg, md, sm | `color`: default, muted
+- **Heading** - `level`: 1-6 (semantic)
+- **Link** - Auto-detects internal/external
+- **Image** - Lazy loading, aspect ratio, fallback
+- **List** - `variant`: default, unstyled, compact
+- **Section** - `variant` for different styles
+- **Container** - Max-width wrapper
 
-### For Case Studies
+**Centralized Import:**
+```typescript
+import { Text, Heading, Button, Link, Image } from '@/components/base';
+```
 
-When editing case study translations:
+See individual component README files and Storybook for detailed usage.
 
-- **Paragraphs:** Separate with `\n\n`
-- **HTML tags:** Use `<strong>` and `<em>`
-- **Complex layouts:** Use JSX content in component
+## 🔧 Import Conventions
 
-See existing case studies for examples.
+This project uses `@/` path aliases for clean imports:
+
+```typescript
+// ✅ Use @/ aliases
+import { useLanguage } from '@/contexts';
+import { Button } from '@/components/base';
+import { translations } from '@/translations';
+import imgCover from '@/assets/images/case-studies/cover.png';
+
+// ❌ Avoid deep relative paths
+import { useLanguage } from '../../../contexts';
+```
+
+**Alias mappings:**
+- `@/components/*` - Components
+- `@/contexts` - React contexts
+- `@/lib/*` - Utilities and hooks
+- `@/translations` - Translation system
+- `@/assets/*` - Images and static files
+
+## 📝 CSS Conventions
+
+See [CSS_CONVENTIONS.md](./CSS_CONVENTIONS.md) for detailed styling guidelines.
+
+**Quick Reference:**
+- CSS Modules with **camelCase** class names
+- Mobile-first responsive design
+- CSS Custom Properties for theming
+- Data attributes for component variants
+- Specificity over BEM patterns
+
+```css
+/* Component styles */
+.heroSection { }
+.projectCard { }
+
+/* Variants via data attributes */
+.button[data-variant="primary"] { }
+```
 
 ## 🎨 Customization
 
 ### Colors & Theme
 
-Edit CSS custom properties in `src/styles/` files.
+Edit CSS custom properties in:
+```
+src/styles/globals.css
+```
 
 ### Contact Information
 
-Update URLs in:
+Update URLs and constants in:
 ```
-src/config/constants.ts
+src/lib/constants.ts
 ```
 
 ### 3D Bubble Animation
 
-Customize in:
+Customize configuration in:
 ```
-src/components/ThreeCanvas.tsx
+src/components/sections/ThreeCanvas.tsx
 ```
+
+Look for the `CONFIG` object with documented parameters.
 
 ## 🚢 Deployment
 
-The site is configured for GitHub Pages deployment:
+The site is configured for GitHub Pages deployment with custom domain support:
 
 ```bash
 npm run deploy
@@ -220,24 +419,96 @@ This will:
 
 Ensure `vite.config.ts` has correct `base`:
 ```typescript
-base: '/'  // or '/repo-name/' if not using custom domain
+base: '/'  // For custom domain
+// or
+base: '/repo-name/'  // For github.io/repo-name
+```
+
+Custom domain configured via `public/CNAME`:
+```
+nlund.in
 ```
 
 ## 📦 Build Optimization
 
-The build uses manual code splitting:
+The build uses manual code splitting for optimal performance:
 
-- `three.js` - 3D graphics library
-- `react-vendor` - React core
-- `motion` - Animation library
+```javascript
+manualChunks: {
+  'three': ['three'],                              // 469KB
+  'react-vendor': ['react', 'react-dom', ...],     // 142KB
+  'motion': ['motion']                             // 56KB
+}
+```
 
-This results in better caching and faster page loads.
+**Features:**
+- Lazy-loaded route components
+- Code splitting by vendor libraries
+- Optimized for caching
+- Gzip compression ready
 
-## 🔧 Environment
+**Build output:**
+```
+build/
+├── assets/
+│   ├── mindstudio_cover-*.png
+│   ├── treez_cover-*.png
+│   ├── three-*.js              # 469KB
+│   ├── react-vendor-*.js       # 142KB
+│   ├── motion-*.js             # 56KB
+│   └── index-*.js              # Main bundle
+└── index.html
+```
 
-- **Development:** Vite dev server with HMR
-- **Production:** Optimized build with code splitting
-- **Deployment:** GitHub Pages (static hosting)
+## 🧪 Testing
+
+**Storybook Tests:**
+```bash
+npm run storybook
+```
+
+**Visual Regression (Chromatic):**
+```bash
+npm run chromatic
+```
+
+## 🔧 Development Tools
+
+- **TypeScript** - Type checking
+- **ESLint** - Code linting (implied from React setup)
+- **Vite** - Fast HMR and build
+- **Storybook** - Component development
+- **Chromatic** - Visual testing
+
+## 📖 Documentation
+
+- **[README.md](./README.md)** - This file (project overview)
+- **[CSS_CONVENTIONS.md](./CSS_CONVENTIONS.md)** - Styling guidelines
+- **[STORYBOOK_WORKFLOW.md](./STORYBOOK_WORKFLOW.md)** - Component development workflow
+- **[CLAUDE.md](./claude.md)** - AI assistant configuration and project guidelines
+- **[Icon README](./src/components/icons/README.md)** - Icon system usage
+
+## 🐛 Troubleshooting
+
+### Build Issues
+
+**Module not found errors:**
+- Verify `@/` alias is configured in `vite.config.ts`
+- Check that `tsconfig.json` has correct paths
+
+**Translation errors:**
+- Ensure all translation keys exist in both `en` and `es`
+- Check that case study names match in translation files
+
+### Development Issues
+
+**Storybook not loading:**
+- Check decorators in `.storybook/decorators.tsx`
+- Verify stories use correct import paths
+
+**Routing issues:**
+- Ensure `<BrowserRouter>` wraps app in `App.tsx`
+- Check that routes match in both English and Spanish
 
 ## 📄 License
 
@@ -246,9 +517,11 @@ Maybe some rights reserved :)
 ## 👤 Author
 
 **Nicolás Lundin**
-- Email: hola@nlund.in
-- LinkedIn: [linkedin.com/in/nicolaslundin](https://linkedin.com/in/nicolaslundin)
-- Location: Santiago, Chile
+Senior Product Designer
+
+- **Email**: hola@nlund.in
+- **LinkedIn**: [linkedin.com/in/nicolaslundin](https://linkedin.com/in/nicolaslundin)
+- **Location**: Santiago, Chile
 
 ---
 

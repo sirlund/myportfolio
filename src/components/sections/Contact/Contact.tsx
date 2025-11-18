@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
-import { useLanguage } from '../../../lib/contexts';
-import { CONTACT } from '../../../lib/constants';
-import { Section, Container, Heading, Text, BlockLink } from '../../base';
+import { useLanguage } from '@/contexts';
+import { CONTACT } from '@/lib/constants';
+import { Section, Container, Heading, Text, BlockLink } from '@/components/base';
 import styles from './Contact.module.css';
 
 export function Contact() {

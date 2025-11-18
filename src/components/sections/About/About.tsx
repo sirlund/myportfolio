@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef } from 'react';
-import { useLanguage } from '../../../lib/contexts';
-import { Section, Container, Heading, Text, List, ListItem } from '../../base';
+import { useLanguage } from '@/contexts';
+import { Section, Container, Heading, Text, List, ListItem } from '@/components/base';
 import styles from './About.module.css';
 
 export function About() {
