@@ -22,6 +22,10 @@ export const treez = {
     { label: "Year", value: "2023-2024" },
     { label: "Team", value: "4 Designers, 8 Engineers, 3 PMs" }
   ],
+  home: {
+    title: "At Treez, I strengthened the design system that supports high-volume retail workflows",
+    subtitle: "Working on the design system, I refined foundational patterns and unified the visual language that powers day-to-day retail operations across the platform.",
+  },
   overview: {
     title: "Overview",
     content: "Treez is a fast-growing B2B SaaS platform for cannabis retailers. As the product scaled across mobile and web, inconsistencies in UI, accessibility, and brand application created friction for designers, engineers, and users alike.\n\nI led the creation of a scalable, accessible, and cross-platform design system that unified visual language, increased team efficiency, and improved product quality at scale."

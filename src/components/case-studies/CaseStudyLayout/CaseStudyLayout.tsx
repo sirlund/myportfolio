@@ -3,7 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '@/contexts';
 import { useLanguage } from '@/contexts';
 import { Image } from '@/components/base';
-import { useState, useEffect } from 'react';
+import { ContentSection, RichText } from '@/components/case-studies/shared';
+import { useState, useEffect, ReactNode } from 'react';
 import styles from './CaseStudyLayout.module.css';
 
 interface ProjectDetail {
@@ -11,32 +12,23 @@ interface ProjectDetail {
   value: string;
 }
 
-interface CaseStudySection {
-  title: string;
-  content: string | React.ReactNode;
-  fullWidth?: boolean;
-}
-
 interface CaseStudyLayoutProps {
   // Hero section
   title: string;
   subtitle: string;
   heroImage: string;
-  
+
   // Project details
   details: ProjectDetail[];
-  
-  // Overview section
-  overview: {
-    title: string;
-    content: string;
-  };
-  
-  // Main sections
-  sections: CaseStudySection[];
-  
-  // Additional custom content
-  children?: React.ReactNode;
+
+  // Impact stats section (optional)
+  impactStats?: {
+    metric: string;
+    label: string;
+  }[];
+
+  // Content sections (overview, introduction, main sections, etc.)
+  children: ReactNode;
 }
 
 export function CaseStudyLayout({
@@ -44,8 +36,7 @@ export function CaseStudyLayout({
   subtitle,
   heroImage,
   details,
-  overview,
-  sections,
+  impactStats,
   children
 }: CaseStudyLayoutProps) {
   const { navigateToWork } = useNavigation();
@@ -54,7 +45,7 @@ export function CaseStudyLayout({
 
   useEffect(() => {
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -155,60 +146,35 @@ export function CaseStudyLayout({
         </div>
       </motion.div>
 
-      {/* Overview Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className={styles.overview}
-      >
-        <div className={styles.overviewContainer}>
-          <h2>{overview.title}</h2>
-          <div className={styles.overviewContent}>
-            {overview.content.split('\n\n').map((paragraph, index) => (
-              <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Main Content Sections */}
-      {sections.map((section, index) => (
-        <motion.section
-          key={section.title}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-          className={styles.section}
-        >
-          <div className={`${styles.sectionContainer} ${section.fullWidth ? styles.sectionContainerFull : ''}`}>
-            <h2>{section.title}</h2>
-            <div className={styles.sectionContent}>
-              {typeof section.content === 'string' ? (
-                <div className={styles.sectionText}>
-                  {section.content.split('\n\n').map((paragraph, pIndex) => (
-                    <p key={pIndex} dangerouslySetInnerHTML={{ __html: paragraph }}></p>
-                  ))}
-                </div>
-              ) : (
-                section.content
-              )}
-            </div>
-          </div>
-        </motion.section>
-      ))}
-
-      {/* Custom Children Content */}
-      {children && (
+      {/* Impact Stats Section (optional) */}
+      {impactStats && impactStats.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className={styles.customContent}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className={styles.impactStats}
         >
-          {children}
+          <div className={styles.impactStatsContainer}>
+            <div className={styles.impactStatsGrid}>
+              {impactStats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                  className={styles.impactStatItem}
+                >
+                  <div className={styles.impactMetric}>{stat.metric}</div>
+                  <div className={styles.impactLabel}>{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       )}
+
+      {/* Content Sections (via children) */}
+      {children}
 
       {/* Bottom Spacing */}
       <div className={styles.bottomSpacing} />

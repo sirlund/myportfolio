@@ -1,0 +1,137 @@
+/* ============================================
+   Process Overview Timeline
+   ============================================ */
+
+.container {
+  background-color: var(--muted);
+  padding: calc(var(--spacing, 0.25rem) * 12);
+  border-radius: calc(var(--spacing, 0.25rem) * 4);
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+
+  @media (width >= 64rem) {
+    padding: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.title {
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 10);
+  color: var(--foreground);
+  text-align: center;
+
+  @media (width >= 64rem) {
+    font-size: var(--text-xl, 1.25rem);
+  }
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 8);
+  position: relative;
+
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0;
+  }
+}
+
+.phase {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @media (width >= 64rem) {
+    flex: 1;
+  }
+}
+
+.milestone {
+  display: flex;
+  align-items: center;
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  position: relative;
+  z-index: 2;
+
+  @media (width >= 64rem) {
+    justify-content: flex-start;
+  }
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--foreground);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--foreground);
+}
+
+.connector {
+  display: none;
+
+  @media (width >= 64rem) {
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    right: -50%;
+    height: 2px;
+    background-color: var(--foreground);
+    z-index: 1;
+  }
+}
+
+.phaseContent {
+  flex: 1;
+}
+
+.phaseTitle {
+  margin: 0 0 calc(var(--spacing, 0.25rem) * 3);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  @media (width >= 64rem) {
+    font-size: var(--text-base, 1rem);
+  }
+}
+
+.phaseItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing, 0.25rem) * 2);
+}
+
+.phaseItems li {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  position: relative;
+  padding-left: calc(var(--spacing, 0.25rem) * 4);
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--foreground);
+  }
+}
+
+.bottomLabel {
+  margin-top: calc(var(--spacing, 0.25rem) * 10);
+  padding-top: calc(var(--spacing, 0.25rem) * 6);
+  border-top: 1px dotted var(--border);
+  text-align: left;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: var(--font-weight-medium, 500);
+}

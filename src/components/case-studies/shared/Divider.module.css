@@ -1,0 +1,31 @@
+/* ============================================
+   Divider
+   ============================================ */
+
+.divider {
+  margin: 0 auto;
+  margin-top: calc(var(--spacing, 0.25rem) * 16);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 16);
+  max-width: 64rem; /* 1024px */
+
+  @media (width >= 64rem) {
+    margin-top: calc(var(--spacing, 0.25rem) * 24);
+    margin-bottom: calc(var(--spacing, 0.25rem) * 24);
+  }
+}
+
+.divider.large {
+  margin-top: calc(var(--spacing, 0.25rem) * 24);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 24);
+
+  @media (width >= 64rem) {
+    margin-top: calc(var(--spacing, 0.25rem) * 32);
+    margin-bottom: calc(var(--spacing, 0.25rem) * 32);
+  }
+}
+
+.line {
+  border: none;
+  border-top: 1px solid var(--border);
+  opacity: 0.25;
+}

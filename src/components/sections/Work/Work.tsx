@@ -5,17 +5,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts";
 import { Icon } from "@/components/icons";
 import { Heading, Text, Button, Image } from "@/components/base";
+import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgMindstudio from "@/assets/images/case-studies/mindstudio_cover.png";
 import imgTreez from "@/assets/images/case-studies/treez_cover.png";
 import styles from './Work.module.css';
 
-const projects = [
+const baseProjects = [
   {
     id: 1,
-    title:
-      "At Mindstudio, I transformed design complexity into a systematic approach that facilitated the scaling of AI-driven applications.",
-    description:
-      "As the lead designer at MindSet DS, I developed a robust design system from inception, ensuring alignment between design and development, implementing dark mode theming, and optimizing the design, deployment, and evolution of AI-powered tools.",
     className: styles.projectMindstudio,
     icon: <Icon name="mindstudio" className={styles.mindstudioIcon} />,
     image: imgMindstudio,
@@ -35,10 +32,6 @@ const projects = [
   // },
   {
     id: 3,
-    title:
-      "At Treez, I developed a design system that ensured consistent product quality across platforms",
-    description:
-      "As the Design System Lead, I spearheaded the development of Root DS — a scalable and accessible system that effectively addressed years of design debt, enhancing consistency, clarity, and efficiency.",
     className: styles.projectTreez,
     icon: <Icon name="treez" className={styles.treezIcon} />,
     image: imgTreez,
@@ -74,10 +67,27 @@ export function Work() {
   const navigate = useNavigate();
   const location = useLocation();
   const { language, t } = useLanguage();
+  const mindstudioTranslation = useCaseStudyTranslation('mindstudio');
+  const treezTranslation = useCaseStudyTranslation('treez');
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
     margin: "-100px",
+  });
+
+  const translationMap = {
+    mindstudio: mindstudioTranslation,
+    treez: treezTranslation,
+  } as const;
+
+  const projects = baseProjects.map((project) => {
+    const translation = translationMap[project.route];
+
+    return {
+      ...project,
+      title: translation?.home?.title ?? '',
+      description: translation?.home?.subtitle ?? '',
+    };
   });
 
   const navigateToProject = (projectRoute: string) => {

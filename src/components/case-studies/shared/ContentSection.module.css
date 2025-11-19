@@ -1,0 +1,118 @@
+/* ============================================
+   ContentSection - Base Layout
+   ============================================ */
+
+.section {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 32);
+
+  @media (width >= 64rem) {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 48);
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--spacing, 0.25rem) * 6);
+  padding-right: calc(var(--spacing, 0.25rem) * 6);
+  max-width: 64rem; /* 1024px */
+
+  @media (width >= 64rem) {
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
+}
+
+/* Wide variant for grids/layouts */
+.section.wide .container {
+  max-width: var(--container-6xl, 72rem);
+}
+
+/* ============================================
+   Header (Label + Title)
+   ============================================ */
+
+.header {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+
+  @media (width >= 64rem) {
+    margin-bottom: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.header.centered {
+  text-align: center;
+}
+
+.label {
+  display: block;
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-3xl, 2.441rem);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.2;
+
+  @media (width >= 64rem) {
+    font-size: var(--text-5xl, 3rem);
+  }
+}
+
+.titleSmall {
+  font-size: var(--text-2xl, 1.953rem);
+
+  @media (width >= 64rem) {
+    font-size: var(--text-3xl, 2.441rem);
+  }
+}
+
+/* ============================================
+   Content Area
+   ============================================ */
+
+.content {
+  color: var(--muted-foreground);
+  line-height: var(--leading-relaxed, 1.625);
+
+  /* Typography for direct text content */
+  & > p {
+    font-size: var(--text-lg, 1.25rem);
+    margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Lists (direct children and inside divs from RichText) */
+  & > ul,
+  & > ol,
+  & > div > ul,
+  & > div > ol {
+    font-size: var(--text-lg, 1.25rem);
+    margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+
+    & li {
+      margin-bottom: calc(var(--spacing, 0.25rem) * 3);
+      font-size: var(--text-lg, 1.25rem);
+    }
+  }
+
+  /* Emphasis */
+  & strong {
+    color: var(--foreground);
+    font-weight: var(--font-weight-bold, 700);
+  }
+
+  & em {
+    font-style: italic;
+  }
+}

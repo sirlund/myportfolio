@@ -1,0 +1,204 @@
+/* ============================================
+   Two Column Layout (Challenge | Solution)
+   ============================================ */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 12);
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+
+  @media (width >= 64rem) {
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.columnTitle {
+  font-size: var(--text-xl, 1.25rem);
+  font-weight: var(--font-weight-bold, 700);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  color: var(--foreground);
+}
+
+.columnContent {
+  font-size: var(--text-base, 1rem);
+  line-height: var(--leading-relaxed, 1.625);
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Card Grid (for Hypotheses, Concepts)
+   ============================================ */
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 6);
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+
+  @media (width >= 40rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width >= 64rem) {
+    gap: calc(var(--spacing, 0.25rem) * 8);
+  }
+}
+
+.card {
+  background-color: var(--muted);
+  padding: calc(var(--spacing, 0.25rem) * 8);
+  border-radius: calc(var(--spacing, 0.25rem) * 4);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.cardIcon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  color: var(--foreground);
+}
+
+.cardTitle {
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: var(--font-weight-bold, 700);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 3);
+  color: var(--foreground);
+}
+
+.cardDescription {
+  font-size: var(--text-base, 1rem);
+  line-height: var(--leading-relaxed, 1.625);
+  color: var(--muted-foreground);
+}
+
+/* ============================================
+   Diagram Container
+   ============================================ */
+.diagramContainer {
+  background-color: var(--muted);
+  padding: calc(var(--spacing, 0.25rem) * 12);
+  border-radius: calc(var(--spacing, 0.25rem) * 4);
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+  text-align: center;
+
+  @media (width >= 64rem) {
+    padding: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.diagramTitle {
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+  color: var(--foreground);
+}
+
+/* ============================================
+   Three Column Layout (for concepts)
+   ============================================ */
+.threeColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 8);
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width >= 80rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   Content + Image Side by Side (Toan-style)
+   ============================================ */
+.contentImageLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 12);
+  align-items: center;
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+
+  @media (width >= 64rem) {
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.contentImageLayout.reverse {
+  @media (width >= 64rem) {
+    & .contentSide {
+      order: 2;
+    }
+
+    & .imageSide {
+      order: 1;
+    }
+  }
+}
+
+.contentSide {
+  /* Content inherits styles from parent ContentSection */
+}
+
+.imageSide {
+  /* Image wrapper */
+}
+
+/* ============================================
+   Process Timeline (Title + Description)
+   ============================================ */
+.processTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing, 0.25rem) * 12);
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+}
+
+.processStep {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 6);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 12);
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  @media (width >= 64rem) {
+    grid-template-columns: 1fr 2fr;
+    gap: calc(var(--spacing, 0.25rem) * 12);
+  }
+}
+
+.processStepTitle {
+  & h4 {
+    margin: 0;
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--foreground);
+    line-height: 1.4;
+
+    @media (width >= 64rem) {
+      font-size: var(--text-2xl, 1.5rem);
+    }
+  }
+}
+
+.processStepDescription {
+  font-size: var(--text-base, 1rem);
+  line-height: var(--leading-relaxed, 1.625);
+  color: var(--muted-foreground);
+
+  @media (width >= 64rem) {
+    font-size: var(--text-lg, 1.125rem);
+  }
+}

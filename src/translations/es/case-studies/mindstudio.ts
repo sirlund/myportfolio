@@ -14,70 +14,176 @@
  */
 
 export const mindstudio = {
-  title: "Plataforma de IA MindStudio",
-  subtitle: "Construyendo un sistema de diseño integral para escalar aplicaciones impulsadas por IA desde el caos hasta la excelencia sistemática.",
-  details: [
-    { label: "Rol", value: "Diseñador Principal" },
-    { label: "Duración", value: "8 meses" },
-    { label: "Año", value: "2024" },
-    { label: "Equipo", value: "2 Diseñadores, 4 Ingenieros, 1 PM" }
+  title: "Mindstudio Design System",
+  subtitle: "De caos a claridad en una plataforma no-code de IA",
+  impactStats: [
+    { metric: "80%", label: "Menos duplicación en Figma" },
+    { metric: "40%", label: "Handoff más rápido" },
+    { metric: "25%", label: "Menos tickets de QA visual" },
+    { metric: "10", label: "Meses de proyecto" },
+    { metric: "100%", label: "Dark mode sistematizado" }
   ],
+  details: [
+    { label: "Rol", value: "Consultor externo → Equipo Core" },
+    { label: "Duración", value: "10 meses" },
+    { label: "Año", value: "2024-2025" },
+    { label: "Equipo", value: "2 Diseñadores, 4 Ingenieros, 1 Head of Product" }
+  ],
+
   overview: {
-    title: "Descripción del Proyecto",
-    content: "En Mindstudio, transformé la complejidad del diseño en un enfoque sistemático que facilitó la escalabilidad de aplicaciones impulsadas por IA. Como diseñador principal en MindSet DS, desarrollé un sistema de diseño robusto desde su inicio.\n\nEl desafío fue inmenso: crear orden a partir del caos de herramientas de IA en rápido desarrollo, asegurando escalabilidad, consistencia y una experiencia de usuario excepcional en más de 20 aplicaciones diferentes impulsadas por IA."
+    title: "Contexto",
+    content:
+      "Mindstudio es una plataforma no-code que permite crear y publicar agentes y aplicaciones de IA usando los modelos y funcionalidades más avanzadas del mercado. Está diseñada para usuarios sin experiencia técnica, pero también ofrece herramientas potentes como funciones personalizadas e integraciones vía API.\n\n" +
+      "Cuando llegué, el producto ya era sorprendentemente robusto: los usuarios podían crear drafts, versionarlos, publicarlos y compartirlos. Pero detrás de esa potencia había un problema: <strong>entender la plataforma requería tutoriales y workshops en YouTube</strong>. La curva de aprendizaje era demasiado alta.\n\n" +
+      "En diseño no existía una base sólida. Ninguna pantalla en Figma era realmente confiable:\n\n" +
+      "<ul>\n" +
+      "<li>No existía una fuente de la verdad</li>\n" +
+      "<li>Los componentes eran frames detachados distribuidos por todos lados</li>\n" +
+      "<li>Era imposible saber qué estaba en producción, qué era exploración o qué estaba deprecado</li>\n" +
+      "<li>No había design tokens: solo valores sueltos</li>\n" +
+      "</ul>\n\n" +
+      "El equipo de producto (2 diseñadores + Head of Product) me contactó para ordenar el caos y crear un diseño sistematizado basado en lo que estaba realmente en producción."
   },
+
   sections: {
     challenge: {
-      title: "El Desafío",
-      content: "La complejidad de las aplicaciones impulsadas por IA creó inconsistencias en la plataforma, dificultando escalar y mantener la calidad del diseño a medida que se desarrollaban rápidamente nuevas funcionalidades. El proceso de diseño existente estaba fragmentado, lo que llevaba a esfuerzos duplicados y experiencias de usuario deficientes en diferentes herramientas de IA.\n\nLos equipos pasaban más tiempo reinventando soluciones de diseño que enfocándose en la innovación de IA. Cada equipo de producto tenía su propia interpretación de componentes, creando un ecosistema desarticulado que confundía a los usuarios y ralentizaba los ciclos de desarrollo."
-    },
-    architecture: {
-      title: "Arquitectura del Sistema de Diseño",
-      foundationLayer: {
-        title: "Capa de Fundación",
-        items: [
-          "Tokens de diseño para colores, tipografía y espaciado",
-          "Sistemas de cuadrícula y principios de diseño",
-          "Directrices y estándares de accesibilidad",
-          "Biblioteca de iconos y estilo de ilustración"
+      label: "01. El problema",
+      title: "Un producto que funciona pero difícil de mantener",
+      intro: "Aunque la UX estaba relativamente bien gracias a ingeniería, el diseño interno contaba otra historia:",
+      twoColumn: {
+        columns: [
+          {
+            title: "El desafío",
+            content:
+              "<strong>No había una verdad única</strong><br/>Figma estaba lleno de versiones, duplicados y componentes sueltos.<br/><br/>" +
+              "<strong>Deuda técnica silenciosa</strong><br/>Ingeniería lanzaba features a una velocidad altísima, fragmentando la UI con el tiempo."
+          },
+          {
+            title: "El impacto",
+            content:
+              "<strong>Curva de aprendizaje muy alta</strong><br/>El producto dependía demasiado de tutoriales y videos de YouTube.<br/><br/>" +
+              "<strong>Falta de organización</strong><br/>Nadie sabía dónde mirar ni cuál archivo era confiable."
+          }
         ]
-      },
-      componentLayer: {
-        title: "Capa de Componentes",
-        items: [
-          "Implementación de metodología de diseño atómico",
-          "Más de 50 componentes UI reutilizables",
-          "Componentes específicos de IA para visualización de datos",
-          "Patrones interactivos para interfaces de aprendizaje automático"
-        ]
-      },
-      imageAlt: "Tokens de diseño y sistema de colores",
-      imageCaption: "Implementación de tokens de diseño y sistema de colores para modos oscuro y claro"
+      }
     },
-    implementation: {
-      title: "Estrategia de Implementación",
-      content: "Como diseñador principal en MindSet DS, desarrollé un sistema de diseño robusto desde su inicio, asegurando la alineación entre diseño y desarrollo, implementando temas de modo oscuro y optimizando el diseño, despliegue y evolución de herramientas impulsadas por IA.\n\nLa implementación se centró en tres principios fundamentales: escalabilidad, accesibilidad y experiencia del desarrollador. Comenzamos con los componentes más críticos y expandimos gradualmente el sistema basándonos en patrones de uso reales y retroalimentación del equipo."
+    objectives: {
+      label: "02. Objetivos",
+      title: "Construir una base sólida, escalable y coherente",
+      intro: "Construir una base sólida, escalable y coherente que redujera fricción y mejorara la colaboración entre diseño e ingeniería.",
+      cards: [
+        {
+          title: "Coherencia Visual",
+          description: "Establecer una única fuente de la verdad que unificara el lenguaje visual en toda la plataforma."
+        },
+        {
+          title: "Dark Mode Sistemático",
+          description: "Implementar tokens semánticos para soportar modo oscuro de forma consistente y escalable."
+        },
+        {
+          title: "Sistema Mantenible",
+          description: "Crear una estructura que el equipo pudiera mantener y evolucionar sin caos acumulativo."
+        },
+        {
+          title: "Flujo Optimizado",
+          description: "Reducir fricción en el handoff diseño → desarrollo para acelerar la entrega de features."
+        }
+      ]
     },
-    features: {
-      title: "Características Clave del Sistema",
-      darkMode: {
-        title: "Implementación de Modo Oscuro",
-        description: "Implementé un sistema integral de modo oscuro que adapta automáticamente todos los componentes y mantiene estándares de accesibilidad. Esto incluyó crear tokens de color semánticos que funcionan en temas claros y oscuros mientras se preservan las relaciones de contraste."
+    process: {
+      label: "03. El Proceso",
+      title: "De auditoría a implementación en 7 pasos",
+      overview: {
+        phases: [
+          {
+            title: "Auditoría",
+            items: ["Revisión de producción", "Patrones existentes", "Decisiones técnicas"]
+          },
+          {
+            title: "Estrategia",
+            items: ["Definición de tokens", "Estructura base", "Roadmap"]
+          },
+          {
+            title: "Componentes",
+            items: ["Diseño en Figma", "Documentación", "Variantes"]
+          },
+          {
+            title: "Implementación",
+            items: ["Código", "Testing", "QA visual"]
+          },
+          {
+            title: "Handoff",
+            items: ["Alineación con dev", "Entrega", "Feedback"]
+          }
+        ],
+        bottomLabel: "Colaboración continua con stakeholders"
       },
-      aiComponents: {
-        title: "Componentes Específicos de IA",
-        description: "Desarrollé componentes especializados para interfaces de IA, incluyendo widgets de visualización de datos, indicadores de rendimiento de modelos y displays interactivos de datos de entrenamiento. Estos componentes estandarizaron cómo se presenta la información compleja de IA en toda la plataforma."
-      },
-      documentation: {
-        title: "Documentación y Adopción",
-        description: "Creé documentación integral incluyendo guías de uso, ejemplos de código y principios de diseño. Establecí un modelo de gobernanza para la evolución del sistema de diseño y capacité a los equipos de desarrollo en mejores prácticas de implementación."
-      },
-      imageAlt: "Muestra de biblioteca de componentes",
-      imageCaption: "Biblioteca de componentes mostrando metodología de diseño atómico"
+      steps: [
+        {
+          title: "<strong>1.</strong> Auditoría",
+          description: "Revisé producción, exploraciones, patrones sueltos y decisiones acumuladas. Priorizamos qué mantener y qué descartar."
+        },
+        {
+          title: "<strong>2.</strong> Estrategia pragmática",
+          description: "Consolidar lo que ya funcionaba en producción y convertirlo en la nueva base del sistema. Nada de reinventar por reinventar."
+        },
+        {
+          title: "<strong>3.</strong> Tokens",
+          description: "Como no existían, definí una estructura clara: <em>Primitivos</em> (valores fuente), <em>Semánticos</em> (intención → UI), y <em>Tokens de componentes</em> (plan a futuro). Esto permitió lograr paridad entre Figma y código."
+        },
+        {
+          title: "<strong>4.</strong> Componentes base",
+          description: "Diseñé y construí: botones, inputs, chips, alerts, navegación, layouts, etc. Todo orientado a estabilidad, claridad y escalabilidad."
+        },
+        {
+          title: "<strong>5.</strong> Mejoras al editor",
+          description: "Revisamos arquitectura, jerarquías y flujos, bajando la complejidad visual."
+        },
+        {
+          title: "<strong>6.</strong> Documentación",
+          description: "Una librería limpia, estructurada y mantenible."
+        },
+        {
+          title: "<strong>7.</strong> Handoff diseño ↔ dev",
+          description: "Aunque ingeniería participó, el liderazgo fue desde diseño. El equipo recibió los cambios con alivio: el caos también les afectaba."
+        }
+      ]
     },
     results: {
-      title: "Resultados e Impacto",
-      content: "La transformación del sistema de diseño entregó resultados medibles que superaron las expectativas. El tiempo de traspaso de diseño a desarrollo se redujo en un 60%, mientras que establecer consistencia en más de 20 herramientas de IA permitió iteraciones de producto más rápidas y mejoró significativamente la experiencia del usuario.\n\nEl sistema se convirtió en la base para todo el desarrollo de nuevos productos, con equipos reportando una entrega de funcionalidades 40% más rápida y una reducción del 75% en errores relacionados con el diseño. Lo más importante, las puntuaciones de satisfacción del usuario aumentaron en un 35% ya que la experiencia consistente redujo la confusión y la carga cognitiva."
+      label: "04. Resultados",
+      title: "Impacto medible desde el primer mes",
+      content:
+        "Los beneficios se sintieron desde el primer mes.\n\n" +
+        "<strong>Impacto cuantitativo:</strong>\n" +
+        "<ul>\n" +
+        "<li>🔁 <strong>80% menos duplicación en Figma</strong></li>\n" +
+        "<li>⏱ <strong>40% más rápido el handoff</strong></li>\n" +
+        "<li>🧩 <strong>Dark mode sistematizado con paridad Figma-código</strong></li>\n" +
+        "<li>🐞 <strong>25% menos tickets de QA visual (3 sprints)</strong></li>\n" +
+        "<li>🎓 <strong>Onboarding más rápido para nuevos diseñadores y PMs</strong></li>\n" +
+        "<li>🤝 <strong>Colaboración más fluida entre diseño, producto e ingeniería</strong></li>\n" +
+        "</ul>\n\n" +
+        "<em>\"Ahora no estamos adivinando — estamos construyendo sobre terreno firme.\"</em>"
+    },
+    reflection: {
+      label: "05. Reflexión",
+      title: "Pragmatismo sobre perfeccionismo",
+      content:
+        "Construir un sistema en un entorno que se mueve tan rápido requiere pragmatismo: consolidar primero, estabilizar después, y recién ahí pensar en el futuro.\n\n" +
+        "Este proyecto devolvió claridad al equipo y creó una base sólida para escalar la plataforma."
+    },
+    role: {
+      label: "06. Mi rol",
+      title: "De consultor externo a equipo core",
+      content: "Comencé como <strong>consultor externo</strong> para crear la primera versión del Design System. Luego pasé a ser parte del <strong>equipo core</strong> durante 5 meses para implementar features y evolucionar el sistema.\n\n" +
+        "<ul>\n" +
+        "<li>Lideré la creación completa del DS</li>\n" +
+        "<li>Definí tokens, estructura y componentes</li>\n" +
+        "<li>Ayudé a decidir qué se mantenía y qué se descartaba</li>\n" +
+        "<li>Mi perspectiva externa ayudó al equipo a reenfocarse</li>\n" +
+        "<li>Documenté y facilité el trabajo con ingeniería</li>\n" +
+        "<li>Ajusté partes del producto directamente</li>\n" +
+        "</ul>"
     }
   }
 };
