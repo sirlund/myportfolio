@@ -16,6 +16,10 @@
 export const mindstudio = {
   title: "Mindstudio Design System",
   subtitle: "De caos a claridad en una plataforma no-code de IA",
+  home: {
+    title: "En Mindstudio, el diseño pasó del caos a la claridad",
+    subtitle: "Como líder detrás de MindSet DS, construí el design system desde cero — creando la alineación, estructura y lógica visual que ahora impulsa cómo se diseñan, tematizan y despliegan las herramientas de IA"
+  },
   impactStats: [
     { metric: "80%", label: "Menos duplicación en Figma" },
     { metric: "40%", label: "Handoff más rápido" },

@@ -19,7 +19,7 @@ export const treez = {
   details: [
     { label: "Role", value: "Design System Lead" },
     { label: "Duration", value: "12 months" },
-    { label: "Year", value: "2023-2024" },
+    { label: "Year", value: "2024" },
     { label: "Team", value: "4 Designers, 8 Engineers, 3 PMs" }
   ],
   home: {

@@ -16,6 +16,10 @@
 export const treez = {
   title: "Introduciendo: Root Design System",
   subtitle: "Un sistema de diseño escalable, accesible y multiplataforma que unificó el lenguaje visual, aumentó la eficiencia del equipo y mejoró la calidad del producto a escala.",
+  home: {
+    title: "En Treez, fortalecí el design system que soporta flujos de retail de alto volumen",
+    subtitle: "Trabajando en el design system, refiné patrones fundamentales y unifiqué el lenguaje visual que impulsa las operaciones diarias de retail en toda la plataforma."
+  },
   details: [
     { label: "Rol", value: "Design System Lead" },
     { label: "Duración", value: "12 meses" },

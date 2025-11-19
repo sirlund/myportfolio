@@ -30,7 +30,7 @@ export const mindstudio = {
   details: [
     { label: "Role", value: "External Consultant → Core Team" },
     { label: "Duration", value: "10 months" },
-    { label: "Year", value: "2024-2025" },
+    { label: "Year", value: "2025" },
     { label: "Team", value: "2 Designers, 4 Engineers, 1 Head of Product" }
   ],
 

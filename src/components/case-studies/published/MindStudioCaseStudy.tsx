@@ -133,7 +133,16 @@ export function MindStudioCaseStudy() {
         title={t.sections.role.title}
         centered
       >
-        <RichText content={t.sections.role.content} />
+        <ContentImageLayout
+          content={<RichText content={t.sections.role.content} />}
+          image={
+            <ImagePlaceholder
+              aspectRatio="4/3"
+              label="Team collaboration"
+              caption="Colaboración con el equipo de producto"
+            />
+          }
+        />
       </ContentSection>
     </CaseStudyLayout>
   );

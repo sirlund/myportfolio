@@ -92,17 +92,13 @@
   }
 
   /* Lists (direct children and inside divs from RichText) */
-  & > ul,
-  & > ol,
-  & > div > ul,
-  & > div > ol {
-    font-size: var(--text-lg, 1.25rem);
-    margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+  & ul,
+  & ol {
+    margin: calc(var(--spacing, 0.25rem) * 6) 0;
     padding-left: calc(var(--spacing, 0.25rem) * 8);
 
     & li {
       margin-bottom: calc(var(--spacing, 0.25rem) * 3);
-      font-size: var(--text-lg, 1.25rem);
     }
   }
 
