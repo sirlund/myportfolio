@@ -1,0 +1,32 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--spacing, 0.25rem) * 12);
+  align-items: center;
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+
+  @media (width >= 64rem) {
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.layout.reverse {
+  @media (width >= 64rem) {
+    & .contentSide {
+      order: 2;
+    }
+
+    & .imageSide {
+      order: 1;
+    }
+  }
+}
+
+.contentSide {
+  /* Content inherits styles from parent */
+}
+
+.imageSide {
+  /* Image wrapper */
+}

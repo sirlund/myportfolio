@@ -1,4 +1,4 @@
-import { CaseStudyLayout } from '@/components/case-studies/CaseStudyLayout';
+import { CaseStudyLayout } from '@/components/case-studies';
 
 export function KlareCaseStudy() {
   return (

@@ -1,7 +1,6 @@
-import { CaseStudyLayout } from '@/components/case-studies/CaseStudyLayout';
+import { CaseStudyLayout } from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgTreez from '@/assets/images/case-studies/treez_cover.png';
-import styles from '../shared/CaseStudyContent.module.css';
 
 export function TreezCaseStudy() {
   const t = useCaseStudyTranslation('treez');

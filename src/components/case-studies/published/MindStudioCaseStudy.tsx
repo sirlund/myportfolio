@@ -1,5 +1,5 @@
-import { CaseStudyLayout } from '@/components/case-studies/CaseStudyLayout';
 import {
+  CaseStudyLayout,
   ContentSection,
   RichText,
   TwoColumnLayout,
@@ -10,7 +10,7 @@ import {
   ContentImageLayout,
   TokenPyramid,
   ProcessOverview
-} from '@/components/case-studies/shared';
+} from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgMindstudio from '@/assets/images/case-studies/mindstudio_cover.png';
 import { Target, Layers, GitBranch, Zap } from 'lucide-react';
