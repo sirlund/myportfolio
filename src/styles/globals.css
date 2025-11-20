@@ -1,8 +1,11 @@
 :root {
-  --font-size: 16px;
-  --font-family: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* ==========================================
+     LEGACY TOKENS (mapped to new system)
+     Remove these as components are updated
+     ========================================== */
 
-  /* Legacy semantic tokens - mapped to new system */
+  /* Legacy font-family alias */
+  --font-family: var(--font-family-primary);
   --font-hero-title: var(--font-display);
   --font-hero-subtitle: var(--font-body);
   --font-section-title: var(--font-h1);
@@ -11,102 +14,44 @@
   --font-text-sm: var(--font-small);
   --font-nav-overlay: clamp(2.5rem, 10vw, 4rem);
 
-  --background: #ffffff;
-  --foreground: var(--gray-900);
-  --card: #ffffff;
-  --card-foreground: var(--gray-900);
-  --popover: #ffffff;
-  --popover-foreground: var(--gray-900);
-  --primary: var(--gray-900);
-  --primary-foreground: #ffffff;
-  --secondary: var(--gray-100);
-  --secondary-foreground: var(--gray-900);
-  --muted: var(--gray-200);
-  --muted-foreground: var(--gray-500);
-  --accent: var(--gray-200);
-  --accent-foreground: var(--gray-900);
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.5);
+  /* Legacy color tokens - use semantic tokens instead */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
+  --muted: var(--color-bg-tertiary);
+  --muted-foreground: var(--color-text-secondary);
+  --primary: var(--color-interactive-primary);
+  --primary-foreground: var(--color-text-inverse);
+  --secondary: var(--color-bg-secondary);
+  --secondary-foreground: var(--color-text-primary);
+  --accent: var(--color-bg-tertiary);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-text-inverse);
+  --border: var(--color-border-default);
   --input: transparent;
-  --input-background: var(--gray-100);
-  --switch-background: var(--gray-300);
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --font-weight-bold: 700;
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --input-background: var(--color-bg-secondary);
+  --ring: var(--color-ring);
   --radius: var(--radius-lg);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --font-weight-bold: 700;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border-color: var(--border);
-  outline-color: var(--ring);
+  border-color: var(--color-border-default);
+  outline-color: var(--color-ring);
 }
 
 @supports (color: color-mix(in lab, red, red)) {
   * {
-    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+    outline-color: color-mix(in oklab, var(--color-ring) 50%, transparent);
   }
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-family);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -177,6 +122,7 @@ label {
 }
 
 button {
+  font-family: inherit;
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   line-height: 1.6;
@@ -184,6 +130,7 @@ button {
 }
 
 input {
+  font-family: inherit;
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   line-height: 1.6;
@@ -198,8 +145,8 @@ li {
 }
 
 html {
-  font-size: var(--font-size);
-  font-family: var(--font-family);
+  font-size: 16px;
+  font-family: var(--font-family-primary);
 }
 
 /* Responsive typography breakpoints */

@@ -9,22 +9,22 @@
 
   /* Size Variants */
   &[data-size="lg"] {
-    font-size: var(--font-text-lg);
+    font-size: var(--font-lg);
   }
 
   &[data-size="md"] {
-    font-size: var(--font-text-md);
+    font-size: var(--font-md);
   }
 
   &[data-size="sm"] {
-    font-size: var(--font-text-sm);
+    font-size: var(--font-sm);
   }
 
   /* Color Variants */
   &[data-color="secondary"] {
-    color: var(--secondary-foreground);
+    color: var(--color-text-secondary);
   }
   &[data-color="muted"] {
-    color: var(--muted-foreground);
+    color: var(--color-text-tertiary);
   }
 }

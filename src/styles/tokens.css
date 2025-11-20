@@ -11,6 +11,16 @@
      LEVEL 1: PRIMITIVES
      ========================================== */
 
+  /* Font Families */
+  --font-family-primary: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-secondary: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
   /* Gray Scale */
   --gray-100: #f7f7f8;
   --gray-200: #ececf0;
@@ -154,13 +164,50 @@
   --font-h3: var(--text-xl);              /* Card titles, etc */
 
   /* Body Text */
-  --font-body-lg: var(--text-xl);         /* Large body (20px) - primary content */
-  --font-body: var(--text-lg);            /* Default body (18px) - standard content */
+  --font-lg: var(--text-xl);         /* Large body (20px) - primary content */
+  --font-md: var(--text-lg);            /* Default body (18px) - standard content */
+  --font-sm: var(--text-base);         /* Small body (16px) - standard content, 16px - header, footer, contact links */
 
   /* Small/UI Text */
-  --font-small: var(--text-base);         /* 16px - header, footer, contact links */
   --font-caption: var(--text-sm);         /* 14px - captions, labels */
   --font-micro: var(--text-xs);           /* 12px - rare, badges */
+
+  /* ==========================================
+     LEVEL 2: SEMANTIC COLORS
+     ========================================== */
+
+  /* Text Colors */
+  --color-text-primary: var(--gray-900);      /* Main text */
+  --color-text-secondary: color-mix(in oklch, var(--gray-900) 80%, transparent);    /* Muted/description text */
+  --color-text-tertiary: color-mix(in oklch, var(--gray-900) 60%, transparent);     /* Disabled, placeholders */
+  --color-text-inverse: white;                /* Text on dark backgrounds */
+
+  /* Background Colors */
+  --color-bg-primary: white;                  /* Main background */
+  --color-bg-secondary: var(--gray-100);      /* Cards, inputs */
+  --color-bg-tertiary: var(--gray-200);       /* Hover states, accents */
+  --color-bg-inverse: var(--gray-900);        /* Dark sections */
+
+  /* Border Colors */
+  --color-border-default: var(--gray-300);
+  --color-border-subtle: var(--gray-200);
+  --color-border-strong: var(--gray-900);
+
+  /* Interactive Colors */
+  --color-interactive-primary: var(--gray-900);
+  --color-interactive-primary-hover: var(--gray-800);
+  --color-interactive-secondary: var(--gray-100);
+  --color-interactive-secondary-hover: var(--gray-200);
+
+  /* Status Colors */
+  --color-error: var(--red-500);
+  --color-error-light: var(--red-100);
+  --color-success: var(--green-600);
+  --color-success-light: var(--green-100);
+
+  /* Focus/Ring */
+  --color-ring: var(--gray-400);
+  --color-ring-offset: white;
 
   /* ==========================================
      LEVEL 3: PROJECT-SPECIFIC TOKENS
@@ -176,7 +223,7 @@
   /* Treez (light bg - inverted) */
   --treez-section-bg: var(--green-100);
   --treez-section-text: var(--gray-900);
-  --treez-section-text-muted: var(--gray-500);
+  --treez-section-text-muted: color-mix(in oklch, var(--gray-900) 70%, transparent);
   --treez-section-button-bg: var(--green-600);
   --treez-section-button-text: white;
 
