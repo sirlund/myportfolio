@@ -26,9 +26,9 @@ export function About() {
           <Heading level={2}>{t('about.title')}</Heading>
 
           <div className={styles.content}>
-            <Text size="lg" color="muted">{t('about.description1') as string}</Text>
-            <Text size="lg" color="muted">{t('about.description2') as string}</Text>
-            <Text size="lg" color="muted">{t('about.description3') as string}</Text>
+            <Text size="md">{t('about.description1') as string}</Text>
+            <Text size="md" color="secondary">{t('about.description2') as string}</Text>
+            <Text size="md" color="muted">{t('about.description3') as string}</Text>
           </div>
 
           <motion.div

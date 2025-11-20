@@ -21,6 +21,9 @@
   }
 
   /* Color Variants */
+  &[data-color="secondary"] {
+    color: var(--secondary-foreground);
+  }
   &[data-color="muted"] {
     color: var(--muted-foreground);
   }

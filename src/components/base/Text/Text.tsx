@@ -17,7 +17,7 @@ import styles from './Text.module.css';
 export interface TextProps extends HTMLAttributes<HTMLElement> {
   children: string | ReactNode;
   size?: 'lg' | 'md' | 'sm';
-  color?: 'default' | 'muted';
+  color?: 'primary' | 'secondary' | 'muted';
   as?: 'p' | 'div' | 'span';
   className?: string;
 }
@@ -25,7 +25,7 @@ export interface TextProps extends HTMLAttributes<HTMLElement> {
 export function Text({
   children,
   size = 'md',
-  color = 'default',
+  color = 'primary',
   as: Component = 'p',
   className = '',
   ...props
