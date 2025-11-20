@@ -4,8 +4,8 @@
 
 .appContainer {
   min-height: 100vh;
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 /* ============================================
@@ -29,7 +29,7 @@
 }
 
 .errorMessage {
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   margin-bottom: calc(var(--spacing, 0.25rem) * 4);
   text-align: center;
 }
@@ -39,8 +39,8 @@
   padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
 
   /* Appearance */
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  background-color: var(--color-interactive-primary);
+  color: var(--color-text-inverse);
   border-radius: calc(var(--radius, 0.625rem) - 2px);
   border: none;
   cursor: pointer;

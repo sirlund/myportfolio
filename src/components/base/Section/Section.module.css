@@ -29,7 +29,7 @@
   /* Section Title */
   & h2 {
     margin-bottom: calc(var(--spacing, 0.25rem) * 6);
-    font-size: var(--font-section-title);
+    font-size: var(--font-h1);
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
     letter-spacing: -0.022em;
@@ -41,8 +41,8 @@
 
   /* Section Content */
   & .content {
-    font-size: var(--font-text-lg);
-    color: var(--muted-foreground);
+    font-size: var(--font-body-lg);
+    color: var(--color-text-secondary);
     line-height: var(--leading-relaxed, 1.625);
 
     & p {

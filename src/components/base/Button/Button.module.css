@@ -12,9 +12,10 @@
   padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 4);
 
   /* Typography */
-  font-size: var(--font-text-md);
+  font-size: var(--font-body);
   font-weight: var(--font-weight-medium);
-  line-height: 1.5;
+  font-family: var(--font-family-primary);
+  line-height: var(--line-height-base);
 
   /* Appearance */
   border: none;
@@ -24,8 +25,8 @@
 
   /* Variants */
   &[data-variant="primary"] {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
+    background-color: var(--color-interactive-primary);
+    color: var(--color-text-inverse);
 
     &:hover {
       opacity: 0.9;
@@ -35,25 +36,25 @@
 
   &[data-variant="ghost"] {
     background: none;
-    color: var(--foreground);
-    border: 1px solid var(--border);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-default);
 
     &:hover {
-      background-color: var(--accent);
+      background-color: var(--color-bg-tertiary);
     }
   }
 
   &[data-variant="link"] {
     background: none;
     border: none;
-    border-bottom: 1px solid var(--foreground);
+    border-bottom: 1px solid var(--color-text-primary);
     border-radius: 0;
     padding: 0;
     padding-bottom: calc(var(--spacing, 0.25rem) * 1);
-    font-size: var(--font-text-sm);
+    font-size: var(--font-small);
 
     &:hover {
-      color: var(--muted-foreground);
+      color: var(--color-text-secondary);
       transform: translateY(-2px);
     }
   }

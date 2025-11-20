@@ -38,7 +38,7 @@ export function MindStudioCaseStudy() {
         title={t.sections.challenge.title}
         centered
       >
-        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--muted-foreground)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
           {t.sections.challenge.intro}
         </p>
         <TwoColumnLayout columns={t.sections.challenge.twoColumn.columns} />
@@ -58,7 +58,7 @@ export function MindStudioCaseStudy() {
         title={t.sections.objectives.title}
         centered
       >
-        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--muted-foreground)', marginBottom: '3rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '3rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
           {t.sections.objectives.intro}
         </p>
         <CardGrid

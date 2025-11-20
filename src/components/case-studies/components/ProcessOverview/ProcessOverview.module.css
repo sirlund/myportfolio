@@ -3,7 +3,7 @@
    ============================================ */
 
 .container {
-  background-color: var(--muted);
+  background-color: var(--color-bg-tertiary);
   padding: calc(var(--spacing, 0.25rem) * 12);
   border-radius: calc(var(--spacing, 0.25rem) * 4);
   margin-top: calc(var(--spacing, 0.25rem) * 12);
@@ -17,7 +17,7 @@
   font-size: var(--text-lg, 1.125rem);
   font-weight: var(--font-weight-semibold, 600);
   margin-bottom: calc(var(--spacing, 0.25rem) * 10);
-  color: var(--foreground);
+  color: var(--color-text-primary);
   text-align: center;
 
   @media (width >= 64rem) {
@@ -63,9 +63,9 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: var(--foreground);
-  border: 3px solid var(--background);
-  box-shadow: 0 0 0 2px var(--foreground);
+  background-color: var(--color-text-primary);
+  border: 3px solid var(--color-bg-primary);
+  box-shadow: 0 0 0 2px var(--color-text-primary);
 }
 
 .connector {
@@ -78,7 +78,7 @@
     left: 16px;
     right: -50%;
     height: 2px;
-    background-color: var(--foreground);
+    background-color: var(--color-text-primary);
     z-index: 1;
   }
 }
@@ -91,7 +91,7 @@
   margin: 0 0 calc(var(--spacing, 0.25rem) * 3);
   font-size: var(--text-sm, 0.875rem);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--foreground);
+  color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
@@ -111,7 +111,7 @@
 
 .phaseItems li {
   font-size: var(--text-sm, 0.875rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   line-height: 1.5;
   position: relative;
   padding-left: calc(var(--spacing, 0.25rem) * 4);
@@ -120,17 +120,17 @@
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--foreground);
+    color: var(--color-text-primary);
   }
 }
 
 .bottomLabel {
   margin-top: calc(var(--spacing, 0.25rem) * 10);
   padding-top: calc(var(--spacing, 0.25rem) * 6);
-  border-top: 1px dotted var(--border);
+  border-top: 1px dotted var(--color-border-default);
   text-align: left;
   font-size: var(--text-sm, 0.875rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: var(--font-weight-medium, 500);

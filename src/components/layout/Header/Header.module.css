@@ -20,7 +20,7 @@
 
   /* Scrolled State */
   &[data-scrolled="true"] {
-    background-color: color-mix(in oklab, var(--background) 90%, transparent);
+    background-color: color-mix(in oklab, var(--color-bg-primary) 90%, transparent);
     backdrop-filter: blur(var(--blur-md, 12px));
   }
 
@@ -76,7 +76,7 @@
 
 .logoText {
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-text-md);
+  font-size: var(--font-body);
 }
 
 /* ============================================
@@ -103,7 +103,7 @@
   padding: 0;
 
   /* Typography */
-  font-size: var(--font-text-sm);
+  font-size: var(--font-small);
   color: inherit;
   cursor: pointer;
 
@@ -111,7 +111,7 @@
   transition: color 0.2s ease;
 
   &:hover {
-    color: var(--muted-foreground);
+    color: var(--color-text-secondary);
   }
 }
 
@@ -137,7 +137,7 @@
 
   /* Typography */
   color: inherit;
-  font-size: var(--font-text-sm);
+  font-size: var(--font-small);
   font-weight: var(--font-weight-medium);
 
   /* Responsive */

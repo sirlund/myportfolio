@@ -22,8 +22,8 @@ export function TokenPyramid() {
           {/* Top tier - Trapezoid */}
           <path
             d="M 250 0 L 550 0 L 650 150 L 150 150 Z"
-            fill="var(--background)"
-            stroke="var(--foreground)"
+            fill="var(--color-bg-primary)"
+            stroke="var(--color-text-primary)"
             strokeWidth="2"
           />
 
@@ -33,8 +33,8 @@ export function TokenPyramid() {
             y="150"
             width="500"
             height="150"
-            fill="var(--background)"
-            stroke="var(--foreground)"
+            fill="var(--color-bg-primary)"
+            stroke="var(--color-text-primary)"
             strokeWidth="2"
           />
 
@@ -44,8 +44,8 @@ export function TokenPyramid() {
             y="300"
             width="500"
             height="200"
-            fill="var(--background)"
-            stroke="var(--foreground)"
+            fill="var(--color-bg-primary)"
+            stroke="var(--color-text-primary)"
             strokeWidth="2"
           />
         </svg>

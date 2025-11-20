@@ -90,7 +90,7 @@ export const MultipleSections: Story = {
           <Text>First section content with navigation ID.</Text>
         </Container>
       </Section>
-      <Section id="features" style={{ background: 'var(--muted)', padding: '4rem 0' }}>
+      <Section id="features" style={{ background: 'var(--color-bg-tertiary)', padding: '4rem 0' }}>
         <Container>
           <Heading level={2}>Features</Heading>
           <Text>Second section with background styling.</Text>
@@ -126,7 +126,7 @@ export const FullPageLayout: Story = {
           </Text>
         </Container>
       </Section>
-      <Section id="services" style={{ background: 'var(--muted)', padding: '4rem 0' }}>
+      <Section id="services" style={{ background: 'var(--color-bg-tertiary)', padding: '4rem 0' }}>
         <Container>
           <Heading level={2}>Our Services</Heading>
           <Text>
@@ -141,7 +141,7 @@ export const FullPageLayout: Story = {
 
 export const WithoutContainer: Story = {
   render: () => (
-    <Section id="full-width" style={{ padding: '4rem 0', background: 'var(--muted)' }}>
+    <Section id="full-width" style={{ padding: '4rem 0', background: 'var(--color-bg-tertiary)' }}>
       <Heading level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>
         Full Width Section
       </Heading>

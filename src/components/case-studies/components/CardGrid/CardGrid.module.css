@@ -14,7 +14,7 @@
 }
 
 .card {
-  background-color: var(--muted);
+  background-color: var(--color-bg-tertiary);
   padding: calc(var(--spacing, 0.25rem) * 8);
   border-radius: calc(var(--spacing, 0.25rem) * 4);
   transition: transform 0.2s;
@@ -28,18 +28,18 @@
   width: 32px;
   height: 32px;
   margin-bottom: calc(var(--spacing, 0.25rem) * 4);
-  color: var(--foreground);
+  color: var(--color-text-primary);
 }
 
 .title {
   font-size: var(--text-lg, 1.125rem);
   font-weight: var(--font-weight-bold, 700);
   margin-bottom: calc(var(--spacing, 0.25rem) * 3);
-  color: var(--foreground);
+  color: var(--color-text-primary);
 }
 
 .description {
   font-size: var(--text-base, 1rem);
   line-height: var(--leading-relaxed, 1.625);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
 }

@@ -141,7 +141,7 @@ export const ButtonStyleAnimated: Story = {
         alignItems: 'center',
         gap: '0.5rem',
         padding: '1rem 1.5rem',
-        background: 'var(--primary)',
+        background: 'var(--color-interactive-primary)',
         color: 'white',
         borderRadius: '0.5rem',
         textDecoration: 'none',

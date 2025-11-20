@@ -16,8 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--muted);
-  border: 1px dashed var(--border);
+  background: var(--color-bg-tertiary);
+  border: 1px dashed var(--color-border-default);
   border-radius: calc(var(--spacing, 0.25rem) * 2);
   width: 100%;
   min-height: 200px;
@@ -27,7 +27,7 @@
 
 .label {
   font-size: var(--text-sm, 0.875rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   text-align: center;
   padding: calc(var(--spacing, 0.25rem) * 4);
 }
@@ -35,7 +35,7 @@
 .caption {
   margin-top: calc(var(--spacing, 0.25rem) * 3);
   font-size: var(--text-sm, 0.875rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   text-align: center;
   font-style: italic;
 }

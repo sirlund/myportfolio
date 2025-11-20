@@ -3,7 +3,7 @@
    ============================================ */
 
 .pyramidContainer {
-  background-color: var(--muted);
+  background-color: var(--color-bg-tertiary);
   padding: calc(var(--spacing, 0.25rem) * 12);
   border-radius: calc(var(--spacing, 0.25rem) * 4);
   margin-top: calc(var(--spacing, 0.25rem) * 12);
@@ -57,7 +57,7 @@
 .tierLabel {
   font-size: var(--text-sm, 0.875rem);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--foreground);
+  color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: calc(var(--spacing, 0.25rem) * 1);
@@ -74,7 +74,7 @@
 
 .tierSubtext {
   font-size: var(--text-xs, 0.75rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   text-align: center;
   line-height: 1.4;
   padding: 0 calc(var(--spacing, 0.25rem) * 4);
@@ -97,12 +97,12 @@
 
 .arrow {
   font-size: var(--text-3xl, 2rem);
-  color: var(--foreground);
+  color: var(--color-text-primary);
   font-weight: var(--font-weight-bold, 700);
 }
 
 .arrowLabel {
   font-size: var(--text-sm, 0.875rem);
-  color: var(--muted-foreground);
+  color: var(--color-text-secondary);
   font-style: italic;
 }
