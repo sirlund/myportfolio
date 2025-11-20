@@ -266,78 +266,90 @@
 
 /* Mindstudio Theme */
 .projectMindstudio {
-  background-color: #255fb3;
+  background-color: var(--mindstudio-section-bg);
 
-  & .projectTitle,
+  & .projectTitle {
+    color: var(--mindstudio-section-text);
+  }
+
   & .projectDescription {
-    color: white;
+    color: var(--mindstudio-section-text-muted);
   }
 
   & .projectButton {
-    background-color: white;
-    color: black;
+    background-color: var(--mindstudio-section-button-bg);
+    color: var(--mindstudio-section-button-text);
   }
 }
 
 /* Wenia Theme */
 .projectWenia {
-  background-color: #8b5cf6;
+  background-color: var(--wenia-section-bg);
 
-  & .projectTitle,
+  & .projectTitle {
+    color: var(--wenia-section-text);
+  }
+
   & .projectDescription {
-    color: white;
+    color: var(--wenia-section-text-muted);
   }
 
   & .projectButton {
-    background-color: white;
-    color: black;
+    background-color: var(--wenia-section-button-bg);
+    color: var(--wenia-section-button-text);
   }
 }
 
 /* Treez Theme */
 .projectTreez {
-  background-color: #f1f6ea;
+  background-color: var(--treez-section-bg);
 
   & .projectTitle {
-    color: #29292a;
+    color: var(--treez-section-text);
   }
 
   & .projectDescription {
-    color: #6d6d6e;
+    color: var(--treez-section-text-muted);
   }
 
   & .projectButton {
-    background-color: white;
-    color: black;
+    background-color: var(--treez-section-button-bg);
+    color: var(--treez-section-button-text);
   }
 }
 
 /* Nacional Theme */
 .projectNacional {
-  background-color: #dc2626;
+  background-color: var(--nacional-section-bg);
 
-  & .projectTitle,
+  & .projectTitle {
+    color: var(--nacional-section-text);
+  }
+
   & .projectDescription {
-    color: white;
+    color: var(--nacional-section-text-muted);
   }
 
   & .projectButton {
-    background-color: white;
-    color: black;
+    background-color: var(--nacional-section-button-bg);
+    color: var(--nacional-section-button-text);
   }
 }
 
 /* Klare Theme */
 .projectKlare {
-  background-color: #059669;
+  background-color: var(--klare-section-bg);
 
-  & .projectTitle,
+  & .projectTitle {
+    color: var(--klare-section-text);
+  }
+
   & .projectDescription {
-    color: white;
+    color: var(--klare-section-text-muted);
   }
 
   & .projectButton {
-    background-color: white;
-    color: black;
+    background-color: var(--klare-section-button-bg);
+    color: var(--klare-section-button-text);
   }
 }

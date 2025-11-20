@@ -2,48 +2,35 @@
   --font-size: 16px;
   --font-family: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* Base Typography Scale */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.125rem;    /* 18px */
-  --text-xl: 1.25rem;     /* 20px */
-  --text-2xl: 1.5rem;     /* 24px */
-  --text-3xl: 1.875rem;   /* 30px */
-  --text-4xl: 2.25rem;    /* 36px */
-  --text-5xl: 3rem;       /* 48px */
-  --text-6xl: 3.75rem;    /* 60px */
-
-  /* Semantic Typography - Mobile First */
-  --font-hero-title: var(--text-4xl);
-  --font-hero-subtitle: var(--font-text-lg);
-  --font-section-title: var(--text-3xl);
-  --font-text-lg: var(--text-lg);
-  --font-text-md: var(--text-base);
-  --font-text-sm: var(--text-sm);
-  --font-caption: var(--text-xs);
+  /* Legacy semantic tokens - mapped to new system */
+  --font-hero-title: var(--font-display);
+  --font-hero-subtitle: var(--font-body);
+  --font-section-title: var(--font-h1);
+  --font-text-lg: var(--font-body-lg);
+  --font-text-md: var(--font-body);
+  --font-text-sm: var(--font-small);
   --font-nav-overlay: clamp(2.5rem, 10vw, 4rem);
 
   --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+  --foreground: var(--gray-900);
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
+  --card-foreground: var(--gray-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--gray-900);
+  --primary: var(--gray-900);
+  --primary-foreground: #ffffff;
+  --secondary: var(--gray-100);
+  --secondary-foreground: var(--gray-900);
+  --muted: var(--gray-200);
+  --muted-foreground: var(--gray-500);
+  --accent: var(--gray-200);
+  --accent-foreground: var(--gray-900);
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
   --border: rgba(0, 0, 0, 0.5);
   --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
+  --input-background: var(--gray-100);
+  --switch-background: var(--gray-300);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
@@ -53,7 +40,7 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
+  --radius: var(--radius-lg);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #030213;
@@ -218,20 +205,19 @@ html {
 /* Responsive typography breakpoints */
 @media (width >= 40rem) {
   :root {
-    --font-hero-title: var(--text-5xl);
-    --font-hero-subtitle: var(--text-lg);
-    --font-section-title: var(--text-4xl);
-    --font-text-lg: var(--text-xl);
-    --font-text-md: var(--text-lg);
-    --font-text-sm: var(--text-base);
+    /* Override semantic tokens for tablet+ */
+    --font-display: var(--text-5xl);
+    --font-h1: var(--text-4xl);
+    --font-h2: var(--text-3xl);
+    --font-body-lg: var(--text-xl);
   }
 }
 
 @media (width >= 64rem) {
   :root {
-    --font-hero-title: var(--text-6xl);
-    --font-hero-subtitle: var(--text-xl);
-    --font-section-title: var(--text-5xl);
+    /* Override semantic tokens for desktop */
+    --font-display: var(--text-6xl);
+    --font-h1: var(--text-5xl);
   }
 }
 

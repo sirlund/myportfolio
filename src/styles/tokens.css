@@ -1,0 +1,203 @@
+/**
+ * Design Tokens - 3-Level System
+ *
+ * Level 1: Primitives (raw values)
+ * Level 2: Semantic (purpose-based)
+ * Level 3: Component/Project-specific
+ */
+
+:root {
+  /* ==========================================
+     LEVEL 1: PRIMITIVES
+     ========================================== */
+
+  /* Gray Scale */
+  --gray-100: #f7f7f8;
+  --gray-200: #ececf0;
+  --gray-300: #d1d1d6;
+  --gray-400: #a1a1aa;
+  --gray-500: #717182;
+  --gray-600: #52525b;
+  --gray-700: #3f3f46;
+  --gray-800: #27272a;
+  --gray-900: #18181b;
+
+  /* Blue Scale - MindStudio (base: #0069ff) */
+  --blue-100: #e6f0ff;
+  --blue-200: #b3d4ff;
+  --blue-300: #80b8ff;
+  --blue-400: #4d9cff;
+  --blue-500: #0069ff;
+  --blue-600: #0054cc;
+  --blue-700: #003f99;
+  --blue-800: #002a66;
+  --blue-900: #001533;
+
+  /* Green Scale - Treez (base: rgba(169, 224, 121, 1)) */
+  --green-100: #f0f9e8;
+  --green-200: #d4efc0;
+  --green-300: #b8e598;
+  --green-400: #a9e079;
+  --green-500: #8cd45a;
+  --green-600: #6fb83e;
+  --green-700: #529c22;
+  --green-800: #3a7018;
+  --green-900: #22440e;
+
+  /* Purple Scale - Wenia (base: #4666FF) */
+  --purple-100: #eaedff;
+  --purple-200: #c5cdff;
+  --purple-300: #a0adff;
+  --purple-400: #7b8dff;
+  --purple-500: #4666ff;
+  --purple-600: #3852cc;
+  --purple-700: #2a3d99;
+  --purple-800: #1c2966;
+  --purple-900: #0e1433;
+
+  /* Red Scale - Nacional Monte de Piedad (dark red) */
+  --red-100: #fce8e8;
+  --red-200: #f5b8b8;
+  --red-300: #ee8888;
+  --red-400: #e75858;
+  --red-500: #c42828;
+  --red-600: #9d2020;
+  --red-700: #761818;
+  --red-800: #4f1010;
+  --red-900: #280808;
+
+  /* Magenta Scale - Klare (red-magenta) */
+  --magenta-100: #fce6f0;
+  --magenta-200: #f5b3d4;
+  --magenta-300: #ee80b8;
+  --magenta-400: #e74d9c;
+  --magenta-500: #d41a7c;
+  --magenta-600: #aa1463;
+  --magenta-700: #800f4a;
+  --magenta-800: #550a31;
+  --magenta-900: #2b0519;
+
+  /* ==========================================
+     SPACING
+     ========================================== */
+
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ==========================================
+     RADIUS
+     ========================================== */
+
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+
+  /* ==========================================
+     SHADOWS
+     ========================================== */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ==========================================
+     TRANSITIONS
+     ========================================== */
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ==========================================
+     LEVEL 1: TYPOGRAPHY PRIMITIVES
+     ========================================== */
+
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+
+  /* ==========================================
+     LEVEL 2: SEMANTIC TYPOGRAPHY
+     (Mobile First - use these in components)
+     ========================================== */
+
+  /* Display/Hero */
+  --font-display: var(--text-4xl);        /* Hero titles */
+
+  /* Headings */
+  --font-h1: var(--text-3xl);             /* Section titles */
+  --font-h2: var(--text-2xl);             /* Subsection titles */
+  --font-h3: var(--text-xl);              /* Card titles, etc */
+
+  /* Body Text */
+  --font-body-lg: var(--text-xl);         /* Large body (20px) - primary content */
+  --font-body: var(--text-lg);            /* Default body (18px) - standard content */
+
+  /* Small/UI Text */
+  --font-small: var(--text-base);         /* 16px - header, footer, contact links */
+  --font-caption: var(--text-sm);         /* 14px - captions, labels */
+  --font-micro: var(--text-xs);           /* 12px - rare, badges */
+
+  /* ==========================================
+     LEVEL 3: PROJECT-SPECIFIC TOKENS
+     ========================================== */
+
+  /* MindStudio (dark bg) */
+  --mindstudio-section-bg: var(--blue-700);
+  --mindstudio-section-text: white;
+  --mindstudio-section-text-muted: var(--blue-100);
+  --mindstudio-section-button-bg: white;
+  --mindstudio-section-button-text: var(--gray-900);
+
+  /* Treez (light bg - inverted) */
+  --treez-section-bg: var(--green-100);
+  --treez-section-text: var(--gray-900);
+  --treez-section-text-muted: var(--gray-500);
+  --treez-section-button-bg: var(--green-600);
+  --treez-section-button-text: white;
+
+  /* Wenia (dark bg) */
+  --wenia-section-bg: var(--purple-600);
+  --wenia-section-text: white;
+  --wenia-section-text-muted: var(--purple-100);
+  --wenia-section-button-bg: white;
+  --wenia-section-button-text: var(--gray-900);
+
+  /* Nacional Monte de Piedad (dark bg) */
+  --nacional-section-bg: var(--red-700);
+  --nacional-section-text: white;
+  --nacional-section-text-muted: var(--red-100);
+  --nacional-section-button-bg: white;
+  --nacional-section-button-text: var(--gray-900);
+
+  /* Klare (dark bg) */
+  --klare-section-bg: var(--gray-800);
+  --klare-section-text: white;
+  --klare-section-text-muted: var(--gray-300);
+  --klare-section-button-bg: white;
+  --klare-section-button-text: var(--gray-900);
+}

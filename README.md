@@ -110,7 +110,8 @@ src/
 │   └── index.ts                   # Main translations export
 │
 ├── styles/
-│   └── globals.css                # CSS variables & base styles
+│   ├── tokens.css                 # Design tokens (colors, spacing, typography)
+│   └── globals.css                # Base styles & semantic mappings
 │
 ├── App.tsx                        # Main app component
 ├── App.module.css                 # App-level styles
@@ -377,11 +378,70 @@ See [CSS_CONVENTIONS.md](./CSS_CONVENTIONS.md) for detailed styling guidelines.
 .button[data-variant="primary"] { }
 ```
 
+## 🎨 Design Tokens
+
+The project uses a 3-level token system in `src/styles/tokens.css`:
+
+### Color Primitives
+
+| Scale | Base Color | Use Case |
+|-------|------------|----------|
+| `--gray-*` | Neutral | UI elements, text |
+| `--blue-*` | #0069ff | MindStudio |
+| `--green-*` | #a9e079 | Treez |
+| `--purple-*` | #4666FF | Wenia |
+| `--red-*` | Dark red | Nacional |
+| `--magenta-*` | Red-magenta | (Available) |
+
+All scales go from 100 (lightest) to 900 (darkest).
+
+### Typography Tokens
+
+**Use semantic tokens in components (not primitives):**
+
+| Token | Mobile | Tablet+ | Desktop+ | Use |
+|-------|--------|---------|----------|-----|
+| `--font-display` | 36px | 48px | 60px | Hero titles |
+| `--font-h1` | 30px | 36px | 48px | Section titles |
+| `--font-h2` | 24px | 30px | 30px | Subsection titles |
+| `--font-h3` | 20px | 20px | 20px | Card titles |
+| `--font-body-lg` | 20px | 20px | 20px | Primary content |
+| `--font-body` | 18px | 18px | 18px | Standard content |
+| `--font-small` | 16px | 16px | 16px | Header, footer |
+| `--font-caption` | 14px | 14px | 14px | Captions, labels |
+| `--font-micro` | 12px | 12px | 12px | Badges (rare) |
+
+### Spacing & Radius
+
+```css
+/* Spacing: --space-1 to --space-24 */
+--space-4: 1rem;    /* 16px */
+--space-8: 2rem;    /* 32px */
+
+/* Radius: --radius-sm to --radius-full */
+--radius-lg: 0.75rem;  /* 12px */
+```
+
+### Project-Specific Tokens
+
+```css
+--mindstudio-primary: var(--blue-500);
+--mindstudio-bg: var(--blue-100);
+
+--treez-primary: var(--green-400);
+--treez-bg: var(--green-100);
+```
+
 ## 🎨 Customization
 
 ### Colors & Theme
 
-Edit CSS custom properties in:
+Edit design tokens in:
+```
+src/styles/tokens.css
+```
+
+Edit semantic mappings in:
 ```
 src/styles/globals.css
 ```
