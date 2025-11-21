@@ -9,8 +9,8 @@ export const treez = {
     { label: "Team", value: "4 Designers, 8 Engineers, 3 PMs" }
   ],
   home: {
-    title: "At Treez, I strengthened the design system that supports high-volume retail workflows",
-    subtitle: "Working on the design system, I refined foundational patterns and unified the visual language that powers day-to-day retail operations across the platform.",
+    title: "A cohesive design system for high-volume retail operations.",
+    subtitle: "At Treez, a clearer structure aligned design and engineering to support the fast pace of the retail ecosystem.",
   },
   overview: {
     title: "Overview",
@@ -142,8 +142,8 @@ export const treez = {
   title: "Introduciendo: Root Design System",
   subtitle: "Un sistema de diseño escalable, accesible y multiplataforma que unificó el lenguaje visual, aumentó la eficiencia del equipo y mejoró la calidad del producto a escala.",
   home: {
-    title: "En Treez, fortalecí el design system que soporta flujos de retail de alto volumen",
-    subtitle: "Trabajando en el design system, refiné patrones fundamentales y unifiqué el lenguaje visual que impulsa las operaciones diarias de retail en toda la plataforma."
+    title: "Un sistema de diseño cohesivo para operaciones retail de alto volumen.",
+    subtitle: "En Treez, una estructura clara alineó diseño e ingeniería para soportar el ritmo intenso del ecosistema retail."
   },
   details: [
     { label: "Rol", value: "Design System Lead" },

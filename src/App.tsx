@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from '@/components/base/sonner';
 import { Header } from '@/components/layout/Header';
@@ -10,14 +10,8 @@ import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/layout/CustomCursor';
 import { LanguageProvider, NavigationProvider } from '@/contexts';
 import { ERROR_MESSAGES } from '@/lib/constants';
+import { ROUTES, VALID_ROUTES } from '@/lib/routes';
 import styles from './App.module.css';
-
-// Lazy load case study components
-const MindStudioCaseStudy = lazy(() => import('@/components/case-studies/published/MindStudioCaseStudy'));
-const TreezCaseStudy = lazy(() => import('@/components/case-studies/published/TreezCaseStudy'));
-const WeniaCaseStudy = lazy(() => import('@/components/case-studies/_drafts/WeniaCaseStudy'));
-const NacionalCaseStudy = lazy(() => import('@/components/case-studies/_drafts/NacionalCaseStudy'));
-const KlareCaseStudy = lazy(() => import('@/components/case-studies/_drafts/KlareCaseStudy'));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -61,21 +55,20 @@ function AppContent() {
           <Header />
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
-              {/* English routes */}
+              {/* Home routes */}
               <Route path="/" element={<HomePage />} />
-              <Route path="/mindstudio" element={<MindStudioCaseStudy />} />
-              <Route path="/treez" element={<TreezCaseStudy />} />
-              <Route path="/wenia" element={<WeniaCaseStudy />} />
-              <Route path="/nacional" element={<NacionalCaseStudy />} />
-              <Route path="/klare" element={<KlareCaseStudy />} />
-
-              {/* Spanish routes */}
               <Route path="/es" element={<HomePage />} />
-              <Route path="/es/mindstudio" element={<MindStudioCaseStudy />} />
-              <Route path="/es/treez" element={<TreezCaseStudy />} />
-              <Route path="/es/wenia" element={<WeniaCaseStudy />} />
-              <Route path="/es/nacional" element={<NacionalCaseStudy />} />
-              <Route path="/es/klare" element={<KlareCaseStudy />} />
+
+              {/* Case study routes - generated from ROUTES config */}
+              {VALID_ROUTES.map((key) => {
+                const route = ROUTES[key];
+                if (!route.component) return null;
+                const Component = route.component;
+                return [
+                  <Route key={key} path={route.path} element={<Component />} />,
+                  <Route key={`es-${key}`} path={`/es${route.path}`} element={<Component />} />
+                ];
+              })}
 
               {/* 404 - Redirect to home */}
               <Route path="*" element={<Navigate to="/" replace />} />

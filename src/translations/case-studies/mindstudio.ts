@@ -10,8 +10,8 @@ export const mindstudio = {
     //   { metric: "100%", label: "Systematized dark mode" }
     // ],
     home: {
-      title: "At Mindstudio, design moved from chaos to clarity",
-      subtitle: "As the lead behind MindSet DS, I built the design system from zero — creating the alignment, structure, and visual logic that now power how AI-driven tools are designed, themed, and deployed",
+      title: "Mindstudio — Bringing clarity to an AI platform growing at full speed.",
+      subtitle: "A collaborative effort to turn technical complexity into a scalable foundation that supported the product's rapid evolution.",
     },
     details: [
       { label: "Role", value: "External Consultant → Core Team" },
@@ -179,8 +179,8 @@ export const mindstudio = {
     title: "Mindstudio Design System",
     subtitle: "De caos a claridad en una plataforma no-code de IA",
     home: {
-      title: "En Mindstudio, el diseño pasó del caos a la claridad",
-      subtitle: "Como líder detrás de MindSet DS, construí el design system desde cero — creando la alineación, estructura y lógica visual que ahora impulsa cómo se diseñan, tematizan y despliegan las herramientas de IA"
+      title: "Mindstudio — Diseñando claridad en una plataforma de IA que crecía sin detenerse.",
+      subtitle: "Cómo un equipo transformó complejidad técnica en una base escalable que acompañó la evolución del producto."
     },
     impactStats: [
       { metric: "80%", label: "Menos duplicación en Figma" },

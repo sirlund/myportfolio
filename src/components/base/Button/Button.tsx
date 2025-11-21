@@ -12,7 +12,7 @@ import styles from './Button.module.css';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: 'primary' | 'ghost' | 'link';
+  variant?: 'primary' | 'inverse' | 'ghost' | 'link';
   className?: string;
 }
 

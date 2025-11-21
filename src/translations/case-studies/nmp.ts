@@ -1,18 +1,18 @@
 export const nmp = {
   en: {
-  title: "Nacional Monte de Piedad",
-  subtitle: "Modernizing Mexico's largest pawn shop chain through accessible design while preserving centuries of trust and cultural heritage.",
-  home: {
-    title: "At Nacional Monte de Piedad, I modernized Mexico's largest pawn shop chain through systematic design innovation",
-    subtitle: "As the lead designer, I developed a comprehensive design system that transformed their digital financial services, creating consistent user experiences across all customer touchpoints."
+    title: "Nacional Monte de Piedad",
+    subtitle: "Modernizing Mexico's largest pawn shop chain through accessible design while preserving centuries of trust and cultural heritage.",
+    home: {
+      title: "NMP — A design language for an organization with many services and audiences.",
+      subtitle: "A modern system aligned teams, products, and workflows during NMP's digital transformation."
+    }
+  },
+    es: {
+    title: "Nacional Monte de Piedad",
+    subtitle: "Modernizando la cadena de casas de empeño más grande de México a través de diseño accesible mientras se preserva siglos de confianza y patrimonio cultural.",
+    home: {
+      title: "NMP — Un lenguaje de diseño para una organización con múltiples servicios y audiencias.",
+      subtitle: "Un sistema moderno alineó productos, equipos y flujos durante la transformación digital."
+    }
   }
-},
-  es: {
-  title: "Nacional Monte de Piedad",
-  subtitle: "Modernizando la cadena de casas de empeño más grande de México a través de diseño accesible mientras se preserva siglos de confianza y patrimonio cultural.",
-  home: {
-    title: "En Nacional Monte de Piedad, modernicé la cadena de casas de empeño más grande de México a través de innovación sistemática en diseño",
-    subtitle: "Como diseñador líder, desarrollé un design system integral que transformó sus servicios financieros digitales, creando experiencias consistentes en todos los puntos de contacto."
-  }
-}
 };

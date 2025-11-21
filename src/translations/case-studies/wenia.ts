@@ -3,16 +3,16 @@ export const wenia = {
   title: "Wenia Banking Platform",
   subtitle: "Democratizing digital banking through accessible design and financial education for underbanked communities.",
   home: {
-    title: "At Wenia, I created a revolutionary mobile crypto experience that simplified complex financial processes",
-    subtitle: "As the UI/UX lead, I designed a streamlined mobile application that makes cryptocurrency trading accessible to everyday users, focusing on clear information architecture and intuitive user flows."
+    title: "Bringing structure to design during a fast-growth phase.",
+    subtitle: "At Wenia, strengthening operations and system foundations enabled the team to move with more clarity and focus."
   }
 },
   es: {
   title: "Plataforma Wenia",
   subtitle: "Democratizando la banca digital a través de diseño accesible y educación financiera para comunidades desatendidas.",
   home: {
-    title: "En Wenia, creé una experiencia móvil de cripto revolucionaria que simplificó procesos financieros complejos",
-    subtitle: "Como líder de UI/UX, diseñé una aplicación móvil que hace el trading de criptomonedas accesible para usuarios cotidianos, enfocándome en arquitectura de información clara y flujos intuitivos."
+    title: "Ordenando diseño para acompañar una etapa de crecimiento acelerado.",
+    subtitle: "En Wenia, reforzar operaciones y estructura permitió que el equipo avanzara con más claridad y foco."
   }
 }
 };

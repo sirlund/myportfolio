@@ -3,16 +3,16 @@ export const klare = {
   title: "Klare Insurtech Platform",
   subtitle: "Revolutionizing life insurance in Chile by transforming a weeks-long bureaucratic process into a 10-minute digital experience.",
   home: {
-    title: "At Klare, I transformed insurance from a bureaucratic maze into an intuitive digital experience",
-    subtitle: "Leading the UI team, I redesigned the entire life insurance journey, converting a historically slow and complex process into a 100% digital, user-friendly experience."
+    title: "Klare — From the first MVP to a full digital insurance portfolio.",
+    subtitle: "The evolution of product and brand supported the expansion from a single MVP to seven insurance lines."
   }
 },
   es: {
   title: "Plataforma Klare Insurtech",
   subtitle: "Revolucionando los seguros de vida en Chile al transformar un proceso burocrático de semanas en una experiencia digital de 10 minutos.",
   home: {
-    title: "En Klare, transformé los seguros de un laberinto burocrático a una experiencia digital intuitiva",
-    subtitle: "Liderando el equipo de UI, rediseñé todo el journey de seguros de vida, convirtiendo un proceso históricamente lento y complejo en una experiencia 100% digital y amigable."
+    title: "Klare — Del primer MVP a un portafolio completo de seguros digitales.",
+    subtitle: "La evolución del producto y la marca acompañó la expansión desde un MVP a siete líneas de seguros."
   }
 }
 };

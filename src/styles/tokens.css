@@ -180,10 +180,10 @@
   --color-text-primary: var(--gray-900);      /* Main text */
   --color-text-secondary: color-mix(in oklch, var(--gray-900) 80%, transparent);    /* Muted/description text */
   --color-text-tertiary: color-mix(in oklch, var(--gray-900) 60%, transparent);     /* Disabled, placeholders */
-  --color-text-inverse: white;                /* Text on dark backgrounds */
+  --color-text-inverse: white;              /* Text on dark backgrounds */
 
   /* Background Colors */
-  --color-bg-primary: white;                  /* Main background */
+  --color-bg-primary: white;                /* Main background */
   --color-bg-secondary: var(--gray-100);      /* Cards, inputs */
   --color-bg-tertiary: var(--gray-200);       /* Hover states, accents */
   --color-bg-inverse: var(--gray-900);        /* Dark sections */
@@ -228,18 +228,18 @@
   --treez-section-button-text: white;
 
   /* Wenia (dark bg) */
-  --wenia-section-bg: var(--purple-600);
-  --wenia-section-text: white;
-  --wenia-section-text-muted: var(--purple-100);
+  --wenia-section-bg: var(--purple-200);
+  --wenia-section-text: var(--gray-900);
+  --wenia-section-text-muted: color-mix(in oklch, var(--gray-900) 70%, transparent);
   --wenia-section-button-bg: white;
   --wenia-section-button-text: var(--gray-900);
 
   /* Nacional Monte de Piedad (dark bg) */
-  --nacional-section-bg: var(--red-700);
-  --nacional-section-text: white;
-  --nacional-section-text-muted: var(--red-100);
-  --nacional-section-button-bg: white;
-  --nacional-section-button-text: var(--gray-900);
+  --nmp-section-bg: var(--red-700);
+  --nmp-section-text: white;
+  --nmp-section-text-muted: var(--red-100);
+  --nmp-section-button-bg: white;
+  --nmp-section-button-text: var(--gray-900);
 
   /* Klare (dark bg) */
   --klare-section-bg: var(--gray-800);

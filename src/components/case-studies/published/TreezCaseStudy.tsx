@@ -1,6 +1,14 @@
-import { CaseStudyLayout } from '@/components/case-studies';
+import {
+  CaseStudyLayout,
+  ContentSection,
+  RichText,
+  CardGrid,
+  Divider,
+  ImagePlaceholder,
+} from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgTreez from '@/assets/images/case-studies/treez_cover.png';
+import { AlertCircle, FolderOpen, Link2, Accessibility, TestTube, Clock } from 'lucide-react';
 
 export function TreezCaseStudy() {
   const t = useCaseStudyTranslation('treez');
@@ -11,185 +19,205 @@ export function TreezCaseStudy() {
       subtitle={t.subtitle}
       heroImage={imgTreez}
       details={t.details}
-      overview={t.overview}
-      sections={[
-        {
-          title: t.sections.context.title,
-          content: t.sections.context.content
-        },
-        {
-          title: t.sections.problem.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p>{t.sections.problem.intro}</p>
+    >
+      {/* Overview */}
+      <ContentSection title={t.overview.title} titleSize="small">
+        <RichText content={t.overview.content} />
+      </ContentSection>
 
-              <blockquote className={styles.quote}>
-                "{t.sections.problem.quote}"
-              </blockquote>
+      <Divider spacing="large" />
 
-              <div className={styles.challengeList}>
-                {t.sections.problem.challenges.map((challenge, index) => (
-                  <div key={index} className={styles.challengeItem}>
-                    <span className={styles.challengeIcon}>{challenge.icon}</span>
-                    <span>{challenge.text}</span>
-                  </div>
-                ))}
-              </div>
+      {/* Context */}
+      <ContentSection title={t.sections.context.title}>
+        <RichText content={t.sections.context.content} />
+      </ContentSection>
 
-              <p>{t.sections.problem.conclusion}</p>
+      <Divider />
+
+      {/* Problem */}
+      <ContentSection title={t.sections.problem.title} centered>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.problem.intro}
+        </p>
+
+        <blockquote style={{ fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--color-text-secondary)', borderLeft: '4px solid var(--color-border-default)', paddingLeft: '1.5rem', margin: '2rem auto', maxWidth: '48rem' }}>
+          "{t.sections.problem.quote}"
+        </blockquote>
+
+        <CardGrid
+          cards={t.sections.problem.challenges.map((challenge, index) => ({
+            icon: [
+              <AlertCircle size={24} key="alert" />,
+              <FolderOpen size={24} key="folder" />,
+              <Link2 size={24} key="link" />,
+              <Accessibility size={24} key="accessibility" />,
+              <TestTube size={24} key="test" />,
+              <Clock size={24} key="clock" />
+            ][index],
+            title: challenge.text,
+            description: ''
+          }))}
+          columns={3}
+        />
+
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginTop: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.problem.conclusion}
+        </p>
+      </ContentSection>
+
+      <Divider />
+
+      {/* Why Root */}
+      <ContentSection title={t.sections.whyRoot.title}>
+        <RichText content={t.sections.whyRoot.content} />
+      </ContentSection>
+
+      <Divider />
+
+      {/* Objectives */}
+      <ContentSection title={t.sections.objectives.title}>
+        <RichText content={t.sections.objectives.content} />
+      </ContentSection>
+
+      <Divider />
+
+      {/* Discovery */}
+      <ContentSection title={t.sections.discovery.title} centered>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.discovery.intro}
+        </p>
+
+        <CardGrid
+          cards={t.sections.discovery.items.map((item) => ({
+            title: item.title,
+            description: item.description
+          }))}
+          columns={2}
+        />
+
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginTop: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.discovery.conclusion}
+        </p>
+      </ContentSection>
+
+      <Divider />
+
+      {/* Principles */}
+      <ContentSection title={t.sections.principles.title} centered>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.principles.intro}
+        </p>
+
+        <CardGrid
+          cards={t.sections.principles.items.map((principle) => ({
+            title: principle,
+            description: ''
+          }))}
+          columns={2}
+        />
+
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginTop: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.principles.conclusion}
+        </p>
+      </ContentSection>
+
+      <Divider />
+
+      {/* Architecture */}
+      <ContentSection title={t.sections.architecture.title}>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
+          {t.sections.architecture.intro}
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
+          <div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>{t.sections.architecture.foundations.title}</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+              {t.sections.architecture.foundations.items.map((item, index) => (
+                <li key={index} style={{ marginBottom: '0.5rem' }}>{item}</li>
+              ))}
+            </ul>
+
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', marginTop: '2rem' }}>{t.sections.architecture.components.title}</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+              {t.sections.architecture.components.items.map((item, index) => (
+                <li key={index} style={{ marginBottom: '0.5rem' }}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>{t.sections.architecture.patterns.title}</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+              {t.sections.architecture.patterns.items.map((item, index) => (
+                <li key={index} style={{ marginBottom: '0.5rem' }}>{item}</li>
+              ))}
+            </ul>
+
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem', marginTop: '2rem' }}>{t.sections.architecture.documentation.title}</h3>
+            <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+              {t.sections.architecture.documentation.items.map((item, index) => (
+                <li key={index} style={{ marginBottom: '0.5rem' }}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </ContentSection>
+
+      <Divider />
+
+      {/* Collaboration */}
+      <ContentSection title={t.sections.collaboration.title}>
+        <div dangerouslySetInnerHTML={{ __html: t.sections.collaboration.intro }} style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }} />
+
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>
+          {t.sections.collaboration.items.map((item, index) => (
+            <li key={index} style={{ marginBottom: '0.5rem', fontSize: '1.125rem' }}>{item}</li>
+          ))}
+        </ul>
+
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)' }}>
+          {t.sections.collaboration.conclusion}
+        </p>
+      </ContentSection>
+
+      <Divider />
+
+      {/* Outcomes */}
+      <ContentSection title={t.sections.outcomes.title} centered>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
+          {t.sections.outcomes.intro}
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '2rem' }}>
+          {t.sections.outcomes.metrics.map((metric, index) => (
+            <div key={index} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>{metric.value}</div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>{metric.label}</div>
             </div>
-          )
-        },
-        {
-          title: t.sections.whyRoot.title,
-          content: t.sections.whyRoot.content
-        },
-        {
-          title: t.sections.objectives.title,
-          content: t.sections.objectives.content
-        },
-        {
-          title: t.sections.discovery.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p>{t.sections.discovery.intro}</p>
+          ))}
+        </div>
 
-              <div className={styles.featureBlockList}>
-                {t.sections.discovery.items.map((item, index) => (
-                  <div key={index} className={styles.featureBlock}>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                ))}
-              </div>
+        <blockquote style={{ fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--color-text-secondary)', borderLeft: '4px solid var(--color-border-default)', paddingLeft: '1.5rem', margin: '2rem auto', maxWidth: '48rem' }}>
+          "{t.sections.outcomes.quote.text}"
+          <cite style={{ display: 'block', marginTop: '0.5rem', fontSize: '1rem', fontStyle: 'normal' }}>— {t.sections.outcomes.quote.author}</cite>
+        </blockquote>
+      </ContentSection>
 
-              <p>{t.sections.discovery.conclusion}</p>
-            </div>
-          )
-        },
-        {
-          title: t.sections.principles.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p>{t.sections.principles.intro}</p>
+      <Divider />
 
-              <div className={styles.principlesList}>
-                {t.sections.principles.items.map((principle, index) => (
-                  <div key={index} className={styles.principleItem}>
-                    <h3>{principle}</h3>
-                  </div>
-                ))}
-              </div>
+      {/* What's Next */}
+      <ContentSection title={t.sections.whatsNext.title}>
+        <RichText content={t.sections.whatsNext.content} />
+      </ContentSection>
 
-              <p>{t.sections.principles.conclusion}</p>
-            </div>
-          )
-        },
-        {
-          title: t.sections.architecture.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p>{t.sections.architecture.intro}</p>
+      <Divider />
 
-              <div className={styles.twoColumn}>
-                <div>
-                  <h3 className={styles.sectionHeading}>{t.sections.architecture.foundations.title}</h3>
-                  <ul className={styles.featureList}>
-                    {t.sections.architecture.foundations.items.map((item, index) => (
-                      <li key={index} className={styles.featureItem}>
-                        <span className={styles.bullet}></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <h3 className={styles.sectionHeading}>{t.sections.architecture.components.title}</h3>
-                  <ul className={styles.featureList}>
-                    {t.sections.architecture.components.items.map((item, index) => (
-                      <li key={index} className={styles.featureItem}>
-                        <span className={styles.bullet}></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className={styles.sectionHeading}>{t.sections.architecture.patterns.title}</h3>
-                  <ul className={styles.featureList}>
-                    {t.sections.architecture.patterns.items.map((item, index) => (
-                      <li key={index} className={styles.featureItem}>
-                        <span className={styles.bullet}></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <h3 className={styles.sectionHeading}>{t.sections.architecture.documentation.title}</h3>
-                  <ul className={styles.featureList}>
-                    {t.sections.architecture.documentation.items.map((item, index) => (
-                      <li key={index} className={styles.featureItem}>
-                        <span className={styles.bullet}></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )
-        },
-        {
-          title: t.sections.collaboration.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p dangerouslySetInnerHTML={{ __html: t.sections.collaboration.intro }}></p>
-
-              <ul className={styles.featureList}>
-                {t.sections.collaboration.items.map((item, index) => (
-                  <li key={index} className={styles.featureItem}>
-                    <span className={styles.bullet}></span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p>{t.sections.collaboration.conclusion}</p>
-            </div>
-          )
-        },
-        {
-          title: t.sections.outcomes.title,
-          content: (
-            <div className={styles.contentWrapper}>
-              <p>{t.sections.outcomes.intro}</p>
-
-              <div className={styles.metricsGrid}>
-                {t.sections.outcomes.metrics.map((metric, index) => (
-                  <div key={index} className={styles.metricItem}>
-                    <div className={styles.metricValue}>{metric.value}</div>
-                    <div className={styles.metricLabel}>{metric.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <blockquote className={styles.quote}>
-                "{t.sections.outcomes.quote.text}"
-                <cite>— {t.sections.outcomes.quote.author}</cite>
-              </blockquote>
-            </div>
-          )
-        },
-        {
-          title: t.sections.whatsNext.title,
-          content: t.sections.whatsNext.content
-        },
-        {
-          title: t.sections.reflection.title,
-          content: t.sections.reflection.content
-        }
-      ]}
-    />
+      {/* Reflection */}
+      <ContentSection title={t.sections.reflection.title}>
+        <RichText content={t.sections.reflection.content} />
+      </ContentSection>
+    </CaseStudyLayout>
   );
 }
 

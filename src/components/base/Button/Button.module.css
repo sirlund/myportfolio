@@ -18,8 +18,8 @@
   line-height: var(--line-height-base);
 
   /* Appearance */
+  border-radius: var(--radius-full);
   border: none;
-  border-radius: calc(var(--spacing, 0.25rem) * 2);
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -30,7 +30,15 @@
 
     &:hover {
       opacity: 0.9;
-      transform: translateY(-2px);
+    }
+  }
+
+  &[data-variant="inverse"] {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+
+    &:hover {
+      opacity: 0.9;
     }
   }
 
@@ -55,7 +63,6 @@
 
     &:hover {
       color: var(--color-text-secondary);
-      transform: translateY(-2px);
     }
   }
 }
