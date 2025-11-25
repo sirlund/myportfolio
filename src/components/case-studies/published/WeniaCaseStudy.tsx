@@ -5,6 +5,7 @@ import {
   Divider,
 } from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
+import imgWenia from "@/assets/images/case-studies/wenia_coverImg.png";
 
 export function WeniaCaseStudy() {
   const t = useCaseStudyTranslation('wenia');
@@ -13,7 +14,7 @@ export function WeniaCaseStudy() {
     <CaseStudyLayout
       title={t.title}
       subtitle={t.subtitle}
-      heroImage="https://images.unsplash.com/photo-1634542118071-f391e9a0cfb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBjcnlwdG8lMjBhcHB8ZW58MXx8fHwxNzU4OTIyODU4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+      heroImage={imgWenia}
       details={[
         { label: "Role", value: "Senior Product Designer" },
         { label: "Duration", value: "10 months" },

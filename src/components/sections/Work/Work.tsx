@@ -6,15 +6,18 @@ import { useLanguage } from "@/contexts";
 import { Icon } from "@/components/icons";
 import { Heading, Text, Button, Image } from "@/components/base";
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import imgMindstudio from "@/assets/images/case-studies/mindstudio_cover.png";
-import imgTreez from "@/assets/images/case-studies/treez_cover.png";
+import imgMindstudio from "@/assets/images/case-studies/mindstudio_coverImg.png";
+import imgTreez from "@/assets/images/case-studies/treez_coverImg.png";
+import imgWenia from "@/assets/images/case-studies/wenia_coverImg.png";
+import imgNMP from "@/assets/images/case-studies/nmp_coverImg.png";
+import imgKlare from "@/assets/images/case-studies/klare_coverImg.png";
 import styles from './Work.module.css';
 
 const baseProjects = [
   {
     id: 1,
     className: styles.projectMindstudio,
-    icon: <Icon name="mindstudio" size={52} />,
+    icon: <Icon name="mindstudio" height="100%" />,
     image: imgMindstudio,
     route: "mindstudio" as const,
     buttonType: 'inverse',
@@ -22,15 +25,15 @@ const baseProjects = [
   {
     id: 2,
     className: styles.projectWenia,
-    icon: <Icon name="placeholder" size={40} />,
-    image: "https://images.unsplash.com/photo-1634542118071-f391e9a0cfb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBjcnlwdG8lMjBhcHB8ZW58MXx8fHwxNzU4OTIyODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    icon: <Icon name="wenia" height="100%" />,
+    image: imgWenia,
     route: "wenia" as const,
     buttonType: 'primary',
   },
   {
     id: 3,
     className: styles.projectTreez,
-    icon: <Icon name="treez" size={72} />,
+    icon: <Icon name="treez" height="100%" />,
     image: imgTreez,
     route: "treez" as const,
     buttonType: 'primary',
@@ -38,18 +41,18 @@ const baseProjects = [
   {
     id: 4,
     className: styles.projectNMP,
-    icon: <Icon name="placeholder" size={40} />,
-    image: "https://images.unsplash.com/photo-1574884280706-7342ca3d4231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBzZXJ2aWNlcyUyMGRlc2lnbnxlbnwxfHx8fDE3NTg5MjI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    icon: <Icon name="nmp" height="100%" />,
+    image: imgNMP,
     route: "nmp" as const,
     buttonType: 'primary',
   },
   {
     id: 5,
     className: styles.projectKlare,
-    icon: <Icon name="placeholder" size={40} />,
-    image: "https://images.unsplash.com/photo-1711185898083-e1f04ff38300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN1cmFuY2UlMjBkaWdpdGFsJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODkyMjg2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    icon: <Icon name="klare" height="100%" />,
+    image: imgKlare,
     route: "klare" as const,
-    buttonType: 'primary',
+    buttonType: 'inverse',
   },
 ];
 
@@ -94,7 +97,7 @@ export function Work() {
 
   return (
     <section id="work" className={styles.workSection} ref={ref}>
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
@@ -118,7 +121,7 @@ export function Work() {
             {t('work.description') as string}
           </Text>
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       {projects.map((project, index) => (
         <motion.div

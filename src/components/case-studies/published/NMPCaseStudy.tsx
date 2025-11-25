@@ -3,6 +3,7 @@ import {
   ContentSection,
 } from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
+import imgNMP from "@/assets/images/case-studies/nmp_coverImg.png";
 
 export function NMPCaseStudy() {
   const t = useCaseStudyTranslation('nmp');
@@ -11,7 +12,7 @@ export function NMPCaseStudy() {
     <CaseStudyLayout
       title={t.title}
       subtitle={t.subtitle}
-      heroImage="https://images.unsplash.com/photo-1574884280706-7342ca3d4231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBzZXJ2aWNlcyUyMGRlc2lnbnxlbnwxfHx8fDE3NTg5MjI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+      heroImage={imgNMP}
       details={[
         { label: "Role", value: "Lead Product Designer" },
         { label: "Duration", value: "18 months" },

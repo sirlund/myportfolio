@@ -6,8 +6,10 @@ import {
   Divider,
   ImagePlaceholder,
 } from '@/components/case-studies';
+import { Image } from '@/components/base';
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import imgTreez from '@/assets/images/case-studies/treez_cover.png';
+import imgTreez from '@/assets/images/case-studies/treez_coverImg.png';
+import imgTreez01 from '@/assets/images/case-studies/treez_01.png';
 import { AlertCircle, FolderOpen, Link2, Accessibility, TestTube, Clock } from 'lucide-react';
 
 export function TreezCaseStudy() {
@@ -70,6 +72,18 @@ export function TreezCaseStudy() {
       {/* Why Root */}
       <ContentSection title={t.sections.whyRoot.title}>
         <RichText content={t.sections.whyRoot.content} />
+        <Image
+          src={imgTreez01}
+          alt="Root Design System"
+          aspectRatio="14/6"
+          style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
+        />
+        <Image
+          src={imgTreez01}
+          alt="Root Design System"
+          aspectRatio="14/6"
+          style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
+        />
       </ContentSection>
 
       <Divider />

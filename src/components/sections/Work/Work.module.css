@@ -74,14 +74,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
+  height: 2rem;
+  width: auto;
 
   @media (width >= 40rem) {
-    height: 3rem;
-  }
-
-  @media (width >= 64rem) {
-    height: 3.5rem;
+    height: 2.25rem;
   }
 }
 
@@ -91,8 +88,7 @@
 .projectImageContainer {
   position: relative;
   width: 100%;
-  max-width: 64rem;
-  aspect-ratio: 1155/722;
+  aspect-ratio: 16/9;
 }
 
 .projectImage {
@@ -108,17 +104,14 @@
   object-fit: cover;
   object-position: center;
   border-radius: 0.375rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
   margin: 0 auto;
 
   /* Responsive */
   @media (width >= 40rem) {
     border-radius: 0.5rem;
-    box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.2);
   }
 
   @media (width >= 64rem) {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 

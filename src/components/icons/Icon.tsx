@@ -1,8 +1,23 @@
 import { ICONS, IconName } from './iconRegistry';
 
+// Predefined sizes in pixels
+const ICON_SIZES = {
+  xs: 16,
+  sm: 24,
+  md: 32,
+  lg: 48,
+} as const;
+
+export type IconSize = keyof typeof ICON_SIZES;
+
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: IconName;
-  size?: number | string;
+  /** Predefined size: 'xs' (16px), 'sm' (24px), 'md' (32px), 'lg' (48px) */
+  size?: IconSize;
+  /** Custom width - number (px) or string ('100%', 'auto') */
+  width?: number | string;
+  /** Custom height - number (px) or string ('100%', 'auto') */
+  height?: number | string;
   color?: string;
 }
 
@@ -10,13 +25,20 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
  * Reusable Icon component
  *
  * Usage:
- * <Icon name="mindstudio" size={52} />
- * <Icon name="treez" size="100%" color="white" />
- * <Icon name="mindstudio" className="custom-class" />
+ * // Predefined sizes
+ * <Icon name="mindstudio" size="sm" />
+ * <Icon name="treez" size="lg" />
+ *
+ * // Custom dimensions
+ * <Icon name="treez" height={32} width="auto" />
+ * <Icon name="mindstudio" width="100%" height="auto" />
+ * <Icon name="placeholder" width={40} height={40} />
  */
 export function Icon({
   name,
-  size = 24,
+  size,
+  width,
+  height,
   color,
   className = '',
   ...props
@@ -28,7 +50,36 @@ export function Icon({
     return null;
   }
 
-  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+  // Determine dimensions
+  let finalWidth: string;
+  let finalHeight: string;
+
+  if (width !== undefined || height !== undefined) {
+    // Custom dimensions mode
+    finalWidth = width !== undefined
+      ? (typeof width === 'number' ? `${width}px` : width)
+      : 'auto';
+    finalHeight = height !== undefined
+      ? (typeof height === 'number' ? `${height}px` : height)
+      : 'auto';
+  } else {
+    // Predefined size mode (default to 'sm')
+    const sizeValue = ICON_SIZES[size || 'sm'];
+    finalWidth = `${sizeValue}px`;
+    finalHeight = `${sizeValue}px`;
+  }
+
+  // Use custom renderer if available
+  if (icon.customRender) {
+    return icon.customRender({
+      className,
+      style: {
+        width: finalWidth,
+        height: finalHeight,
+        ...props.style,
+      },
+    });
+  }
 
   return (
     <svg
@@ -37,8 +88,8 @@ export function Icon({
       preserveAspectRatio="xMidYMid meet"
       className={className}
       style={{
-        width: sizeValue,
-        height: sizeValue,
+        width: finalWidth,
+        height: finalHeight,
         ...props.style,
       }}
       {...props}

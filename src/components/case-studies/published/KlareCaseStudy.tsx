@@ -3,6 +3,7 @@ import {
   ContentSection,
 } from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
+import imgKlare from "@/assets/images/case-studies/klare_coverImg.png";
 
 export function KlareCaseStudy() {
   const t = useCaseStudyTranslation('klare');
@@ -11,7 +12,7 @@ export function KlareCaseStudy() {
     <CaseStudyLayout
       title={t.title}
       subtitle={t.subtitle}
-      heroImage="https://images.unsplash.com/photo-1711185898083-e1f04ff38300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN1cmFuY2UlMjBkaWdpdGFsJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODkyMjg2NXww&ixlib=rb-4.1.0&q=80&w=1080"
+      heroImage={imgKlare}
       details={[
         { label: "Role", value: "UI Lead" },
         { label: "Duration", value: "24 months" },
