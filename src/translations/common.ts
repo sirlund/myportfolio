@@ -6,24 +6,23 @@ export const common = {
     'nav.contact': 'Contact',
 
     // Site
-    'site.title': 'Senior Product Designer',
-    'site.tagline': 'Senior Product Designer creating user-friendly solutions for complex digital challenges—from Chile, for the world.',
+    'site.title': 'Nicolás Lundin — Senior Product Designer & Design Systems Specialist',
+    'site.tagline': 'Senior Product Designer & Design Systems Specialist creating user-friendly solutions for complex digital challenges—from Chile, for the world.',
 
     // Hero
     'hero.title': "Hello, I'm Nico.",
-    'hero.subtitle': 'I design simple and useful digital experiences—with a dash of creativity—that combine UX, technology, and scalable interfaces.',
+    'hero.subtitle': 'I craft scalable products and design systems, combining holistic UX vision with technical precision to bridge the gap between design and engineering.',
     'hero.location': 'Santiago, Chile',
     'hero.viewWork': 'View Projects',
 
     // Work
-    'work.comingSoon': 'Case Studies Coming Soon',
-    'work.description': "I'm currently finalizing detailed case studies of my work. Check back soon to see in-depth explorations of my design process and outcomes.",
+    'work.comingSoon': 'More Case Studies Coming Soon',
+    'work.description': "I'm currently documenting additional projects that showcase my approach to scalable design systems, AI-powered workflows, and cross-functional collaboration. Check back soon for deeper dives into complex product challenges and their solutions.",
 
     // About
     'about.title': 'About',
-    'about.description1': "I'm Nicolás, a product designer with over 10 years of experience, specializing in design systems and user-centered digital solutions.",
-    'about.description2': "I help teams identify opportunities, structure efficient flows, and deliver coherent, scalable products, collaborating closely with stakeholders and developers to bridge the gap between design and execution.",
-    'about.description3': "When I'm not designing, you'll find me training on my road bike 🚴, experimenting with new recipes 🍳, or diving into fantasy literature 📚. I'm a father of a daughter and, recently, a son 👶, plus four cats 🐱, and like any good designer, I have a special relationship with coffee ☕️.",
+    'about.description1': "I'm Nicolás, a product designer with over 15 years of experience, specializing in Design Systems architecture and DesignOps. I help teams identify opportunities and structure efficient flows, leveraging AI tools to automate the gap between design and execution.",
+    'about.description2': "Off-screen, I apply the same rigor to my hobbies as I do to my design systems. I'm a road cycling nerd 🚴 obsessed with race tactics, watts/kg, and keeping my drivetrain silent and waxed. At home, my baby son Gael 👶 is actively reminding me that I had forgotten everything about raising humans. He shares the fort with four cats 🐱 and a house full of plants 🌿.",
     'about.tools': 'Tools',
     'about.skills': 'Skills',
     'about.industries': 'Industries',
@@ -32,6 +31,7 @@ export const common = {
       'Git / GitHub',
       'VSCode',
       'Storybook',
+      'AI Agents',
       'HTML / CSS / JS / React'
     ],
     'about.skillsList': [
@@ -66,7 +66,7 @@ export const common = {
     'footer.rights': 'Maybe some rights reserved :)',
 
     // Case Study
-    'caseStudy.backToWork': 'Back to Work Section',
+    'caseStudy.backToWork': 'Back to Projects',
   },
   es: {
     // Navigation
@@ -75,24 +75,23 @@ export const common = {
     'nav.contact': 'Contacto',
 
     // Site
-    'site.title': 'Diseñador de Producto Senior',
-    'site.tagline': 'Diseñador de Producto Senior creando soluciones fáciles de usar para desafíos digitales complejos—desde Chile, para el mundo.',
+    'site.title': 'Nicolás Lundin — Senior Product Designer & Especialista en Design Systems',
+    'site.tagline': 'Senior Product Designer & Especialista en Design Systems creando soluciones centradas en el usuario para desafíos digitales complejos—desde Chile, para el mundo.',
 
     // Hero
     'hero.title': 'Hola, soy Nico.',
-    'hero.subtitle': 'Diseño experiencias digitales centradas en el usuario y Sistemas de Diseño escalables—con más de 10 años transformando ideas complejas en productos simples y efectivos.',
+    'hero.subtitle': 'Creo productos escalables y Design Systems, combinando visión holística de UX con precisión técnica para conectar diseño e ingeniería.',
     'hero.location': 'Santiago, Chile',
     'hero.viewWork': 'Ver Proyectos',
 
     // Work
-    'work.comingSoon': 'Casos de estudio próximamente',
-    'work.description': 'Actualmente estoy finalizando casos de estudio detallados de mi trabajo. Vuelve pronto para ver exploraciones en profundidad de mi proceso de diseño y resultados.',
+    'work.comingSoon': 'Más casos de estudio próximamente',
+    'work.description': 'Actualmente estoy documentando proyectos adicionales que demuestran mi enfoque en Design Systems escalables, flujos potenciados por IA, y colaboración multifuncional. Vuelve pronto para ver análisis profundos de desafíos complejos de producto y sus soluciones.',
 
     // About
     'about.title': 'Acerca',
-    'about.description1': "Soy diseñador de producto con más de 10 años creando experiencias digitales que la gente realmente quiere usar. Me especializo en <strong>Sistemas de Diseño</strong> y arquitectura de información, con particular enfoque en productos B2C.",
-    'about.description2': "He liderado el diseño de plataformas digitales para fintech, insurtech y SaaS empresarial, colaborando estrechamente con equipos de desarrollo y stakeholders para alinear diseño y ejecución técnica. Me motiva resolver problemas complejos con soluciones simples y bien pensadas.",
-    'about.description3': "Creo que el buen diseño nace del equilibrio entre rigor metodológico y empatía genuina con los usuarios. Fuera del trabajo, disfruto la literatura fantástica 📚 y paso mis días aprendiendo de mis dos hijos—una fuente constante de curiosidad y creatividad.",
+    'about.description1': "Soy Nicolás, diseñador de producto con más de 15 años de experiencia, especializado en arquitectura de Design Systems y DesignOps. Ayudo a equipos a identificar oportunidades y estructurar flujos eficientes, aprovechando herramientas de IA para automatizar la brecha entre diseño y ejecución.",
+    'about.description2': "Fuera de pantalla, aplico el mismo rigor a mis hobbies que a mis Design Systems. Soy un nerd del ciclismo de ruta 🚴 obsesionado con tácticas de carrera, watts/kg, y mantener mi transmisión silenciosa y encerada. En casa, mi bebé Gael 👶 me recuerda activamente que había olvidado todo sobre criar humanos. Comparte el fuerte con cuatro gatos 🐱 y una casa llena de plantas 🌿.",
     'about.tools': 'Herramientas',
     'about.skills': 'Habilidades',
     'about.industries': 'Industrias',
@@ -101,6 +100,7 @@ export const common = {
       'Git / GitHub',
       'VSCode',
       'Storybook',
+      'AI Agents',
       'HTML / CSS / JS / React'
     ],
     'about.skillsList': [
@@ -135,6 +135,6 @@ export const common = {
     'footer.rights': 'Quizás algunos derechos reservados :)',
 
     // Case Study
-    'caseStudy.backToWork': 'Volver a Trabajo',
+    'caseStudy.backToWork': 'Volver a Proyectos',
   }
 };

@@ -1,18 +1,30 @@
 export const nmp = {
   en: {
     title: "Nacional Monte de Piedad",
-    subtitle: "Modernizing Mexico's largest pawn shop chain through accessible design while preserving centuries of trust and cultural heritage.",
+    subtitle: "Unifying centuries of heritage into a coherent digital ecosystem",
     home: {
-      title: "NMP — A design language for an organization with many services and audiences.",
-      subtitle: "A modern system aligned teams, products, and workflows during NMP's digital transformation."
-    }
+      title: "NMP — Building a design system for Mexico's 300-year-old financial institution.",
+      subtitle: "A unified design language that connected 12+ digital services across web, mobile, and internal tools—aligning dispersed teams during a major digital transformation."
+    },
+    details: [
+      { label: "Role", value: "Design Systems Lead" },
+      { label: "Duration", value: "14 months" },
+      { label: "Year", value: "2019-2020" },
+      { label: "Team", value: "5 Designers, 12+ Engineers, 3 Product Managers" }
+    ]
   },
-    es: {
+  es: {
     title: "Nacional Monte de Piedad",
-    subtitle: "Modernizando la cadena de casas de empeño más grande de México a través de diseño accesible mientras se preserva siglos de confianza y patrimonio cultural.",
+    subtitle: "Unificando siglos de patrimonio en un ecosistema digital coherente",
     home: {
-      title: "NMP — Un lenguaje de diseño para una organización con múltiples servicios y audiencias.",
-      subtitle: "Un sistema moderno alineó productos, equipos y flujos durante la transformación digital."
-    }
+      title: "NMP — Construyendo un Design System para una institución financiera con 300 años de historia.",
+      subtitle: "Un lenguaje de diseño unificado que conectó más de 12 servicios digitales en web, mobile y herramientas internas—alineando equipos dispersos durante una transformación digital mayor."
+    },
+    details: [
+      { label: "Rol", value: "Design Systems Lead" },
+      { label: "Duración", value: "14 meses" },
+      { label: "Año", value: "2019-2020" },
+      { label: "Equipo", value: "5 Diseñadores, 12+ Ingenieros, 3 Product Managers" }
+    ]
   }
 };

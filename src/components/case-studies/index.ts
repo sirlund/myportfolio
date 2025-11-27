@@ -6,6 +6,7 @@ export {
   ContentSection,
   TwoColumnLayout,
   ContentImageLayout,
+  Column,
   RichText,
   CardGrid,
   Card,

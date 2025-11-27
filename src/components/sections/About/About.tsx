@@ -28,7 +28,7 @@ export function About() {
           <div className={styles.content}>
             <Text size="md">{t('about.description1') as string}</Text>
             <Text size="md">{t('about.description2') as string}</Text>
-            <Text size="md">{t('about.description3') as string}</Text>
+            {/* <Text size="md">{t('about.description3') as string}</Text> */}
           </div>
 
           <motion.div

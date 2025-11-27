@@ -1,21 +1,53 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useLanguage } from '@/contexts';
 import { CONTACT } from '@/lib/constants';
 import { Section, Container, Heading, Text, BlockLink } from '@/components/base';
+import { toast } from 'sonner';
 import styles from './Contact.module.css';
 
 export function Contact() {
   const ref = useRef(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [emailCopied, setEmailCopied] = useState(false);
 
-  const links = [
+  const handleEmailClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText(CONTACT.EMAIL);
+      setEmailCopied(true);
+      toast.success(
+        language === 'es'
+          ? '¡Email copiado al portapapeles!'
+          : 'Email copied to clipboard!'
+      );
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+      toast.error(
+        language === 'es'
+          ? 'Error al copiar el email'
+          : 'Failed to copy email'
+      );
+    }
+  };
+
+  const links: Array<{
+    name: string;
+    href: string;
+    description: string;
+    external?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  }> = [
     {
       name: t('contact.email'),
       href: `mailto:${CONTACT.EMAIL}`,
-      description: t('contact.emailDesc'),
+      description: emailCopied
+        ? (language === 'es' ? '¡Copiado!' : 'Copied!')
+        : t('contact.emailDesc'),
+      onClick: handleEmailClick,
     },
     {
       name: t('contact.linkedin'),
@@ -29,11 +61,11 @@ export function Contact() {
     //   description: t('contact.dribbbleDesc'),
     //   external: true,
     // },
-    {
-      name: t('contact.resume'),
-      href: CONTACT.RESUME,
-      description: t('contact.resumeDesc'),
-    },
+    // {
+    //   name: t('contact.resume'),
+    //   href: CONTACT.RESUME,
+    //   description: t('contact.resumeDesc'),
+    // },
   ];
 
   return (
@@ -59,6 +91,7 @@ export function Contact() {
                 external={link.external}
                 title={link.name}
                 description={link.description}
+                onClick={link.onClick}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
