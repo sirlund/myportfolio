@@ -10,7 +10,6 @@ export {
   CardGrid,
   Card,
   ProcessTimeline,
-  ImagePlaceholder,
   Divider,
   TokenPyramid,
   ProcessOverview

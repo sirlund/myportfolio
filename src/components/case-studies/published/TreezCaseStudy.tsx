@@ -1,15 +1,21 @@
 import {
   CaseStudyLayout,
   ContentSection,
+  ContentImageLayout,
+  Column,
   RichText,
   CardGrid,
   Divider,
-  ImagePlaceholder,
 } from '@/components/case-studies';
 import { Image } from '@/components/base';
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import imgTreez from '@/assets/images/case-studies/treez_coverImg.png';
-import imgTreez01 from '@/assets/images/case-studies/treez_01.png';
+// import images
+import coverImg from '@/assets/images/case-studies/treez/treez_coverImg.png';
+import dsOverview from '@/assets/images/case-studies/treez/DS_overview_01.png';
+import screenSample1 from '@/assets/images/case-studies/treez/screenSample_01.png'
+import screenSample2 from '@/assets/images/case-studies/treez/screenSample_02.png'
+import screenSample3 from '@/assets/images/case-studies/treez/screenSample_03.png'
+import screenSample4 from '@/assets/images/case-studies/treez/screenSample_04.png'
 import { AlertCircle, FolderOpen, Link2, Accessibility, TestTube, Clock } from 'lucide-react';
 
 export function TreezCaseStudy() {
@@ -19,7 +25,7 @@ export function TreezCaseStudy() {
     <CaseStudyLayout
       title={t.title}
       subtitle={t.subtitle}
-      heroImage={imgTreez}
+      heroImage={coverImg}
       details={t.details}
     >
       {/* Overview */}
@@ -71,19 +77,104 @@ export function TreezCaseStudy() {
 
       {/* Why Root */}
       <ContentSection title={t.sections.whyRoot.title}>
+      
         <RichText content={t.sections.whyRoot.content} />
         <Image
-          src={imgTreez01}
-          alt="Root Design System"
-          aspectRatio="14/6"
-          style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
-        />
-        <Image
-          src={imgTreez01}
-          alt="Root Design System"
-          aspectRatio="14/6"
-          style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
-        />
+            src={dsOverview}
+            alt="Root Design System"
+            caption="Root Design System Visual Style"
+            aspectRatio="14/6"
+            style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
+          />
+        <ContentImageLayout columnLayout gap='none'>
+          <Column width="60%">
+            <Image
+              src={screenSample1}
+              alt="sample 01"
+              aspectRatio="4/3"
+              objectFit='contain'
+              style={{ backgroundColor:'#F7F7F7' }}
+              noMargin
+            />
+          </Column>
+          <Column width="40%" gap='none'>
+            <Image
+              src={screenSample2}
+              alt="sample 02"
+              aspectRatio="1/1"
+              objectFit='cover'
+              noMargin
+            />
+            <Image
+              src={screenSample3}
+              alt="sample 03"
+              aspectRatio="4/3"
+              noMargin
+            />
+          </Column>
+        </ContentImageLayout>
+
+        <ContentImageLayout columnLayout gap='compact'>
+          <Column width="40%" gap='compact'>
+            <Image
+              src={screenSample3}
+              alt="sample 03"
+              aspectRatio="4/3"
+              noMargin
+            />
+            <Image
+              src={screenSample4}
+              alt="sample 04"
+              aspectRatio="4/3"
+              objectFit='contain'
+              style={{ backgroundColor:'#F7F7F7' }}
+              noMargin
+            />
+          </Column>
+          <Column width="60%">
+            <Image
+              src={screenSample1}
+              alt="sample 01"
+              aspectRatio="4/3"
+              objectFit='contain'
+              style={{ backgroundColor:'#F7F7F7' }}
+              noMargin
+            />
+          </Column>
+        </ContentImageLayout>
+
+        <ContentImageLayout columns={2} stretch={false} columnWidths="60% 40%">
+          <Image
+            src={screenSample1}
+            alt="sample 01"
+            aspectRatio="4/3"
+            objectFit='contain'
+            caption="lol"
+            style={{ backgroundColor:'#F7F7F7' }}
+          />
+          <Image
+            src={screenSample2}
+            alt="sample 02"
+            aspectRatio="1/1"
+            caption="lol"
+            objectFit='cover'
+          />
+          <Image
+            src={screenSample3}
+            alt="sample 03"
+            caption="lol"
+            aspectRatio="4/3"
+          />
+          <Image
+            src={screenSample4}
+            alt="sample 04"
+            aspectRatio="4/3"
+            objectFit='contain'
+            caption="lol"
+            style={{ backgroundColor:'#F7F7F7' }}
+          />
+        </ContentImageLayout>
+        
       </ContentSection>
 
       <Divider />

@@ -5,12 +5,12 @@ import {
   TwoColumnLayout,
   CardGrid,
   Divider,
-  ImagePlaceholder,
   ProcessTimeline,
   ContentImageLayout,
   TokenPyramid,
   ProcessOverview
 } from '@/components/case-studies';
+import { Image } from '@/components/base';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgMindstudio from '@/assets/images/case-studies/mindstudio_coverImg.png';
 import { Target, Layers, GitBranch, Zap } from 'lucide-react';
@@ -43,10 +43,11 @@ export function MindStudioCaseStudy() {
         </p>
         <TwoColumnLayout columns={t.sections.challenge.twoColumn.columns} />
 
-        <ImagePlaceholder
+        <Image
           aspectRatio="16/9"
           label="Figma before: chaos and fragmentation"
           caption="Estado inicial del diseño en Figma"
+          alt="Estado inicial del diseño en Figma"
         />
       </ContentSection>
 
@@ -102,16 +103,17 @@ export function MindStudioCaseStudy() {
         title={t.sections.results.title}
         centered
       >
-        <ContentImageLayout
-          content={<RichText content={t.sections.results.content} />}
-          image={
-            <ImagePlaceholder
-              aspectRatio="4/3"
-              label="Before/After comparison"
-              caption="Comparación antes y después del Design System"
-            />
-          }
-        />
+        <ContentImageLayout columns={2}>
+          <div>
+            <RichText content={t.sections.results.content} />
+          </div>
+          <Image
+            aspectRatio="4/3"
+            label="Before/After comparison"
+            caption="Comparación antes y después del Design System"
+            alt="Comparación antes y después del Design System"
+          />
+        </ContentImageLayout>
       </ContentSection>
 
       <Divider />
@@ -133,16 +135,17 @@ export function MindStudioCaseStudy() {
         title={t.sections.role.title}
         centered
       >
-        <ContentImageLayout
-          content={<RichText content={t.sections.role.content} />}
-          image={
-            <ImagePlaceholder
-              aspectRatio="4/3"
-              label="Team collaboration"
-              caption="Colaboración con el equipo de producto"
-            />
-          }
-        />
+        <ContentImageLayout columns={2}>
+          <div>
+            <RichText content={t.sections.role.content} />
+          </div>
+          <Image
+            aspectRatio="4/3"
+            label="Team collaboration"
+            caption="Colaboración con el equipo de producto"
+            alt="Colaboración con el equipo de producto"
+          />
+        </ContentImageLayout>
       </ContentSection>
     </CaseStudyLayout>
   );

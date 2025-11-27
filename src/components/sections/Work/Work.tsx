@@ -6,11 +6,11 @@ import { useLanguage } from "@/contexts";
 import { Icon } from "@/components/icons";
 import { Heading, Text, Button, Image } from "@/components/base";
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import imgMindstudio from "@/assets/images/case-studies/mindstudio_coverImg.png";
-import imgTreez from "@/assets/images/case-studies/treez_coverImg.png";
-import imgWenia from "@/assets/images/case-studies/wenia_coverImg.png";
-import imgNMP from "@/assets/images/case-studies/nmp_coverImg.png";
-import imgKlare from "@/assets/images/case-studies/klare_coverImg.png";
+import coverImgMindstudio from "@/assets/images/case-studies/mindstudio_coverImg.png";
+import coverImgTreez from "@/assets/images/case-studies/treez/treez_coverImg.png";
+import coverImgWenia from "@/assets/images/case-studies/wenia_coverImg.png";
+import coverImgNMP from "@/assets/images/case-studies/nmp_coverImg.png";
+import coverImgKlare from "@/assets/images/case-studies/klare_coverImg.png";
 import styles from './Work.module.css';
 
 const baseProjects = [
@@ -18,7 +18,7 @@ const baseProjects = [
     id: 1,
     className: styles.projectMindstudio,
     icon: <Icon name="mindstudio" height="100%" />,
-    image: imgMindstudio,
+    image: coverImgMindstudio,
     route: "mindstudio" as const,
     buttonType: 'inverse',
   },
@@ -26,7 +26,7 @@ const baseProjects = [
     id: 2,
     className: styles.projectWenia,
     icon: <Icon name="wenia" height="100%" />,
-    image: imgWenia,
+    image: coverImgWenia,
     route: "wenia" as const,
     buttonType: 'primary',
   },
@@ -34,7 +34,7 @@ const baseProjects = [
     id: 3,
     className: styles.projectTreez,
     icon: <Icon name="treez" height="100%" />,
-    image: imgTreez,
+    image: coverImgTreez,
     route: "treez" as const,
     buttonType: 'primary',
   },
@@ -42,7 +42,7 @@ const baseProjects = [
     id: 4,
     className: styles.projectNMP,
     icon: <Icon name="nmp" height="100%" />,
-    image: imgNMP,
+    image: coverImgNMP,
     route: "nmp" as const,
     buttonType: 'primary',
   },
@@ -50,7 +50,7 @@ const baseProjects = [
     id: 5,
     className: styles.projectKlare,
     icon: <Icon name="klare" height="100%" />,
-    image: imgKlare,
+    image: coverImgKlare,
     route: "klare" as const,
     buttonType: 'inverse',
   },

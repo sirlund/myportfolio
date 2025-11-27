@@ -6,6 +6,69 @@
   /* Base Styles */
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+}
+
+/* Figure wrapper for images with captions */
+.figure {
+  margin: 0;
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media (width >= 64rem) {
+    margin-top: calc(var(--spacing, 0.25rem) * 16);
+  }
+}
+
+.figure > .image,
+.figure > .placeholder {
+  flex: 1;
+  min-height: 0;
+}
+
+.figureNoMargin {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.figureNoMargin > .image,
+.figureNoMargin > .placeholder {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Placeholder styles */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-tertiary);
+  border: 1px dashed var(--color-border-default);
+  border-radius: calc(var(--spacing, 0.25rem) * 2);
+  width: 100%;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholderLabel {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: calc(var(--spacing, 0.25rem) * 4);
+}
+
+/* Caption styles */
+.caption {
+  margin: calc(var(--spacing, 0.25rem) * 3) 0;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-style: italic;
 }

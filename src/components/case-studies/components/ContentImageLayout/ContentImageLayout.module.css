@@ -1,32 +1,102 @@
+/* Base layout */
 .layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--spacing, 0.25rem) * 12);
-  align-items: center;
   margin-top: calc(var(--spacing, 0.25rem) * 12);
 
   @media (width >= 64rem) {
-    grid-template-columns: 1fr 1fr;
-    gap: calc(var(--spacing, 0.25rem) * 16);
+    margin-top: calc(var(--spacing, 0.25rem) * 16);
   }
 }
 
-.layout.reverse {
+/* Alignment variants */
+.stretch {
+  align-items: stretch;
+}
+
+.noStretch {
+  align-items: start;
+}
+
+/* Column variants */
+.cols2 {
   @media (width >= 64rem) {
-    & .contentSide {
-      order: 2;
-    }
-
-    & .imageSide {
-      order: 1;
-    }
+    grid-template-columns: var(--custom-columns, 1fr 1fr);
   }
 }
 
-.contentSide {
-  /* Content inherits styles from parent */
+.cols3 {
+  @media (width >= 48rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (width >= 64rem) {
+    grid-template-columns: var(--custom-columns, 1fr 1fr 1fr);
+  }
 }
 
-.imageSide {
-  /* Image wrapper */
+.cols4 {
+  @media (width >= 48rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (width >= 64rem) {
+    grid-template-columns: var(--custom-columns, 1fr 1fr 1fr 1fr);
+  }
+}
+
+/* Gap variants */
+.gapDefault {
+  gap: calc(var(--spacing, 0.25rem) * 8);
+
+  @media (width >= 64rem) {
+    gap: calc(var(--spacing, 0.25rem) * 12);
+  }
+}
+
+.gapCompact {
+  gap: calc(var(--spacing, 0.25rem) * 4);
+
+  @media (width >= 64rem) {
+    gap: calc(var(--spacing, 0.25rem) * 6);
+  }
+}
+
+.gapNone {
+  gap: 0;
+}
+
+/* Column layout mode */
+.columnLayout {
+  display: grid;
+  grid-template-columns: var(--custom-columns, 1fr);
+  margin-top: calc(var(--spacing, 0.25rem) * 12);
+
+  @media (width >= 64rem) {
+    margin-top: calc(var(--spacing, 0.25rem) * 16);
+  }
+
+  /* Mobile: stack columns vertically */
+  @media (width < 48rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual column */
+.column {
+  display: flex;
+  flex-direction: column;
+  width: var(--column-width, auto);
+}
+
+.columnStretch {
+  align-items: stretch;
+}
+
+.columnStretch > * {
+  flex: 1;
+}
+
+.columnNoStretch {
+  align-items: start;
 }
