@@ -2,6 +2,7 @@ export const treez = {
   en: {
   title: "Root Design System",
   subtitle: "A scalable, accessible, and cross-platform design system that unified visual language, increased team efficiency, and improved product quality at scale.",
+  seoDescription: "Design System case study: Building Root, a scalable and accessible cross-platform design system that unified visual language and increased team efficiency at Treez cannabis platform.",
   details: [
     { label: "Role", value: "Design System Lead" },
     { label: "Duration", value: "12 months" },

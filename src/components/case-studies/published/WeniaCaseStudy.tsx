@@ -21,6 +21,7 @@ export function WeniaCaseStudy() {
         { label: "Year", value: "2023" },
         { label: "Team", value: "3 Designers, 6 Engineers, 2 PMs" }
       ]}
+      seoDescription={t.seoDescription}
     >
       <ContentSection title="Coming Soon" centered>
         <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>

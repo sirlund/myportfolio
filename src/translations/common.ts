@@ -8,6 +8,7 @@ export const common = {
     // Site
     'site.title': 'Nicolás Lundin — Senior Product Designer & Design Systems Specialist',
     'site.tagline': 'Senior Product Designer & Design Systems Specialist creating user-friendly solutions for complex digital challenges—from Chile, for the world.',
+    'site.description': 'Senior Product Designer & Design Systems Specialist from Santiago, Chile. I craft scalable products and design systems, combining holistic UX vision with technical precision to bridge the gap between design and engineering.',
 
     // Hero
     'hero.title': "Hello, I'm Nico.",
@@ -77,6 +78,7 @@ export const common = {
     // Site
     'site.title': 'Nicolás Lundin — Senior Product Designer & Especialista en Design Systems',
     'site.tagline': 'Senior Product Designer & Especialista en Design Systems creando soluciones centradas en el usuario para desafíos digitales complejos—desde Chile, para el mundo.',
+    'site.description': 'Senior Product Designer & Especialista en Design Systems desde Santiago, Chile. Creo productos escalables y Design Systems, combinando visión holística de UX con precisión técnica para conectar diseño e ingeniería.',
 
     // Hero
     'hero.title': 'Hola, soy Nico.',

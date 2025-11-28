@@ -3,8 +3,10 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigation } from '@/contexts';
 import { useLanguage } from '@/contexts';
 import { Image } from '@/components/base';
+import { SEO } from '@/components/SEO';
 import { ContentSection, RichText } from '@/components/case-studies/shared';
 import { useState, useEffect, ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './CaseStudyLayout.module.css';
 
 interface ProjectDetail {
@@ -21,6 +23,9 @@ interface CaseStudyLayoutProps {
   // Project details
   details: ProjectDetail[];
 
+  // SEO
+  seoDescription?: string;
+
   // Impact stats section (optional)
   impactStats?: {
     metric: string;
@@ -36,11 +41,14 @@ export function CaseStudyLayout({
   subtitle,
   heroImage,
   details,
+  seoDescription,
   impactStats,
   children
 }: CaseStudyLayoutProps) {
   const { navigateToWork } = useNavigation();
+  const { language } = useLanguage();
   const { t } = useLanguage();
+  const location = useLocation();
   const [showBackButton, setShowBackButton] = useState(false);
 
   useEffect(() => {
@@ -60,8 +68,19 @@ export function CaseStudyLayout({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Generate SEO meta title and description
+  const seoTitle = `${title} — Nicolás Lundin`;
+  const seoDesc = seoDescription || subtitle;
+
   return (
-    <div className={styles.container}>
+    <>
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        path={location.pathname}
+        lang={language}
+      />
+      <div className={styles.container}>
       {/* Fixed Back Button (appears on scroll) */}
       <motion.button
         initial={{ opacity: 0, y: -20 }}
@@ -179,5 +198,6 @@ export function CaseStudyLayout({
       {/* Bottom Spacing */}
       <div className={styles.bottomSpacing} />
     </div>
+    </>
   );
 }

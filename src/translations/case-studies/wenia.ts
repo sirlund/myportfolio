@@ -2,6 +2,7 @@ export const wenia = {
   en: {
     title: "Wenia Banking Platform",
     subtitle: "Building DesignOps foundations during rapid growth",
+    seoDescription: "DesignOps case study: How I established design systems and workflows at Wenia fintech that enabled the team to scale from MVP to multi-product platform while maintaining quality.",
     home: {
       title: "Wenia — From design chaos to operational clarity in a growing fintech.",
       subtitle: "Establishing design systems and workflows that enabled the team to scale from MVP to multi-product platform while maintaining quality and velocity."
@@ -16,6 +17,7 @@ export const wenia = {
   es: {
     title: "Plataforma Wenia",
     subtitle: "Construyendo bases de DesignOps durante crecimiento acelerado",
+    seoDescription: "Caso de estudio DesignOps: Cómo establecí Design Systems y flujos de trabajo en Wenia fintech que permitieron al equipo escalar de MVP a plataforma multi-producto manteniendo calidad.",
     home: {
       title: "Wenia — Del caos de diseño a claridad operacional en una fintech en crecimiento.",
       subtitle: "Estableciendo Design Systems y flujos de trabajo que permitieron al equipo escalar de MVP a plataforma multi-producto manteniendo calidad y velocidad."

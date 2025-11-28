@@ -19,6 +19,7 @@ export function NMPCaseStudy() {
         { label: "Year", value: "2022-2023" },
         { label: "Team", value: "5 Designers, 12 Engineers, 3 PMs" }
       ]}
+      seoDescription={t.seoDescription}
     >
       <ContentSection title="Coming Soon" centered>
         <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>

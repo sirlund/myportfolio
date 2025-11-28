@@ -2,6 +2,7 @@ export const mindstudio = {
   en: {
     title: "Mindstudio Design System",
     subtitle: "From chaos to clarity in a no-code AI platform",
+    seoDescription: "Design System case study: Building a scalable foundation for Mindstudio's no-code AI platform. A 10-month collaborative effort to turn technical complexity into clarity.",
     // impactStats: [
     //   { metric: "80%", label: "Less Figma duplication" },
     //   { metric: "40%", label: "Faster handoff" },
@@ -178,6 +179,7 @@ export const mindstudio = {
   es: {
     title: "Mindstudio Design System",
     subtitle: "De caos a claridad en una plataforma no-code de IA",
+    seoDescription: "Caso de estudio Design System: Construyendo una base escalable para la plataforma no-code de IA de Mindstudio. Un esfuerzo colaborativo de 10 meses para convertir complejidad técnica en claridad.",
     home: {
       title: "Mindstudio — Diseñando claridad en una plataforma de IA que crecía sin detenerse.",
       subtitle: "Cómo un equipo transformó complejidad técnica en una base escalable que acompañó la evolución del producto."

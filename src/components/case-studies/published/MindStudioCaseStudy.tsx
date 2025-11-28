@@ -24,6 +24,7 @@ export function MindStudioCaseStudy() {
       subtitle={t.subtitle}
       heroImage={imgMindstudio}
       details={t.details}
+      seoDescription={t.seoDescription}
     >
       {/* Overview (no label) */}
       <ContentSection title={t.overview.title} titleSize="small">

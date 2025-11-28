@@ -27,6 +27,7 @@ export function TreezCaseStudy() {
       subtitle={t.subtitle}
       heroImage={coverImg}
       details={t.details}
+      seoDescription={t.seoDescription}
     >
       {/* Overview */}
       <ContentSection title={t.overview.title} titleSize="small">
