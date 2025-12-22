@@ -16,15 +16,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
     const isSpanish = location.pathname.startsWith('/es');
     const targetPath = isSpanish ? '/es' : '/';
 
-    navigate(targetPath);
-
-    // Wait for navigation, then scroll to work section
-    setTimeout(() => {
-      const element = document.getElementById('work');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    navigate(targetPath, { state: { scrollTo: 'work' } });
   };
 
   return (

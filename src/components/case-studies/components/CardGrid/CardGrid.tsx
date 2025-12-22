@@ -4,14 +4,17 @@ interface CardProps {
   icon?: React.ReactNode;
   title: string;
   description: string;
+  variant?: 'vertical' | 'horizontal';
 }
 
-export function Card({ icon, title, description }: CardProps) {
+export function Card({ icon, title, description, variant = 'vertical' }: CardProps) {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${variant === 'horizontal' ? styles.horizontal : ''}`}>
       {icon && <div className={styles.icon}>{icon}</div>}
-      <h4 className={styles.title}>{title}</h4>
-      <p className={styles.description}>{description}</p>
+      <div className={styles.content}>
+        <h4 className={styles.title}>{title}</h4>
+        <p className={styles.description}>{description}</p>
+      </div>
     </div>
   );
 }
@@ -22,9 +25,10 @@ interface CardGridProps {
     title: string;
     description: string;
   }[];
+  variant?: 'vertical' | 'horizontal';
 }
 
-export function CardGrid({ cards }: CardGridProps) {
+export function CardGrid({ cards, variant = 'vertical' }: CardGridProps) {
   return (
     <div className={styles.grid}>
       {cards.map((card, index) => (
@@ -33,6 +37,7 @@ export function CardGrid({ cards }: CardGridProps) {
           icon={card.icon}
           title={card.title}
           description={card.description}
+          variant={variant}
         />
       ))}
     </div>

@@ -92,7 +92,6 @@ export function Work() {
   const navigateToProject = (projectRoute: string) => {
     const path = language === 'es' ? `/es/${projectRoute}` : `/${projectRoute}`;
     navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

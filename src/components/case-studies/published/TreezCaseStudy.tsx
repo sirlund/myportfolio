@@ -49,11 +49,12 @@ export function TreezCaseStudy() {
           {t.sections.problem.intro}
         </p>
 
-        <blockquote style={{ fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--color-text-secondary)', borderLeft: '4px solid var(--color-border-default)', paddingLeft: '1.5rem', margin: '2rem auto', maxWidth: '48rem' }}>
+        <blockquote style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', borderLeft: '4px solid var(--color-border-default)', paddingLeft: '1.5rem', margin: '2rem auto', maxWidth: '48rem' }}>
           "{t.sections.problem.quote}"
         </blockquote>
 
         <CardGrid
+          variant="horizontal"
           cards={t.sections.problem.challenges.map((challenge, index) => ({
             icon: [
               <AlertCircle size={24} key="alert" />,
@@ -64,7 +65,7 @@ export function TreezCaseStudy() {
               <Clock size={24} key="clock" />
             ][index],
             title: challenge.text,
-            description: ''
+            description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
           }))}
           columns={3}
         />
@@ -78,15 +79,15 @@ export function TreezCaseStudy() {
 
       {/* Why Root */}
       <ContentSection title={t.sections.whyRoot.title}>
-      
+
         <RichText content={t.sections.whyRoot.content} />
         <Image
-            src={dsOverview}
-            alt="Root Design System"
-            caption="Root Design System Visual Style"
-            aspectRatio="14/6"
-            style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
-          />
+          src={dsOverview}
+          alt="Root Design System"
+          caption="Root Design System Visual Style"
+          aspectRatio="14/6"
+          style={{ margin: '2rem 0', width: '100%', borderRadius: '0.5rem' }}
+        />
         <ContentImageLayout columnLayout gap='none'>
           <Column width="60%">
             <Image
@@ -94,7 +95,7 @@ export function TreezCaseStudy() {
               alt="sample 01"
               aspectRatio="4/3"
               objectFit='contain'
-              style={{ backgroundColor:'#F7F7F7' }}
+              style={{ backgroundColor: '#F7F7F7' }}
               noMargin
             />
           </Column>
@@ -128,7 +129,7 @@ export function TreezCaseStudy() {
               alt="sample 04"
               aspectRatio="4/3"
               objectFit='contain'
-              style={{ backgroundColor:'#F7F7F7' }}
+              style={{ backgroundColor: '#F7F7F7' }}
               noMargin
             />
           </Column>
@@ -138,7 +139,7 @@ export function TreezCaseStudy() {
               alt="sample 01"
               aspectRatio="4/3"
               objectFit='contain'
-              style={{ backgroundColor:'#F7F7F7' }}
+              style={{ backgroundColor: '#F7F7F7' }}
               noMargin
             />
           </Column>
@@ -151,7 +152,7 @@ export function TreezCaseStudy() {
             aspectRatio="4/3"
             objectFit='contain'
             caption="lol"
-            style={{ backgroundColor:'#F7F7F7' }}
+            style={{ backgroundColor: '#F7F7F7' }}
           />
           <Image
             src={screenSample2}
@@ -172,10 +173,10 @@ export function TreezCaseStudy() {
             aspectRatio="4/3"
             objectFit='contain'
             caption="lol"
-            style={{ backgroundColor:'#F7F7F7' }}
+            style={{ backgroundColor: '#F7F7F7' }}
           />
         </ContentImageLayout>
-        
+
       </ContentSection>
 
       <Divider />

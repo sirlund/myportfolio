@@ -3,23 +3,24 @@
    ============================================ */
 
 .section {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 32);
+  margin-bottom: var(--space-32);
 
-  @media (width >= 64rem) {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 48);
+  @media (width >=64rem) {
+    margin-bottom: var(--space-48);
   }
 }
 
 .container {
   margin-left: auto;
   margin-right: auto;
-  padding-left: calc(var(--spacing, 0.25rem) * 6);
-  padding-right: calc(var(--spacing, 0.25rem) * 6);
-  max-width: 64rem; /* 1024px */
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+  max-width: 64rem;
+  /* 1024px */
 
-  @media (width >= 64rem) {
-    padding-left: calc(var(--spacing, 0.25rem) * 8);
-    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  @media (width >=64rem) {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
   }
 }
 
@@ -33,10 +34,10 @@
    ============================================ */
 
 .header {
-  margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+  margin-bottom: var(--space-12);
 
-  @media (width >= 64rem) {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 16);
+  @media (width >=64rem) {
+    margin-bottom: var(--space-16);
   }
 }
 
@@ -51,16 +52,16 @@
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  margin-bottom: var(--space-4);
 }
 
 .title {
   margin: 0;
   font-size: var(--text-3xl, 2.441rem);
   font-weight: var(--font-weight-bold, 700);
-  line-height: 1.2;
+  line-height: var(--leading-tight);
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     font-size: var(--text-5xl, 3rem);
   }
 }
@@ -68,7 +69,7 @@
 .titleSmall {
   font-size: var(--text-2xl, 1.953rem);
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     font-size: var(--text-3xl, 2.441rem);
   }
 }
@@ -79,12 +80,12 @@
 
 .content {
   color: var(--color-text-secondary);
-  line-height: var(--leading-relaxed, 1.625);
+  line-height: var(--leading-relaxed);
 
   /* Typography for direct text content */
-  & > p {
+  &>p {
     font-size: var(--text-lg, 1.25rem);
-    margin-bottom: calc(var(--spacing, 0.25rem) * 6);
+    margin-bottom: var(--space-6);
 
     &:last-child {
       margin-bottom: 0;
@@ -94,11 +95,11 @@
   /* Lists (direct children and inside divs from RichText) */
   & ul,
   & ol {
-    margin: calc(var(--spacing, 0.25rem) * 6) 0;
-    padding-left: calc(var(--spacing, 0.25rem) * 8);
+    margin: var(--space-6) 0;
+    padding-left: var(--space-8);
 
     & li {
-      margin-bottom: calc(var(--spacing, 0.25rem) * 3);
+      margin-bottom: var(--space-3);
     }
   }
 

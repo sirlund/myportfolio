@@ -4,23 +4,23 @@
 
 .container {
   background-color: var(--color-bg-tertiary);
-  padding: calc(var(--spacing, 0.25rem) * 12);
-  border-radius: calc(var(--spacing, 0.25rem) * 4);
-  margin-top: calc(var(--spacing, 0.25rem) * 12);
+  padding: var(--space-12);
+  border-radius: var(--space-4);
+  margin-top: var(--space-12);
 
-  @media (width >= 64rem) {
-    padding: calc(var(--spacing, 0.25rem) * 16);
+  @media (width >=64rem) {
+    padding: var(--space-16);
   }
 }
 
 .title {
   font-size: var(--text-lg, 1.125rem);
   font-weight: var(--font-weight-semibold, 600);
-  margin-bottom: calc(var(--spacing, 0.25rem) * 10);
+  margin-bottom: var(--space-10);
   color: var(--color-text-primary);
   text-align: center;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     font-size: var(--text-xl, 1.25rem);
   }
 }
@@ -28,10 +28,10 @@
 .timeline {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--spacing, 0.25rem) * 8);
+  gap: var(--space-8);
   position: relative;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0;
   }
@@ -42,7 +42,7 @@
   flex-direction: column;
   position: relative;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     flex: 1;
   }
 }
@@ -50,18 +50,18 @@
 .milestone {
   display: flex;
   align-items: center;
-  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  margin-bottom: var(--space-4);
   position: relative;
   z-index: 2;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     justify-content: flex-start;
   }
 }
 
 .dot {
-  width: 16px;
-  height: 16px;
+  width: var(--space-4);
+  height: var(--space-4);
   border-radius: 50%;
   background-color: var(--color-text-primary);
   border: 3px solid var(--color-bg-primary);
@@ -71,7 +71,7 @@
 .connector {
   display: none;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     display: block;
     position: absolute;
     top: 8px;
@@ -88,14 +88,14 @@
 }
 
 .phaseTitle {
-  margin: 0 0 calc(var(--spacing, 0.25rem) * 3);
+  margin: 0 0 var(--space-3);
   font-size: var(--text-sm, 0.875rem);
   font-weight: var(--font-weight-bold, 700);
   color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     font-size: var(--text-base, 1rem);
   }
 }
@@ -106,15 +106,15 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing, 0.25rem) * 2);
+  gap: var(--space-2);
 }
 
 .phaseItems li {
   font-size: var(--text-sm, 0.875rem);
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  line-height: var(--leading-normal);
   position: relative;
-  padding-left: calc(var(--spacing, 0.25rem) * 4);
+  padding-left: var(--space-4);
 
   &::before {
     content: "•";
@@ -125,8 +125,8 @@
 }
 
 .bottomLabel {
-  margin-top: calc(var(--spacing, 0.25rem) * 10);
-  padding-top: calc(var(--spacing, 0.25rem) * 6);
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
   border-top: 1px dotted var(--color-border-default);
   text-align: left;
   font-size: var(--text-sm, 0.875rem);

@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from '@/components/base/sonner';
 import { SEO, HelmetProvider } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
@@ -37,6 +37,21 @@ const ErrorFallback = ({ error }: { error: Error }) => (
 // Home page component
 function HomePage() {
   const { language, t } = useLanguage();
+  const location = useLocation();
+
+  // Handle scroll to section from navigation state
+  useEffect(() => {
+    if (location.state && (location.state as any).scrollTo === 'work') {
+      // Small timeout to ensure DOM is ready, but keep it snappy
+      // Using 'instant' behavior to avoid the visual jump/scroll from top
+      setTimeout(() => {
+        const element = document.getElementById('work');
+        if (element) {
+          element.scrollIntoView({ behavior: 'instant' });
+        }
+      }, 0);
+    }
+  }, [location]);
 
   return (
     <>

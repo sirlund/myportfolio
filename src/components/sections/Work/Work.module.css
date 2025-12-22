@@ -15,12 +15,12 @@
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  padding: 4rem 2rem;
+  padding: var(--space-16) var(--space-8);
   text-align: center;
 }
 
 .comingSoonTitle {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .comingSoonDescription {
@@ -39,17 +39,17 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 2rem;
-  padding: 3rem 1.5rem;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-6);
 
-  @media (width >= 40rem) {
-    gap: 3rem;
-    padding: 4rem 2.5rem;
+  @media (width >=40rem) {
+    gap: var(--space-12);
+    padding: var(--space-16) var(--space-10);
   }
 
-  @media (width >= 64rem) {
-    gap: 4rem;
-    padding: 5rem 4rem;
+  @media (width >=64rem) {
+    gap: var(--space-16);
+    padding: var(--space-20) var(--space-16);
   }
 }
 
@@ -60,10 +60,10 @@
   text-align: center;
   max-width: 42rem;
   width: 100%;
-  gap: 1.5rem;
+  gap: var(--space-6);
 
-  @media (width >= 40rem) {
-    gap: 2rem;
+  @media (width >=40rem) {
+    gap: var(--space-8);
   }
 }
 
@@ -74,10 +74,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2rem;
+  height: var(--space-8);
   width: auto;
 
-  @media (width >= 40rem) {
+  @media (width >=40rem) {
     height: 2.25rem;
   }
 }
@@ -107,12 +107,11 @@
   margin: 0 auto;
 
   /* Responsive */
-  @media (width >= 40rem) {
-    border-radius: 0.5rem;
+  @media (width >=40rem) {
+    border-radius: var(--radius-md);
   }
 
-  @media (width >= 64rem) {
-  }
+  @media (width >=64rem) {}
 }
 
 /* ============================================
@@ -144,9 +143,7 @@
     color: var(--wenia-section-text-muted);
   }
 
-  & .projectButton {
-    /* background-color: var(--wenia-section-button-bg); */
-  }
+
 }
 
 /* Treez Theme */
@@ -178,9 +175,7 @@
     color: var(--nmp-section-text-muted);
   }
 
-  & .projectButton {
-    /* background-color: var(--nacional-section-button-bg); */
-  }
+
 }
 
 /* Klare Theme */
@@ -195,7 +190,5 @@
     color: var(--klare-section-text-muted);
   }
 
-  & .projectButton {
-    /* background-color: var(--klare-section-button-bg); */
-  }
+
 }

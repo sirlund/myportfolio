@@ -7,15 +7,15 @@
    ============================================ */
 .content {
   max-width: var(--container-2xl, 42rem);
-  margin-bottom: calc(var(--spacing, 0.25rem) * 8);
+  margin-bottom: var(--space-8);
 
   /* Responsive */
-  @media (width >= 40rem) {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 10);
+  @media (width >=40rem) {
+    margin-bottom: var(--space-10);
   }
 
-  @media (width >= 64rem) {
-    margin-bottom: calc(var(--spacing, 0.25rem) * 12);
+  @media (width >=64rem) {
+    margin-bottom: var(--space-12);
   }
 }
 
@@ -25,14 +25,14 @@
 .links {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing, 0.25rem) * 4);
+  gap: var(--space-4);
 
   /* Responsive */
-  @media (width >= 40rem) {
-    gap: calc(var(--spacing, 0.25rem) * 5);
+  @media (width >=40rem) {
+    gap: var(--space-5);
   }
 
-  @media (width >= 64rem) {
-    gap: calc(var(--spacing, 0.25rem) * 6);
+  @media (width >=64rem) {
+    gap: var(--space-6);
   }
 }

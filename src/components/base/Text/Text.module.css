@@ -5,7 +5,7 @@
 .text {
   /* Base Styles */
   margin: 0;
-  line-height: var(--leading-relaxed, 1.625);
+  line-height: var(--leading-relaxed);
 
   /* Size Variants */
   &[data-size="lg"] {
@@ -24,6 +24,7 @@
   &[data-color="secondary"] {
     color: var(--color-text-secondary);
   }
+
   &[data-color="muted"] {
     color: var(--color-text-tertiary);
   }

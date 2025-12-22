@@ -6,7 +6,7 @@
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
 }
 
 /* ============================================
@@ -14,6 +14,7 @@
    Only on devices with precise pointers
    ============================================ */
 @media (hover: hover) and (pointer: fine) {
+
   :global(*),
   :global(body),
   :global(a),

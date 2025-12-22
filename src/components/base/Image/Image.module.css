@@ -13,19 +13,19 @@
 /* Figure wrapper for images with captions */
 .figure {
   margin: 0;
-  margin-top: calc(var(--spacing, 0.25rem) * 12);
+  margin-top: var(--space-12);
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
 
-  @media (width >= 64rem) {
-    margin-top: calc(var(--spacing, 0.25rem) * 16);
+  @media (width >=64rem) {
+    margin-top: var(--space-16);
   }
 }
 
-.figure > .image,
-.figure > .placeholder {
+.figure>.image,
+.figure>.placeholder {
   flex: 1;
   min-height: 0;
 }
@@ -37,8 +37,8 @@
   height: 100%;
 }
 
-.figureNoMargin > .image,
-.figureNoMargin > .placeholder {
+.figureNoMargin>.image,
+.figureNoMargin>.placeholder {
   flex: 1;
   min-height: 0;
 }
@@ -50,7 +50,7 @@
   justify-content: center;
   background: var(--color-bg-tertiary);
   border: 1px dashed var(--color-border-default);
-  border-radius: calc(var(--spacing, 0.25rem) * 2);
+  border-radius: var(--space-2);
   width: 100%;
   min-height: 200px;
   position: relative;
@@ -58,16 +58,16 @@
 }
 
 .placeholderLabel {
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
   text-align: center;
-  padding: calc(var(--spacing, 0.25rem) * 4);
+  padding: var(--space-4);
 }
 
 /* Caption styles */
 .caption {
-  margin: calc(var(--spacing, 0.25rem) * 3) 0;
-  font-size: var(--text-sm, 0.875rem);
+  margin: var(--space-3) 0;
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
   text-align: center;
   font-style: italic;
