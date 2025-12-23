@@ -15,7 +15,7 @@ export const treez = {
     },
     overview: {
       title: "Overview",
-      content: "Lead the architecture and implementation of Root DS for Treez’s fast-growing B2B platform. The initiative addressed critical UI fragmentation across web and mobile, transforming significant technical debt into a unified system that reduced QA cycles by 30% and accelerated delivery."
+      content: "Led the architecture and implementation of Root DS for Treez’s fast-growing B2B platform. The initiative addressed critical UI fragmentation across web and mobile, transforming significant technical debt into a unified system that reduced QA cycles by 30% and accelerated delivery."
     },
     sections: {
       context: {
@@ -131,7 +131,7 @@ export const treez = {
       },
       whatsNext: {
         title: "What's Next",
-        content: "Root was intentionally scoped to the web platform, but its architecture was designed to extend into mobile and POS — a roadmap priority for 2024.\n\n <strong>In progress:</strong>\n• Extending tokens for mobile breakpoints and interaction patterns\n• POS app alignment with web design language\n• Brand theme flexibility for white-label features\n\n <strong>Future goals:</strong>\n• Integrate automated accessibility linting\n• Versioned documentation with automated changelogs\n• Design ops dashboard for system health and adoption metrics"
+        content: "Root was intentionally scoped to the web platform, but its architecture was designed to extend into mobile and POS — a roadmap priority for 2024.\n\n <strong>In progress:</strong>\n• Extending tokens for mobile breakpoints and interaction patterns\n• POS app alignment with web design language\n• Brand theme flexibility for white-label features\n\n <strong>Future goals:</strong>\n• Pilot automated accessibility linting in CI/CD pipeline\n• Versioned documentation with automated changelogs\n• Design ops dashboard for system health and adoption metrics"
       },
       reflection: {
         title: "Reflection",
@@ -270,7 +270,7 @@ export const treez = {
       },
       whatsNext: {
         title: "Próximos Pasos",
-        content: "Root fue intencionalmente limitado a la plataforma web, pero su arquitectura fue diseñada para extenderse a móvil y POS — una prioridad del roadmap para 2024.\n\n <strong>En progreso:</strong>\n• Extensión de tokens para puntos de quiebre móviles y patrones de interacción\n• Alineación de la aplicación POS con el lenguaje de diseño web\n• Flexibilidad de temas de marca para funcionalidades de marca blanca\n\n <strong>Objetivos futuros:</strong>\n• Integrar linting de accesibilidad automatizado\n• Documentación versionada con changelogs automatizados\n• Dashboard de operaciones de diseño para salud del sistema y métricas de adopción"
+        content: "Root fue intencionalmente limitado a la plataforma web, pero su arquitectura fue diseñada para extenderse a móvil y POS — una prioridad del roadmap para 2024.\n\n <strong>En progreso:</strong>\n• Extensión de tokens para puntos de quiebre móviles y patrones de interacción\n• Alineación de la aplicación POS con el lenguaje de diseño web\n• Flexibilidad de temas de marca para funcionalidades de marca blanca\n\n <strong>Objetivos futuros:</strong>\n• Piloto de linting de accesibilidad automatizado en pipeline CI/CD\n• Documentación versionada con changelogs automatizados\n• Dashboard de operaciones de diseño para salud del sistema y métricas de adopción"
       },
       reflection: {
         title: "Reflexión",
