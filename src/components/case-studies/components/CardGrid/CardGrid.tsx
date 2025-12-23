@@ -13,7 +13,12 @@ export function Card({ icon, title, description, variant = 'vertical' }: CardPro
       {icon && <div className={styles.icon}>{icon}</div>}
       <div className={styles.content}>
         <h4 className={styles.title}>{title}</h4>
-        {description && <p className={styles.description}>{description}</p>}
+        {description && (
+          <p
+            className={styles.description}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 export const mindstudio = {
   en: {
-    title: "Mindstudio Design System",
-    subtitle: "From chaos to clarity in a no-code AI platform",
+    title: "Mindstudio: No-Code AI Orchestration",
+    subtitle: "Transforming a developer-centric IDE into an intuitive visual canvas, enabling non-technical users to build complex LLM agents without code.",
     seoDescription: "Design System case study: Building a scalable foundation for Mindstudio's no-code AI platform. A 10-month collaborative effort to turn technical complexity into clarity.",
     // impactStats: [
     //   { metric: "80%", label: "Less Figma duplication" },
@@ -23,156 +23,117 @@ export const mindstudio = {
     overview: {
       title: "Context",
       content:
-        "Mindstudio is a no-code platform that enables creating and publishing AI agents and applications using the most advanced models and capabilities in the market. It's designed for users without technical experience, but also offers powerful tools like custom functions and API integrations.\n\n" +
-        "When I joined, the product was remarkably robust: users could create drafts, version them, publish, and share. But behind that power lay a problem: <strong>understanding the platform required tutorials and YouTube workshops</strong>. The learning curve was too steep.\n\n" +
-        "On the design side, there was no solid foundation. No screen in Figma was truly reliable:\n\n" +
-        "<ul>\n" +
-        "<li>There was no single source of truth</li>\n" +
-        "<li>Components were detached frames scattered everywhere</li>\n" +
-        "<li>It was impossible to know what was in production, what was exploration, or what was deprecated</li>\n" +
-        "<li>There were no design tokens—just loose values</li>\n" +
-        "</ul>\n\n" +
-        "The product team (2 designers + Head of Product) contacted me to organize the chaos and create a systematized design based on what was actually in production."
+        "Powerful Tech, Operational Wild West MindStudio is a premier platform for building AI agents, allowing users to orchestrate LLMs, variables, and external APIs. When I joined, the product was technically robust but operationally fragile. The engineering team had shipped an incredible amount of features, but without design governance. There were no components, no tokens, and no shared language.\n\n" +
+        "We faced a critical bottleneck: Innovation velocity was outpacing our ability to maintain quality. Every new feature—from the visual editor to the dashboard—was being built from scratch, creating a fragmented Frankenstein UI that confused users and slowed down development."
     },
     sections: {
       challenge: {
         label: "01. The Problem",
-        title: "A product that works but hard to maintain",
-        intro: "Although the UX was relatively good thanks to engineering, the internal design told a different story:",
-        twoColumn: {
-          columns: [
-            {
-              title: "The challenge",
-              content:
-                "<strong>No single source of truth</strong><br/>Figma was filled with versions, duplicates, and loose components.<br/><br/>" +
-                "<strong>Silent technical debt</strong><br/>Engineering shipped features at breakneck speed, fragmenting the UI over time."
-            },
-            {
-              title: "The impact",
-              content:
-                "<strong>Very steep learning curve</strong><br/>The product relied too heavily on tutorials and YouTube videos.<br/><br/>" +
-                "<strong>Lack of organization</strong><br/>No one knew where to look or which file was reliable."
-            }
-          ]
-        }
+        title: "Velocity vs. Governance",
+        intro: "The product looked coherent on the surface, but the underlying architecture was a \"Wild West\" scenario preventing us from scaling.",
+        cards: [
+          {
+            title: "Visual Entropy",
+            description: "With no \"source of truth,\" the interface was drifting. 40% of the frontend code was dedicated to overriding conflicting styles."
+          },
+          {
+            title: "Cognitive Overload",
+            description: "The lack of standardized patterns meant users had to relearn the UI for every new feature (Editor vs. Settings vs. Dashboard)."
+          },
+          {
+            title: "The \"Bus Factor\"",
+            description: "Design knowledge was tribal. Onboarding a new designer took weeks because the system existed only in people's heads, not in Figma."
+          }
+        ]
       },
       objectives: {
         label: "02. Objectives",
-        title: "Build a solid, scalable, and coherent foundation",
-        intro: "Build a solid, scalable, and coherent foundation that would reduce friction and improve collaboration between design and engineering.",
+        title: "Stabilize to Evolve",
+        intro: "My mandate wasn't just to \"clean up Figma,\" but to build the infrastructure needed to ship the next generation of product features.",
         cards: [
           {
-            title: "Visual Coherence",
-            description: "Establish a single source of truth that unified the visual language across the platform."
+            title: "Stop the Bleeding",
+            description: "Audit and consolidate existing patterns into a unified Design System (DS)."
           },
           {
-            title: "Systematic Dark Mode",
-            description: "Implement semantic tokens to support dark mode consistently and scalably."
+            title: "Unlock Complexity",
+            description: "Use the new system to redesign critical, high-density interfaces like the <strong>Node Canvas</strong> and <strong>Variable Manager</strong>."
           },
           {
-            title: "Maintainable System",
-            description: "Create a structure the team could maintain and evolve without accumulating chaos."
-          },
-          {
-            title: "Optimized Flow",
-            description: "Reduce friction in design → development handoff to accelerate feature delivery."
+            title: "Validate Scalability",
+            description: "Prove the system's robustness by deploying a platform-wide <strong>Dark Mode</strong> with zero code refactoring."
           }
         ]
       },
       process: {
         label: "03. Process",
-        title: "From audit to implementation in 7 steps",
+        title: "From Audit to Architecture",
+        intro: "We moved from reactive design to a strategic 3-phase roadmap:",
         overview: {
           phases: [
             {
-              title: "Audit",
-              items: ["Production review", "Existing patterns", "Technical decisions"]
+              title: "Phase 1: Triage",
+              items: ["Audit", "Token Architecture", "Semantics"]
             },
             {
-              title: "Strategy",
-              items: ["Token definition", "Base structure", "Roadmap"]
+              title: "Phase 2: System Engine",
+              items: ["Component Library", "Data Density", "Interactions"]
             },
             {
-              title: "Components",
-              items: ["Figma design", "Documentation", "Variants"]
-            },
-            {
-              title: "Implementation",
-              items: ["Code", "Testing", "Visual QA"]
-            },
-            {
-              title: "Handoff",
-              items: ["Dev alignment", "Delivery", "Feedback"]
+              title: "Phase 3: Product Pivot",
+              items: ["Visual Canvas", "Logic/Data", "Dark Mode"]
             }
           ],
-          bottomLabel: "Continuous stakeholder collaboration"
+          bottomLabel: "Continuous delivery throughout all phases"
         },
         steps: [
           {
-            title: "<strong>1.</strong> Audit",
-            description: "I reviewed production, explorations, loose patterns, and accumulated decisions. We prioritized what to keep and what to discard."
+            title: "<strong>Phase 1:</strong> The Triage (Audit & Logic)",
+            description: "I audited the production environment to separate \"essential patterns\" from \"noise.\" We established a strict token architecture (Primitives → Semantics) immediately, prioritizing the foundation needed for Dark Mode."
           },
           {
-            title: "<strong>2.</strong> Pragmatic strategy",
-            description: "Consolidate what already worked in production and turn it into the new system foundation. No reinventing for the sake of it."
+            title: "<strong>Phase 2:</strong> The System Engine",
+            description: "We built a component library optimized for data density. Unlike standard marketing sites, MindStudio needed complex inputs, code blocks, and variable selectors that could handle heavy user interactions without breaking."
           },
           {
-            title: "<strong>3.</strong> Tokens",
-            description: "Since they didn't exist, I defined a clear structure: <em>Primitives</em> (source values), <em>Semantics</em> (intent → UI), and <em>Component tokens</em> (future plan). This enabled Figma-code parity."
-          },
-          {
-            title: "<strong>4.</strong> Base components",
-            description: "I designed and built: buttons, inputs, chips, alerts, navigation, layouts, etc. Everything oriented toward stability, clarity, and scalability."
-          },
-          {
-            title: "<strong>5.</strong> Editor improvements",
-            description: "We reviewed architecture, hierarchies, and flows, reducing visual complexity."
-          },
-          {
-            title: "<strong>6.</strong> Documentation",
-            description: "A clean, structured, and maintainable library."
-          },
-          {
-            title: "<strong>7.</strong> Design ↔ dev handoff",
-            description: "Though engineering participated, leadership came from design. The team received the changes with relief: the chaos affected them too."
+            title: "<strong>Phase 3:</strong> The Product Pivot (The \"Sexy\" Part)",
+            description: "With the system in place, I joined the Core Team to tackle the complex features that were previously blocked by design debt:",
           }
-        ]
+        ],
+        phase3: {
+          cards: [
+            {
+              title: "Visual Orchestration",
+              description: "Redesigned the node-based editor to support complex branching logic, infinite canvas panning, and team collaboration comments."
+            },
+            {
+              title: "Logic & Data Handling",
+              description: "Abstracted raw JSON data passing into a visual \"Variable & API\" selector, drastically reducing errors in multi-step agent workflows."
+            },
+            {
+              title: "Systematized Dark Mode",
+              description: "Leveraged our new semantic tokens to ship a flawless dark theme across the entire platform, validated by Engineering as a \"plug-and-play\" update."
+            }
+          ]
+        }
       },
       results: {
         label: "04. Results",
-        title: "Measurable impact from the first month",
-        content:
-          "The benefits were felt from the first month.\n\n" +
-          "<strong>Quantitative impact:</strong>\n" +
-          "<ul>\n" +
-          "<li>🔁 <strong>80% less Figma duplication</strong></li>\n" +
-          "<li>⏱ <strong>40% faster handoff</strong></li>\n" +
-          "<li>🧩 <strong>Systematized dark mode with Figma-code parity</strong></li>\n" +
-          "<li>🐞 <strong>25% fewer visual QA tickets (3 sprints)</strong></li>\n" +
-          "<li>🎓 <strong>Faster onboarding for new designers and PMs</strong></li>\n" +
-          "<li>🤝 <strong>Smoother collaboration between design, product, and engineering</strong></li>\n" +
-          "</ul>\n\n" +
-          "<em>\"Now we're not guessing—we're building on solid ground.\"</em>"
+        title: "Measurable Impact",
+        intro: "The system wasn't just a library; it became the operational OS for the product team.",
+        metrics: [
+          { text: "<strong>40% Faster Handoff:</strong> Developers stopped guessing hex codes and started using semantic variables, reducing implementation time significantly." },
+          { text: "<strong>80% Reduction in Figma Bloat:</strong> We deleted hundreds of detached frames, replacing them with a single, versioned library." },
+          { text: "<strong>Quality at Scale:</strong> Visual QA tickets dropped by 25% across three sprints as the system enforced consistency automatically." },
+          { text: "<strong>Unlocked Dark Mode:</strong> Shipped a highly requested enterprise feature in record time thanks to the token foundation." }
+        ],
+        quote: "The system allowed us to stop debating pixel placement and start focusing on complex AI orchestration logic. — Head of Product"
       },
       reflection: {
         label: "05. Reflection",
-        title: "Pragmatism over perfectionism",
+        title: "Pragmatism over Perfection",
         content:
-          "Building a system in an environment that moves this fast requires pragmatism: consolidate first, stabilize second, and only then think about the future.\n\n" +
-          "This project restored clarity to the team and created a solid foundation to scale the platform."
-      },
-      role: {
-        label: "06. My role",
-        title: "From external consultant to core team",
-        content: "I started as an <strong>external consultant</strong> to create the first version of the Design System. Then I became part of the <strong>core team</strong> for 5 months to implement features and evolve the system.\n\n" +
-          "<ul>\n" +
-          "<li>Led the complete creation of the DS</li>\n" +
-          "<li>Defined tokens, structure, and components</li>\n" +
-          "<li>Helped decide what to keep and what to discard</li>\n" +
-          "<li>My external perspective helped the team refocus</li>\n" +
-          "<li>Documented and facilitated work with engineering</li>\n" +
-          "<li>Directly adjusted parts of the product</li>\n" +
-          "</ul>"
+          "In a fast-paced AI startup, you can't wait for a \"perfect\" system. We built the plane while flying it—consolidating chaos into order while simultaneously shipping critical features. This project proved that a strong Design System isn't a constraint; it's the ultimate accelerator for product innovation."
       }
     }
   },
@@ -216,22 +177,20 @@ export const mindstudio = {
         label: "01. El problema",
         title: "Un producto que funciona pero difícil de mantener",
         intro: "Aunque la UX estaba relativamente bien gracias a ingeniería, el diseño interno contaba otra historia:",
-        twoColumn: {
-          columns: [
-            {
-              title: "El desafío",
-              content:
-                "<strong>No había una verdad única</strong><br/>Figma estaba lleno de versiones, duplicados y componentes sueltos.<br/><br/>" +
-                "<strong>Deuda técnica silenciosa</strong><br/>Ingeniería lanzaba features a una velocidad altísima, fragmentando la UI con el tiempo."
-            },
-            {
-              title: "El impacto",
-              content:
-                "<strong>Curva de aprendizaje muy alta</strong><br/>El producto dependía demasiado de tutoriales y videos de YouTube.<br/><br/>" +
-                "<strong>Falta de organización</strong><br/>Nadie sabía dónde mirar ni cuál archivo era confiable."
-            }
-          ]
-        }
+        cards: [
+          {
+            title: "Entropía Visual",
+            description: "Sin una \"fuente de la verdad\", la interfaz iba a la deriva. El 40% del código frontend se dedicaba a sobrescribir estilos conflictivos."
+          },
+          {
+            title: "Sobrecarga Cognitiva",
+            description: "La falta de patrones estandarizados significaba que los usuarios tenían que reaprender la UI para cada nueva funcionalidad (Editor vs. Configuración vs. Dashboard)."
+          },
+          {
+            title: "El \"Factor Bus\"",
+            description: "El conocimiento de diseño era tribal. El onboarding de un nuevo diseñador tomaba semanas porque el sistema existía solo en las cabezas de las personas, no en Figma."
+          }
+        ]
       },
       objectives: {
         label: "02. Objetivos",
@@ -258,78 +217,65 @@ export const mindstudio = {
       },
       process: {
         label: "03. El Proceso",
-        title: "De auditoría a implementación en 7 pasos",
+        title: "De Auditoría a Arquitectura",
+        intro: "Pasamos de un diseño reactivo a una hoja de ruta estratégica de 3 fases:",
         overview: {
           phases: [
             {
-              title: "Auditoría",
-              items: ["Revisión de producción", "Patrones existentes", "Decisiones técnicas"]
+              title: "Fase 1: Triaje",
+              items: ["Auditoria", "Arquitectura de Tokens", "Semántica"]
             },
             {
-              title: "Estrategia",
-              items: ["Definición de tokens", "Estructura base", "Roadmap"]
+              title: "Fase 2: Motor del Sistema",
+              items: ["Librería de Componentes", "Densidad de Datos", "Interacciones"]
             },
             {
-              title: "Componentes",
-              items: ["Diseño en Figma", "Documentación", "Variantes"]
-            },
-            {
-              title: "Implementación",
-              items: ["Código", "Testing", "QA visual"]
-            },
-            {
-              title: "Handoff",
-              items: ["Alineación con dev", "Entrega", "Feedback"]
+              title: "Fase 3: Pivote de Producto",
+              items: ["Canvas Visual", "Lógica/Datos", "Dark Mode"]
             }
           ],
-          bottomLabel: "Colaboración continua con stakeholders"
+          bottomLabel: "Entrega continua durante todas las fases"
         },
         steps: [
           {
-            title: "<strong>1.</strong> Auditoría",
-            description: "Revisé producción, exploraciones, patrones sueltos y decisiones acumuladas. Priorizamos qué mantener y qué descartar."
+            title: "<strong>Fase 1:</strong> El Triaje (Auditoría y Lógica)",
+            description: "Audité el entorno de producción para separar \"patrones esenciales\" del \"ruido\". Establecimos una arquitectura de tokens estricta (Primitivos → Semánticos) inmediatamente, priorizando los cimientos necesarios para el Dark Mode."
           },
           {
-            title: "<strong>2.</strong> Estrategia pragmática",
-            description: "Consolidar lo que ya funcionaba en producción y convertirlo en la nueva base del sistema. Nada de reinventar por reinventar."
-          },
-          {
-            title: "<strong>3.</strong> Tokens",
-            description: "Como no existían, definí una estructura clara: <em>Primitivos</em> (valores fuente), <em>Semánticos</em> (intención → UI), y <em>Tokens de componentes</em> (plan a futuro). Esto permitió lograr paridad entre Figma y código."
-          },
-          {
-            title: "<strong>4.</strong> Componentes base",
-            description: "Diseñé y construí: botones, inputs, chips, alerts, navegación, layouts, etc. Todo orientado a estabilidad, claridad y escalabilidad."
-          },
-          {
-            title: "<strong>5.</strong> Mejoras al editor",
-            description: "Revisamos arquitectura, jerarquías y flujos, bajando la complejidad visual."
-          },
-          {
-            title: "<strong>6.</strong> Documentación",
-            description: "Una librería limpia, estructurada y mantenible."
-          },
-          {
-            title: "<strong>7.</strong> Handoff diseño ↔ dev",
-            description: "Aunque ingeniería participó, el liderazgo fue desde diseño. El equipo recibió los cambios con alivio: el caos también les afectaba."
+            title: "<strong>Fase 2:</strong> El Motor del Sistema",
+            description: "Construimos una librería de componentes optimizada para alta densidad de datos. A diferencia de sitios de marketing estándar, MindStudio necesitaba inputs complejos, bloques de código y selectores de variables que pudieran manejar interacciones pesadas sin romperse."
           }
-        ]
+        ],
+        phase3: {
+          title: "<strong>Fase 3:</strong> El Pivote de Producto (La parte \"Sexy\")",
+          description: "Con el sistema en su lugar, me uní al Equipo Core para abordar las funcionalidades complejas que antes estaban bloqueadas por deuda de diseño:",
+          cards: [
+            {
+              title: "Orquestación Visual",
+              description: "Rediseñé el editor de nodos para soportar lógica ramificada compleja, paneo infinito del canvas y comentarios de colaboración en equipo."
+            },
+            {
+              title: "Manejo de Lógica y Datos",
+              description: "Abstraje el paso de datos JSON crudos en un selector visual de \"Variables y API\", reduciendo drásticamente errores en flujos de agentes de múltiples pasos."
+            },
+            {
+              title: "Dark Mode Sistematizado",
+              description: "Aproveché nuestros nuevos tokens semánticos para lanzar un tema oscuro impecable en toda la plataforma, validado por Ingeniería como una actualización \"plug-and-play\"."
+            }
+          ]
+        }
       },
       results: {
         label: "04. Resultados",
         title: "Impacto medible desde el primer mes",
-        content:
-          "Los beneficios se sintieron desde el primer mes.\n\n" +
-          "<strong>Impacto cuantitativo:</strong>\n" +
-          "<ul>\n" +
-          "<li>🔁 <strong>80% menos duplicación en Figma</strong></li>\n" +
-          "<li>⏱ <strong>40% más rápido el handoff</strong></li>\n" +
-          "<li>🧩 <strong>Dark mode sistematizado con paridad Figma-código</strong></li>\n" +
-          "<li>🐞 <strong>25% menos tickets de QA visual (3 sprints)</strong></li>\n" +
-          "<li>🎓 <strong>Onboarding más rápido para nuevos diseñadores y PMs</strong></li>\n" +
-          "<li>🤝 <strong>Colaboración más fluida entre diseño, producto e ingeniería</strong></li>\n" +
-          "</ul>\n\n" +
-          "<em>\"Ahora no estamos adivinando — estamos construyendo sobre terreno firme.\"</em>"
+        intro: "El sistema no fue solo una librería; se convirtió en el sistema operativo del equipo de producto.",
+        metrics: [
+          { text: "<strong>40% Handoff más rápido:</strong> Los desarrolladores dejaron de adivinar códigos hex y comenzaron a usar variables semánticas, reduciendo significativamente el tiempo de implementación." },
+          { text: "<strong>80% Reducción en peso de Figma:</strong> Eliminamos cientos de frames detachados, reemplazándolos con una librería única y versionada." },
+          { text: "<strong>Calidad a escala:</strong> Los tickets de QA visual cayeron un 25% en tres sprints ya que el sistema forzaba la consistencia automáticamente." },
+          { text: "<strong>Dark Mode desbloqueado:</strong> Lanzamos una funcionalidad enterprise muy solicitada en tiempo récord gracias a la base de tokens." }
+        ],
+        quote: "Ahora no estamos adivinando — estamos construyendo sobre terreno firme."
       },
       reflection: {
         label: "05. Reflexión",

@@ -13,9 +13,22 @@ import {
 import { Image } from '@/components/base';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgMindstudio from '@/assets/images/case-studies/mindstudio/mindstudio_coverImg.png';
-import tokenHierarchy from '@/assets/images/case-studies/mindstudio/token-hierarchy.png';
-import { Target, Layers, GitBranch, Zap } from 'lucide-react';
 
+import {
+  Target,
+  Layers,
+  GitBranch,
+  Zap,
+  FileJson2,
+  BrainCircuit,
+  ZapOff,
+  ShieldCheck, // Para "Stop the Bleeding"
+  Workflow,    // Para "Unlock Complexity" (Canvas)
+  MoonStar,    // Para "Validate Scalability" (Dark Mode)
+  Rocket,      // Para "Faster Handoff"
+  CheckCircle, // Para "Quality at Scale"
+  Unlock       // Para "Unlocked Dark Mode"
+} from 'lucide-react';
 export function MindStudioCaseStudy() {
   const t = useCaseStudyTranslation('mindstudio');
 
@@ -28,7 +41,7 @@ export function MindStudioCaseStudy() {
       seoDescription={t.seoDescription}
     >
       {/* Overview (no label) */}
-      <ContentSection title={t.overview.title} titleSize="small">
+      <ContentSection title={t.overview.title} titleSize="default">
         <RichText content={t.overview.content} />
       </ContentSection>
 
@@ -41,7 +54,18 @@ export function MindStudioCaseStudy() {
         centered
       >
         <RichText content={t.sections.challenge.intro} centered />
-        <TwoColumnLayout columns={t.sections.challenge.twoColumn.columns} />
+        <CardGrid
+          columns={3}
+          cards={t.sections.challenge.cards.map((card, index) => ({
+            icon: [
+              <FileJson2 size={32} key="filejson" />,
+              <BrainCircuit size={32} key="brain" />,
+              <ZapOff size={32} key="zapoff" />
+            ][index],
+            title: card.title,
+            description: card.description
+          }))}
+        />
 
         <Image
           aspectRatio="16/9"
@@ -64,14 +88,15 @@ export function MindStudioCaseStudy() {
         <CardGrid
           cards={t.sections.objectives.cards.map((card, index) => ({
             icon: [
-              <Target size={32} key="target" />,
-              <Layers size={32} key="layers" />,
-              <GitBranch size={32} key="gitbranch" />,
+              <ShieldCheck size={32} key="shieldcheck" />,
+              <Workflow size={32} key="workflow" />,
+              <MoonStar size={32} key="moonstar" />,
               <Zap size={32} key="zap" />
             ][index],
             title: card.title,
             description: card.description
           }))}
+          columns={3}
         />
       </ContentSection>
 
@@ -83,6 +108,7 @@ export function MindStudioCaseStudy() {
         title={t.sections.process.title}
         centered
       >
+        <RichText content={t.sections.process.intro} centered />
         <ProcessOverview
           title="Proceso de alto nivel"
           phases={t.sections.process.overview.phases}
@@ -91,13 +117,20 @@ export function MindStudioCaseStudy() {
 
         <ProcessTimeline steps={t.sections.process.steps} />
 
-        <Image
-          src={tokenHierarchy}
-          alt="Token Hierarchy"
-          caption="Design System Token Hierarchy"
-          aspectRatio="92/45"
-          style={{ margin: 'var(--space-8) 0', width: '100%', borderRadius: 'var(--radius-md)' }}
-        />
+        <div style={{ marginTop: 'var(--space-8)' }}>
+          <CardGrid
+            columns={3}
+            cards={t.sections.process.phase3.cards.map((card: any, index: number) => ({
+              icon: [
+                <Workflow size={32} key="workflow" />,
+                <FileJson2 size={32} key="json" />,
+                <MoonStar size={32} key="moon" />
+              ][index],
+              title: card.title,
+              description: card.description
+            }))}
+          />
+        </div>
       </ContentSection>
 
       <Divider />
@@ -110,7 +143,34 @@ export function MindStudioCaseStudy() {
       >
         <ContentImageLayout columns={2}>
           <div>
-            <RichText content={t.sections.results.content} />
+            {t.sections.results.intro && (
+              <RichText content={t.sections.results.intro} className="mb-6" />
+            )}
+
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', marginTop: 'var(--space-6)' }}>
+              {t.sections.results.metrics.map((metric: any, index: number) => (
+                <li key={index} style={{ display: 'flex', alignItems: 'start', gap: 'var(--space-3)' }}>
+                  <div style={{ color: 'var(--color-text-primary)', flexShrink: 0 }}>
+                    {[
+                      <Rocket size={20} key="rocket" />,
+                      <Layers size={20} key="layers" />,
+                      <CheckCircle size={20} key="check" />,
+                      <Unlock size={20} key="unlock" />
+                    ][index]}
+                  </div>
+                  <span
+                    style={{ fontSize: 'var(--font-sm)', lineHeight: 'var(--leading-normal)' }}
+                    dangerouslySetInnerHTML={{ __html: metric.text }}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <div style={{ marginTop: 'var(--space-8)', paddingLeft: 'var(--space-4)', borderLeft: '2px solid var(--color-interactive-primary)' }}>
+              <p style={{ fontStyle: 'italic', color: 'var(--color-text-secondary)' }}>
+                "{t.sections.results.quote}"
+              </p>
+            </div>
           </div>
           <Image
             aspectRatio="1/1"
@@ -133,27 +193,6 @@ export function MindStudioCaseStudy() {
         <RichText content={t.sections.reflection.content} />
       </ContentSection>
 
-      <Divider spacing="large" />
-
-      {/* 06. My Role */}
-      <ContentSection
-        label={t.sections.role.label}
-        title={t.sections.role.title}
-        centered
-      >
-        <ContentImageLayout columns={2}>
-          <div>
-            <RichText content={t.sections.role.content} />
-          </div>
-          <Image
-            aspectRatio="1/1"
-            label="Team collaboration"
-            caption="Colaboración con el equipo de producto"
-            alt="Colaboración con el equipo de producto"
-            noMargin
-          />
-        </ContentImageLayout>
-      </ContentSection>
     </CaseStudyLayout>
   );
 }

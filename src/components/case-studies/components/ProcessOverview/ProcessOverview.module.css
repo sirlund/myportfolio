@@ -37,6 +37,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
+  /* Center content horizontally */
 
   @media (width >=64rem) {
     flex: 1;
@@ -46,13 +48,12 @@
 .milestone {
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* Center the dot */
   margin-bottom: var(--space-4);
   position: relative;
   z-index: 2;
-
-  @media (width >=64rem) {
-    justify-content: flex-start;
-  }
+  width: 100%;
 }
 
 .dot {
@@ -71,8 +72,11 @@
     display: block;
     position: absolute;
     top: 8px;
-    left: 16px;
+    /* Center of dot (16px / 2) */
+    left: 50%;
+    /* Start from center */
     width: 100%;
+    /* Reach center of next item */
     height: 2px;
     background-color: var(--color-text-primary);
     z-index: 1;
@@ -118,10 +122,10 @@ ul.phaseItems li {
 }
 
 .bottomLabel {
-  margin-top: var(--space-10);
+  margin: var(--space-10) 0 0;
   padding-top: var(--space-6);
   border-top: 1px dotted var(--color-border-default);
-  text-align: left;
+  text-align: center;
   font-size: var(--font-caption);
   color: var(--color-text-secondary);
   text-transform: uppercase;
