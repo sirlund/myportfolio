@@ -1,0 +1,89 @@
+.screenSamples {
+    margin: var(--space-16) auto;
+    max-width: 1280px;
+}
+
+.sampleImage {
+    background-color: #F7F7F7;
+}
+
+.blockquote {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    border-left: 4px solid var(--color-border-default);
+    padding-left: var(--space-6);
+    margin: var(--space-8) auto;
+    max-width: 48rem;
+    font-style: normal;
+    /* As requested: eliminate italic */
+}
+
+.architectureGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+
+    @media (width >=40rem) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.architectureTitle {
+    font-size: var(--font-h3);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+}
+
+.architectureTitleWithMargin {
+    font-size: var(--font-h3);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+    margin-top: var(--space-8);
+}
+
+.architectureList {
+    list-style: disc;
+    padding-left: var(--space-6);
+    color: var(--color-text-secondary);
+    font-size: var(--font-md);
+
+    & li {
+        margin-bottom: var(--space-2);
+    }
+}
+
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+
+    @media (width >=48rem) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.metricItem {
+    text-align: center;
+}
+
+.metricValue {
+    font-size: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    color: var(--treez-accent-item);
+}
+
+.metricLabel {
+    font-size: var(--font-caption);
+    color: var(--color-text-secondary);
+}
+
+.cite {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--font-caption);
+    font-style: normal;
+    color: var(--color-text-tertiary);
+}

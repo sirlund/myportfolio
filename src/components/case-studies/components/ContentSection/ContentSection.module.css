@@ -34,10 +34,10 @@
    ============================================ */
 
 .header {
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 
   @media (width >=64rem) {
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-10);
   }
 }
 
@@ -47,8 +47,8 @@
 
 .label {
   display: block;
-  font-size: var(--text-sm, 0.875rem);
-  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -57,21 +57,13 @@
 
 .title {
   margin: 0;
-  font-size: var(--text-3xl, 2.441rem);
-  font-weight: var(--font-weight-bold, 700);
-  line-height: var(--leading-tight);
-
-  @media (width >=64rem) {
-    font-size: var(--text-5xl, 3rem);
-  }
+  font-size: var(--font-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-condensed);
 }
 
 .titleSmall {
-  font-size: var(--text-2xl, 1.953rem);
-
-  @media (width >=64rem) {
-    font-size: var(--text-3xl, 2.441rem);
-  }
+  font-size: var(--font-h3);
 }
 
 /* ============================================
@@ -84,7 +76,7 @@
 
   /* Typography for direct text content */
   &>p {
-    font-size: var(--text-lg, 1.25rem);
+    font-size: var(--font-md);
     margin-bottom: var(--space-6);
 
     &:last-child {
@@ -97,6 +89,7 @@
   & ol {
     margin: var(--space-6) 0;
     padding-left: var(--space-8);
+    font-size: var(--font-md);
 
     & li {
       margin-bottom: var(--space-3);
@@ -106,10 +99,10 @@
   /* Emphasis */
   & strong {
     color: var(--color-text-primary);
-    font-weight: var(--font-weight-bold, 700);
+    font-weight: var(--font-weight-bold);
   }
 
   & em {
-    font-style: italic;
+    font-style: normal;
   }
 }

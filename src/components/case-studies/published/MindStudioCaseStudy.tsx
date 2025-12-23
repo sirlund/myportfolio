@@ -12,7 +12,8 @@ import {
 } from '@/components/case-studies';
 import { Image } from '@/components/base';
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import imgMindstudio from '@/assets/images/case-studies/mindstudio_coverImg.png';
+import imgMindstudio from '@/assets/images/case-studies/mindstudio/mindstudio_coverImg.png';
+import tokenHierarchy from '@/assets/images/case-studies/mindstudio/token-hierarchy.png';
 import { Target, Layers, GitBranch, Zap } from 'lucide-react';
 
 export function MindStudioCaseStudy() {
@@ -39,9 +40,7 @@ export function MindStudioCaseStudy() {
         title={t.sections.challenge.title}
         centered
       >
-        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '2rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
-          {t.sections.challenge.intro}
-        </p>
+        <RichText content={t.sections.challenge.intro} centered />
         <TwoColumnLayout columns={t.sections.challenge.twoColumn.columns} />
 
         <Image
@@ -49,6 +48,7 @@ export function MindStudioCaseStudy() {
           label="Figma before: chaos and fragmentation"
           caption="Estado inicial del diseño en Figma"
           alt="Estado inicial del diseño en Figma"
+          style={{ marginTop: 'var(--space-12)', borderRadius: 'var(--radius-md)' }}
         />
       </ContentSection>
 
@@ -60,9 +60,7 @@ export function MindStudioCaseStudy() {
         title={t.sections.objectives.title}
         centered
       >
-        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', marginBottom: '3rem', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
-          {t.sections.objectives.intro}
-        </p>
+        <RichText content={t.sections.objectives.intro} centered />
         <CardGrid
           cards={t.sections.objectives.cards.map((card, index) => ({
             icon: [
@@ -93,7 +91,13 @@ export function MindStudioCaseStudy() {
 
         <ProcessTimeline steps={t.sections.process.steps} />
 
-        <TokenPyramid />
+        <Image
+          src={tokenHierarchy}
+          alt="Token Hierarchy"
+          caption="Design System Token Hierarchy"
+          aspectRatio="92/45"
+          style={{ margin: 'var(--space-8) 0', width: '100%', borderRadius: 'var(--radius-md)' }}
+        />
       </ContentSection>
 
       <Divider />
@@ -109,10 +113,11 @@ export function MindStudioCaseStudy() {
             <RichText content={t.sections.results.content} />
           </div>
           <Image
-            aspectRatio="4/3"
+            aspectRatio="1/1"
             label="Before/After comparison"
             caption="Comparación antes y después del Design System"
             alt="Comparación antes y después del Design System"
+            noMargin
           />
         </ContentImageLayout>
       </ContentSection>
@@ -141,10 +146,11 @@ export function MindStudioCaseStudy() {
             <RichText content={t.sections.role.content} />
           </div>
           <Image
-            aspectRatio="4/3"
+            aspectRatio="1/1"
             label="Team collaboration"
             caption="Colaboración con el equipo de producto"
             alt="Colaboración con el equipo de producto"
+            noMargin
           />
         </ContentImageLayout>
       </ContentSection>

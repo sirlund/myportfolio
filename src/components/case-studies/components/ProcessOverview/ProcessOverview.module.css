@@ -14,15 +14,11 @@
 }
 
 .title {
-  font-size: var(--text-lg, 1.125rem);
-  font-weight: var(--font-weight-semibold, 600);
+  font-size: var(--font-h3);
+  font-weight: var(--font-weight-semibold);
   margin-bottom: var(--space-10);
   color: var(--color-text-primary);
   text-align: center;
-
-  @media (width >=64rem) {
-    font-size: var(--text-xl, 1.25rem);
-  }
 }
 
 .timeline {
@@ -76,7 +72,7 @@
     position: absolute;
     top: 8px;
     left: 16px;
-    right: -50%;
+    width: 100%;
     height: 2px;
     background-color: var(--color-text-primary);
     z-index: 1;
@@ -89,18 +85,14 @@
 
 .phaseTitle {
   margin: 0 0 var(--space-3);
-  font-size: var(--text-sm, 0.875rem);
-  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-
-  @media (width >=64rem) {
-    font-size: var(--text-base, 1rem);
-  }
 }
 
-.phaseItems {
+ul.phaseItems {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -109,12 +101,13 @@
   gap: var(--space-2);
 }
 
-.phaseItems li {
-  font-size: var(--text-sm, 0.875rem);
+ul.phaseItems li {
+  font-size: var(--font-caption);
   color: var(--color-text-secondary);
   line-height: var(--leading-normal);
   position: relative;
   padding-left: var(--space-4);
+  margin: 0;
 
   &::before {
     content: "•";
@@ -129,9 +122,9 @@
   padding-top: var(--space-6);
   border-top: 1px dotted var(--color-border-default);
   text-align: left;
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--font-caption);
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-medium);
 }

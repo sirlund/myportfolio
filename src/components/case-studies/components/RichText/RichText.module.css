@@ -1,0 +1,40 @@
+.richText {
+    color: var(--color-text-secondary);
+}
+
+.paragraph {
+    font-size: var(--font-md);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    color: var(--color-text-secondary);
+}
+
+.list {
+    font-size: var(--font-md);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    margin-left: var(--space-5);
+    list-style-type: disc;
+    color: var(--color-text-secondary);
+}
+
+.listItem {
+    margin-bottom: var(--space-3);
+}
+
+.centered {
+    text-align: center;
+    margin: var(--space-6) auto;
+    max-width: 48rem;
+}
+
+.listCentered {
+    list-style-position: inside;
+    margin: var(--space-6) auto;
+    padding-left: 0;
+    max-width: 48rem;
+}
+
+.htmlBlock {
+    margin-bottom: var(--space-6);
+}

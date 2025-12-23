@@ -6,7 +6,7 @@ import { useLanguage } from "@/contexts";
 import { Icon } from "@/components/icons";
 import { Heading, Text, Button, Image } from "@/components/base";
 import { useCaseStudyTranslation } from '@/lib/hooks';
-import coverImgMindstudio from "@/assets/images/case-studies/mindstudio_coverImg.png";
+import coverImgMindstudio from "@/assets/images/case-studies/mindstudio/mindstudio_coverImg.png";
 import coverImgTreez from "@/assets/images/case-studies/treez/treez_coverImg.png";
 import coverImgWenia from "@/assets/images/case-studies/wenia_coverImg.png";
 import coverImgNMP from "@/assets/images/case-studies/nmp_coverImg.png";
@@ -24,18 +24,18 @@ const baseProjects = [
   },
   {
     id: 2,
-    className: styles.projectWenia,
-    icon: <Icon name="wenia" height="100%" />,
-    image: coverImgWenia,
-    route: "wenia" as const,
-    buttonType: 'primary',
-  },
-  {
-    id: 3,
     className: styles.projectTreez,
     icon: <Icon name="treez" height="100%" />,
     image: coverImgTreez,
     route: "treez" as const,
+    buttonType: 'primary',
+  },
+  {
+    id: 3,
+    className: styles.projectWenia,
+    icon: <Icon name="wenia" height="100%" />,
+    image: coverImgWenia,
+    route: "wenia" as const,
     buttonType: 'primary',
   },
   {

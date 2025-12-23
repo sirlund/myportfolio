@@ -1,6 +1,7 @@
 import {
   CaseStudyLayout,
   ContentSection,
+  RichText,
 } from '@/components/case-studies';
 import { useCaseStudyTranslation } from '@/lib/hooks';
 import imgKlare from "@/assets/images/case-studies/klare_coverImg.png";
@@ -22,9 +23,7 @@ export function KlareCaseStudy() {
       seoDescription={t.seoDescription}
     >
       <ContentSection title="Coming Soon" centered>
-        <p style={{ fontSize: '1.125rem', lineHeight: '1.625', color: 'var(--color-text-secondary)', textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto' }}>
-          Este caso de estudio está en desarrollo. Pronto estará disponible con el contenido completo.
-        </p>
+        <RichText content="Este caso de estudio está en desarrollo. Pronto estará disponible con el contenido completo." centered />
       </ContentSection>
     </CaseStudyLayout>
   );

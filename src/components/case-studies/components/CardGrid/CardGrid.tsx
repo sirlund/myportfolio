@@ -3,7 +3,7 @@ import styles from './CardGrid.module.css';
 interface CardProps {
   icon?: React.ReactNode;
   title: string;
-  description: string;
+  description?: string;
   variant?: 'vertical' | 'horizontal';
 }
 
@@ -13,7 +13,7 @@ export function Card({ icon, title, description, variant = 'vertical' }: CardPro
       {icon && <div className={styles.icon}>{icon}</div>}
       <div className={styles.content}>
         <h4 className={styles.title}>{title}</h4>
-        <p className={styles.description}>{description}</p>
+        {description && <p className={styles.description}>{description}</p>}
       </div>
     </div>
   );
@@ -23,14 +23,19 @@ interface CardGridProps {
   cards: {
     icon?: React.ReactNode;
     title: string;
-    description: string;
+    description?: string;
   }[];
   variant?: 'vertical' | 'horizontal';
+  columns?: number;
 }
 
-export function CardGrid({ cards, variant = 'vertical' }: CardGridProps) {
+export function CardGrid({ cards, variant = 'vertical', columns }: CardGridProps) {
+  const gridStyle = columns ? {
+    '--custom-cols': columns
+  } as React.CSSProperties : undefined;
+
   return (
-    <div className={styles.grid}>
+    <div className={styles.grid} style={gridStyle}>
       {cards.map((card, index) => (
         <Card
           key={index}

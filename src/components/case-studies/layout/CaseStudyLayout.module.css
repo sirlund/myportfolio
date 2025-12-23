@@ -111,14 +111,14 @@
 
   & h1 {
     margin-bottom: var(--space-4);
-    font-size: var(--text-4xl, 3.052rem);
-    font-weight: var(--font-weight-bold, 700);
-    line-height: var(--leading-tight);
+    font-size: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-condensed);
   }
 }
 
 .subtitle {
-  font-size: var(--text-xl, 1.563rem);
+  font-size: var(--font-lg);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
 }
@@ -136,7 +136,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 0.375rem;
+    border-radius: var(--radius-sm);
 
     @media (width >=40rem) {
       border-radius: var(--radius-md);
@@ -161,11 +161,12 @@
     color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-size: var(--text-sm, 0.875rem);
-    font-weight: var(--font-weight-medium, 500);
+    font-size: var(--font-caption);
+    font-weight: var(--font-weight-medium);
   }
 
   & p {
+    font-size: var(--font-md);
     line-height: var(--leading-relaxed);
   }
 }
@@ -209,18 +210,14 @@
 }
 
 .impactMetric {
-  font-size: var(--text-4xl, 2.25rem);
-  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-display);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-2);
-
-  @media (width >=64rem) {
-    font-size: var(--text-5xl, 3rem);
-  }
 }
 
 .impactLabel {
-  font-size: var(--text-sm, 0.875rem);
+  font-size: var(--font-caption);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
 }

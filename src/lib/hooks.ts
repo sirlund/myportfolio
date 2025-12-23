@@ -3,7 +3,7 @@ import { translations } from '@/translations';
 
 type CaseStudyName = keyof typeof translations.en.caseStudies;
 
-export function useCaseStudyTranslation(caseStudyName: CaseStudyName) {
+export function useCaseStudyTranslation<K extends CaseStudyName>(caseStudyName: K) {
   const { language } = useLanguage();
-  return translations[language].caseStudies[caseStudyName];
+  return translations[language].caseStudies[caseStudyName] as typeof translations.en.caseStudies[K];
 }

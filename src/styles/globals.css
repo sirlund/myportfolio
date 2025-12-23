@@ -27,7 +27,8 @@ body {
 }
 
 /* Ensure custom cursor blending works properly */
-html, body {
+html,
+body {
   isolation: isolate;
 }
 
@@ -107,7 +108,7 @@ input {
 }
 
 li {
-  font-size: var(--text-base);
+  font-size: var(--font-md);
   font-weight: var(--font-weight-medium);
   line-height: 1.6;
   letter-spacing: 0em;
@@ -118,24 +119,6 @@ html {
   font-family: var(--font-family-primary);
 }
 
-/* Responsive typography breakpoints */
-@media (width >= 40rem) {
-  :root {
-    /* Override semantic tokens for tablet+ */
-    --font-display: var(--text-5xl);
-    --font-h1: var(--text-4xl);
-    --font-h2: var(--text-3xl);
-    --font-body-lg: var(--text-xl);
-  }
-}
-
-@media (width >= 64rem) {
-  :root {
-    /* Override semantic tokens for desktop */
-    --font-display: var(--text-6xl);
-    --font-h1: var(--text-5xl);
-  }
-}
 
 /* ========================================
    NOTE: Component-specific styles have been migrated to CSS Modules

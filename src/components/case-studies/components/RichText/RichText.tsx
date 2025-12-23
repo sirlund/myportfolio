@@ -1,3 +1,5 @@
+import styles from './RichText.module.css';
+
 interface RichTextProps {
   /**
    * Text content with support for:
@@ -10,52 +12,95 @@ interface RichTextProps {
    * Additional CSS class
    */
   className?: string;
+
+  centered?: boolean;
 }
 
 /**
  * RichText - Renders text with HTML and paragraph breaks
- *
- * Automatically handles:
- * - HTML formatting (<strong>, <em>, etc.)
- * - Multiple paragraphs separated by \n\n
- * - Renders each paragraph as a <p> element (unless it's a list)
- * - Lists (<ul>, <ol>) are rendered as-is without wrapping
- *
- * Uso:
- * ```tsx
- * <RichText content={t.overview.content} />
- * ```
  */
-export function RichText({ content, className = '' }: RichTextProps) {
-  const paragraphs = content.split('\n\n');
+export function RichText({
+  content,
+  className = '',
+  centered = false,
+}: RichTextProps) {
+  const blocks = content.split('\n\n');
 
   return (
-    <>
-      {paragraphs.map((paragraph, index) => {
-        // Check if the paragraph is a list (starts with <ul> or <ol>)
-        const trimmed = paragraph.trim();
-        const isList = trimmed.startsWith('<ul>') || trimmed.startsWith('<ol>');
+    <div className={`${styles.richText} ${className}`}>
+      {blocks.map((block, index) => {
+        const trimmed = block.trim();
+        if (!trimmed) return null;
 
-        if (isList) {
-          // Render lists directly without wrapping in <p>
+        // 1. Check if the block is already HTML list
+        const isHtmlList = /^<(ul|ol)>/.test(trimmed);
+        if (isHtmlList) {
           return (
             <div
               key={index}
-              className={className}
-              dangerouslySetInnerHTML={{ __html: paragraph }}
+              className={`${styles.htmlBlock} ${centered ? styles.centered : ''}`}
+              dangerouslySetInnerHTML={{ __html: trimmed }}
             />
           );
         }
 
-        // Render regular paragraphs
-        return (
-          <p
-            key={index}
-            className={className}
-            dangerouslySetInnerHTML={{ __html: paragraph }}
-          />
-        );
+        // 2. Complex block parsing: handle mixed text and bulleted items
+        const rawLines = block.split('\n');
+        const elements: React.ReactNode[] = [];
+        let currentList: string[] = [];
+
+        const flushList = (keySuffix: string) => {
+          if (currentList.length > 0) {
+            elements.push(
+              <ul
+                key={`list-${keySuffix}`}
+                className={`${styles.list} ${centered ? styles.listCentered : ''}`}
+              >
+                {currentList.map((item, i) => (
+                  <li key={i} className={styles.listItem} dangerouslySetInnerHTML={{ __html: item }} />
+                ))}
+              </ul>
+            );
+            currentList = [];
+          }
+        };
+
+        let currentParagraphLines: string[] = [];
+        const flushParagraph = (keySuffix: string) => {
+          if (currentParagraphLines.length > 0) {
+            elements.push(
+              <p
+                key={`p-${keySuffix}`}
+                className={`${styles.paragraph} ${centered ? styles.centered : ''}`}
+                dangerouslySetInnerHTML={{ __html: currentParagraphLines.join('<br/>') }}
+              />
+            );
+            currentParagraphLines = [];
+          }
+        };
+
+        rawLines.forEach((line, lineIdx) => {
+          const trimmedLine = line.trim();
+          const isBullet = /^[•\-*]\s?/.test(trimmedLine);
+
+          if (isBullet) {
+            flushParagraph(`${index}-${lineIdx}`);
+            const content = trimmedLine.replace(/^[•\-*]\s?/, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            currentList.push(content);
+          } else {
+            flushList(`${index}-${lineIdx}`);
+            if (trimmedLine || currentParagraphLines.length > 0) {
+              const formattedLine = trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+              currentParagraphLines.push(formattedLine);
+            }
+          }
+        });
+
+        flushList(`${index}-end`);
+        flushParagraph(`${index}-end`);
+
+        return <div key={index}>{elements}</div>;
       })}
-    </>
+    </div>
   );
 }

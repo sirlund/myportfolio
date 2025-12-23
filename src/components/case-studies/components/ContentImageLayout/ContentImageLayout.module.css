@@ -47,18 +47,18 @@
 
 /* Gap variants */
 .gapDefault {
-  gap: var(--space-8);
+  gap: var(--space-6);
 
   @media (width >=64rem) {
-    gap: var(--space-12);
+    gap: var(--space-8);
   }
 }
 
 .gapCompact {
-  gap: var(--space-4);
+  gap: var(--space-3);
 
   @media (width >=64rem) {
-    gap: var(--space-6);
+    gap: var(--space-4);
   }
 }
 
@@ -86,7 +86,7 @@
 .column {
   display: flex;
   flex-direction: column;
-  width: var(--column-width, auto);
+  width: 100%;
 }
 
 .columnStretch {
@@ -99,4 +99,15 @@
 
 .columnNoStretch {
   align-items: start;
+}
+
+
+.caption {
+  margin-top: var(--space-4);
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  grid-column: 1 / -1;
 }
