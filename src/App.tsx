@@ -14,6 +14,8 @@ import { ERROR_MESSAGES } from '@/lib/constants';
 import { ROUTES, VALID_ROUTES } from '@/lib/routes';
 import styles from './App.module.css';
 
+import { Analytics } from '@/components/base/Analytics';
+
 // Loading fallback component
 const LoadingFallback = () => (
   <div className={styles.loadingContainer}>
@@ -77,6 +79,9 @@ function AppContent() {
     <HelmetProvider>
       <LanguageProvider>
         <NavigationProvider>
+          {/* Analytics tracking */}
+          <Analytics />
+
           <div className={styles.appContainer}>
             <CustomCursor />
             <Header />
