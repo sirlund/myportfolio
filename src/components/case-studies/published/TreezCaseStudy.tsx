@@ -358,7 +358,7 @@ export function TreezCaseStudy() {
         </ContentImageLayout>
 
         <Text className={styles.description} style={{ margin: 'var(--space-12) 0' }}>
-          <strong>The 'Source of Truth' Portal:</strong> While architecting the full environment, I deployed this internal reference site. It mapped Figma tokens directly to CSS variables, allowing developers to copy-paste production-ready values, reducing implementation errors to near zero.
+          <span dangerouslySetInnerHTML={{ __html: t.sections.collaboration.sotPortal }} />
         </Text>
 
       </ContentSection>

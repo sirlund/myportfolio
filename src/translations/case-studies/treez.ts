@@ -106,6 +106,7 @@ export const treez = {
       collaboration: {
         title: "Collaboration & Rollout",
         intro: "\"Designed **with** engineering — not **for** them.\" We replaced brittle handoffs with a **Shared Ownership Model**, ensuring technical feasibility from day one.",
+        sotPortal: "<strong>The 'Source of Truth' Portal:</strong> While architecting the full environment, I deployed this internal reference site. It mapped Figma tokens directly to CSS variables, allowing developers to copy-paste production-ready values, reducing implementation errors to near zero.",
         items: [
           "**The Bridge (Portal):** Co-developed a custom internal reference portal mapping Figma tokens directly to CSS variables, ensuring 1:1 implementation parity.",
           "**The Governance:** Established a bi-directional contribution model, allowing both designers and developers to evolve the system responsibly.",
@@ -139,7 +140,7 @@ export const treez = {
     }
   },
   es: {
-    title: "Introduciendo: Root Design System",
+    title: "Root Design System",
     subtitle: "Un sistema de diseño escalable, accesible y multiplataforma que unificó el lenguaje visual, aumentó la eficiencia del equipo y mejoró la calidad del producto a escala.",
     home: {
       title: "Un sistema de diseño cohesivo para operaciones retail de alto volumen.",
@@ -208,7 +209,7 @@ export const treez = {
       },
       architecture: {
         title: "Arquitectura del Sistema",
-        intro: "Root fue construido sobre una base atómica estricta utilizando una estructura de tokens de múltiples niveles (global vs. alias vs. token de componente). Esto aseguró flexibilidad temática para futuro etiquetado blanco y allanó el camino para la paridad móvil.",
+        intro: "Root fue construido sobre una base atómica estricta utilizando una estructura de tokens de múltiples niveles (global vs. alias vs. tokens de componente). Esto aseguró flexibilidad temática para futuro etiquetado blanco y allanó el camino para la paridad móvil.",
         foundations: {
           title: "Fundamentos",
           items: [
@@ -243,7 +244,8 @@ export const treez = {
       },
       collaboration: {
         title: "Colaboración e Implementación",
-        intro: "**\"Diseñado con ingeniería — no para ellos.\"** Reemplazamos los traspasos frágiles con un **Modelo de Propiedad Compartida**, asegurando la viabilidad técnica desde el primer día.",
+        intro: "\"Diseñado **con** ingeniería — no **para** ellos.\" Reemplazamos los traspasos frágiles con un **Modelo de Propiedad Compartida**, asegurando la viabilidad técnica desde el primer día.",
+        sotPortal: "<strong>El Portal 'Fuente de Verdad':</strong> Mientras diseñaba la arquitectura completa, desplegué este sitio de referencia interno. Mapeaba los tokens de Figma directamente a variables CSS, permitiendo a los desarrolladores copiar y pegar valores listos para producción, reduciendo los errores de implementación a casi cero.",
         items: [
           "**El Puente (Portal):** Co-desarrollamos un portal de referencia interno personalizado que mapeaba tokens de Figma directamente a variables CSS, asegurando paridad de implementación 1:1.",
           "**La Gobernanza:** Establecimos un modelo de contribución bidireccional, permitiendo que tanto diseñadores como desarrolladores evolucionaran el sistema de manera responsable.",
@@ -257,7 +259,7 @@ export const treez = {
         metrics: [
           { value: "82%", label: "Reducción en duplicación de componentes de Figma" },
           { value: "30%", label: "Disminución de tickets de QA de UI en tres sprints" },
-          { value: "3s → 1s", label: "Tiempo de incorporación de diseñadores reducido" },
+          { value: "3sem → 1sem", label: "Tiempo de incorporación de diseñadores reducido" },
           { value: "94%", label: "Problemas de contraste de accesibilidad resueltos en componentes principales" },
           { value: "20%", label: "Velocidad de entrega de producto mejorada" }
         ],
