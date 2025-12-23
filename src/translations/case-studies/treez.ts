@@ -10,8 +10,8 @@ export const treez = {
       { label: "Team", value: "4 Designers, 8 Engineers, 3 PMs" }
     ],
     home: {
-      title: "A cohesive design system for high-volume retail operations.",
-      subtitle: "At Treez, a clearer structure aligned design and engineering to support the fast pace of the retail ecosystem.",
+      title: "Treez — A cohesive design system for high-volume retail operations.",
+      subtitle: "A unified system that bridged the gap between design and engineering to accelerate feature delivery.",
     },
     overview: {
       title: "Overview",

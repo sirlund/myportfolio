@@ -11,8 +11,8 @@ export const mindstudio = {
     //   { metric: "100%", label: "Systematized dark mode" }
     // ],
     home: {
-      title: "Mindstudio — Bringing clarity to an AI platform growing at full speed.",
-      subtitle: "A collaborative effort to turn technical complexity into a scalable foundation that supported the product's rapid evolution.",
+      title: "Mindstudio — No-Code AI Orchestration",
+      subtitle: "Transforming a developer-centric IDE into an intuitive visual canvas, enabling non-technical users to build complex AI agents at scale.",
     },
     details: [
       { label: "Role", value: "External Consultant → Core Team" },

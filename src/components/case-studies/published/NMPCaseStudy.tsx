@@ -15,10 +15,10 @@ export function NMPCaseStudy() {
       subtitle={t.subtitle}
       heroImage={imgNMP}
       details={[
-        { label: "Role", value: "Lead Product Designer" },
+        { label: "Role", value: "Design Systems Lead" },
         { label: "Duration", value: "18 months" },
         { label: "Year", value: "2022-2023" },
-        { label: "Team", value: "5 Designers, 12 Engineers, 3 PMs" }
+        { label: "Team", value: "3 Designers, 4 Engineers, 1 PM" }
       ]}
       seoDescription={t.seoDescription}
     >

@@ -32,7 +32,7 @@ export const common = {
       'Git / GitHub',
       'VSCode',
       'Storybook',
-      'AI Agents',
+      'Claude-Code / AI Agents',
       'HTML / CSS / JS / React'
     ],
     'about.skillsList': [

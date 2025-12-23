@@ -16,10 +16,10 @@ export function WeniaCaseStudy() {
       subtitle={t.subtitle}
       heroImage={imgWenia}
       details={[
-        { label: "Role", value: "Senior Product Designer" },
-        { label: "Duration", value: "10 months" },
-        { label: "Year", value: "2023" },
-        { label: "Team", value: "3 Designers, 6 Engineers, 2 PMs" }
+        { label: "Role", value: "Product Design & DesignOps Consultant" },
+        { label: "Duration", value: "6 months" },
+        { label: "Year", value: "2024" },
+        { label: "Team", value: "6 Designers, 8 Engineers, 4 PMs" }
       ]}
       seoDescription={t.seoDescription}
     >

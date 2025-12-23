@@ -1,11 +1,11 @@
 export const wenia = {
   en: {
-    title: "Wenia Banking Platform",
-    subtitle: "Building DesignOps foundations during rapid growth",
+    title: "Wenia: DeFi DesignOps",
+    subtitle: "Architecting the design governance for a native crypto-wallet across Android & iOS teams. Defining critical financial flows (COPW) and bridging the gap between Design and Mobile Engineering. \n\n[Coming Soon]",
     seoDescription: "DesignOps case study: How I established design systems and workflows at Wenia fintech that enabled the team to scale from MVP to multi-product platform while maintaining quality.",
     home: {
       title: "Wenia — From design chaos to operational clarity in a growing fintech.",
-      subtitle: "Establishing design systems and workflows that enabled the team to scale from MVP to multi-product platform while maintaining quality and velocity."
+      subtitle: "Establishing the operational foundation for a native crypto-wallet. Enabling parallel workflows for Android & iOS teams to scale from MVP to multi-product platform."
     },
     details: [
       { label: "Role", value: "Lead Product Designer" },
