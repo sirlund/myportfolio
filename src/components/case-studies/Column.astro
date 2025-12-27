@@ -1,0 +1,112 @@
+---
+/**
+ * Column component for use inside ContentImageLayout with columnLayout mode.
+ *
+ * Smart Proportions Logic:
+ * When columns share the same height, the ratio of their widths should be equal
+ * to the ratio of their natural aspect ratios.
+ *
+ * Formula: width / height = horizontal_weight_per_unit_of_height
+ *
+ * Example: If you have two images:
+ * - Image 1: 773x1149 → 773/1149 = 0.6727fr
+ * - Image 2: 579x1133 → 579/1133 = 0.5111fr
+ * Pass columnWidths="0.6727fr 0.5111fr" to parent ContentImageLayout
+ *
+ * Pro-tip: For columns with multiple images (stack), sum the heights of all images
+ * (including gaps) and use that as the height divisor.
+ */
+interface Props {
+  /** Gap between items in column */
+  gap?: 'default' | 'none' | 'compact';
+  /** Stretch children to fill column height (default: true) */
+  stretch?: boolean;
+  /** Custom row heights for the column (e.g., "1fr 2fr"). If provided, uses grid layout instead of flex. */
+  rowHeights?: string;
+  class?: string;
+  style?: string;
+}
+
+const {
+  gap = 'default',
+  stretch = true,
+  rowHeights,
+  class: className = '',
+  style: customStyle = ''
+} = Astro.props;
+
+const styleString = [
+  rowHeights ? `display: grid; grid-template-rows: ${rowHeights}` : '',
+  customStyle
+].filter(Boolean).join('; ');
+---
+
+<div
+  class:list={[
+    'column',
+    `gap-${gap}`,
+    { stretch, 'no-stretch': !stretch },
+    className
+  ]}
+  style={styleString}
+>
+  <slot />
+</div>
+
+<style>
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .stretch {
+    align-items: stretch;
+  }
+
+  .stretch > :global(*) {
+    flex: 1;
+  }
+
+  .no-stretch {
+    align-items: start;
+  }
+
+  /* Gap variants */
+  .gap-default {
+    gap: var(--space-6);
+  }
+
+  @media (width >= 64rem) {
+    .gap-default {
+      gap: var(--space-8);
+    }
+  }
+
+  .gap-compact {
+    gap: var(--space-3);
+  }
+
+  @media (width >= 64rem) {
+    .gap-compact {
+      gap: var(--space-4);
+    }
+  }
+
+  .gap-none {
+    gap: 0;
+  }
+
+  /* Images inside column */
+  .column :global(img),
+  .column :global(.image-wrapper) {
+    margin: 0;
+  }
+
+  .column :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+</style>

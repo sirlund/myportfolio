@@ -1,0 +1,406 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Icon from '@/components/icons/Icon.astro';
+import type { Language } from '@/i18n/utils';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  description?: string;
+  heroImage: string;
+  details: Array<{ label: string; value: string }>;
+  impactStats?: Array<{ metric: string; label: string; icon?: string }>;
+  theme?: {
+    background: string;
+    text: string;
+    textMuted: string;
+  };
+  lang: Language;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  heroImage,
+  details,
+  impactStats,
+  theme,
+  lang
+} = Astro.props;
+
+const homePath = lang === 'es' ? '/es' : '/';
+const backLabel = lang === 'es' ? 'Volver a proyectos' : 'Back to projects';
+---
+
+<BaseLayout
+  title={`${title} — Nicolás Lundin`}
+  description={description || subtitle}
+  lang={lang}
+>
+  <Header lang={lang} />
+
+  <main class="case-study">
+    <!-- Hero Section -->
+    <section class="hero" data-animate>
+      <div class="hero-content">
+        <a href={homePath} class="back-link" data-astro-prefetch="load">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          {backLabel}
+        </a>
+        <h1>{title}</h1>
+        <p class="subtitle">{subtitle}</p>
+      </div>
+    </section>
+
+    <!-- Hero Image -->
+    <section class="hero-image" data-animate data-animate-delay="0.2">
+      <img src={heroImage} alt={title} loading="eager" />
+    </section>
+
+    <!-- Details Sidebar + Content -->
+    <section class="content-wrapper">
+      <aside class="sidebar" data-animate data-animate-delay="0.3">
+        <div class="details">
+          {details.map((detail) => (
+            <div class="detail-item">
+              <span class="detail-label">{detail.label}</span>
+              <span class="detail-value">{detail.value}</span>
+            </div>
+          ))}
+        </div>
+
+        {impactStats && impactStats.length > 0 && (
+          <div class="impact-stats">
+            <h3>Impact</h3>
+            <div class="stats-grid">
+              {impactStats.map((stat) => (
+                <div class="stat-item">
+                  <div class="stat-number">
+                    {stat.icon && (
+                      <Icon name={stat.icon} size={20} />
+                    )}
+                    <span class="stat-metric">{stat.metric}</span>
+                  </div>
+                  <div class="stat-content">
+                    <span class="stat-label">{stat.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+
+      <article class="content" data-animate data-animate-delay="0.4">
+        <slot />
+      </article>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  /* ============================================
+     Case Study Layout
+     ============================================ */
+  .case-study {
+    padding-top: var(--space-20);
+  }
+
+  /* ============================================
+     Hero
+     ============================================ */
+  .hero {
+    padding: var(--space-16) var(--space-4) var(--space-8);
+    max-width: var(--container-6xl, 72rem);
+    margin: 0 auto;
+  }
+
+  @media (width >= 40rem) {
+    .hero {
+      padding: var(--space-20) var(--space-6) var(--space-10);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .hero {
+      padding: var(--space-24) var(--space-8) var(--space-12);
+    }
+  }
+
+  .hero-content {
+    max-width: 48rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-small);
+    margin-bottom: var(--space-6);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .hero h1 {
+    font-size: var(--font-display);
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+  }
+
+  .subtitle {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* ============================================
+     Hero Image
+     ============================================ */
+  .hero-image {
+    padding: 0 var(--space-4);
+    max-width: var(--container-6xl, 72rem);
+    margin: 0 auto var(--space-16);
+  }
+
+  @media (width >= 40rem) {
+    .hero-image {
+      padding: 0 var(--space-6);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .hero-image {
+      padding: 0 var(--space-8);
+    }
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+
+  /* ============================================
+     Content Wrapper
+     ============================================ */
+  .content-wrapper {
+    display: grid;
+    gap: var(--space-12);
+    padding: 0 var(--space-4) var(--space-16);
+    max-width: var(--container-6xl, 72rem);
+    margin: 0 auto;
+  }
+
+  @media (width >= 40rem) {
+    .content-wrapper {
+      padding: 0 var(--space-6) var(--space-16);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .content-wrapper {
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-12);
+      padding: 0 var(--space-8) var(--space-24);
+    }
+  }
+
+  /* ============================================
+     Sidebar
+     ============================================ */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  @media (width >= 64rem) {
+    .sidebar {
+      position: sticky;
+      top: calc(var(--space-20) + var(--space-8));
+      align-self: start;
+    }
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .detail-label {
+    font-size: var(--font-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .detail-value {
+    font-size: var(--font-sm);
+    color: var(--color-text-primary);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ============================================
+     Impact Stats
+     ============================================ */
+  .impact-stats h3 {
+    font-size: var(--font-small);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+  }
+
+  .stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+  }
+  .stat-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  .stat-icon {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-1);
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-metric {
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  .stat-label {
+    font-size: var(--font-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* ============================================
+     Content
+     ============================================ */
+  .content {
+    font-size: var(--font-body);
+    line-height: 1.7;
+  }
+
+  /*
+   * Using :where() for all global element styles to have 0 specificity.
+   * This ensures component-level styles always win over these defaults.
+   */
+
+  /* Section labels (01. The Problem) */
+  .content :global(:where(h2)) {
+    font-size: var(--font-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-4);
+  }
+
+  .content :global(:where(h2:first-child)) {
+    margin-top: 0;
+  }
+
+  /* Section titles (Velocity vs. Governance) */
+  .content :global(:where(h3)) {
+    font-size: var(--font-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: var(--space-6);
+  }
+
+  @media (width >= 64rem) {
+    .content :global(:where(h3)) {
+      font-size: var(--font-h1);
+    }
+  }
+
+  /* Subsection titles */
+  .content :global(:where(h4)) {
+    font-size: var(--font-h3);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+  }
+
+  .content :global(:where(p)) {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  .content :global(:where(strong)) {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .content :global(:where(ul)),
+  .content :global(:where(ol)) {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-6);
+  }
+
+  .content :global(:where(li)) {
+    margin-bottom: var(--space-2);
+    color: var(--color-text-secondary);
+  }
+
+  .content :global(:where(img)) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: var(--space-8) 0;
+  }
+
+  .content :global(:where(blockquote)) {
+    border-left: 3px solid var(--color-interactive-primary);
+    padding-left: var(--space-4);
+    margin: var(--space-6) 0;
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+</style>

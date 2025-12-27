@@ -1,0 +1,547 @@
+---
+import { getEntry } from 'astro:content';
+import type { Language } from '@/i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+// Get navigation content from home page
+const homeContent = await getEntry('pages', `${lang}/home`);
+const nav = homeContent?.data.nav;
+
+const SITE_NAME = 'Nicolás Lundin';
+
+const navigationItems = [
+  { name: nav?.work || 'Work', sectionId: 'work' },
+  { name: nav?.about || 'About', sectionId: 'about' },
+  { name: nav?.contact || 'Contact', sectionId: 'contact' },
+];
+
+const otherLang = lang === 'en' ? 'es' : 'en';
+const currentPath = Astro.url.pathname;
+
+// Build language switch URL - keep same page, just switch language
+function getLanguageSwitchUrl(): string {
+  // Remove trailing slash for consistency
+  const cleanPath = currentPath.replace(/\/$/, '') || '/';
+
+  if (lang === 'es') {
+    // Currently on Spanish: /es or /es/slug -> / or /slug
+    if (cleanPath === '/es') {
+      return '/';
+    }
+    // /es/mindstudio -> /mindstudio
+    return cleanPath.replace(/^\/es/, '');
+  } else {
+    // Currently on English: / or /slug -> /es or /es/slug
+    if (cleanPath === '/') {
+      return '/es';
+    }
+    // /mindstudio -> /es/mindstudio
+    return `/es${cleanPath}`;
+  }
+}
+
+const langSwitchUrl = getLanguageSwitchUrl();
+const homePath = lang === 'es' ? '/es' : '/';
+---
+
+<header class="header" data-scrolled="false">
+  <nav class="nav">
+    <div class="inner">
+      <a href={homePath} class="logo">
+        <span class="logo-text">{SITE_NAME}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="desktop-nav">
+        <div class="nav-items">
+          {navigationItems.map((item) => (
+            <button
+              class="nav-button"
+              data-section={item.sectionId}
+              type="button"
+            >
+              {item.name}
+            </button>
+          ))}
+          <a
+            href={langSwitchUrl}
+            class="nav-button lang-button"
+            aria-label="Switch language"
+            data-astro-prefetch
+          >
+            {otherLang.toUpperCase()}
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Language Button -->
+      <a
+        href={langSwitchUrl}
+        class="mobile-lang-button"
+        aria-label="Switch language"
+        data-astro-prefetch
+      >
+        {otherLang.toUpperCase()}
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="mobile-menu-button"
+        aria-label="Toggle menu"
+        type="button"
+      >
+        <div class="menu-icon">
+          <span class="menu-line"></span>
+          <span class="menu-line"></span>
+          <span class="menu-line"></span>
+        </div>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Fullscreen Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" data-open="false">
+  <div class="mobile-nav-content">
+    {navigationItems.map((item, index) => (
+      <button
+        class="mobile-nav-link"
+        data-section={item.sectionId}
+        data-index={index}
+        type="button"
+      >
+        {item.name}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initHeader() {
+    const header = document.querySelector('.header') as HTMLElement;
+    const mobileMenuButton = document.querySelector('.mobile-menu-button') as HTMLButtonElement;
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay') as HTMLElement;
+    const navButtons = document.querySelectorAll('[data-section]');
+    const logo = document.querySelector('.logo') as HTMLAnchorElement;
+
+    if (!header || !mobileMenuButton || !mobileNavOverlay) return;
+
+    let isMenuOpen = false;
+
+    // Scroll detection
+    function handleScroll() {
+      const isScrolled = window.scrollY > 50;
+      header.dataset.scrolled = String(isScrolled);
+    }
+
+    // Toggle mobile menu
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      mobileNavOverlay.dataset.open = String(isMenuOpen);
+      mobileMenuButton.classList.toggle('is-open', isMenuOpen);
+      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+
+      // Update header z-index and colors when menu is open
+      header.style.zIndex = isMenuOpen ? '100' : '50';
+      header.style.backgroundColor = isMenuOpen ? 'transparent' : '';
+    }
+
+    // Close menu
+    function closeMenu() {
+      isMenuOpen = false;
+      mobileNavOverlay.dataset.open = 'false';
+      mobileMenuButton.classList.remove('is-open');
+      document.body.style.overflow = '';
+      header.style.zIndex = '50';
+      header.style.backgroundColor = '';
+    }
+
+    // Scroll to section
+    function scrollToSection(sectionId: string) {
+      closeMenu();
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 50);
+      });
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    mobileMenuButton.addEventListener('click', toggleMenu);
+
+    navButtons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const sectionId = target.dataset.section;
+        if (sectionId) {
+          // Check if we're on home page
+          const isHomePage = window.location.pathname === '/' ||
+                            window.location.pathname === '/es' ||
+                            window.location.pathname === '/es/';
+
+          if (!isHomePage) {
+            // Navigate to home first with hash
+            const lang = window.location.pathname.startsWith('/es') ? 'es' : 'en';
+            const homePath = lang === 'es' ? '/es' : '/';
+            window.location.href = `${homePath}#${sectionId}`;
+          } else {
+            scrollToSection(sectionId);
+          }
+        }
+      });
+    });
+
+    // Handle hash on page load
+    if (window.location.hash) {
+      const sectionId = window.location.hash.slice(1);
+      setTimeout(() => scrollToSection(sectionId), 100);
+    }
+
+    // Initial scroll check
+    handleScroll();
+  }
+
+  // Run on initial load
+  initHeader();
+
+  // Re-run on View Transitions navigation
+  document.addEventListener('astro:page-load', initHeader);
+</script>
+
+<style>
+  /* ============================================
+     Main Header
+     ============================================ */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDown 0.6s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .header[data-scrolled="true"] {
+    background-color: color-mix(in oklab, var(--color-bg-primary) 90%, transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .header[data-scrolled="false"] {
+    background-color: transparent;
+  }
+
+  /* ============================================
+     Navigation Container
+     ============================================ */
+  .nav {
+    max-width: var(--container-6xl, 72rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  @media (width >= 40rem) {
+    .nav {
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .nav {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--space-16);
+  }
+
+  @media (width >= 40rem) {
+    .inner {
+      height: calc(var(--spacing, 0.25rem) * 18);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .inner {
+      height: var(--space-20);
+    }
+  }
+
+  /* ============================================
+     Logo
+     ============================================ */
+  .logo {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  .logo:active {
+    transform: scale(0.95);
+  }
+
+  .logo-text {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-body);
+  }
+
+  /* ============================================
+     Desktop Navigation
+     ============================================ */
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (width >= 48rem) {
+    .desktop-nav {
+      display: block;
+    }
+  }
+
+  .nav-items {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .nav-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--font-small);
+    color: inherit;
+    cursor: pointer;
+    transition: color var(--duration-fast) ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+
+  .nav-button:hover {
+    color: var(--color-text-secondary);
+    transform: translateY(-2px);
+  }
+
+  .nav-button:active {
+    transform: scale(0.95);
+  }
+
+  .lang-button {
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ============================================
+     Mobile Controls
+     ============================================ */
+  .mobile-lang-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    margin-right: var(--space-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: var(--font-small);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-lang-button:hover {
+    transform: scale(1.05);
+  }
+
+  @media (width >= 48rem) {
+    .mobile-lang-button {
+      display: none;
+    }
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    position: relative;
+  }
+
+  @media (width >= 48rem) {
+    .mobile-menu-button {
+      display: none;
+    }
+  }
+
+  /* ============================================
+     Hamburger Menu Icon
+     ============================================ */
+  .menu-icon {
+    width: var(--space-6);
+    height: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu-line {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 2px;
+    transform-origin: center;
+    transition: all 0.3s ease;
+  }
+
+  .menu-line:nth-child(1) {
+    top: 0;
+  }
+
+  .menu-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .menu-line:nth-child(3) {
+    bottom: 0;
+  }
+
+  /* Hamburger animation to X */
+  .mobile-menu-button.is-open .menu-line:nth-child(1) {
+    top: 8px;
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-button.is-open .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button.is-open .menu-line:nth-child(3) {
+    bottom: 8px;
+    transform: rotate(-45deg);
+  }
+
+  /* ============================================
+     Mobile Navigation Overlay
+     ============================================ */
+  .mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.6, 0.05, 0.01, 0.9),
+                transform 0.4s cubic-bezier(0.6, 0.05, 0.01, 0.9);
+  }
+
+  .mobile-nav-overlay[data-open="true"] {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  @media (width >= 48rem) {
+    .mobile-nav-overlay {
+      display: none;
+    }
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+    width: 100%;
+  }
+
+  .mobile-nav-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: var(--font-nav-overlay);
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    text-align: left;
+    line-height: 1.1;
+    transition: color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  .mobile-nav-overlay[data-open="true"] .mobile-nav-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mobile-nav-link[data-index="0"] {
+    transition-delay: 0.1s;
+  }
+
+  .mobile-nav-link[data-index="1"] {
+    transition-delay: 0.2s;
+  }
+
+  .mobile-nav-link[data-index="2"] {
+    transition-delay: 0.3s;
+  }
+
+  .mobile-nav-link:hover {
+    color: rgba(255, 255, 255, 0.6);
+    transform: translateX(20px);
+  }
+</style>

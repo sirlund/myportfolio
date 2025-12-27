@@ -1,0 +1,191 @@
+---
+interface ProcessPhase {
+  title: string;
+  items: string[];
+}
+
+interface Props {
+  title?: string;
+  phases: ProcessPhase[];
+  bottomLabel?: string;
+}
+
+const { title = "Process Overview", phases, bottomLabel } = Astro.props;
+---
+
+<div class="process-overview">
+  {title && <h3 class="title">{title}</h3>}
+
+  <div class="timeline">
+    {phases.map((phase, index) => (
+      <div class="phase">
+        <div class="milestone">
+          <div class="dot" />
+        </div>
+
+        <div class="phase-content">
+          <h4 class="phase-title">{phase.title}</h4>
+          <ul class="phase-items">
+            {phase.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        {index < phases.length - 1 && <div class="connector" />}
+      </div>
+    ))}
+  </div>
+
+  {bottomLabel && <div class="bottom-label">{bottomLabel}</div>}
+</div>
+
+<style>
+  .process-overview {
+    background-color: var(--color-bg-secondary);
+    padding: var(--space-12);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-12);
+  }
+
+  @media (width >= 64rem) {
+    .process-overview {
+      padding: var(--space-16);
+    }
+  }
+
+  .title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-10);
+    color: var(--color-text-primary);
+    text-align: center;
+  }
+
+  @media (width >= 64rem) {
+    .title {
+      font-size: var(--font-xl);
+    }
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    position: relative;
+  }
+
+  @media (width >= 64rem) {
+    .timeline {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0;
+    }
+  }
+
+  .phase {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  @media (width >= 64rem) {
+    .phase {
+      flex: 1;
+    }
+  }
+
+  .milestone {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (width >= 64rem) {
+    .milestone {
+      justify-content: flex-start;
+    }
+  }
+
+  .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-text-primary);
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 0 2px var(--color-text-primary);
+  }
+
+  .connector {
+    display: none;
+  }
+
+  @media (width >= 64rem) {
+    .connector {
+      display: block;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      right: -50%;
+      height: 2px;
+      background-color: var(--color-text-primary);
+      z-index: 1;
+    }
+  }
+
+  .phase-content {
+    flex: 1;
+  }
+
+  .phase-title {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-small);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (width >= 64rem) {
+    .phase-title {
+      font-size: var(--font-body);
+    }
+  }
+
+  .phase-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .phase-items li {
+    font-size: var(--font-small);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    position: relative;
+    padding-left: var(--space-4);
+  }
+
+  .phase-items li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-text-primary);
+  }
+
+  .bottom-label {
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 1px dotted var(--color-border);
+    text-align: left;
+    font-size: var(--font-small);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: var(--font-weight-medium);
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+interface Props {
+  spacing?: 'default' | 'large';
+  class?: string;
+}
+
+const { spacing = 'default', class: className = '' } = Astro.props;
+---
+
+<div class:list={['divider', { large: spacing === 'large' }, className]}>
+  <hr class="line" />
+</div>
+
+<style>
+  .divider {
+    margin: 0 auto;
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-16);
+    max-width: 64rem;
+  }
+
+  @media (width >= 64rem) {
+    .divider {
+      margin-top: var(--space-24);
+      margin-bottom: var(--space-24);
+    }
+  }
+
+  .divider.large {
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-24);
+  }
+
+  @media (width >= 64rem) {
+    .divider.large {
+      margin-top: var(--space-32);
+      margin-bottom: var(--space-32);
+    }
+  }
+
+  .line {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    opacity: 0.25;
+  }
+</style>

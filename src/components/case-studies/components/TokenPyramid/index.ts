@@ -1,1 +1,0 @@
-export { TokenPyramid } from './TokenPyramid';

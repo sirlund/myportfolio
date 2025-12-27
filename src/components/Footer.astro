@@ -1,0 +1,199 @@
+---
+import { getEntry } from 'astro:content';
+import type { Language } from '@/i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+// Get footer content from home page
+const homeContent = await getEntry('pages', `${lang}/home`);
+const footer = homeContent?.data.footer;
+const contact = homeContent?.data.contact;
+
+const SITE_NAME = 'Nicolás Lundin';
+const currentYear = new Date().getFullYear();
+
+// Contact links
+const CONTACT = {
+  EMAIL: 'hola@nlund.in',
+  LINKEDIN: 'https://linkedin.com/in/nicolaslundin',
+  DRIBBBLE: 'https://dribbble.com/sirlund',
+};
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="inner">
+      <p class="copyright">
+        © {currentYear} {SITE_NAME}. {footer?.rights || 'All rights reserved.'}
+      </p>
+
+      <div class="links">
+        <a
+          href={CONTACT.LINKEDIN}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={CONTACT.DRIBBBLE}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link"
+        >
+          Dribbble
+        </a>
+        <a
+          href={`mailto:${CONTACT.EMAIL}`}
+          class="link"
+        >
+          {contact?.emailLabel || 'Email'}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ============================================
+     Footer Component - Mobile First
+     ============================================ */
+
+  .footer {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-top: 1px solid var(--color-border-default);
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (width >= 40rem) {
+    .footer {
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-10);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .footer {
+      padding-top: var(--space-12);
+      padding-bottom: var(--space-12);
+    }
+  }
+
+  /* ============================================
+     Container
+     ============================================ */
+  .container {
+    max-width: var(--container-6xl, 72rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  @media (width >= 40rem) {
+    .container {
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .container {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+
+  /* ============================================
+     Inner Layout
+     ============================================ */
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  @media (width >= 48rem) {
+    .inner {
+      flex-direction: row;
+      gap: 0;
+    }
+  }
+
+  /* ============================================
+     Copyright
+     ============================================ */
+  .copyright {
+    font-size: var(--font-small);
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (width >= 48rem) {
+    .copyright {
+      margin-bottom: 0;
+      text-align: left;
+    }
+  }
+
+  /* ============================================
+     Links Section
+     ============================================ */
+  .links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (width >= 40rem) {
+    .links {
+      gap: var(--space-5);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .links {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .links {
+      gap: var(--space-6);
+    }
+  }
+
+  .link {
+    font-size: var(--font-small);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease, transform 0.2s ease;
+  }
+
+  .link:hover {
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+  }
+</style>

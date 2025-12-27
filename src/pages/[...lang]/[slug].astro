@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import CaseStudyLayout from '@/layouts/CaseStudyLayout.astro';
+import type { Language } from '@/i18n/utils';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('case-studies');
+
+  return caseStudies.map((entry) => {
+    // entry.slug is auto-generated: "en/mindstudio" or "es/mindstudio"
+    const slugParts = entry.slug.split('/');
+    const lang = slugParts[0] as Language;
+    const fileSlug = slugParts[1];
+
+    return {
+      params: {
+        lang: lang === 'en' ? undefined : lang,
+        slug: fileSlug
+      },
+      props: { entry, lang }
+    };
+  });
+}
+
+interface Props {
+  entry: any;
+  lang: Language;
+}
+
+const { entry, lang } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<CaseStudyLayout
+  title={entry.data.title}
+  subtitle={entry.data.subtitle}
+  description={entry.data.seoDescription}
+  heroImage={entry.data.heroImage}
+  details={entry.data.details}
+  impactStats={entry.data.impactStats}
+  theme={entry.data.theme}
+  lang={lang}
+>
+  <Content />
+</CaseStudyLayout>

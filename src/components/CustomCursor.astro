@@ -1,0 +1,160 @@
+---
+// Custom cursor - only rendered on desktop
+---
+
+<div id="custom-cursor" class="cursor" aria-hidden="true"></div>
+
+<script>
+  function initCursor() {
+    const cursor = document.getElementById('custom-cursor');
+    if (!cursor) return;
+
+    let isHovering = false;
+    let breathePhase = 0;
+    let animationId: number | null = null;
+    let currentScale = 1;
+    let targetScale = 1;
+
+    // Check if mobile device
+    function isMobile(): boolean {
+      return (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+        (navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform)) ||
+        window.matchMedia('(hover: none)').matches
+      );
+    }
+
+    // Don't initialize on mobile
+    if (isMobile()) {
+      cursor.style.display = 'none';
+      return;
+    }
+
+    // Hide default cursor
+    document.documentElement.classList.add('custom-cursor-active');
+
+    // Breathing animation with smooth transitions
+    function animate() {
+      breathePhase += 0.025; // Controls breathing speed
+
+      // Calculate breathing scale (oscillates between 1 and 1.12)
+      const breatheScale = 1 + Math.sin(breathePhase) * 0.06;
+
+      // Target scale based on hover state
+      const baseTarget = isHovering ? 0.65 : 1;
+      targetScale = baseTarget * breatheScale;
+
+      // Smooth interpolation towards target (spring-like)
+      currentScale += (targetScale - currentScale) * 0.15;
+
+      cursor.style.transform = `scale(${currentScale})`;
+
+      animationId = requestAnimationFrame(animate);
+    }
+
+    function handleMouseMove(e: MouseEvent) {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+
+      // Show cursor on first move
+      if (!cursor.classList.contains('visible')) {
+        cursor.classList.add('visible');
+      }
+
+      // Check if hovering over interactive elements
+      const target = e.target as HTMLElement;
+      const interactive = target.matches('a, button, [role="button"], input, textarea, select, [tabindex="0"]') ||
+        target.closest('a, button, [role="button"], input, textarea, select, [tabindex="0"]');
+
+      isHovering = !!interactive;
+    }
+
+    function handleMouseLeave() {
+      cursor.classList.remove('visible');
+    }
+
+    function handleMouseEnter() {
+      cursor.classList.add('visible');
+    }
+
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
+    // Start animation loop
+    animate();
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.documentElement.classList.remove('custom-cursor-active');
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }
+
+  let cleanup: (() => void) | null = null;
+
+  function init() {
+    if (cleanup) cleanup();
+    cleanup = initCursor() || null;
+  }
+
+  // Initialize
+  init();
+
+  // Re-initialize on View Transitions
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:before-swap', () => {
+    if (cleanup) cleanup();
+  });
+</script>
+
+<style is:global>
+  /* Hide native cursor when custom cursor is active */
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  /* Only apply on devices with precise pointers */
+  @media (hover: none) or (pointer: coarse) {
+    .custom-cursor-active,
+    .custom-cursor-active * {
+      cursor: auto !important;
+    }
+  }
+</style>
+
+<style>
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    background-color: white;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    will-change: transform;
+  }
+
+  .cursor.visible {
+    opacity: 1;
+  }
+
+  /* Hide on mobile/touch devices */
+  @media (hover: none) or (pointer: coarse) {
+    .cursor {
+      display: none !important;
+    }
+  }
+</style>

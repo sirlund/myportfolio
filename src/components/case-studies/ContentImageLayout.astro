@@ -1,0 +1,170 @@
+---
+interface Props {
+  columns?: 2 | 3 | 4;
+  columnWidths?: string;
+  gap?: 'default' | 'none' | 'compact';
+  stretch?: boolean;
+  /** Enable column-based layout mode (use with Column components) */
+  columnLayout?: boolean;
+  caption?: string;
+  backgroundColor?: string;
+  class?: string;
+  style?: string;
+}
+
+const {
+  columns = 2,
+  columnWidths,
+  gap = 'default',
+  stretch = true,
+  columnLayout = false,
+  caption,
+  backgroundColor,
+  class: className = '',
+  style: customStyle = ''
+} = Astro.props;
+
+const customColumns = columnWidths || Array(columns).fill('1fr').join(' ');
+
+// Build inline style
+const styleString = [
+  `--custom-columns: ${customColumns}`,
+  backgroundColor ? `background-color: ${backgroundColor}` : '',
+  customStyle
+].filter(Boolean).join('; ');
+---
+
+<div
+  class:list={[
+    columnLayout ? 'column-layout' : 'content-image-layout',
+    !columnLayout && `cols-${columns}`,
+    `gap-${gap}`,
+    { stretch, 'no-stretch': !stretch },
+    className
+  ]}
+  style={styleString}
+>
+  <slot />
+  {caption && <div class="caption">{caption}</div>}
+</div>
+
+<style>
+  /* ============================================
+     Standard Grid Layout
+     ============================================ */
+  .content-image-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: var(--space-12);
+  }
+
+  @media (width >= 64rem) {
+    .content-image-layout {
+      margin-top: var(--space-16);
+    }
+  }
+
+  /* Alignment */
+  .stretch {
+    align-items: stretch;
+  }
+
+  .no-stretch {
+    align-items: start;
+  }
+
+  /* Column variants */
+  .cols-2 {
+    @media (width >= 64rem) {
+      grid-template-columns: var(--custom-columns, 1fr 1fr);
+    }
+  }
+
+  .cols-3 {
+    @media (width >= 48rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (width >= 64rem) {
+      grid-template-columns: var(--custom-columns, 1fr 1fr 1fr);
+    }
+  }
+
+  .cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (width >= 64rem) {
+      grid-template-columns: var(--custom-columns, 1fr 1fr 1fr 1fr);
+    }
+  }
+
+  /* Gap variants */
+  .gap-default {
+    gap: var(--space-6);
+  }
+
+  @media (width >= 64rem) {
+    .gap-default {
+      gap: var(--space-8);
+    }
+  }
+
+  .gap-compact {
+    gap: var(--space-3);
+  }
+
+  @media (width >= 64rem) {
+    .gap-compact {
+      gap: var(--space-4);
+    }
+  }
+
+  .gap-none {
+    gap: 0;
+  }
+
+  /* Images inside standard layout */
+  .content-image-layout :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: 0;
+  }
+
+  .no-stretch :global(img) {
+    height: auto;
+  }
+
+  /* ============================================
+     Column Layout Mode
+     ============================================ */
+  .column-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: var(--space-12);
+  }
+
+  @media (width >= 48rem) {
+    .column-layout {
+      grid-template-columns: var(--custom-columns, 1fr);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .column-layout {
+      margin-top: var(--space-16);
+    }
+  }
+
+  /* Caption */
+  .caption {
+    margin-top: var(--space-4);
+    font-size: var(--font-caption, var(--text-sm));
+    color: var(--color-text-secondary);
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+interface Column {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  columns: Column[];
+}
+
+const { columns } = Astro.props;
+---
+
+<div class="two-column-layout">
+  {columns.map((column) => (
+    <div class="column">
+      <h3 class="title">{column.title}</h3>
+      <div class="content" set:html={column.content} />
+    </div>
+  ))}
+</div>
+
+<style>
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-top: var(--space-8);
+  }
+
+  @media (width >= 64rem) {
+    .two-column-layout {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+
+  .title {
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+  }
+
+  .content {
+    font-size: var(--font-body);
+    line-height: 1.625;
+    color: var(--color-text-secondary);
+  }
+
+  .content :global(p) {
+    margin-bottom: var(--space-4);
+  }
+
+  .content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+  }
+
+  .content :global(li) {
+    margin-bottom: var(--space-2);
+  }
+
+  .content :global(strong) {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+</style>

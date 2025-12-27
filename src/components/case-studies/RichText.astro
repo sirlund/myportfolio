@@ -1,0 +1,22 @@
+---
+interface Props {
+  content: string;
+  class?: string;
+}
+
+const { content, class: className = '' } = Astro.props;
+
+// Split content by double newlines to create paragraphs
+const paragraphs = content.split('\n\n');
+---
+
+{paragraphs.map((paragraph) => {
+  const trimmed = paragraph.trim();
+  const isList = trimmed.startsWith('<ul>') || trimmed.startsWith('<ol>');
+
+  if (isList) {
+    return <div class={className} set:html={paragraph} />;
+  }
+
+  return <p class={className} set:html={paragraph} />;
+})}

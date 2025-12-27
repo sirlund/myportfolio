@@ -1,0 +1,132 @@
+---
+title: "Mindstudio — Orquestación AI No-Code"
+subtitle: "De caos a claridad en una plataforma no-code de IA"
+seoDescription: "Caso de estudio Design System: Construyendo una base escalable para la plataforma no-code de IA de Mindstudio. Un esfuerzo colaborativo de 10 meses para convertir complejidad técnica en claridad."
+order: 1
+heroImage: /images/case-studies/mindstudio/mindstudio_coverImg.png
+thumbnail: /images/case-studies/mindstudio/mindstudio_coverImg.png
+
+details:
+  - label: "Rol"
+    value: "Consultor externo → Equipo Core"
+  - label: "Duración"
+    value: "10 meses"
+  - label: "Año"
+    value: "2024-2025"
+  - label: "Equipo"
+    value: "2 Diseñadores, 4 Ingenieros, 1 Head of Product"
+
+impactStats:
+  - metric: "80%"
+    label: "Menos duplicación en Figma"
+    icon: "layers"
+  - metric: "40%"
+    label: "Handoff más rápido"
+    icon: "zap"
+  - metric: "25%"
+    label: "Menos tickets de QA visual"
+    icon: "check-circle"
+  - metric: "10"
+    label: "Meses de proyecto"
+    icon: "calendar"
+  - metric: "100%"
+    label: "Dark mode sistematizado"
+    icon: "moon"
+
+theme:
+  background: "var(--mindstudio-section-bg)"
+  text: "var(--mindstudio-section-text)"
+  textMuted: "var(--mindstudio-section-text-muted)"
+
+draft: false
+---
+import CardGrid from '@/components/case-studies/CardGrid.astro';
+import Image from '@/components/case-studies/Image.astro';
+import ProcessOverview from '@/components/case-studies/ProcessOverview.astro';
+
+**Tecnología potente, Operaciones en caos.** MindStudio es una plataforma líder para construir agentes de IA, permitiendo a usuarios orquestar LLMs, variables y APIs externas. Cuando llegué, el producto era técnicamente robusto pero operacionalmente frágil. El equipo de ingeniería había entregado una cantidad increíble de funcionalidades, pero sin gobernanza de diseño. No había componentes, ni tokens, ni lenguaje compartido.
+
+Enfrentábamos un cuello de botella crítico: La velocidad de innovación superaba nuestra capacidad de mantener calidad. Cada nueva funcionalidad—desde el editor visual hasta el dashboard—se construía desde cero, creando una UI fragmentada que confundía a usuarios y ralentizaba el desarrollo.
+
+## 01. El Problema
+
+### Velocidad vs. Gobernanza
+
+El producto parecía coherente en la superficie, pero la arquitectura subyacente era un escenario de "Wild West" que impedía escalar.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "file-json-2", title: "Entropía Visual", description: "Sin una 'fuente de verdad', la interfaz iba a la deriva. <strong>40% del código frontend</strong> se dedicaba a sobrescribir estilos conflictivos." },
+    { icon: "brain-circuit", title: "Sobrecarga Cognitiva", description: "La falta de patrones estandarizados significaba que los usuarios tenían que <strong>reaprender la UI</strong> para cada nueva funcionalidad." },
+    { icon: "zap-off", title: "El 'Factor Bus'", description: "El conocimiento de diseño era tribal. El onboarding tomaba <strong>semanas</strong> porque el sistema existía solo en las cabezas de las personas." }
+  ]}
+/>
+
+<Image label="Figma antes: caos y fragmentación" caption="Estado inicial del diseño en Figma" alt="Figma caos" />
+
+## 02. Objetivos
+
+### Estabilizar para Evolucionar
+
+Mi mandato no era solo "ordenar Figma", sino construir la infraestructura necesaria para entregar la próxima generación de funcionalidades.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "shield-check", title: "Detener la Hemorragia", description: "Auditar y consolidar patrones existentes en un Design System unificado." },
+    { icon: "workflow", title: "Desbloquear Complejidad", description: "Usar el nuevo sistema para rediseñar interfaces críticas como el <strong>Node Canvas</strong> y <strong>Variable Manager</strong>." },
+    { icon: "moon-star", title: "Validar Escalabilidad", description: "Probar la robustez del sistema desplegando <strong>Dark Mode</strong> sin refactoring de código." }
+  ]}
+/>
+
+## 03. El Proceso
+
+### De Auditoría a Arquitectura
+
+Pasamos de diseño reactivo a una hoja de ruta estratégica de 3 fases:
+
+<ProcessOverview
+  title="Proceso de alto nivel"
+  phases={[
+    { title: "Fase 1: Triaje", items: ["Auditoría Producción", "Arquitectura Tokens", "Definición Prioridades"] },
+    { title: "Fase 2: Motor del Sistema", items: ["Librería Core", "Densidad de Datos", "Inputs Complejos"] },
+    { title: "Fase 3: Pivote Producto", items: ["Node Canvas", "Lógica/Datos", "Dark Mode"] }
+  ]}
+  bottomLabel="Entrega continua durante todas las fases"
+/>
+
+**Fase 1: Triaje** — Audité el entorno de producción para separar "patrones esenciales" del "ruido". Establecimos una arquitectura de tokens estricta (Primitivos → Semánticos) inmediatamente.
+
+**Fase 2: El Motor del Sistema** — Construimos una librería de componentes optimizada para alta densidad de datos. MindStudio necesitaba inputs complejos, bloques de código y selectores de variables que pudieran manejar interacciones pesadas.
+
+**Fase 3: El Pivote de Producto** — Con el sistema en su lugar, me uní al Equipo Core para abordar funcionalidades complejas bloqueadas por deuda de diseño:
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "workflow", title: "Orquestación Visual", description: "Rediseñé el editor de nodos para soportar lógica ramificada compleja, paneo infinito y colaboración en equipo." },
+    { icon: "file-json-2", title: "Manejo de Lógica y Datos", description: "Abstraje el paso de datos JSON en un selector visual de 'Variables y API', reduciendo errores en flujos multi-paso." },
+    { icon: "moon-star", title: "Dark Mode Sistematizado", description: "Aproveché tokens semánticos para lanzar un tema oscuro impecable, validado como actualización 'plug-and-play'." }
+  ]}
+/>
+
+## 04. Resultados
+
+### Impacto Medible
+
+El sistema no fue solo una librería; se convirtió en el sistema operativo del equipo de producto.
+
+- **40% Handoff más rápido:** Los desarrolladores dejaron de adivinar códigos hex y comenzaron a usar variables semánticas.
+- **80% Reducción en peso de Figma:** Eliminamos cientos de frames detachados, reemplazándolos con una librería única.
+- **Calidad a escala:** Los tickets de QA visual cayeron 25% en tres sprints ya que el sistema forzaba consistencia automáticamente.
+- **Dark Mode desbloqueado:** Lanzamos una funcionalidad enterprise muy solicitada en tiempo récord.
+
+> "Ahora no estamos adivinando — estamos construyendo sobre terreno firme."
+> — Head of Product
+
+## 05. Reflexión
+
+### Pragmatismo sobre Perfeccionismo
+
+En una startup de IA de ritmo acelerado, no puedes esperar un sistema "perfecto". Construimos el avión mientras volaba—consolidando caos en orden mientras entregábamos funcionalidades críticas. Este proyecto demostró que un Design System sólido no es una restricción; es el máximo acelerador para la innovación de producto.

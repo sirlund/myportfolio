@@ -26,11 +26,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ensure custom cursor blending works properly */
-html,
-body {
-  isolation: isolate;
-}
 
 /**
  * Base typography

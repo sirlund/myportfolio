@@ -1,0 +1,106 @@
+{
+  "$ref": "#/definitions/case-studies",
+  "definitions": {
+    "case-studies": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "seoDescription": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "impactStats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "theme": {
+          "type": "object",
+          "properties": {
+            "background": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "textMuted": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "background",
+            "text",
+            "textMuted"
+          ],
+          "additionalProperties": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "order",
+        "heroImage",
+        "thumbnail",
+        "details"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

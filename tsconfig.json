@@ -1,4 +1,5 @@
 {
+    "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
         "target": "ESNext",
         "useDefineForClassFields": true,
@@ -14,11 +15,12 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "module": "ESNext",
-        "moduleResolution": "Node",
+        "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx",
+        "jsx": "preserve",
+        "jsxImportSource": "astro",
         "baseUrl": ".",
         "paths": {
             "@/*": [
@@ -27,10 +29,12 @@
         }
     },
     "include": [
-        "src"
+        "src",
+        ".astro"
     ],
     "exclude": [
         "node_modules",
-        "build"
+        "build",
+        "dist"
     ]
 }

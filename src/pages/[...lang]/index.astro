@@ -1,0 +1,524 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Hero from '@/components/Hero.astro';
+import type { Language } from '@/i18n/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'en' as Language } },
+    { params: { lang: 'es' }, props: { lang: 'es' as Language } }
+  ];
+}
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+// Get content from Content Collections
+const homeContent = await getEntry('pages', `${lang}/home`);
+if (!homeContent) {
+  throw new Error(`Home content not found for language: ${lang}`);
+}
+
+const { hero, about, contact, work, nav, footer } = homeContent.data;
+
+// Get case studies for this language (non-draft, sorted by order)
+const allCaseStudies = await getCollection('case-studies');
+const caseStudies = allCaseStudies
+  .filter(cs => cs.id.startsWith(`${lang}/`) && !cs.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Get the body content (rendered MDX)
+let AboutContent: any = null;
+if (homeContent.render) {
+  const rendered = await homeContent.render();
+  AboutContent = rendered.Content;
+}
+
+const title = `Nicolás Lundin — Senior Product Designer`;
+const description = hero.subtitle;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  canonicalPath={lang === 'en' ? '/' : '/es'}
+>
+  <Header lang={lang} />
+
+  <main>
+    <!-- Hero Section with Three.js Bubble -->
+    <Hero title={hero.title} subtitle={hero.subtitle} cta={hero.cta} />
+
+    <!-- Work Section -->
+    <section id="work" class="work-section">
+      {caseStudies.map((cs, index) => {
+        const fileSlug = cs.slug.split('/')[1];
+        const projectHref = lang === 'es' ? `/es/${fileSlug}` : `/${fileSlug}`;
+        const theme = cs.data.theme;
+        return (
+          <div
+            class={`project-item project-${fileSlug}`}
+            style={theme ? `--project-bg: ${theme.background}; --project-text: ${theme.text}; --project-text-muted: ${theme.textMuted};` : ''}
+            data-animate
+          >
+            <div class="project-inner">
+              <div class="project-content">
+                {/* Project Logo */}
+                <div class="project-icon">
+                  {fileSlug === 'mindstudio' && (
+                    <svg viewBox="0 0 68 40" fill="currentColor" height="100%">
+                      <path d="M53.148 13.98c2.012 3.608 3.997 7.091 5.91 10.62 1.855 3.42 1.26 7.374-1.391 9.773-2.621 2.37-6.482 2.368-9.065-.006-2.632-2.42-3.205-6.393-1.351-9.79 1.92-3.52 3.896-7.006 5.897-10.597M30.636 11.923c-.363 1.129-.586 2.33-1.113 3.374a1145 1145 0 0 1-8.567 16.602c-2.073 3.937-6.343 5.339-9.94 3.356-3.5-1.93-4.668-6.253-2.668-10.163 2.89-5.652 5.78-11.305 8.779-16.896 1.648-3.071 4.956-4.32 8.213-3.367 3.044.89 5.123 3.76 5.296 7.094M50.153 11.887c-.363 1.129-.585 2.331-1.112 3.374a1146 1146 0 0 1-8.568 16.602c-2.072 3.938-6.343 5.34-9.94 3.356-3.5-1.93-4.667-6.252-2.667-10.163 2.89-5.651 5.779-11.304 8.779-16.896 1.647-3.07 4.955-4.32 8.212-3.367 3.044.891 5.124 3.76 5.296 7.094"/>
+                    </svg>
+                  )}
+                  {fileSlug === 'treez' && (
+                    <svg viewBox="0 0 82 40" fill="currentColor" height="100%">
+                      <path d="M64.054 4.77c.332 0 .78.24.904.664l2.392 8.388 1.22 4.39 3.64 12.78v3.079c.009.65-.344 1.186-.782 1.201h-5.44c-.44-.015-.791-.551-.782-1.201v-3.163h3.307c.429-.028.771-.55.761-1.2q0-.226-.057-.438l-2.62-9.8-1.143-4.42-.791-2.825c-.086-.48-.582-.748-.79 0" fill-opacity="0.48"/>
+                      <path d="m60.543 11.363.166-.566c.04-.145.062-.299.061-.453a1.45 1.45 0 0 0-.243-.843c-.159-.225-.376-.355-.604-.36H55.21V5.972a1.45 1.45 0 0 1 .243-.842c.159-.226.376-.355.605-.36h7.906c.476.013.859.55.848 1.202v3.084l-5.809 20.317q-.06.212-.062.438c-.004.31.08.61.235.834.154.225.367.358.592.369h3.586v3.169c.003.314-.084.617-.243.842s-.376.355-.604.36h-6.77c-.229-.005-.446-.134-.605-.36a1.45 1.45 0 0 1-.243-.842v-3.084zM45.206 35.372c-.228-.005-.445-.135-.604-.36a1.45 1.45 0 0 1-.243-.843V5.973a1.45 1.45 0 0 1 .242-.843c.16-.226.377-.355.605-.36h7.535c.475.013.858.55.848 1.202v3.17h-5.013c-.215.004-.42.12-.576.325a1.4 1.4 0 0 0-.262.778v5.772c-.003.314.084.617.243.843.16.225.377.355.605.36h3.803v4.371h-3.803c-.228.005-.446.135-.605.36a1.45 1.45 0 0 0-.243.843v7.003c-.003.314.084.617.243.843s.377.355.605.36h5.003v3.17c.003.313-.085.616-.244.842s-.376.355-.604.36M34.024 35.372c-.229-.005-.446-.135-.605-.36a1.45 1.45 0 0 1-.243-.843V5.973a1.45 1.45 0 0 1 .243-.843c.159-.226.376-.355.605-.36h7.534c.475.013.858.55.847 1.202v3.17h-5.013c-.214.004-.42.121-.575.326a1.4 1.4 0 0 0-.262.777v5.772c-.003.314.085.617.244.843s.376.355.604.36h3.804v4.371h-3.804c-.228.005-.445.135-.604.36a1.45 1.45 0 0 0-.244.843v7.003c-.003.314.084.617.243.843.16.226.377.355.605.36h5.002v3.17c.003.313-.084.616-.243.841-.159.226-.376.355-.604.36zM27.461 26.02c0-2.843-.578-3.764-2.12-3.764h-.319c-.228.005-.445.135-.604.36a1.45 1.45 0 0 0-.243.843v11.926h-2.543c-.228-.005-.445-.134-.604-.36a1.45 1.45 0 0 1-.244-.842l-.01-28.211a1.45 1.45 0 0 1 .243-.842c.16-.225.376-.355.604-.36h4.177c3.503 0 5.012 2.32 5.012 7.046v1.881c0 3.155-.713 5.165-2.212 6.04v.087c1.695.75 2.243 3.013 2.243 6.479v7.88c.003.314-.085.617-.243.842-.16.225-.376.355-.604.36H27.46m-3.297-18.703c-.003.314.084.617.243.842.16.226.377.355.605.36h.383c1.26 0 2.025-.791 2.025-3.239v-2.363c0-2.193-.528-3.154-1.726-3.154h-.692c-.228.005-.446.134-.605.36a1.45 1.45 0 0 0-.243.842zM18.294 4.77c.475.013.858.55.847 1.202l.01 1.189v1.981h-2.687c-.228.006-.445.135-.604.36a1.45 1.45 0 0 0-.243.842v25.041h-2.542c-.229-.005-.446-.134-.605-.36a1.45 1.45 0 0 1-.243-.842v-23.84a1.45 1.45 0 0 0-.244-.842c-.159-.225-.376-.355-.604-.36H8.682v-1.64l-.01-1.529a1.45 1.45 0 0 1 .243-.842c.159-.225.376-.355.604-.36z"/>
+                    </svg>
+                  )}
+                  {fileSlug === 'wenia' && (
+                    <svg viewBox="0 0 134 40" fill="currentColor" height="100%">
+                      <path d="M40.893 7.143 33.75 32.857h-6.107L22.5 14.77l-5.143 18.086h-6.214L4.107 7.143h6.536l4.178 18.943 5.25-18.943h5.036l5.357 18.943 4.072-18.943zM59.464 22.357h-13.5c.322 4.179 2.357 5.572 4.929 5.572 2.143 0 3.643-.965 4.178-2.893h4.179c-.75 4.286-4.179 6.75-8.464 6.75-5.572 0-9.322-3.857-9.322-9.857 0-5.893 3.536-10.072 9.214-10.072 5.893 0 8.893 4.5 8.893 9.322 0 .428-.036.857-.107 1.178m-4.285-3.214c-.215-2.893-1.929-4.5-4.5-4.5-2.572 0-4.286 1.607-4.715 4.5zM78.893 21.929c0 5.893-3.75 9.857-8.786 9.857-2.678 0-4.714-1.178-5.893-3v2.571h-4.607V6.393h4.607v8.678c1.179-1.821 3.215-3 5.893-3 5.036 0 8.786 3.964 8.786 9.858m-4.715 0c0-3.643-2.035-5.786-4.928-5.786s-4.929 2.143-4.929 5.786c0 3.642 2.036 5.785 4.929 5.785s4.928-2.143 4.928-5.785M81.75 32.857V12.393h4.607v20.464zm2.25-22.928c-1.607 0-2.893-1.286-2.893-2.786s1.286-2.786 2.893-2.786 2.893 1.286 2.893 2.786-1.286 2.786-2.893 2.786M106.929 21.929c0 5.893-3.75 10.071-9.215 10.071-2.678 0-4.714-1.178-5.893-3v2.357h-4.607V12.393h4.607v2.678c1.179-1.821 3.215-3.214 5.893-3.214 5.465 0 9.215 4.178 9.215 10.072m-4.715 0c0-3.643-2.035-5.786-4.928-5.786s-4.929 2.143-4.929 5.786c0 3.642 2.036 5.785 4.929 5.785s4.928-2.143 4.928-5.785"/>
+                    </svg>
+                  )}
+                  {fileSlug === 'nmp' && (
+                    <svg viewBox="0 0 262 40" fill="currentColor" height="100%">
+                      <path d="m21.861 27.577.392.02v3.216l.925.16v-3.94l-1.317-.038zM21.861 20.388l.392-.089v2.75l.925-.103v-3.439l-1.317.323zM21.861 16.47l.392-.146v2.898q.468-.118.928-.237v-3.622l-1.32.516zM22.592 13.897l-.324.801-.407.172v.48l1.317-.536v-.504l-.233.098zM21.861 24.159l.392-.033v2.397l.925.015v-3.073l-1.317.133z"/>
+                      <path d="M77.293 15.066v14.472h-2.51L69.11 16.993h-.043v12.545h-1.63V15.066h2.586l5.585 12.38h.044v-12.38zM84.215 28.082h-.044c-.5 1.16-1.271 1.664-2.532 1.664-2.13 0-2.738-1.38-2.738-3.317 0-3.076 2.977-3.208 5.27-3.153.043-1.347.054-2.802-1.695-2.802-1.098 0-1.674.733-1.576 1.806H79.13c.076-2.266 1.271-3.054 3.401-3.054 2.586 0 3.26 1.346 3.26 3.054v4.871c0 .81.087 1.631.207 2.408h-1.793v-1.477zm-3.684-1.544c0 .985.478 1.861 1.575 1.861 1 0 2.228-.624 2.065-3.886-1.554.01-3.64-.12-3.64 2.025"/>
+                    </svg>
+                  )}
+                  {fileSlug === 'klare' && (
+                    <svg viewBox="0 0 124 40" fill="none" height="100%">
+                      <path d="M36.23 20h-3.59c0 5.75-4.66 10.41-10.41 10.41v7.18c9.715 0 17.59-7.876 17.59-17.59zm-14 14v-3.59c-5.749 0-10.41-4.66-10.41-10.41H4.64c0 9.715 7.876 17.59 17.59 17.59zm-14-14h3.59c0-5.75 4.661-10.41 10.41-10.41V2.41C12.516 2.41 4.64 10.286 4.64 20zm14-14v3.59c5.75 0 10.41 4.66 10.41 10.41h7.18c0-9.714-7.875-17.59-17.59-17.59z" fill="currentColor"/>
+                      <path d="M75.635 24.794c-2.567.525-2.57 2.152-2.57 2.755 0 1.13.573 3.028 4.409 3.028 2.523 0 4.408-1.713 4.408-3.245v-2.116s-2.4-1.357-6.247-.422m9.56 8.764h-3.311v-1.922c-1.707 2.34-5.411 2.143-5.856 2.111-3.855-.46-6.272-2.788-6.272-6.193 0-3.87 2.885-6.173 7.718-6.173 1.81 0 3.256.2 4.41.605v-1.16c.073-2.248-.812-2.886-1.105-3.097-1.852-1.333-5.893-.376-7.163.064l-1.108-3.063c1.16-.38 2.353-.652 3.564-.809 2.822-.361 5.06.036 6.655 1.18 1.18.846 2.564 2.539 2.465 5.806zm-25.212-.02-6.89-11.727 6.352-5.642-2.22-2.412-9.07 8.058V6h-3.31v27.567h3.31v-7.37l2.429-2.156 5.577 9.492z" fill="currentColor"/>
+                    </svg>
+                  )}
+                </div>
+
+                <h2 class="project-title">{cs.data.title}</h2>
+                <p class="project-description">{cs.data.subtitle}</p>
+
+                <a href={projectHref} class="project-button" data-astro-prefetch="load">
+                  {lang === 'es' ? 'Ver Proyecto' : 'View Project'}
+                </a>
+              </div>
+
+              <div class="project-image">
+                <img src={cs.data.thumbnail} alt={cs.data.title} loading="lazy" />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      {caseStudies.length === 0 && (
+        <div class="coming-soon">
+          <h3>{work.comingSoon}</h3>
+          <p>{work.comingSoonDescription}</p>
+        </div>
+      )}
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section" data-animate data-animate-delay="0.4">
+      <div class="section-container">
+        <h2>{about.title}</h2>
+        <div class="about-content">
+          <div class="about-bio">
+            {AboutContent ? <AboutContent /> : <p>Loading...</p>}
+          </div>
+          <div class="about-details">
+            <div class="about-group">
+              <h4>{about.tools.title}</h4>
+              <ul class="tag-list">
+                {about.tools.items.map((tool: string) => (
+                  <li>{tool}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="about-group">
+              <h4>{about.skills.title}</h4>
+              <ul class="tag-list">
+                {about.skills.items.map((skill: string) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="about-group">
+              <h4>{about.industries.title}</h4>
+              <ul class="tag-list">
+                {about.industries.items.map((industry: string) => (
+                  <li>{industry}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section" data-animate data-animate-delay="0.6">
+      <div class="section-container">
+        <h2>{contact.title}</h2>
+        <p class="contact-subtitle">{contact.description}</p>
+        <div class="contact-links">
+          {contact.links.map((link: { label: string; href: string; description: string; icon?: string }, index: number) => (
+            <a
+              href={link.href}
+              class={`contact-link ${index === 0 ? 'primary' : ''}`}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {link.icon === 'mail' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              )}
+              {link.icon === 'linkedin' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect width="4" height="12" x="2" y="9"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              )}
+              {link.icon === 'dribbble' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/>
+                  <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/>
+                  <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/>
+                </svg>
+              )}
+              {link.icon === 'file' && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                </svg>
+              )}
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  /* ============================================
+     Sections
+     ============================================ */
+  .section {
+    padding: var(--space-24) var(--space-4);
+  }
+
+  @media (width >= 40rem) {
+    .section {
+      padding: var(--space-24) var(--space-6);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .section {
+      padding: var(--space-24) var(--space-8);
+    }
+  }
+
+  .section-container {
+    max-width: var(--container-6xl, 72rem);
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-size: var(--font-h1);
+    margin-bottom: var(--space-8);
+  }
+
+  /* ============================================
+     Work Section
+     ============================================ */
+  .work-section {
+    width: 100%;
+  }
+
+  .project-item {
+    width: 100%;
+    background-color: var(--project-bg, var(--color-bg-secondary));
+  }
+
+  .project-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-8);
+    padding: var(--space-12) var(--space-6);
+  }
+
+  @media (width >= 40rem) {
+    .project-inner {
+      gap: var(--space-12);
+      padding: var(--space-16) var(--space-10);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .project-inner {
+      gap: var(--space-16);
+      padding: var(--space-20) var(--space-16);
+    }
+  }
+
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 42rem;
+    width: 100%;
+    gap: var(--space-6);
+  }
+
+  @media (width >= 40rem) {
+    .project-content {
+      gap: var(--space-8);
+    }
+  }
+
+  .project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--space-8);
+    width: auto;
+    color: var(--project-text, var(--color-text-primary));
+  }
+
+  @media (width >= 40rem) {
+    .project-icon {
+      height: 2.25rem;
+    }
+  }
+
+  .project-icon svg {
+    height: 100%;
+    width: auto;
+  }
+
+  .project-title {
+    font-size: var(--font-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+    color: var(--project-text, var(--color-text-primary));
+    margin: 0;
+  }
+
+  .project-description {
+    font-size: var(--font-lg);
+    color: var(--project-text-muted, var(--color-text-secondary));
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .project-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    background: white;
+    color: var(--gray-900, #111);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  }
+
+  .project-button:hover {
+    transform: scale(1.05);
+  }
+
+  .project-button:active {
+    transform: scale(0.95);
+  }
+
+  .project-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (width >= 40rem) {
+    .project-image img {
+      border-radius: var(--radius-md);
+    }
+  }
+
+  /* Project Theme Overrides */
+  .project-treez .project-button {
+    background: var(--treez-section-button-bg, var(--green-600));
+    color: white;
+  }
+
+  /* ============================================
+     About Section
+     ============================================ */
+  .about-content {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  @media (width >= 48rem) {
+    .about-content {
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  .about-bio {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .about-bio :global(p) {
+    margin-bottom: var(--space-4);
+  }
+
+  .about-bio :global(strong) {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .about-group h4 {
+    font-size: var(--font-small);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tag-list li {
+    font-size: var(--font-small);
+    padding: var(--space-1) var(--space-3);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+  }
+
+  /* ============================================
+     Contact Section
+     ============================================ */
+  .contact-section {
+    text-align: center;
+    padding-bottom: var(--space-16);
+  }
+
+  .contact-subtitle {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    max-width: 36rem;
+    margin: 0 auto var(--space-8);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--duration-fast) ease;
+  }
+
+  .contact-link svg {
+    flex-shrink: 0;
+  }
+
+  .contact-link:hover {
+    border-color: var(--color-interactive-primary);
+    color: var(--color-interactive-primary);
+    transform: translateY(-2px);
+  }
+
+  .contact-link.primary {
+    background: var(--color-interactive-primary);
+    border-color: var(--color-interactive-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .contact-link.primary:hover {
+    background: var(--color-interactive-primary-hover);
+    border-color: var(--color-interactive-primary-hover);
+    color: var(--color-text-inverse);
+  }
+
+  /* ============================================
+     Coming Soon
+     ============================================ */
+  .coming-soon {
+    text-align: center;
+    padding: var(--space-16) var(--space-4);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+  }
+
+  .coming-soon h3 {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .coming-soon p {
+    color: var(--color-text-secondary);
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+</style>
