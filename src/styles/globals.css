@@ -1,4 +1,8 @@
 :root {
+  /* Site layout */
+  --site-max-width: 72rem;
+  --content-max-width: 56rem;
+
   /* Special tokens not covered by semantic system */
   --font-nav-overlay: clamp(2.5rem, 10vw, 4rem);
 }
