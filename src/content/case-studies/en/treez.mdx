@@ -45,21 +45,23 @@ import Image from '@/components/case-studies/Image.astro';
 import ContentImageLayout from '@/components/case-studies/ContentImageLayout.astro';
 import Column from '@/components/case-studies/Column.astro';
 
-## Overview
+## 01. Overview
 
-Led the architecture and implementation of Root DS for Treez's fast-growing B2B platform. The initiative addressed critical UI fragmentation across web and mobile, transforming significant technical debt into a unified system that reduced QA cycles by 30% and accelerated delivery.
+Led the architecture and implementation of **Root DS for Treez's fast-growing B2B platform**. The initiative addressed critical UI fragmentation across web and mobile, transforming significant technical debt into a unified system that reduced QA cycles by 30% and accelerated delivery.
 
 {/* Screen Samples - Right after Overview */}
 <ContentImageLayout columns={2} columnWidths="60fr 40fr" gap="none" stretch={false}>
-  <Image src="/images/case-studies/treez/screenSample_01.png" alt="Treez Sample 01" aspectRatio="4/3" objectFit="contain" noMargin />
-  <Image src="/images/case-studies/treez/screenSample_02.png" alt="Treez Sample 02" aspectRatio="1/1" objectFit="cover" noMargin />
-  <Image src="/images/case-studies/treez/screenSample_03.png" alt="Treez Sample 03" aspectRatio="4/3" objectFit="cover" noMargin />
-  <Image src="/images/case-studies/treez/screenSample_04.png" alt="Treez Sample 04" aspectRatio="4/3" objectFit="contain" noMargin />
+  <Image src="/images/case-studies/treez/screenSample_01.png" alt="Treez Sample 01" aspectRatio="4/3" objectFit="contain" style="background-color: #F7F7F7" />
+  <Image src="/images/case-studies/treez/screenSample_02.png" alt="Treez Sample 02" aspectRatio="1/1" objectFit="cover" />
+  <Image src="/images/case-studies/treez/screenSample_03.png" alt="Treez Sample 03" aspectRatio="4/3" objectFit="cover" />
+  <Image src="/images/case-studies/treez/screenSample_04.png" alt="Treez Sample 04" aspectRatio="4/3" objectFit="contain" style="background-color: #F7F7F7" />
 </ContentImageLayout>
 
 ---
 
-## Context
+## 02. Context
+
+### Business-Critical Platform in Need of Order
 
 Treez serves as the mission-critical OS for enterprise cannabis retail, handling complex workflows from strict compliance to high-volume transaction processing.
 
@@ -76,7 +78,9 @@ In short: We were paying a 're-invention tax' on every single sprint.
 
 ---
 
-## The Problem
+## 03. The Problem
+
+### Scaling Chaos
 
 Treez faced a scalability crisis. Rapid growth led to isolated workflows, where teams were constantly rebuilding existing UI, resulting in bloated codebases and inconsistent user experiences across the B2B SaaS platform.
 
@@ -98,7 +102,9 @@ The design team knew we needed a solution that was more than just a component li
 
 ---
 
-## Why Root DS?
+## 04. Why Root DS?
+
+### Building the Foundation for Scalable Design
 
 We named the system Root because it represents the foundation beneath everything we build — a connected structure of tokens, components, and design decisions that supports the entire product experience.
 
@@ -108,7 +114,9 @@ Like a root network, it's invisible to users, but essential to what they see, fe
 
 ---
 
-## Objectives
+## 05. Objectives
+
+### Clear, Focused Goals
 
 Our goals were clear and intentionally limited to the web platform, with the understanding that mobile support (POS) would come next:
 
@@ -120,12 +128,14 @@ Our goals were clear and intentionally limited to the web platform, with the und
 
 ---
 
-## Discovery
+## 06. Discovery
+
+### Understanding the Landscape
 
 Our process began with a comprehensive discovery and audit phase:
 
 <CardGrid
-  columns={3}
+  columns={2}
   cards={[
     { icon: "settings", title: "Visual Debt Overload", description: "Uncovered years of accumulated drift, including <strong>20+ undocumented grey styles</strong> and fragmented navigation patterns." },
     { icon: "clipboard-list", title: "Redundancy Scale", description: "Cataloged <strong>100+ detached patterns</strong>, revealing that ~60% of frontend effort was spent rebuilding existing UI elements." },
@@ -139,7 +149,9 @@ We didn't assume what teams needed — we investigated and listened.
 
 ---
 
-## Design Principles
+## 07. Design Principles
+
+### Guiding Every Decision
 
 We defined 5 guiding principles to shape every component, token, and interaction:
 
@@ -169,25 +181,27 @@ These principles ensured Root wasn't just scalable — it was sustainable.
 
 ---
 
-## System Architecture
+## 08. System Architecture
+
+### Tokens, Components, Patterns, Documentation
 
 Root was built on a strict atomic foundation using a multi-tier token structure (global vs. alias vs. component tokens). This ensured theming flexibility for future white-labeling and paved the way for mobile parity.
 
-### Foundations
+#### Foundations
 - Color palette and contrast-compliant tokens
 - Typographic scale and modular spacing system
 - Iconography, grid, and motion primitives
 
-### Components
+#### Components
 - Buttons, form elements, tables, cards, navigation
 - Responsive structure for admin-heavy dashboard layouts
 - Component states: hover, focus, disabled, error
 
-### Patterns
+#### Patterns
 - Form groups, input validation, error handling
 - Empty states, alerts, filtering, modals
 
-### Documentation
+#### Documentation
 - Figma library with tokens and auto-layout
 - Zeroheight for usage guidelines, do/don't examples
 - Connected to Storybook for developer parity
@@ -215,7 +229,9 @@ Root was built on a strict atomic foundation using a multi-tier token structure 
 
 ---
 
-## Collaboration & Rollout
+## 09. Collaboration & Rollout
+
+### Shared Ownership Model
 
 "Designed **with** engineering — not **for** them." We replaced brittle handoffs with a **Shared Ownership Model**, ensuring technical feasibility from day one.
 
@@ -231,32 +247,49 @@ Root was built on a strict atomic foundation using a multi-tier token structure 
 
 ---
 
-## Outcomes
+## 10. Outcomes
+
+### Measurable Impact
 
 Root created clarity and scale across the Treez design and development ecosystem.
+
+<CardGrid
+  columns={2}
+  cards={[
+    { icon: "layers", title: "82% reduction in Figma component duplication", description: "Centralized assets eliminated redundant files, streamlining design workflows." },
+    { icon: "check-circle", title: "30% decrease in UI QA tickets", description: "Consistent components reduced visual discrepancies and implementation errors." },
+    { icon: "clock", title: "Designer onboarding time cut from 3 weeks to 1 week", description: "Comprehensive documentation accelerated new team member ramp-up." },
+    { icon: "eye", title: "94% of accessibility issues resolved", description: "Built-in compliance ensured the product met enterprise standards." },
+    { icon: "zap", title: "20% improvement in delivery velocity", description: "Standardized tokens and components sped up development cycles." }
+  ]}
+/>
 
 > "It's the first time we've had a true source of truth"
 > — Sam, Engineering Lead
 
 ---
 
-## What's Next
+## 11. What's Next
+
+### Future Roadmap
 
 Root was intentionally scoped to the web platform, but its architecture was designed to extend into mobile and POS — a roadmap priority for 2024.
 
-**In progress:**
+#### In progress:
 - Extending tokens for mobile breakpoints and interaction patterns
 - POS app alignment with web design language
 - Brand theme flexibility for white-label features
 
-**Future goals:**
+#### Future goals:
 - Pilot automated accessibility linting in CI/CD pipeline
 - Versioned documentation with automated changelogs
 - Design ops dashboard for system health and adoption metrics
 
 ---
 
-## Reflection
+## 12.Reflection
+
+### A Foundation for Growth
 
 Root wasn't just a project — it was a shift in how Treez teams build, collaborate, and scale.
 

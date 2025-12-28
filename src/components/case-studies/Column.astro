@@ -12,40 +12,39 @@
  * - Image 1: 773x1149 → 773/1149 = 0.6727fr
  * - Image 2: 579x1133 → 579/1133 = 0.5111fr
  * Pass columnWidths="0.6727fr 0.5111fr" to parent ContentImageLayout
- *
- * Pro-tip: For columns with multiple images (stack), sum the heights of all images
- * (including gaps) and use that as the height divisor.
  */
 interface Props {
+  /** Natural width of the column content (used for auto-proportions in parent) */
+  naturalWidth?: number;
+  /** Natural height of the column content (used for auto-proportions in parent) */
+  naturalHeight?: number;
   /** Gap between items in column */
   gap?: 'default' | 'none' | 'compact';
   /** Stretch children to fill column height (default: true) */
   stretch?: boolean;
-  /** Custom row heights for the column (e.g., "1fr 2fr"). If provided, uses grid layout instead of flex. */
+  /** Custom row heights for the column (e.g., "457fr 676fr"). Uses grid layout instead of flex. */
   rowHeights?: string;
   class?: string;
-  style?: string;
 }
 
 const {
   gap = 'default',
   stretch = true,
   rowHeights,
-  class: className = '',
-  style: customStyle = ''
+  class: className = ''
 } = Astro.props;
 
-const styleString = [
-  rowHeights ? `display: grid; grid-template-rows: ${rowHeights}` : '',
-  customStyle
-].filter(Boolean).join('; ');
+// If rowHeights provided, use grid layout
+const styleString = rowHeights
+  ? `display: grid; grid-template-rows: ${rowHeights}`
+  : '';
 ---
 
 <div
   class:list={[
     'column',
     `gap-${gap}`,
-    { stretch, 'no-stretch': !stretch },
+    stretch ? 'column-stretch' : 'column-no-stretch',
     className
   ]}
   style={styleString}
@@ -60,15 +59,15 @@ const styleString = [
     width: 100%;
   }
 
-  .stretch {
+  .column-stretch {
     align-items: stretch;
   }
 
-  .stretch > :global(*) {
+  .column-stretch > :global(*) {
     flex: 1;
   }
 
-  .no-stretch {
+  .column-no-stretch {
     align-items: start;
   }
 
@@ -95,18 +94,5 @@ const styleString = [
 
   .gap-none {
     gap: 0;
-  }
-
-  /* Images inside column */
-  .column :global(img),
-  .column :global(.image-wrapper) {
-    margin: 0;
-  }
-
-  .column :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
   }
 </style>

@@ -1,12 +1,15 @@
 ---
+/**
+ * Image Component
+ * Renders a simple <img> by default, wraps in <figure> only when caption is provided
+ */
 interface Props {
   src?: string;
   alt: string;
   aspectRatio?: string;
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
-  label?: string;
   caption?: string;
-  /** Remove default margin from figure element (default: false) */
+  label?: string;
   noMargin?: boolean;
   class?: string;
   style?: string;
@@ -15,10 +18,10 @@ interface Props {
 const {
   src,
   alt,
-  aspectRatio = '16/9',
+  aspectRatio,
   objectFit = 'cover',
-  label,
   caption,
+  label,
   noMargin = false,
   class: className = '',
   style: customStyle = ''
@@ -26,65 +29,95 @@ const {
 
 const isPlaceholder = !src;
 
-const containerStyle = [
-  `aspect-ratio: ${aspectRatio}`,
+// Build inline style for img
+const imgStyle = [
+  aspectRatio ? `aspect-ratio: ${aspectRatio}` : '',
+  `object-fit: ${objectFit}`,
   customStyle
 ].filter(Boolean).join('; ');
 
-const imgStyle = `object-fit: ${objectFit}`;
+const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
 ---
 
-<figure class:list={['image-wrapper', { 'no-margin': noMargin }, className]}>
-  <div class="image-container" style={containerStyle}>
-    {isPlaceholder ? (
-      <div class="placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        {label && <span class="placeholder-label">{label}</span>}
-      </div>
-    ) : (
-      <img src={src} alt={alt} loading="lazy" style={imgStyle} />
-    )}
+{isPlaceholder ? (
+  <!-- Placeholder -->
+  <div class:list={['placeholder', className]} style={placeholderStyle}>
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>
+    {label && <span class="placeholder-label">{label}</span>}
   </div>
-  {caption && <figcaption class="caption">{caption}</figcaption>}
-</figure>
+) : caption ? (
+  <!-- With caption: wrap in figure -->
+  <figure class:list={[noMargin ? 'figure-no-margin' : 'figure', className]}>
+    <img src={src} alt={alt} loading="lazy" class="image" style={imgStyle} />
+    <figcaption class="caption">{caption}</figcaption>
+  </figure>
+) : (
+  <!-- Simple img -->
+  <img src={src} alt={alt} loading="lazy" class:list={['image', className]} style={imgStyle} />
+)}
 
 <style>
-  .image-wrapper {
-    margin: var(--space-12) 0;
-  }
-
-  .image-wrapper.no-margin {
+  .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-md);
     margin: 0;
   }
 
-  .image-container {
-    position: relative;
-    width: 100%;
-    border-radius: var(--radius-md);
-    overflow: hidden;
+  .figure {
+    margin: 0;
+    margin-top: var(--space-12);
+    display: flex;
+    flex-direction: column;
   }
 
-  .image-container img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
+  @media (width >= 64rem) {
+    .figure {
+      margin-top: var(--space-16);
+    }
+  }
+
+  .figure > .image {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .figure-no-margin {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    object-position: center;
+  }
+
+  .figure-no-margin > .image {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .caption {
+    margin-top: var(--space-3);
+    font-size: var(--font-caption, var(--text-sm));
+    color: var(--color-text-secondary);
+    text-align: center;
+    font-style: italic;
   }
 
   .placeholder {
-    position: absolute;
-    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-4);
     background-color: var(--color-bg-tertiary);
+    border: 1px dashed var(--color-border-default);
+    border-radius: var(--radius-md);
+    min-height: 200px;
     color: var(--color-text-tertiary);
   }
 
@@ -96,14 +129,6 @@ const imgStyle = `object-fit: ${objectFit}`;
     font-size: var(--font-caption, var(--text-sm));
     color: var(--color-text-secondary);
     text-align: center;
-    max-width: 80%;
-  }
-
-  .caption {
-    margin-top: var(--space-3);
-    font-size: var(--font-caption, var(--text-sm));
-    color: var(--color-text-secondary);
-    text-align: center;
-    font-style: normal;
+    padding: var(--space-4);
   }
 </style>

@@ -84,10 +84,9 @@ const backLabel = lang === 'es' ? 'Volver a proyectos' : 'Back to projects';
                     {stat.icon && (
                       <Icon name={stat.icon} size={20} />
                     )}
-                    <span class="stat-metric">{stat.metric}</span>
                   </div>
                   <div class="stat-content">
-                    <span class="stat-label">{stat.label}</span>
+                    <span class="stat-label"><strong>{stat.metric}</strong> {stat.label}</span> 
                   </div>
                 </div>
               ))}
@@ -313,8 +312,8 @@ const backLabel = lang === 'es' ? 'Volver a proyectos' : 'Back to projects';
   }
 
   .stat-label {
-    font-size: var(--font-xs);
-    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    color: var(--color-text-primary);
   }
 
   /* ============================================
@@ -402,5 +401,21 @@ const backLabel = lang === 'es' ? 'Volver a proyectos' : 'Back to projects';
     margin: var(--space-6) 0;
     font-style: italic;
     color: var(--color-text-secondary);
+  }
+
+  /* Divider */
+  .content :global(:where(hr)) {
+    border: none;
+    border-top: 1px solid var(--color-border-default);
+    opacity: 0.25;
+    margin: var(--space-16) auto;
+    max-width: 64rem;
+  }
+
+  @media (width >= 64rem) {
+    .content :global(:where(hr)) {
+      margin-top: var(--space-24);
+      margin-bottom: var(--space-24);
+    }
   }
 </style>
