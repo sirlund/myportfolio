@@ -1,9 +1,76 @@
 ---
 /**
- * Fast Icon component using SVG registry (no dynamic imports)
- * Usage: <Icon name="workflow" size={24} />
+ * Icon Component
+ * Centralized icon imports from lucide-astro
+ * Icons are organized by category for maintainability
  */
-import { icons } from './registry';
+
+// === UI General ===
+import {
+  Layers,
+  Zap,
+  CheckCircle,
+  Clock,
+  Eye,
+  Moon,
+  Calendar,
+  Settings,
+  RefreshCw,
+  LayoutGrid,
+  Code2,
+  BookOpen,
+  ShieldCheck,
+  ShieldAlert,
+  GitMerge,
+  ClipboardList,
+  Workflow,
+  MonitorSmartphone,
+} from 'lucide-astro';
+
+// === Case Studies ===
+import {
+  FileJson2,
+  BrainCircuit,
+  ZapOff,
+  MoonStar,
+  Shapes,
+  FileStack,
+  Unplug,
+  BookX,
+} from 'lucide-astro';
+
+// Icon map: kebab-case name → Component
+const icons: Record<string, any> = {
+  // UI General
+  'layers': Layers,
+  'zap': Zap,
+  'check-circle': CheckCircle,
+  'clock': Clock,
+  'eye': Eye,
+  'moon': Moon,
+  'calendar': Calendar,
+  'settings': Settings,
+  'refresh-cw': RefreshCw,
+  'layout-grid': LayoutGrid,
+  'code-2': Code2,
+  'book-open': BookOpen,
+  'shield-check': ShieldCheck,
+  'shield-alert': ShieldAlert,
+  'git-merge': GitMerge,
+  'clipboard-list': ClipboardList,
+  'workflow': Workflow,
+  'monitor-smartphone': MonitorSmartphone,
+
+  // Case Studies
+  'file-json-2': FileJson2,
+  'brain-circuit': BrainCircuit,
+  'zap-off': ZapOff,
+  'moon-star': MoonStar,
+  'shapes': Shapes,
+  'file-stack': FileStack,
+  'unplug': Unplug,
+  'book-x': BookX,
+};
 
 interface Props {
   name: string;
@@ -13,21 +80,13 @@ interface Props {
 }
 
 const { name, size = 24, class: className = '', strokeWidth = 2 } = Astro.props;
-const pathData = icons[name];
+const IconComponent = icons[name];
 ---
 
-{pathData && (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width={strokeWidth}
-    stroke-linecap="round"
-    stroke-linejoin="round"
+{IconComponent && (
+  <IconComponent
+    size={size}
     class={className}
-    set:html={pathData}
+    stroke-width={strokeWidth}
   />
 )}
