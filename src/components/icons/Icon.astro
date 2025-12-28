@@ -80,11 +80,11 @@ interface Props {
 }
 
 const { name, size = 24, class: className = '', strokeWidth = 2 } = Astro.props;
-const IconComponent = icons[name];
+const ResolvedIcon = icons[name];
 ---
 
-{IconComponent && (
-  <IconComponent
+{ResolvedIcon && (
+  <ResolvedIcon
     size={size}
     class={className}
     stroke-width={strokeWidth}
