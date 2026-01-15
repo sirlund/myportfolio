@@ -1,0 +1,180 @@
+---
+title: "Treez — 82% Less Design Debt, 30% Faster QA"
+subtitle: "Building Root Design System to unify a fragmented B2B platform, cutting onboarding from 3 weeks to 1 and enabling cross-platform scale."
+seoDescription: "How I led Root Design System at Treez, reducing Figma duplication by 82%, decreasing QA tickets by 30%, and cutting designer onboarding from 3 weeks to 1 week."
+order: 2
+heroImage: /images/case-studies/treez/treez_coverImg.png
+thumbnail: /images/case-studies/treez/treez_coverImg.png
+
+details:
+  - label: "Role"
+    value: "Design System Lead"
+  - label: "Duration"
+    value: "12 months"
+  - label: "Year"
+    value: "2024"
+  - label: "Team"
+    value: "4 Designers, 8 Engineers, 3 PMs"
+
+impactStats:
+  - metric: "82%"
+    label: "Less Figma duplication"
+    icon: "layers"
+  - metric: "30%"
+    label: "Fewer QA tickets"
+    icon: "check-circle"
+  - metric: "3w → 1w"
+    label: "Onboarding time"
+    icon: "clock"
+  - metric: "94%"
+    label: "A11y issues resolved"
+    icon: "eye"
+
+theme:
+  background: "var(--treez-section-bg)"
+  text: "var(--treez-section-text)"
+  textMuted: "var(--treez-section-text-muted)"
+
+draft: false
+---
+import CardGrid from '@/components/case-studies/CardGrid.astro';
+import Image from '@/components/case-studies/Image.astro';
+import ContentImageLayout from '@/components/case-studies/ContentImageLayout.astro';
+import Column from '@/components/case-studies/Column.astro';
+import ProcessOverview from '@/components/case-studies/ProcessOverview.astro';
+import DeepDive from '@/components/case-studies/DeepDive.astro';
+
+## Overview
+
+**82% less duplication. 30% fewer QA tickets. Designer onboarding cut from 3 weeks to 1.**
+
+Treez is the mission-critical OS for enterprise cannabis retail. When I joined as Design System Lead, rapid growth had created a "re-invention tax"—teams rebuilt the same UI every sprint with different quality. The lack of unified design language was blocking mobile expansion.
+
+Over 12 months, I architected **Root Design System**, transforming fragmented assets into a scalable foundation that enabled cross-platform development and enterprise accessibility compliance.
+
+<ContentImageLayout columns={2} columnWidths="60fr 40fr" gap="none" stretch={false}>
+  <Image src="/images/case-studies/treez/screenSample_01.png" alt="Treez Sample 01" aspectRatio="4/3" objectFit="contain" noMargin />
+  <Image src="/images/case-studies/treez/screenSample_02.png" alt="Treez Sample 02" aspectRatio="1/1" objectFit="cover" noMargin />
+  <Image src="/images/case-studies/treez/screenSample_03.png" alt="Treez Sample 03" aspectRatio="4/3" objectFit="cover" noMargin />
+  <Image src="/images/case-studies/treez/screenSample_04.png" alt="Treez Sample 04" aspectRatio="4/3" objectFit="contain" noMargin />
+</ContentImageLayout>
+
+> "It's the first time we've had a true source of truth."
+> — Sam, Engineering Lead
+
+<DeepDive label="Deep Dive: Full Case Study">
+
+## The Problem
+
+### Scaling Chaos
+
+The product looked coherent on the surface, but underneath was a "Wild West" preventing scale. As we prepared to launch mobile POS in 2024, the fragmented codebase made every feature exponentially expensive.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "shapes", title: "Visual Fragmentation", description: "Inconsistent patterns eroded user trust. <strong>20+ undocumented grey styles</strong> drifted across surfaces." },
+    { icon: "file-stack", title: "Zero Source of Truth", description: "No single reference existed. <strong>100+ detached patterns</strong> caused ~60% of effort rebuilding existing UI." },
+    { icon: "shield-alert", title: "Compliance Risk", description: "Critical exposure: <strong>80% of core interactions failed WCAG 2.1 AA</strong>, threatening enterprise contracts." }
+  ]}
+/>
+
+> "Without a system, we were rebuilding the same UI — with different quality — every sprint."
+
+---
+
+## The Approach
+
+### From Audit to Architecture
+
+We moved from reactive design to a strategic roadmap:
+
+<ProcessOverview
+  title="High-level Process"
+  phases={[
+    { title: "Phase 1: Discovery", items: ["Visual Debt Audit", "Compliance Assessment", "Stakeholder Alignment"] },
+    { title: "Phase 2: Foundation", items: ["Token Architecture", "Core Components", "Documentation Portal"] },
+    { title: "Phase 3: Scale", items: ["Pattern Library", "Contribution Model", "Mobile Parity"] }
+  ]}
+  bottomLabel="Continuous adoption tracking throughout all phases"
+/>
+
+**Why this sequence?** Mobile POS was blocked by accessibility gaps. By front-loading compliance into the token foundation, we unlocked both immediate cleanup AND the strategic platform expansion.
+
+<Image src="/images/case-studies/treez/DS_overview_01.png" alt="Root Design System Visual Style" aspectRatio="14/6" />
+
+---
+
+## Key Decisions
+
+### Trade-off: Depth vs. Breadth
+
+We chose to build **deep governance infrastructure** rather than a broad component library. Root wasn't just components—it was a shared ownership model.
+
+**Rationale:** Treez teams had tried component libraries before. They failed because Design and Engineering spoke different languages. We needed to fix the handoff, not just the assets.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "code-2", title: "The Bridge (Portal)", description: "Co-developed internal portal mapping <strong>Figma tokens directly to CSS variables</strong>—1:1 implementation parity." },
+    { icon: "git-merge", title: "Bi-directional Contribution", description: "Established governance allowing <strong>both designers and developers</strong> to evolve the system responsibly." },
+    { icon: "book-open", title: "Documentation as Product", description: "Connected Figma → Zeroheight → Storybook. <strong>Single source of truth</strong> across all disciplines." }
+  ]}
+/>
+
+<ContentImageLayout columnLayout gap="compact" columnWidths="0.6727fr 0.5111fr">
+  <Column>
+    <Image src="/images/case-studies/treez/compPreview.png" alt="Component Preview" aspectRatio="773/1149" objectFit="cover" noMargin />
+  </Column>
+  <Column gap="compact" rowHeights="457fr 676fr">
+    <Image src="/images/case-studies/treez/compPlayground.png" alt="Component Playground" aspectRatio="579/457" objectFit="cover" noMargin />
+    <Image src="/images/case-studies/treez/compExamples.png" alt="Component Examples" aspectRatio="579/676" objectFit="cover" noMargin />
+  </Column>
+</ContentImageLayout>
+
+<ContentImageLayout columns={2} gap="compact" columnWidths="1201fr 990fr" backgroundColor="var(--gray-100)" caption="Source of Truth Portal: Colors and Buttons" style="padding: var(--space-4); border-radius: var(--radius-lg); overflow: hidden;">
+  <Image src="/images/case-studies/treez/SOTbeta-colors.png" alt="SOT Colors" aspectRatio="1201/808" objectFit="cover" noMargin />
+  <Image src="/images/case-studies/treez/SOTbeta-buttons.png" alt="SOT Buttons" aspectRatio="905/719" objectFit="cover" noMargin />
+</ContentImageLayout>
+
+---
+
+## Results
+
+### The Numbers
+
+Root created clarity and scale across the Treez ecosystem.
+
+<CardGrid
+  columns={2}
+  cards={[
+    { icon: "layers", title: "82% Less Figma Duplication", description: "Centralized assets eliminated redundant files, streamlining design workflows." },
+    { icon: "check-circle", title: "30% Fewer QA Tickets", description: "Consistent components reduced visual discrepancies and implementation errors." },
+    { icon: "clock", title: "Onboarding: 3 Weeks → 1 Week", description: "Comprehensive documentation accelerated new team member ramp-up." },
+    { icon: "eye", title: "94% A11y Issues Resolved", description: "Built-in compliance ensured the product met enterprise standards." }
+  ]}
+/>
+
+---
+
+## Reflection
+
+### Shared Ownership Over Individual Craft
+
+Root wasn't just a project—it was a shift in how Treez teams build, collaborate, and scale. We moved from individual craftsmanship to shared ownership. From design chaos to clarity.
+
+**What I'd do differently:** Start accessibility linting in CI/CD earlier. By month 8, the system was catching issues that could have been automated from day one.
+
+**Key learning:** Design Systems fail when they're "designed for" engineering. Root succeeded because it was "designed with" engineering—the portal and contribution model were co-created from sprint one.
+
+<ContentImageLayout columnLayout gap="compact" columnWidths="637fr 637fr" backgroundColor="var(--gray-100)" caption="Autocomplete Component: Full Documentation Lifecycle" style="padding: var(--space-4); border-radius: var(--radius-lg); overflow: hidden;">
+  <Column>
+    <Image src="/images/case-studies/treez/autocompleteDocs.png" alt="Autocomplete Documentation" aspectRatio="637/1212" objectFit="cover" noMargin />
+  </Column>
+  <Column gap="compact" rowHeights="704fr 483fr">
+    <Image src="/images/case-studies/treez/autocompleteUsecase.png" alt="Autocomplete Use Case" aspectRatio="637/704" objectFit="cover" noMargin />
+    <Image src="/images/case-studies/treez/autocompleteDos&donts.png" alt="Autocomplete Dos and Don'ts" aspectRatio="637/483" objectFit="cover" noMargin />
+  </Column>
+</ContentImageLayout>
+
+</DeepDive>

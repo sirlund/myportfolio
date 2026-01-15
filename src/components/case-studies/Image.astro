@@ -2,6 +2,10 @@
 /**
  * Image Component
  * Renders a simple <img> by default, wraps in <figure> only when caption is provided
+ *
+ * Placeholder variants:
+ * - "default": Icon + label on dashed border background (for asset planning)
+ * - "fallback": Subtle failed-to-load style with just label text (for production placeholders)
  */
 interface Props {
   src?: string;
@@ -10,6 +14,7 @@ interface Props {
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
   caption?: string;
   label?: string;
+  placeholder?: 'default' | 'fallback';
   noMargin?: boolean;
   class?: string;
   style?: string;
@@ -22,6 +27,7 @@ const {
   objectFit = 'cover',
   caption,
   label,
+  placeholder = 'default',
   noMargin = false,
   class: className = '',
   style: customStyle = ''
@@ -39,9 +45,19 @@ const imgStyle = [
 const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
 ---
 
-{isPlaceholder ? (
-  <!-- Placeholder -->
-  <div class:list={['placeholder', className]} style={placeholderStyle}>
+{isPlaceholder && placeholder === 'fallback' ? (
+  <!-- Fallback placeholder: subtle failed-to-load style -->
+  <div class:list={['placeholder-fallback', noMargin ? 'no-margin' : '', className]} style={placeholderStyle}>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>
+    {label && <span class="fallback-label">{label}</span>}
+  </div>
+) : isPlaceholder ? (
+  <!-- Default placeholder: icon + label for asset planning -->
+  <div class:list={['placeholder', noMargin ? 'no-margin' : '', className]} style={placeholderStyle}>
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -71,15 +87,14 @@ const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
   }
 
   .figure {
-    margin: 0;
-    margin-top: var(--space-12);
+    margin: var(--space-12) 0;
     display: flex;
     flex-direction: column;
   }
 
   @media (width >= 64rem) {
     .figure {
-      margin-top: var(--space-16);
+      margin: var(--space-16) 0;
     }
   }
 
@@ -118,7 +133,14 @@ const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
     border: 1px dashed var(--color-border-default);
     border-radius: var(--radius-md);
     min-height: 200px;
+    margin: var(--space-12) 0;
     color: var(--color-text-tertiary);
+  }
+
+  @media (width >= 64rem) {
+    .placeholder {
+      margin: var(--space-16) 0;
+    }
   }
 
   .placeholder svg {
@@ -130,5 +152,41 @@ const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
     color: var(--color-text-secondary);
     text-align: center;
     padding: var(--space-4);
+  }
+
+  /* Fallback placeholder: subtle failed-to-load style */
+  .placeholder-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    min-height: 80px;
+    margin: var(--space-12) 0;
+    padding: var(--space-4);
+    color: var(--color-text-tertiary);
+  }
+
+  @media (width >= 64rem) {
+    .placeholder-fallback {
+      margin: var(--space-16) 0;
+    }
+  }
+
+  .placeholder-fallback svg {
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  .fallback-label {
+    font-size: var(--font-caption, var(--text-sm));
+    color: var(--color-text-tertiary);
+    font-style: italic;
+  }
+
+  /* No margin override */
+  .no-margin {
+    margin: 0 !important;
   }
 </style>

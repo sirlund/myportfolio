@@ -41,27 +41,13 @@ import CardGrid from '@/components/case-studies/CardGrid.astro';
 import Image from '@/components/case-studies/Image.astro';
 import ProcessOverview from '@/components/case-studies/ProcessOverview.astro';
 
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-
-paragraph text
-
-> "Without design governance, we were shipping incredible features but building visual chaos."
-> — CTO, MindStudio
-
----
-
-## 01. Overview
-
 **Powerful Tech, Operational Wild West.** MindStudio is a premier platform for building AI agents, allowing users to orchestrate LLMs, variables, and external APIs. When I joined, the product was technically robust but operationally fragile. The engineering team had shipped an incredible amount of features, but without design governance. There were no components, no tokens, and no shared language.
 
 We faced a critical bottleneck: Innovation velocity was outpacing our ability to maintain quality. Every new feature—from the visual editor to the dashboard—was being built from scratch, creating a fragmented Frankenstein UI that confused users and slowed down development.
 
----
+<Image label="Hero: Node Canvas interface or DS overview (high-fidelity)" alt="MindStudio Design System overview" placeholder="fallback" aspectRatio="16/9" />
 
-## 02. The Problem
+## 01. The Problem
 
 ### Velocity vs. Governance
 
@@ -76,11 +62,9 @@ The product looked coherent on the surface, but the underlying architecture was 
   ]}
 />
 
-<Image label="Figma before: chaos and fragmentation" caption="Initial state of design in Figma" alt="Figma chaos" />
+<Image label="Before: Figma chaos - detached frames, inconsistent styles" alt="Figma before the Design System" placeholder="fallback" aspectRatio="16/9" />
 
----
-
-## 03. Objectives
+## 02. Objectives
 
 ### Stabilize to Evolve
 
@@ -95,9 +79,7 @@ My mandate wasn't just to "clean up Figma," but to build the infrastructure need
   ]}
 />
 
----
-
-## 04. Process
+## 03. Process
 
 ### From Audit to Architecture
 
@@ -115,7 +97,11 @@ We moved from reactive design to a strategic 3-phase roadmap:
 
 **Phase 1: Triage** — I audited the production environment to separate "essential patterns" from "noise." We established a strict token architecture (Primitives → Semantics) immediately, prioritizing the foundation needed for Dark Mode.
 
+<Image label="Token architecture: Primitives → Semantics → Components diagram" alt="Token hierarchy diagram" placeholder="fallback" aspectRatio="16/9" />
+
 **Phase 2: The System Engine** — We built a component library optimized for data density. Unlike standard marketing sites, MindStudio needed complex inputs, code blocks, and variable selectors that could handle heavy user interactions without breaking.
+
+<Image label="Component library: Data-dense patterns (tables, inputs, selectors)" alt="Component library examples" placeholder="fallback" aspectRatio="16/9" />
 
 **Phase 3: The Product Pivot** — With the system in place, I joined the Core Team to tackle the complex features that were previously blocked by design debt:
 
@@ -128,9 +114,9 @@ We moved from reactive design to a strategic 3-phase roadmap:
   ]}
 />
 
----
+<Image label="Node Canvas: Before/After comparison or key interface" alt="Node Canvas redesign" placeholder="fallback" aspectRatio="16/9" />
 
-## 05. Results
+## 04. Results
 
 ### Measurable Impact
 
@@ -141,13 +127,15 @@ The system wasn't just a library; it became the operational OS for the product t
 - **Quality at Scale:** Visual QA tickets dropped by 25% across three sprints as the system enforced consistency automatically.
 - **Unlocked Dark Mode:** Shipped a highly requested enterprise feature in record time thanks to the token foundation.
 
+<Image label="Dark Mode: Light/Dark side-by-side comparison (same screen)" alt="Dark Mode implementation" placeholder="fallback" aspectRatio="16/9" />
+
 > "The system allowed us to stop debating pixel placement and start focusing on complex AI orchestration logic."
 > — Head of Product
 
----
-
-## 06. Reflection
+## 05. Reflection
 
 ### Pragmatism over Perfection
 
 In a fast-paced AI startup, you can't wait for a "perfect" system. We built the plane while flying it—consolidating chaos into order while simultaneously shipping critical features. This project proved that a strong Design System isn't a constraint; it's the ultimate accelerator for product innovation.
+
+<Image label="After: Organized Figma library - versioned components, clear naming" alt="Figma after the Design System" placeholder="fallback" aspectRatio="16/9" />

@@ -1,0 +1,159 @@
+---
+title: "MindStudio — 40% Faster Design-to-Dev Handoff"
+subtitle: "Building a Design System from scratch to transform a chaotic AI platform into a scalable product engine, unlocking Dark Mode and complex feature development."
+seoDescription: "How I built a Design System for MindStudio's AI platform, reducing Figma duplication by 80% and enabling 40% faster developer handoff in 10 months."
+order: 1
+heroImage: /images/case-studies/mindstudio/mindstudio_coverImg.png
+thumbnail: /images/case-studies/mindstudio/mindstudio_coverImg.png
+
+details:
+  - label: "Role"
+    value: "External Consultant → Core Team"
+  - label: "Duration"
+    value: "10 months"
+  - label: "Year"
+    value: "2025"
+  - label: "Team"
+    value: "2 Designers, 4 Engineers, 1 Head of Product"
+
+impactStats:
+  - metric: "80%"
+    label: "Less Figma duplication"
+    icon: "layers"
+  - metric: "40%"
+    label: "Faster handoff"
+    icon: "zap"
+  - metric: "25%"
+    label: "Fewer visual QA tickets"
+    icon: "check-circle"
+  - metric: "100%"
+    label: "Systematized dark mode"
+    icon: "moon"
+
+theme:
+  background: "var(--mindstudio-section-bg)"
+  text: "var(--mindstudio-section-text)"
+  textMuted: "var(--mindstudio-section-text-muted)"
+
+draft: false
+---
+import CardGrid from '@/components/case-studies/CardGrid.astro';
+import Image from '@/components/case-studies/Image.astro';
+import ProcessOverview from '@/components/case-studies/ProcessOverview.astro';
+import DeepDive from '@/components/case-studies/DeepDive.astro';
+
+## Overview
+
+**80% less Figma duplication. 40% faster handoff. Dark Mode shipped in days, not months.**
+
+MindStudio is a premier no-code platform for building AI agents. When I joined as an external consultant, the product was technically impressive but operationally fragile—no components, no tokens, no shared design language. Every feature was built from scratch, creating visual entropy that slowed engineering velocity by an estimated 40%.
+
+Over 10 months, I architected and implemented a Design System that transformed chaos into governance, eventually joining the Core Team to tackle the complex features that were previously blocked by design debt.
+
+<Image label="Hero: Node Canvas interface or DS overview (high-fidelity)" alt="MindStudio Design System overview" aspectRatio="16/9" />
+
+> "The system allowed us to stop debating pixel placement and start focusing on complex AI orchestration logic."
+> — Head of Product, MindStudio
+
+<DeepDive label="Deep Dive: Full Case Study" labelCollapse="Collapse Case Study">
+
+## The Problem
+
+### Velocity vs. Governance
+
+The product shipped fast, but without a design foundation. The result: a "Frankenstein UI" where **40% of frontend code** was dedicated to overriding conflicting styles.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "layers-2", title: "Visual Entropy", description: "No source of truth. <strong>40% of CSS</strong> was override spaghetti fighting against itself." },
+    { icon: "brain-circuit", title: "Cognitive Fragmentation", description: "Users had to <strong>relearn the UI</strong> for each feature—Editor, Settings, and Dashboard all felt like different products." },
+    { icon: "users", title: "Tribal Knowledge", description: "Onboarding a designer took <strong>3+ weeks</strong>. The 'system' existed only in people's heads, not in Figma." }
+  ]}
+/>
+
+<Image label="Before: Figma chaos - detached frames, inconsistent styles" alt="Figma before the Design System" aspectRatio="16/9" />
+
+---
+
+## The Approach
+
+### From Audit to Architecture
+
+We moved from reactive firefighting to a strategic 3-phase roadmap:
+
+<ProcessOverview
+  title="High-level Process"
+  phases={[
+    { title: "Phase 1: Triage", items: ["Production Audit", "Token Architecture", "Semantic Foundation"] },
+    { title: "Phase 2: System Engine", items: ["Component Library", "Data-Dense Patterns", "Complex Inputs"] },
+    { title: "Phase 3: Product Pivot", items: ["Node Canvas Redesign", "Variable Manager", "Dark Mode"] }
+  ]}
+  bottomLabel="Continuous delivery throughout all phases"
+/>
+
+**Why this sequence?** Dark Mode was a highly-requested enterprise feature, but impossible without semantic tokens. By front-loading the token architecture, we unlocked both immediate cleanup AND the strategic feature.
+
+<Image label="Token architecture: Primitives → Semantics → Components diagram" alt="Token hierarchy diagram" aspectRatio="16/9" />
+
+---
+
+## Key Decisions
+
+### Trade-off: Depth vs. Breadth
+
+We chose to go **deep on high-density components** (data tables, code blocks, variable selectors) rather than building a broad but shallow library.
+
+**Rationale:** MindStudio isn't a marketing site—it's a power-user tool where information density determines usability. A generic component library would've required immediate customization, defeating the purpose.
+
+<CardGrid
+  columns={3}
+  cards={[
+    { icon: "workflow", title: "Visual Orchestration", description: "Node editor supporting complex branching, infinite canvas, and real-time collaboration." },
+    { icon: "variable", title: "Logic & Data Handling", description: "Abstracted raw JSON into visual selectors, <strong>reducing workflow errors by 30%</strong>." },
+    { icon: "moon", title: "Token-First Dark Mode", description: "Semantic foundation enabled <strong>zero-refactor</strong> dark theme deployment." }
+  ]}
+/>
+
+<Image label="Node Canvas: Before/After comparison or key interface" alt="Node Canvas redesign" aspectRatio="16/9" />
+
+<Image label="Component library: Data-dense patterns (tables, inputs, selectors)" alt="Component library examples" aspectRatio="16/9" />
+
+---
+
+## Results
+
+### The Numbers
+
+The system wasn't just a library—it became the operational OS for the product team.
+
+<CardGrid
+  columns={2}
+  cards={[
+    { icon: "layers", title: "80% Less Figma Bloat", description: "Hundreds of detached frames replaced with a single, versioned library." },
+    { icon: "zap", title: "40% Faster Handoff", description: "Semantic tokens replaced hex-code guessing, cutting implementation time." },
+    { icon: "check-circle", title: "25% Fewer QA Tickets", description: "System enforced consistency automatically across three sprints." },
+    { icon: "moon", title: "Dark Mode in Days", description: "Token architecture made enterprise feature deployment plug-and-play." }
+  ]}
+/>
+
+<Image label="Dark Mode: Light/Dark side-by-side comparison (same screen)" alt="Dark Mode implementation" aspectRatio="16/9" />
+
+> "We went from debating button colors to shipping AI features. That's the ROI of a real system."
+> — Engineering Lead
+
+---
+
+## Reflection
+
+### Pragmatism Over Perfection
+
+In a fast-paced AI startup, you can't wait for a "perfect" system. We built the plane while flying it—consolidating chaos into order while shipping critical features in parallel.
+
+**What I'd do differently:** Start with a contribution model earlier. By month 6, the team was adopting the system faster than I could document it.
+
+**Key learning:** A Design System isn't a constraint—it's a force multiplier. Once governance was in place, the same team shipped 3x the features with half the visual bugs.
+
+<Image label="After: Organized Figma library - versioned components, clear naming" alt="Figma after the Design System" aspectRatio="16/9" />
+
+</DeepDive>
