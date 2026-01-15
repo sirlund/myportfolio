@@ -1,0 +1,104 @@
+---
+/**
+ * Button Component
+ *
+ * Reusable button with variants for different contexts.
+ *
+ * Variants:
+ * - primary: Dark background (default)
+ * - secondary: White/light background (used in colored sections)
+ * - ghost: Transparent with border
+ */
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  variant = 'primary',
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const linkProps = href ? { href, 'data-astro-prefetch': 'load' } : {};
+---
+
+<Tag
+  class:list={['btn', `btn-${variant}`, className]}
+  {...linkProps}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style is:global>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--duration-fast) ease,
+                box-shadow var(--duration-fast) ease,
+                background-color var(--duration-fast) ease,
+                border-color var(--duration-fast) ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.02);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Primary: Dark background */
+  .btn-primary {
+    background: var(--color-interactive-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-interactive-primary-hover);
+  }
+
+  /* Secondary: White/light background (for colored sections) */
+  .btn-secondary {
+    background: white;
+    color: var(--gray-900);
+  }
+
+  .btn-secondary:hover {
+    transform: scale(1.05);
+  }
+
+  /* Ghost: Transparent with border */
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-default);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-text-tertiary);
+    background: var(--color-bg-secondary);
+  }
+
+  /* Icon inside button */
+  .btn svg {
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+  }
+</style>

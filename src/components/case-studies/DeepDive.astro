@@ -1,0 +1,122 @@
+---
+/**
+ * DeepDive Component
+ *
+ * Wraps expandable "Tier 2" content in case studies.
+ * Shows a CTA button when collapsed, reveals full content when expanded.
+ * Button disappears after expanding (user navigates away when done).
+ *
+ * Usage in MDX:
+ * ```mdx
+ * ## Overview
+ * [Snapshot content - always visible]
+ *
+ * <DeepDive label="Full Case Study">
+ *   ## The Problem
+ *   [Deep dive content...]
+ * </DeepDive>
+ * ```
+ */
+import Button from '@/components/Button.astro';
+
+interface Props {
+  label?: string;
+  defaultExpanded?: boolean;
+}
+
+const {
+  label = "Deep Dive: Full Case Study",
+  defaultExpanded = false
+} = Astro.props;
+---
+
+<div class="deep-dive" data-expanded={defaultExpanded ? "true" : "false"}>
+  <Button
+    variant="secondary"
+    class="deep-dive-toggle"
+    type="button"
+    aria-expanded={defaultExpanded ? "true" : "false"}
+  >
+    {label}
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </Button>
+
+  <div class="deep-dive-content">
+    <slot />
+  </div>
+</div>
+
+<script>
+  function initDeepDive() {
+    const deepDives = document.querySelectorAll('.deep-dive');
+
+    deepDives.forEach(container => {
+      const toggle = container.querySelector('.deep-dive-toggle') as HTMLElement;
+      const content = container.querySelector('.deep-dive-content') as HTMLElement;
+
+      if (!toggle || !content) return;
+
+      // Set initial state
+      const isExpanded = container.getAttribute('data-expanded') === 'true';
+      if (!isExpanded) {
+        content.style.maxHeight = '0';
+      }
+
+      toggle.addEventListener('click', () => {
+        const currentlyExpanded = container.getAttribute('data-expanded') === 'true';
+
+        if (!currentlyExpanded) {
+          // Expand and hide button
+          container.setAttribute('data-expanded', 'true');
+          toggle.setAttribute('aria-expanded', 'true');
+          content.style.maxHeight = content.scrollHeight + 'px';
+
+          // Trigger slide-in animation
+          content.setAttribute('data-animate', '');
+
+          // After transition, remove max-height to allow dynamic content
+          setTimeout(() => {
+            content.style.maxHeight = 'none';
+          }, 500);
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  initDeepDive();
+
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initDeepDive);
+</script>
+
+<style>
+  .deep-dive {
+    margin-top: var(--space-12);
+  }
+
+  .deep-dive-toggle {
+    width: 100%;
+  }
+
+  /* Hide button when expanded */
+  .deep-dive[data-expanded="true"] .deep-dive-toggle {
+    display: none;
+  }
+
+  /* Content */
+  .deep-dive-content {
+    overflow: hidden;
+    transition: max-height var(--duration-slow) ease;
+  }
+
+  .deep-dive[data-expanded="false"] .deep-dive-content {
+    max-height: 0;
+  }
+
+  .deep-dive[data-expanded="true"] .deep-dive-content {
+    margin-top: var(--space-8);
+  }
+</style>

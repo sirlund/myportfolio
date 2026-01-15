@@ -4,6 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Hero from '@/components/Hero.astro';
+import Button from '@/components/Button.astro';
 import type { Language } from '@/i18n/utils';
 
 export function getStaticPaths() {
@@ -105,9 +106,9 @@ const description = hero.subtitle;
                 <h2 class="project-title">{cs.data.title}</h2>
                 <p class="project-description">{cs.data.subtitle}</p>
 
-                <a href={projectHref} class="project-button" data-astro-prefetch="load">
+                <Button variant="secondary" href={projectHref}>
                   {lang === 'es' ? 'Ver Proyecto' : 'View Project'}
-                </a>
+                </Button>
               </div>
 
               <div class="project-image">
@@ -337,30 +338,6 @@ const description = hero.subtitle;
     margin: 0;
   }
 
-  .project-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-3) var(--space-6);
-    background: white;
-    color: var(--gray-900, #111);
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: var(--font-base);
-    font-weight: var(--font-weight-medium);
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
-  }
-
-  .project-button:hover {
-    transform: scale(1.05);
-  }
-
-  .project-button:active {
-    transform: scale(0.95);
-  }
-
   .project-image {
     position: relative;
     width: 100%;
@@ -384,7 +361,7 @@ const description = hero.subtitle;
   }
 
   /* Project Theme Overrides */
-  .project-treez .project-button {
+  .project-treez .btn-secondary {
     background: var(--treez-section-button-bg, var(--green-600));
     color: white;
   }
