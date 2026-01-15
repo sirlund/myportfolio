@@ -303,6 +303,18 @@ Cuando ayudes con contenido para este portfolio:
 6. **Recuerda** que la audiencia son recruiters/startups/empresas en LATAM
 7. **Prioriza** claridad sobre elegancia; resultados sobre palabrería
 
+### Case Study Editor Agent
+
+Para edición y redacción de case studies, consulta las guías avanzadas en:
+**`.claude/agents/case-study-editor.md`**
+
+Este agente incluye:
+- Metodología Minto Pyramid (Impact First)
+- Wireframes de estructura de contenido
+- Vocabulario obligatorio/prohibido
+- Checklist de auditoría senior
+- Componentes Astro disponibles con ejemplos
+
 ---
 
 ---
@@ -385,22 +397,39 @@ import { Button } from '@/components/base';
 import styles from './Component.module.css';
 ```
 
-### Sistema de Componentes Base
+### Sistema de Componentes (Astro)
 
-**Componentes disponibles en `/src/components/base/`:**
-- `Text` - Componente de texto con soporte HTML y multilinea
-- `Heading` - Títulos semánticos (h1-h6)
-- `Section` - Wrapper de secciones con variantes
-- `Container` - Contenedor con max-width y padding responsive
-- `Button` - Botones con variantes (primary, ghost, link)
-- `Link` - Enlaces inteligentes (internos/externos con React Router)
-- `Image` - Imágenes con lazy loading y aspect ratio
-- `List` / `ListItem` - Listas ordenadas/desordenadas con variantes
-- `BlockLink` - Card-style clickable blocks
+**Componentes globales en `/src/components/`:**
+- `Button.astro` - Botones con variantes (primary, secondary, ghost)
+- `Header.astro` - Navegación principal con menú móvil
+- `Footer.astro` - Footer con links y copyright
+- `Hero.astro` - Hero section con Three.js bubble
+- `Icon.astro` - Sistema de iconos SVG
+- `CustomCursor.astro` - Cursor personalizado
 
-**Import centralizado:**
-```typescript
-import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem } from '@/components/base';
+**Componentes de Case Studies en `/src/components/case-studies/`:**
+- `CardGrid.astro` - Grid de cards para problemas/features
+- `ContentImageLayout.astro` - Layout imagen + contenido
+- `ContentSection.astro` - Sección con título y contenido
+- `DeepDive.astro` - Contenido expandible (progressive disclosure)
+- `Divider.astro` - Separador horizontal
+- `Image.astro` - Imagen con caption y aspect ratio
+- `ProcessOverview.astro` - Timeline de fases del proyecto
+- `ProcessTimeline.astro` - Timeline vertical alternativo
+- `RichText.astro` - Contenedor de texto enriquecido
+- `TwoColumnLayout.astro` - Layout de dos columnas
+
+**Button component:**
+```astro
+import Button from '@/components/Button.astro';
+
+<!-- Variants: primary (default), secondary (white), ghost (transparent) -->
+<Button variant="primary">Dark button</Button>
+<Button variant="secondary">White button</Button>
+<Button variant="ghost">Ghost button</Button>
+
+<!-- As link -->
+<Button variant="secondary" href="/project">View Project</Button>
 ```
 
 ### Patrón CSS - Especificidad vs BEM
@@ -425,129 +454,118 @@ import { Text, Heading, Section, Container, Button, Link, Image, List, ListItem 
 .about-description { }
 ```
 
-### Estructura de Componentes React
+### Estructura de Componentes Astro
 
-**Componente de sección tipo:**
-```typescript
-import { Section, Container, Heading, Text } from './base';
+**Componente de página/sección tipo:**
+```astro
+---
+// Frontmatter: imports y lógica del servidor
+import Button from '@/components/Button.astro';
+import { getEntry } from 'astro:content';
 
-export function About() {
-  const { t } = useLanguage();
+const content = await getEntry('pages', 'en/home');
+const { title, description } = content.data;
+---
 
-  return (
-    <Section id="about" variant="about">
-      <Container>
-        <Heading level={2}>{t('about.title')}</Heading>
-        <Text size="lg" color="muted">
-          {t('about.description') as string}
-        </Text>
-      </Container>
-    </Section>
-  );
-}
+<!-- Template HTML -->
+<section id="about" class="section" data-animate>
+  <div class="container">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <Button variant="secondary" href="/contact">Contact</Button>
+  </div>
+</section>
+
+<style>
+  /* Scoped styles (solo afectan este componente) */
+  .section { padding: var(--space-16); }
+  .container { max-width: var(--content-max-width); }
+</style>
 ```
 
-### Sistema de Traducciones
+### Sistema de Contenido (Astro Content Collections)
 
-**Estructura language-first:**
+**Estructura de contenido:**
 ```
-translations/
-├── en/
-│   ├── common.ts              # Navegación, hero, work, about, contact, footer
-│   ├── case-studies/
-│   │   ├── mindstudio.ts
-│   │   └── treez.ts
-│   └── index.ts               # export const en = { ...common, caseStudies: {...} }
-├── es/
-│   ├── common.ts
-│   ├── case-studies/
-│   │   ├── mindstudio.ts
-│   │   └── treez.ts
-│   └── index.ts
-└── index.ts                   # export const translations = { en, es }
-```
-
-**Uso en componentes:**
-```typescript
-// Para contenido del sitio
-import { useLanguage } from '@/contexts';
-const { t } = useLanguage();
-<Text>{t('about.description') as string}</Text>
-
-// Para case studies
-import { useCaseStudyTranslation } from '@/lib/hooks';
-const content = useCaseStudyTranslation('mindstudio');
-<Text>{content.title}</Text>
+src/content/
+├── config.ts                  # Schema definitions (Zod)
+├── pages/
+│   ├── en/
+│   │   └── home.mdx           # Homepage content (hero, about, contact)
+│   └── es/
+│       └── home.mdx
+└── case-studies/
+    ├── en/
+    │   ├── mindstudio.mdx
+    │   ├── treez.mdx
+    │   └── ...
+    └── es/
+        ├── mindstudio.mdx
+        └── ...
 ```
 
-### Componente Text - Features
+**Uso en componentes Astro:**
+```astro
+---
+import { getEntry, getCollection } from 'astro:content';
 
-**Soporte HTML desde traducciones:**
-```typescript
-// En translations/en/common.ts
-'about.description': 'Texto con <strong>negritas</strong> y <em>cursivas</em>'
+// Single entry
+const homeContent = await getEntry('pages', 'en/home');
+const { hero, about } = homeContent.data;
 
-// En componente
-<Text>{t('about.description') as string}</Text>
-// Renderiza: dangerouslySetInnerHTML automáticamente
+// Collection (filtered by language)
+const caseStudies = await getCollection('case-studies',
+  ({ id }) => id.startsWith('en/')
+);
+---
+
+<h1>{hero.title}</h1>
+<p>{about.description}</p>
 ```
 
-**Soporte multilinea con `\n\n`:**
-```typescript
-// En translations/en/case-studies/mindstudio.ts
-content: 'Párrafo uno.\n\nPárrafo dos.\n\nPárrafo tres.'
+**MDX en case studies:**
+```mdx
+---
+title: "Project Title"
+subtitle: "Project subtitle"
+order: 1
+draft: false
+---
+import CardGrid from '@/components/case-studies/CardGrid.astro';
 
-// En componente
-<Text>{content.overview.content}</Text>
-// Renderiza múltiples elementos <p>
+## Overview
+Content here...
+
+<CardGrid cards={[...]} />
 ```
 
-### Convenciones de Props
+### Props de Componentes Astro
 
-**Text component:**
-- `size`: 'lg' | 'md' | 'sm' (mobile-first, responsive automático)
-- `color`: 'default' | 'muted'
-- `as`: 'p' | 'div' | 'span' (default: 'p')
-- `className`: para overrides específicos
+**Button.astro:**
+- `variant`: 'primary' | 'secondary' | 'ghost' (default: 'primary')
+- `href`: string opcional (convierte button en link)
+- `class`: string opcional para overrides
+- Acepta props nativas de button/anchor
 
-**Heading component:**
-- `level`: 1 | 2 | 3 | 4 | 5 | 6 (semántico)
-- `className`: para overrides específicos
+**DeepDive.astro:**
+- `label`: string (texto del CTA, default: "Deep Dive: Full Case Study")
+- `defaultExpanded`: boolean (default: false)
 
-**Section component:**
-- `id`: para navegación (ej: 'about', 'work', 'contact')
-- `variant`: nombre de variante CSS (ej: 'about', 'contact')
-- `className`: para overrides adicionales
+**CardGrid.astro:**
+- `columns`: 2 | 3 (default: 3)
+- `cards`: Array<{ icon: string, title: string, description: string }>
 
-**Button component:**
-- `variant`: 'primary' | 'ghost' | 'link'
-- Props nativas de HTMLButtonElement
+**ProcessOverview.astro:**
+- `title`: string opcional
+- `phases`: Array<{ title: string, items: string[] }>
+- `bottomLabel`: string opcional
 
-**Link component:**
-- `external`: boolean (automático si href empieza con http/mailto/tel)
-- Props nativas de AnchorHTMLAttributes
-
-**Image component:**
-- `src`: string (requerido)
+**Image.astro (case-studies):**
+- `src`: string (requerido si no es placeholder)
 - `alt`: string (requerido)
-- `aspectRatio`: string opcional (ej: '16/9', '4/3', '1/1')
-- `objectFit`: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down' (default: 'cover')
-- `loading`: 'lazy' | 'eager' (default: 'lazy')
-- `fallbackSrc`: string opcional (imagen de respaldo si falla la carga, default: icono SVG)
-- Props nativas de ImgHTMLAttributes
-- **Características**: Lazy loading automático, error handling con fallback, aspect ratio control
-
-**List component:**
-- `ordered`: boolean (false = ul, true = ol)
-- `variant`: 'default' | 'unstyled' | 'compact' (default: 'default')
-  - `default`: Lista con bullets/números y padding estándar
-  - `unstyled`: Sin bullets ni padding (para listas completamente custom)
-  - `compact`: Sin bullets, sin padding, flex column con gap mínimo (ideal para listas de texto simple)
-- `className`: para overrides específicos
-
-**ListItem component:**
-- `children`: ReactNode
-- `className`: para overrides específicos
+- `label`: string opcional (para placeholders de assets pendientes)
+- `caption`: string opcional
+- `aspectRatio`: string (default: '16/9')
 
 ### Sistema Tipográfico
 
@@ -606,113 +624,68 @@ content: 'Párrafo uno.\n\nPárrafo dos.\n\nPárrafo tres.'
 - Layouts únicos de esa sección
 - Estados hover/active particulares
 
-### TypeScript Conventions
+### TypeScript en Astro
 
-**Props interfaces:**
-```typescript
-export interface TextProps {
-  children: string | ReactNode;
-  size?: 'lg' | 'md' | 'sm';
-  color?: 'default' | 'muted';
-  as?: 'p' | 'div' | 'span';
-  className?: string;
+**Props interfaces en componentes .astro:**
+```astro
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  class?: string;
 }
+
+const { variant = 'primary', href, class: className } = Astro.props;
+---
 ```
 
-**Export pattern:**
+**Zod schemas en Content Collections (src/content/config.ts):**
 ```typescript
-// En componente
-export function Text({ ... }: TextProps) { }
-export type { TextProps } from './Text';
+import { defineCollection, z } from 'astro:content';
 
-// En index.ts
-export { Text } from './Text';
-export type { TextProps } from './Text';
+const caseStudies = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    order: z.number(),
+    draft: z.boolean().default(false),
+    // ...
+  }),
+});
 ```
 
-### Ejemplos de Uso de Componentes
+### Animation System (Astro)
 
-**Image component:**
-```typescript
-// Básico con lazy loading y fallback automático
-<Image
-  src={imgPath}
-  alt="Description"
-/>
+**Available animations (defined in `BaseLayout.astro`):**
 
-// Con aspect ratio y object fit
-<Image
-  src={imgPath}
-  alt="Description"
-  aspectRatio="16/9"
-  objectFit="cover"
-  loading="eager"
-/>
+| Animation | Effect | Duration | Usage |
+|-----------|--------|----------|-------|
+| `data-animate` | Slide up 20px + fade in | 0.6s | Sections, content blocks |
+| `fadeIn` | Opacity 0 → 1 | 0.3s | Page transitions |
+| `fadeOut` | Opacity 1 → 0 | 0.2s | Page transitions |
+| `slideInFromBottom` | translateY(20px) + fade | 0.6s | Base for `data-animate` |
 
-// Con fallback personalizado (útil para imágenes externas/CDN)
-<Image
-  src="https://external-cdn.com/image.jpg"
-  alt="External image"
-  fallbackSrc="/fallback-image.png"
-/>
+**Using `data-animate` (preferred):**
+```astro
+<!-- Simple usage -->
+<section data-animate>Content slides up on load</section>
 
-// Con className para overrides
-<Image
-  src={imgPath}
-  alt="Description"
-  className="custom-image-class"
-/>
+<!-- With staggered delays -->
+<div data-animate>First item</div>
+<div data-animate data-animate-delay="0.2">Second item</div>
+<div data-animate data-animate-delay="0.4">Third item</div>
+<div data-animate data-animate-delay="0.6">Fourth item</div>
+<div data-animate data-animate-delay="0.8">Fifth item</div>
 ```
 
-**List component:**
-```typescript
-// Lista desordenada básica (con bullets)
-<List>
-  <ListItem>Item 1</ListItem>
-  <ListItem>Item 2</ListItem>
-  <ListItem>Item 3</ListItem>
-</List>
+**Available delays:** `0.2`, `0.4`, `0.6`, `0.8` seconds
 
-// Lista ordenada (con números)
-<List ordered>
-  <ListItem>Primer paso</ListItem>
-  <ListItem>Segundo paso</ListItem>
-</List>
-
-// Lista compacta (sin bullets, gap mínimo)
-<List variant="compact">
-  <ListItem>
-    <Text size="sm">Item simple</Text>
-  </ListItem>
-  <ListItem>
-    <Text size="sm">Otro item</Text>
-  </ListItem>
-</List>
-
-// Lista sin estilos (para custom styling completo)
-<List variant="unstyled">
-  <ListItem className="custom-item">Custom item</ListItem>
-</List>
-```
-
-### Motion/Framer Patterns
-
-**Animaciones consistentes:**
-```typescript
-// Para contenido que entra en viewport
-const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-<motion.div
-  initial={{ opacity: 0, y: 30 }}
-  animate={isInView ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 0.8 }}
->
-```
-
-**Delays secuenciales:**
-```typescript
-transition={{ duration: 0.6, delay: index * 0.1 }}
-```
+**When to use:**
+- ✅ Section entrances on page load
+- ✅ Content reveal (e.g., DeepDive expansion)
+- ✅ Staggered list items for visual rhythm
+- ❌ Micro-interactions (use CSS transitions instead)
 
 ### Reglas de Refactoring
 
@@ -737,9 +710,9 @@ transition={{ duration: 0.6, delay: index * 0.1 }}
 - Componentes que podrían usar base components
 
 **⚠️ CUÁNDO NO USAR COMPONENTES BASE:**
-- **List**: Listas con bullets personalizados o diseños únicos (ej: case studies con `.cs-bullet`)
+- **List**: Listas con bullets personalizados o diseños únicos
 - **Image**: Imágenes con wrappers complejos o efectos especiales ya implementados
-- **Button**: Botones con animaciones específicas de Motion/Framer ya configuradas
+- **Button**: Botones con comportamiento muy específico del contexto
 - **Regla general**: Si el componente tiene estilos muy específicos y únicos, mantener implementación custom
 
 ---
