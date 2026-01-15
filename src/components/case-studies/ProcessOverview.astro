@@ -16,23 +16,24 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
 <div class="process-overview">
   {title && <h3 class="title">{title}</h3>}
 
-  <div class="timeline">
-    {phases.map((phase, index) => (
+  <!-- Timeline bar with dots -->
+  <div class="timeline-bar">
+    <div class="timeline-line" />
+    {phases.map(() => (
+      <div class="dot" />
+    ))}
+  </div>
+
+  <!-- Phase content -->
+  <div class="phases">
+    {phases.map((phase) => (
       <div class="phase">
-        <div class="milestone">
-          <div class="dot" />
-        </div>
-
-        <div class="phase-content">
-          <h4 class="phase-title">{phase.title}</h4>
-          <ul class="phase-items">
-            {phase.items.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        {index < phases.length - 1 && <div class="connector" />}
+        <h4 class="phase-title">{phase.title}</h4>
+        <ul class="phase-items">
+          {phase.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
       </div>
     ))}
   </div>
@@ -43,21 +44,21 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
 <style>
   .process-overview {
     background-color: var(--color-bg-secondary);
-    padding: var(--space-12);
-    border-radius: var(--radius-lg);
-    margin-top: var(--space-12);
+    padding: var(--space-10) var(--space-8);
+    border-radius: var(--radius-xl);
+    margin: var(--space-12) 0;
   }
 
   @media (width >= 64rem) {
     .process-overview {
-      padding: var(--space-16);
+      padding: var(--space-12) var(--space-16);
     }
   }
 
   .title {
     font-size: var(--font-lg);
     font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
     color: var(--color-text-primary);
     text-align: center;
   }
@@ -65,77 +66,100 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
   @media (width >= 64rem) {
     .title {
       font-size: var(--font-xl);
+      margin-bottom: var(--space-10);
     }
   }
 
-  .timeline {
+  /* Timeline bar */
+  .timeline-bar {
+    display: none;
+  }
+
+  @media (width >= 48rem) {
+    .timeline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: var(--space-6);
+      padding: 0 var(--space-12);
+    }
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: var(--space-12);
+    right: var(--space-12);
+    top: 50%;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transform: translateY(-50%);
+  }
+
+  .dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--color-bg-secondary);
+    border: 2px solid var(--color-text-primary);
+    position: relative;
+    z-index: 1;
+  }
+
+  .dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-text-primary);
+  }
+
+  /* Phases grid */
+  .phases {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-8);
-    position: relative;
   }
 
-  @media (width >= 64rem) {
-    .timeline {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 0;
+  @media (width >= 48rem) {
+    .phases {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
     }
   }
 
   .phase {
     display: flex;
     flex-direction: column;
-    position: relative;
   }
 
-  @media (width >= 64rem) {
-    .phase {
-      flex: 1;
+  /* Mobile: show dot before title */
+  @media (width < 48rem) {
+    .phase::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--color-bg-secondary);
+      border: 2px solid var(--color-text-primary);
+      margin-bottom: var(--space-3);
+      position: relative;
     }
-  }
 
-  .milestone {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--space-4);
-    position: relative;
-    z-index: 2;
-  }
-
-  @media (width >= 64rem) {
-    .milestone {
-      justify-content: flex-start;
-    }
-  }
-
-  .dot {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: var(--color-text-primary);
-    border: 3px solid var(--color-bg-primary);
-    box-shadow: 0 0 0 2px var(--color-text-primary);
-  }
-
-  .connector {
-    display: none;
-  }
-
-  @media (width >= 64rem) {
-    .connector {
-      display: block;
+    .phase::after {
+      content: '';
       position: absolute;
-      top: 8px;
-      left: 16px;
-      right: -50%;
-      height: 2px;
+      top: 5px;
+      left: 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       background-color: var(--color-text-primary);
-      z-index: 1;
     }
-  }
-
-  .phase-content {
-    flex: 1;
   }
 
   .phase-title {
@@ -149,7 +173,7 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
 
   @media (width >= 64rem) {
     .phase-title {
-      font-size: var(--font-body);
+      font-size: var(--font-sm);
     }
   }
 
@@ -159,11 +183,10 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
   }
 
   .phase-items li {
-    font-size: var(--font-small);
+    font-size: var(--font-sm);
     color: var(--color-text-secondary);
     line-height: 1.5;
     position: relative;
@@ -178,14 +201,20 @@ const { title = "Process Overview", phases, bottomLabel } = Astro.props;
   }
 
   .bottom-label {
-    margin-top: var(--space-10);
+    margin-top: var(--space-8);
     padding-top: var(--space-6);
-    border-top: 1px dotted var(--color-border);
-    text-align: left;
+    border-top: 1px dashed var(--color-border-default);
+    text-align: center;
     font-size: var(--font-small);
     color: var(--color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     font-weight: var(--font-weight-medium);
+  }
+
+  @media (width >= 64rem) {
+    .bottom-label {
+      margin-top: var(--space-10);
+    }
   }
 </style>

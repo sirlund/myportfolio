@@ -1,6 +1,6 @@
 :root {
   /* Site layout */
-  --site-max-width: 72rem;
+  --site-max-width: clamp(72rem, 100%, 80rem);
   --content-max-width: 56rem;
 
   /* Special tokens not covered by semantic system */
@@ -77,24 +77,24 @@ h6 {
 }
 
 p {
-  font-size: var(--text-base);
+  font-size: var(--font-md);
   font-weight: var(--font-weight-medium);
-  line-height: 1.6;
+  line-height: var(--leading-relaxed);
   letter-spacing: 0em;
 }
 
 label {
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.6;
+  font-size: var(--font-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-normal);
   letter-spacing: 0em;
 }
 
 button {
   font-family: inherit;
-  font-size: var(--text-base);
+  font-size: var(--font-md);
   font-weight: var(--font-weight-medium);
-  line-height: 1.6;
+  line-height: var(--leading-none);
   letter-spacing: 0em;
 }
 

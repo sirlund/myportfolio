@@ -205,12 +205,9 @@
   /* Card titles, etc */
 
   /* Body Text */
-  --font-lg: var(--text-xl);
-  /* Large body (20px) - primary content */
-  --font-md: var(--text-lg);
-  /* Default body (18px) - standard content */
-  --font-sm: var(--text-base);
-  /* Small body (16px) - standard content, 16px - header, footer, contact links */
+  --font-lg: var(--text-xl); /* Large body (20px) - primary content */
+  --font-md: var(--text-lg); /* Default body (18px) - standard content */
+  --font-sm: var(--text-base);/* Small body (16px) - standard content, 16px - header, footer, contact links */
 
   /* Small/UI Text */
   --font-caption: var(--text-sm);
