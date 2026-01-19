@@ -1,12 +1,15 @@
 ---
 /**
- * Image Component
- * Renders a simple <img> by default, wraps in <figure> only when caption is provided
+ * Optimized Image Component
+ * Uses Astro's built-in image optimization for WebP/AVIF conversion
  *
  * Placeholder variants:
  * - "default": Icon + label on dashed border background (for asset planning)
  * - "fallback": Subtle failed-to-load style with just label text (for production placeholders)
  */
+import { Image } from 'astro:assets';
+import { getImage } from '@/lib/images';
+
 interface Props {
   src?: string;
   alt: string;
@@ -18,6 +21,10 @@ interface Props {
   noMargin?: boolean;
   class?: string;
   style?: string;
+  /** Image width for optimization (default: 1200) */
+  width?: number;
+  /** Image quality 1-100 (default: 80) */
+  quality?: number;
 }
 
 const {
@@ -30,24 +37,36 @@ const {
   placeholder = 'default',
   noMargin = false,
   class: className = '',
-  style: customStyle = ''
+  style: customStyle = '',
+  width = 1200,
+  quality = 80
 } = Astro.props;
 
 const isPlaceholder = !src;
 
-// Build inline style for img
-const imgStyle = [
+// Check if it's an external URL
+const isExternal = src?.startsWith('http://') || src?.startsWith('https://');
+
+// Get optimized image from assets
+let optimizedImage: ImageMetadata | undefined;
+if (src && !isExternal) {
+  // Convert /images/... path to images/... for lookup
+  const imagePath = src.startsWith('/images/') ? src.replace('/images/', 'images/') : src;
+  optimizedImage = getImage(imagePath);
+}
+
+// Build inline style for img container
+const containerStyle = [
   aspectRatio ? `aspect-ratio: ${aspectRatio}` : '',
-  `object-fit: ${objectFit}`,
   customStyle
 ].filter(Boolean).join('; ');
 
-const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
+const imgStyle = `object-fit: ${objectFit}`;
 ---
 
 {isPlaceholder && placeholder === 'fallback' ? (
   <!-- Fallback placeholder: subtle failed-to-load style -->
-  <div class:list={['placeholder-fallback', noMargin ? 'no-margin' : '', className]} style={placeholderStyle}>
+  <div class:list={['placeholder-fallback', noMargin ? 'no-margin' : '', className]} style={containerStyle}>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -57,7 +76,7 @@ const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
   </div>
 ) : isPlaceholder ? (
   <!-- Default placeholder: icon + label for asset planning -->
-  <div class:list={['placeholder', noMargin ? 'no-margin' : '', className]} style={placeholderStyle}>
+  <div class:list={['placeholder', noMargin ? 'no-margin' : '', className]} style={containerStyle}>
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
       <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -67,16 +86,47 @@ const placeholderStyle = aspectRatio ? `aspect-ratio: ${aspectRatio}` : '';
   </div>
 ) : caption ? (
   <!-- With caption: wrap in figure -->
-  <figure class:list={[noMargin ? 'figure-no-margin' : 'figure', className]}>
-    <img src={src} alt={alt} loading="lazy" class="image" style={imgStyle} />
+  <figure class:list={[noMargin ? 'figure-no-margin' : 'figure', className]} style={containerStyle}>
+    {optimizedImage ? (
+      <Image
+        src={optimizedImage}
+        alt={alt}
+        width={width}
+        quality={quality}
+        format="webp"
+        class="image"
+        style={imgStyle}
+      />
+    ) : (
+      <img src={src} alt={alt} loading="lazy" class="image" style={imgStyle} />
+    )}
     <figcaption class="caption">{caption}</figcaption>
   </figure>
 ) : (
   <!-- Simple img -->
-  <img src={src} alt={alt} loading="lazy" class:list={['image', className]} style={imgStyle} />
+  <div class:list={['image-wrapper', noMargin ? 'no-margin' : '', className]} style={containerStyle}>
+    {optimizedImage ? (
+      <Image
+        src={optimizedImage}
+        alt={alt}
+        width={width}
+        quality={quality}
+        format="webp"
+        class="image"
+        style={imgStyle}
+      />
+    ) : (
+      <img src={src} alt={alt} loading="lazy" class="image" style={imgStyle} />
+    )}
+  </div>
 )}
 
 <style>
+  .image-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
   .image {
     display: block;
     width: 100%;
