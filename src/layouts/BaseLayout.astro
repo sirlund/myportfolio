@@ -95,6 +95,23 @@ const esUrl = slug ? `${siteUrl}/es/${slug}` : `${siteUrl}/es`;
 
     <!-- View Transitions -->
     <ViewTransitions />
+
+    <!-- Google Analytics (GA4) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-6VX4KY88XL"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6VX4KY88XL');
+
+      // Track page views on View Transitions navigation
+      document.addEventListener('astro:page-load', () => {
+        gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href
+        });
+      });
+    </script>
   </head>
 
   <body>
