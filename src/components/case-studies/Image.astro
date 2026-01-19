@@ -21,10 +21,10 @@ interface Props {
   noMargin?: boolean;
   class?: string;
   style?: string;
-  /** Image width for optimization (default: 1200) */
-  width?: number;
-  /** Image quality 1-100 (default: 80) */
+  /** Image quality 1-100 (default: 85) */
   quality?: number;
+  /** Responsive sizes hint (default: '100vw') */
+  sizes?: string;
 }
 
 const {
@@ -38,9 +38,12 @@ const {
   noMargin = false,
   class: className = '',
   style: customStyle = '',
-  width = 1200,
-  quality = 80
+  quality = 85,
+  sizes = '(min-width: 1280px) 1200px, (min-width: 768px) 90vw, 100vw'
 } = Astro.props;
+
+// Responsive widths for srcset (mobile to 5K displays)
+const responsiveWidths = [640, 960, 1280, 1920, 2560];
 
 const isPlaceholder = !src;
 
@@ -91,7 +94,8 @@ const imgStyle = `object-fit: ${objectFit}`;
       <Image
         src={optimizedImage}
         alt={alt}
-        width={width}
+        widths={responsiveWidths}
+        sizes={sizes}
         quality={quality}
         format="webp"
         class="image"
@@ -109,7 +113,8 @@ const imgStyle = `object-fit: ${objectFit}`;
       <Image
         src={optimizedImage}
         alt={alt}
-        width={width}
+        widths={responsiveWidths}
+        sizes={sizes}
         quality={quality}
         format="webp"
         class="image"
