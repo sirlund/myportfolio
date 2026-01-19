@@ -39,11 +39,12 @@ const {
   class: className = '',
   style: customStyle = '',
   quality = 85,
-  sizes = '(min-width: 1280px) 1200px, (min-width: 768px) 90vw, 100vw'
+  sizes = '(min-width: 1280px) 1100px, (min-width: 768px) 85vw, 95vw'
 } = Astro.props;
 
 // Responsive widths for srcset (mobile to 5K displays)
-const responsiveWidths = [640, 960, 1280, 1920, 2560];
+// 400/600 for mobile, 900/1200 for tablet/desktop, 1800/2400 for retina/4K
+const responsiveWidths = [400, 600, 900, 1200, 1800, 2400];
 
 const isPlaceholder = !src;
 
