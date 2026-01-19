@@ -1,10 +1,12 @@
 ---
 import { getEntry, getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Hero from '@/components/Hero.astro';
 import Button from '@/components/Button.astro';
+import { getImage } from '@/lib/images';
 import type { Language } from '@/i18n/utils';
 
 export function getStaticPaths() {
@@ -132,7 +134,24 @@ const description = hero.subtitle;
               </div>
 
               <div class="project-image">
-                <img src={cs.data.thumbnail} alt={cs.data.title} loading="lazy" />
+                {(() => {
+                  const thumbnailPath = cs.data.thumbnail?.startsWith('/images/')
+                    ? cs.data.thumbnail.replace('/images/', 'images/')
+                    : cs.data.thumbnail;
+                  const optimizedThumbnail = thumbnailPath ? getImage(thumbnailPath) : undefined;
+                  return optimizedThumbnail ? (
+                    <Image
+                      src={optimizedThumbnail}
+                      alt={cs.data.title}
+                      widths={[400, 600, 900, 1200]}
+                      sizes="(min-width: 1280px) 1100px, (min-width: 768px) 85vw, 95vw"
+                      quality={85}
+                      format="webp"
+                    />
+                  ) : cs.data.thumbnail ? (
+                    <img src={cs.data.thumbnail} alt={cs.data.title} loading="lazy" />
+                  ) : null;
+                })()}
               </div>
             </div>
           </div>

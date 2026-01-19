@@ -243,7 +243,6 @@ export function initBubble(mountElement: HTMLElement): () => void {
 
   // Mouse state
   const mouse = { x: 0, y: 0 };
-  let isMouseInHero = false;
 
   // Drag state (mobile)
   const drag = { x: 0, y: 0 };
@@ -314,25 +313,22 @@ export function initBubble(mountElement: HTMLElement): () => void {
   const heroSection = document.getElementById('home');
 
   // Mouse handlers (desktop)
+  let isMouseInHero = false;
+
   function onMouseMove(event: MouseEvent) {
-    if (!isMouseInHero || !heroSection) return;
+    if (!heroSection) return;
     const rect = heroSection.getBoundingClientRect();
     const isInBounds =
       event.clientY >= rect.top &&
       event.clientY <= rect.bottom &&
       event.clientX >= rect.left &&
       event.clientX <= rect.right;
+
+    isMouseInHero = isInBounds;
     if (!isInBounds) return;
+
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-  }
-
-  function onMouseEnter() {
-    isMouseInHero = true;
-  }
-
-  function onMouseLeave() {
-    isMouseInHero = false;
   }
 
   // Touch handlers (mobile)
@@ -357,11 +353,9 @@ export function initBubble(mountElement: HTMLElement): () => void {
     dragCurrentX = 0;
   }
 
-  // Add event listeners
+  // Add event listeners - use document for mousemove to track even when mouse is already inside
+  document.addEventListener('mousemove', onMouseMove);
   if (heroSection) {
-    heroSection.addEventListener('mousemove', onMouseMove);
-    heroSection.addEventListener('mouseenter', onMouseEnter);
-    heroSection.addEventListener('mouseleave', onMouseLeave);
     heroSection.addEventListener('touchstart', onTouchStart, { passive: true });
     heroSection.addEventListener('touchmove', onTouchMove, { passive: true });
     heroSection.addEventListener('touchend', onTouchEnd, { passive: true });
@@ -427,11 +421,9 @@ export function initBubble(mountElement: HTMLElement): () => void {
     stop = true;
     cancelAnimationFrame(animationId);
     window.removeEventListener('resize', onWindowResize);
+    document.removeEventListener('mousemove', onMouseMove);
 
     if (heroSection) {
-      heroSection.removeEventListener('mousemove', onMouseMove);
-      heroSection.removeEventListener('mouseenter', onMouseEnter);
-      heroSection.removeEventListener('mouseleave', onMouseLeave);
       heroSection.removeEventListener('touchstart', onTouchStart);
       heroSection.removeEventListener('touchmove', onTouchMove);
       heroSection.removeEventListener('touchend', onTouchEnd);

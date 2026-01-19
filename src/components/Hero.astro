@@ -10,7 +10,12 @@ const { title, subtitle, cta } = Astro.props;
 
 <section id="home" class="hero-section">
   <!-- Three.js Canvas Container -->
-  <div id="bubble-container" class="canvas-container"></div>
+  <div id="bubble-container" class="canvas-container">
+    <!-- Loader placeholder while Three.js loads -->
+    <div class="canvas-loader">
+      <div class="loader-bubble"></div>
+    </div>
+  </div>
 
   <!-- Content -->
   <div class="content-wrapper">
@@ -48,11 +53,11 @@ const { title, subtitle, cta } = Astro.props;
 </section>
 
 <script>
-  import { initBubble } from '@/scripts/three-bubble';
-
+  // Dynamic import - Three.js only loads when this component is used
   let cleanup: (() => void) | null = null;
+  let threeModule: typeof import('@/scripts/three-bubble') | null = null;
 
-  function init() {
+  async function init() {
     // Cleanup previous instance if exists
     if (cleanup) {
       cleanup();
@@ -60,10 +65,37 @@ const { title, subtitle, cta } = Astro.props;
     }
 
     const container = document.getElementById('bubble-container');
-    if (container) {
-      // Clear container
-      container.innerHTML = '';
-      cleanup = initBubble(container);
+    if (!container) return;
+
+    // Check if module is already cached (instant load)
+    const isAlreadyCached = !!threeModule;
+
+    // If cached, skip loader animation
+    if (isAlreadyCached) {
+      container.classList.add('loaded');
+    } else {
+      container.classList.remove('loaded');
+    }
+
+    // Lazy load Three.js bundle only when needed
+    if (!threeModule) {
+      threeModule = await import('@/scripts/three-bubble');
+    }
+
+    // Remove any existing canvas
+    const existingCanvas = container.querySelector('canvas');
+    if (existingCanvas) existingCanvas.remove();
+
+    // Initialize Three.js
+    cleanup = threeModule.initBubble(container);
+
+    // Trigger transition after canvas is ready (only if wasn't cached)
+    if (!isAlreadyCached) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          container.classList.add('loaded');
+        });
+      });
     }
   }
 
@@ -108,6 +140,55 @@ const { title, subtitle, cta } = Astro.props;
 
   .canvas-container :global(canvas) {
     display: block;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1.4s ease-out, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .canvas-container.loaded :global(canvas) {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Loader placeholder */
+  .canvas-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .canvas-container.loaded .canvas-loader {
+    opacity: 0;
+    transform: scale(0.3);
+    pointer-events: none;
+  }
+
+  .loader-bubble {
+    width: min(35vw, 250px);
+    height: min(35vw, 250px);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(180, 160, 200, 0.4) 0%,
+      rgba(140, 180, 200, 0.3) 40%,
+      rgba(200, 180, 220, 0.2) 70%,
+      transparent 100%
+    );
+    animation: loaderPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes loaderPulse {
+    0%, 100% {
+      transform: scale(0.95);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
   }
 
   /* ============================================
