@@ -40,6 +40,7 @@ const { Content } = await entry.render();
   impactStats={entry.data.impactStats}
   theme={entry.data.theme}
   lang={lang}
+  slug={Astro.params.slug}
 >
   <Content />
 </CaseStudyLayout>

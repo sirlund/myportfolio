@@ -19,6 +19,7 @@ interface Props {
     textMuted: string;
   };
   lang: Language;
+  slug: string;
 }
 
 const {
@@ -29,7 +30,8 @@ const {
   details,
   impactStats,
   theme,
-  lang
+  lang,
+  slug
 } = Astro.props;
 
 const homePath = lang === 'es' ? '/es' : '/';
@@ -40,6 +42,8 @@ const backLabel = lang === 'es' ? 'Volver a proyectos' : 'Back to projects';
   title={`${title} — Nicolás Lundin`}
   description={description || subtitle}
   lang={lang}
+  ogImage={heroImage}
+  slug={slug}
 >
   <Header lang={lang} />
 
