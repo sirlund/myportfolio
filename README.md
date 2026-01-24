@@ -49,3 +49,33 @@ npm run deploy   # Deploy a GitHub Pages
 El sitio se despliega automáticamente a GitHub Pages con `npm run deploy`.
 
 Dominio: [nlund.in](https://nlund.in)
+
+---
+
+## Changelog
+
+### 2025-01-19 - Performance & SEO Optimization
+
+**Performance:**
+- Code-split Three.js (469KB solo carga en home, no en case studies)
+- Self-host Geist font (eliminado Google Fonts roundtrip)
+- Imágenes WebP responsive con srcset optimizado
+- Font preloading para weights críticos
+- Fix LCP: título del hero sin animación delay
+
+**SEO:**
+- og:image meta tags (homepage + case studies)
+- hreflang tags para EN↔ES
+- JSON-LD Person schema structured data
+- robots.txt habilitado + sitemap reference
+- Google Analytics (GA4) restaurado con View Transitions
+
+**Cleanup:**
+- Eliminado Storybook/Chromatic (para recrear desde cero)
+- Eliminados archivos de React no usados
+- README actualizado para Astro
+
+**Scores PageSpeed (mobile):**
+- Performance: 98
+- Accessibility: 100
+- Best Practices: 100
